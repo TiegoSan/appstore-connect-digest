@@ -30,6 +30,12 @@ Produire le compte rendu quotidien HTML et l'envoyer par mail :
 python3 daily_appstore_digest.py --recipient gautier@gogolabs.fr
 ```
 
+Produire le compte rendu HTML enrichi avec analyse commerciale et stratégie de vente :
+
+```sh
+python3 enhanced_daily_appstore_digest.py --recipient gautier@gogolabs.fr
+```
+
 Envoi mail :
 
 - Sur serveur/VPS, configurer SMTP via variables d'environnement :
@@ -80,7 +86,7 @@ Le dossier contient un workflow GitHub Actions :
 .github/workflows/appstore-digest.yml
 ```
 
-Il lance `daily_appstore_digest.py`, genere le compte rendu HTML, puis l'envoie par SMTP.
+Il lance `enhanced_daily_appstore_digest.py`, genere le compte rendu HTML enrichi avec une couche strategie commerciale, puis l'envoie par SMTP.
 
 ### Secrets GitHub requis
 
