@@ -194,7 +194,8 @@ def markdown_to_html(md):
                 close_lists()
                 out.append('<ol>')
                 in_ol = True
-            out.append(f'<li>{md_inline(re.sub(r"^\\d+\\.\\s+", "", line))}</li>')
+            stripped = re.sub(r'^\d+\.\s+', '', line)
+            out.append(f'<li>{md_inline(stripped)}</li>')
         else:
             close_lists()
             out.append(f'<p>{md_inline(line)}</p>')
