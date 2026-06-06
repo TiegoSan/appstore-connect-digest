@@ -6,6 +6,7 @@ import gzip
 import io
 import json
 import os
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -83,10 +84,15 @@ def number(row: dict[str, str], *names: str) -> float:
     return 0.0
 
 
-def fetch_sales(client: asc.ASCClient, report_date: str) -> dict[str, Any]:
-    vendor = os.environ.get("APPSTORE_VENDOR_NUMBER") or os.environ.get("ASC_VENDOR_NUMBER")
-    if not vendor:
-        return {"available": False, "error": "APPSTORE_VENDOR_NUMBER/ASC_VENDOR_NUMBER missing"}
+def candidate_sales_dates(report_date: str) -> list[str]:
+    try:
+        current = datetime.strptime(report_date, "%Y-%m-%d").date()
+    except ValueError:
+        current = date.today()
+    return [(current - timedelta(days=offset)).isoformat() for offset in range(1, 5)]
+
+
+def fetch_sales_for_date(client: asc.ASCClient, vendor: str, report_date: str) -> tuple[dict[str, Any] | None, str | None]:
     path = (
         "/salesReports?filter[frequency]=DAILY"
         f"&filter[reportDate]={report_date}"
@@ -96,9 +102,24 @@ def fetch_sales(client: asc.ASCClient, report_date: str) -> dict[str, Any]:
     )
     raw, error = safe_get(client, path)
     if error:
-        return {"available": False, "error": error}
+        return None, error
     rows = decode_sales(raw)
-    return {"available": True, "vendor_number": vendor, "report_date": report_date, "rows": rows}
+    return {"available": True, "vendor_number": vendor, "report_date": report_date, "rows": rows}, None
+
+
+def fetch_sales(client: asc.ASCClient, metrics_report_date: str) -> dict[str, Any]:
+    vendor = os.environ.get("APPSTORE_VENDOR_NUMBER") or os.environ.get("ASC_VENDOR_NUMBER")
+    if not vendor:
+        return {"available": False, "error": "APPSTORE_VENDOR_NUMBER/ASC_VENDOR_NUMBER missing"}
+    errors: dict[str, str] = {}
+    for candidate in candidate_sales_dates(metrics_report_date):
+        sales, error = fetch_sales_for_date(client, vendor, candidate)
+        if sales is not None:
+            sales["requested_metrics_report_date"] = metrics_report_date
+            sales["fallback_dates_tried"] = list(errors.keys())
+            return sales
+        errors[candidate] = error or "unknown error"
+    return {"available": False, "vendor_number": vendor, "requested_metrics_report_date": metrics_report_date, "errors_by_date": errors}
 
 
 def aggregate_sales(rows: list[dict[str, str]], sku: str) -> dict[str, Any]:
@@ -133,7 +154,7 @@ def main() -> None:
     totals.setdefault("developer_proceeds", 0.0)
     metrics["pricing_sales_source"] = {
         "pricing": "App Store Connect appPriceSchedule endpoint, best effort",
-        "sales": "App Store Connect salesReports DAILY SALES SUMMARY, best effort",
+        "sales": "App Store Connect salesReports DAILY SALES SUMMARY, best effort, using most recent available date",
         "sales_status": {k: v for k, v in sales.items() if k != "rows"},
     }
 
@@ -146,7 +167,7 @@ def main() -> None:
             app["pricing"] = fetch_pricing(client, app_id)
         else:
             app["pricing"] = {"available": False, "error": "missing app_id"}
-        app_sales = aggregate_sales(sales_rows, sku) if sales.get("available") else {"available": False, "error": sales.get("error")}
+        app_sales = aggregate_sales(sales_rows, sku) if sales.get("available") else {"available": False, "error": sales.get("error"), "errors_by_date": sales.get("errors_by_date")}
         app["sales"] = app_sales
         total_paid += int(app_sales.get("paid_units") or 0)
         total_proceeds += float(app_sales.get("developer_proceeds") or 0)
