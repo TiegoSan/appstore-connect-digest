@@ -38,12 +38,44 @@
     .strategy-memory h2 { border:0; margin:18px 0 8px; padding:0; }
     .strategy-memory h3 { margin:16px 0 8px; font-size:15px; }
     
+
+    .decision-panel { background:#111827; color:#fff; border-radius:12px; padding:18px 20px; margin:22px 0 26px; }
+    .decision-panel h2 { color:#fff; border:0; padding:0; margin:4px 0 16px; font-size:22px; }
+    .decision-eyebrow { color:#cbd5e1; font-size:12px; text-transform:uppercase; letter-spacing:.08em; }
+    .decision-grid { display:grid; grid-template-columns:1fr 2fr 1fr; gap:12px; }
+    .decision-grid div { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:8px; padding:10px 12px; }
+    .decision-grid span { display:block; color:#cbd5e1; font-size:12px; margin-bottom:5px; }
+    .decision-grid strong { display:block; font-size:14px; line-height:1.35; }
+    .yesterday { background:#fff; border:1px solid #deded8; border-radius:10px; padding:14px 16px; margin:18px 0 24px; }
+    .yesterday ul { margin:8px 0 0; }
+    .strategy-memory { background:#fff; border:1px solid #deded8; border-left:5px solid #4d5bd1; border-radius:8px; padding:14px 16px; overflow-x:auto; }
+    .strategy-memory h2 { border:0; margin:20px 0 8px; padding:0; }
+    .strategy-memory h3 { margin:16px 0 8px; font-size:15px; }
+    .strategy-memory p { margin:8px 0; }
+    .strategy-memory ul, .strategy-memory ol { margin:8px 0 14px; }
+    .strategy-memory code { background:#f1f1ed; border-radius:4px; padding:1px 4px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
+    .strategy-memory .markdown-table { margin:12px 0 16px; width:100%; border-collapse:collapse; }
+    .strategy-memory .markdown-table th { background:#eeeeea; font-weight:700; }
+    .strategy-memory .markdown-table th, .strategy-memory .markdown-table td { border:1px solid #e2e2dc; padding:7px 8px; font-size:12px; }
+    @media (max-width:720px) { .decision-grid { grid-template-columns:1fr; } }
+
   </style>
 </head>
 <body>
   <div class="wrap">
     <h1>Compte rendu App Store Connect</h1>
     <p class="muted">2026-06-06</p>
+
+
+    <section class="decision-panel">
+      <div class="decision-eyebrow">Décision du jour</div>
+      <h2>Repackager les apps visibles avant de produire de nouvelles apps.</h2>
+      <div class="decision-grid">
+        <div><span>Priorité #1</span><strong>Glass Master</strong></div>
+        <div><span>Action avant demain</span><strong>Réécrire le sous-titre et le premier screenshot de l’app prioritaire.</strong></div>
+        <div><span>Signal à surveiller</span><strong>Impressions → vues page : 2.07%</strong></div>
+      </div>
+    </section>
 
     <div class="cards">
       <div class="card"><div class="label">Downloads</div><div class="value">81</div></div>
@@ -53,10 +85,24 @@
       <div class="card"><div class="label">Taps</div><div class="value">9</div></div>
     </div>
 
-    <h2>Synthese executive</h2>
-    <p>Le portefeuille totalise 81 telechargements standard, dont 57 first-time downloads.</p>
-    <p>Perroquet Piano reste le principal contributeur avec 57 telechargements et 41 first-time downloads.</p>
-    <p>Cote engagement, Perroquet Piano domine avec 211 impressions. Les impressions consolidees atteignent 532, avec 11 vues page produit et 9 taps.</p>
+<section class="yesterday">
+<h2>Que s’est-il passé depuis hier</h2>
+<ul>
+<li><strong>Downloads</strong> : 81 (0 vs hier)</li>
+<li><strong>First-time downloads</strong> : 57 (0 vs hier)</li>
+<li><strong>Impressions</strong> : 532 (0 vs hier)</li>
+<li><strong>Page views</strong> : 11 (0 vs hier)</li>
+<li><strong>Taps</strong> : 9 (0 vs hier)</li>
+</ul>
+<h3>Apps qui ont bougé</h3>
+<ul><li>Aucun mouvement significatif sur les apps présentes dans l’App Store.</li></ul>
+<p class="muted">Apps exclues : apps sans signal App Store dans les métriques actuelles et précédentes.</p>
+</section>
+
+    <h2>Synthèse exécutive</h2>
+    <p>Le portefeuille totalise 81 téléchargements standard, dont 57 first-time downloads.</p>
+    <p>Perroquet Piano reste le principal contributeur avec 57 téléchargements et 41 first-time downloads.</p>
+    <p>Côté engagement, Perroquet Piano domine avec 211 impressions. Les impressions consolidées atteignent 532, avec 11 vues page produit et 9 taps.</p>
     <p>Les volumes restent faibles: les signaux sont utiles pour detecter une direction, pas pour conclure statistiquement.</p>
 
     <h2>Tableau principal</h2>
@@ -83,7 +129,7 @@
     </table>
 
     <h2>Graphiques</h2>
-    <p class="muted">Telechargements par app</p>
+    <p class="muted">Téléchargements par app</p>
     <div class="bars"><table><tr><td class="bar-label">Perroquet Piano</td><td class="bar-cell"><span class="bar" style="width:220px"></span><span class="bar-value">57</span></td></tr>
 <tr><td class="bar-label">Coupez!</td><td class="bar-cell"><span class="bar" style="width:39px"></span><span class="bar-value">10</span></td></tr>
 <tr><td class="bar-label">Glass Master</td><td class="bar-cell"><span class="bar" style="width:35px"></span><span class="bar-value">9</span></td></tr>
@@ -115,29 +161,14 @@
 <li><strong>Gogo Looping</strong>: aucun signal exploitable dans les rapports actuels.</li>
 <li><strong>My First Sampler</strong>: aucun signal exploitable dans les rapports actuels.</li></ul>
 
-    <h2>Analyse</h2>
-    <p><strong>Fait observe.</strong> Perroquet Piano concentre l’essentiel des telechargements et des impressions. Le search App Store est le principal canal d’acquisition visible pour cette app.</p>
-    <p><strong>Hypothese plausible.</strong> Perroquet beneficie d’une intention de recherche plus claire que les autres apps, probablement liee au nom ou a la promesse produit.</p>
-    <p><strong>Fait observe.</strong> Coupez, Glass Master, FeedBacks et Odile ont des impressions, mais tres peu de vues page produit. Le haut de funnel existe, mais le passage vers la fiche reste faible.</p>
-    <p><strong>Limite.</strong> Les donnees actuelles sont trop faibles pour arbitrer une decision lourde. Elles servent surtout a prioriser les tests metadata et screenshots.</p>
 
-    <h2>Actions recommandees</h2>
-    <ol>
-      <li>Prioriser Perroquet Piano: renforcer les mots-cles et screenshots autour de l’intention qui genere deja du search.</li>
-      <li>Examiner Coupez, Glass Master et Odile: optimiser icone, sous-titre et premier screenshot pour augmenter le passage impression vers page produit.</li>
-      <li>Sur FeedBacks, surveiller si le motif taps sans vues page produit se repete.</li>
-      <li>Ne pas tirer de conclusion produit sur les apps sans donnees exploitables.</li>
-      <li>Ajouter une lecture hebdomadaire des tendances, plus robuste que le quotidien pour ces volumes.</li>
-    </ol>
-
-
-    <h2>Reflexion strategique</h2>
+    <h2>Réflexion stratégique</h2>
     <div class="strategy-memory"><h2>Revue stratégique GogoLabs</h2>
-<p>_Source métrique : `strategy/latest-metrics.json`, généré le 2026-06-06 à 20:48:18 UTC. Rapport App Store du 2026-06-06. Rapport ventes utilisé : 2026-06-05._</p>
+<p><em>Source métrique : <code>strategy/latest-metrics.json</code>, généré le 2026-06-06 à 20:48:18 UTC. Rapport App Store du 2026-06-06. Rapport ventes utilisé : 2026-06-05.</em></p>
 <h2>1. Synthèse exécutive stratégique</h2>
 <p>GogoLabs dispose d’un signal de marché réel mais encore trop mal converti : 532 impressions, 11 vues de page produit, 9 taps, 81 téléchargements et 57 premiers téléchargements. Le portefeuille n’est pas invisible. Il est vu. Mais le résultat App Store ne transforme pas encore assez vite l’exposition en intention. Le taux global impressions -&gt; vues page reste autour de 2,07 %. C’est le chiffre qui doit dominer la lecture : les apps apparaissent, puis l’utilisateur passe trop souvent.</p>
 <p>Le nouveau run apporte une information commerciale supplémentaire : les ventes/revenus commencent à être collectés. Le Sales Report utilisé est celui du 2026-06-05, donc J-1 par rapport aux métriques App Store du 2026-06-06. Les données indiquent 2 paid units au total, mais 0,0 de developer proceeds. Deux apps ressortent dans le rapport ventes : Perroquet Piano avec 1 unité en GBP et Odile! avec 1 unité en EUR. Ce signal doit être lu avec prudence : il confirme qu’il existe une activité transactionnelle ou comptable, mais il ne permet pas encore de conclure sur la rentabilité, le prix réel, ni le revenu net.</p>
-<p>Le pricing courant reste techniquement non exploitable. Les `app_id` sont maintenant présents, donc la correction précédente a fonctionné. Mais l’appel `appPriceSchedule` échoue encore parce que le script demande une limite de 200 alors que l’API Apple limite `manualPrices` et `automaticPrices` à 50. Ce n’est plus un problème de données manquantes. C’est un paramètre API à corriger. Dès que cette limite sera abaissée, le pipeline devrait pouvoir remonter la structure de prix.</p>
+<p>Le pricing courant reste techniquement non exploitable. Les <code>app_id</code> sont maintenant présents, donc la correction précédente a fonctionné. Mais l’appel <code>appPriceSchedule</code> échoue encore parce que le script demande une limite de 200 alors que l’API Apple limite <code>manualPrices</code> et <code>automaticPrices</code> à 50. Ce n’est plus un problème de données manquantes. C’est un paramètre API à corriger. Dès que cette limite sera abaissée, le pipeline devrait pouvoir remonter la structure de prix.</p>
 <p>La conclusion stratégique reste brutale : la priorité court terme n’est pas de produire plus. La priorité est de rendre deux apps pro impossibles à mal comprendre. Glass Master et Coupez! doivent servir de banc d’essai premium. FeedBacks! et Odile! doivent être corrigées en surface. Perroquet Piano doit être traité comme actif mobile/consumer séparé. Les apps sans signal doivent rester en audit de présence, pas en refonte profonde.</p>
 <h2>2. Ce que les métriques impliquent commercialement</h2>
 <p>Le portefeuille a un haut de funnel actif. Les impressions existent, la source dominante est App Store search pour les apps visibles, et plusieurs apps Desktop apparaissent dans des territoires solvables. Ce n’est pas une absence de marché. C’est une faiblesse de signal commercial dans le résultat de recherche.</p>
@@ -163,7 +194,7 @@
 <p>Les taps sans vues page sur FeedBacks! et Odile! ne doivent pas être surinterprétés, mais ils ne doivent pas être ignorés. Ils signalent une friction ou une différence de définition métrique. Odile! devient plus intéressante avec l’apparition d’une unité dans les ventes J-1 : l’app est mal comprise dans le résultat, mais elle peut avoir une valeur réelle pour un segment étroit.</p>
 <h3>4.4. Bas de funnel : revenus encore insuffisamment lisibles</h3>
 <p>Le rapport ventes J-1 indique 2 paid units et 0,0 developer proceeds. Cette combinaison est ambiguë : cela peut venir d’apps gratuites, de prix nuls, d’opérations comptables, de timing de proceeds, de territoires, ou d’un mapping encore imparfait des colonnes Sales Report. Il ne faut pas conclure que la valeur est nulle. Il faut conclure que la donnée revenue est maintenant branchée, mais pas encore qualifiée.</p>
-<p>La prochaine étape est technique : corriger `appPriceSchedule` avec une limite de 50, puis exposer clairement prix courant, devise, tier, paid units, proceeds et refunds par app. Sans cela, la stratégie pricing reste doctrinale.</p>
+<p>La prochaine étape est technique : corriger <code>appPriceSchedule</code> avec une limite de 50, puis exposer clairement prix courant, devise, tier, paid units, proceeds et refunds par app. Sans cela, la stratégie pricing reste doctrinale.</p>
 <h2>5. Priorités de vente</h2>
 <h3>Priorité 1 : Glass Master</h3>
 <p>Glass Master reste le meilleur laboratoire premium Desktop. Le signal est propre : Desktop, US, impressions, taps. Le problème est la conversion vers fiche produit. Il faut refaire le sous-titre, la première phrase et le screenshot 1 autour d’une promesse métier. La question n’est pas “que fait l’app ?” mais “quelle erreur professionnelle évite-t-elle ?”.</p>
@@ -178,7 +209,7 @@
 <h3>Priorité 6 : apps invisibles</h3>
 <p>Bouclez!, My First Sampler, Gogo Looping et BounceDaTracks doivent rester en audit. Leur absence de signal interdit une refonte marketing lourde. Il faut d’abord confirmer qu’elles existent réellement dans le store public avec la bonne disponibilité.</p>
 <h2>6. Pricing</h2>
-<p>Le pricing est désormais partiellement branché mais pas encore exploitable. Les ventes J-1 remontent deux unités, mais les proceeds restent à zéro. Le prix courant n’est pas remonté à cause d’une erreur API simple : Apple refuse `limit[manualPrices]=200` et `limit[automaticPrices]=200`, maximum autorisé 50. Il faut corriger ce paramètre immédiatement.</p>
+<p>Le pricing est désormais partiellement branché mais pas encore exploitable. Les ventes J-1 remontent deux unités, mais les proceeds restent à zéro. Le prix courant n’est pas remonté à cause d’une erreur API simple : Apple refuse <code>limit[manualPrices]=200</code> et <code>limit[automaticPrices]=200</code>, maximum autorisé 50. Il faut corriger ce paramètre immédiatement.</p>
 <p>La doctrine ne change pas : GogoLabs ne doit pas compenser une fiche floue par un prix bas. Un prix bas ne clarifie pas la valeur ; il abîme souvent la perception. Si les apps pro évitent des erreurs ou accélèrent des workflows créatifs réels, elles doivent être vendues comme outils premium, pas comme petits gadgets.</p>
 <p>Architecture recommandée : achat unique premium pour les apps mono-problème, prix plus élevé pour les apps qui touchent la livraison ou la validation, abonnement uniquement si la valeur continue est réelle, et ligne consumer/mobile séparée pour Perroquet.</p>
 <p>Ce qu’il faut mesurer ensuite : prix courant, devise, tier, unités payantes, revenus développeur, refunds, pays de vente, conversion page -&gt; achat/téléchargement. Sans ces champs, la stratégie pricing reste incomplète.</p>
@@ -207,7 +238,7 @@
 <p>Le troisième risque est de développer au lieu de vendre. Les chiffres ne demandent pas d’abord plus de produit. Ils demandent plus de clarté.</p>
 <h2>11. Actions concrètes avant le prochain rapport</h2>
 <ul>
-<li>Corriger `appPriceSchedule` : réduire `limit[manualPrices]` et `limit[automaticPrices]` à 50.</li>
+<li>Corriger <code>appPriceSchedule</code> : réduire <code>limit[manualPrices]</code> et <code>limit[automaticPrices]</code> à 50.</li>
 <li>Vérifier le parsing Sales Report : pourquoi 2 paid units mais 0 developer proceeds.</li>
 <li>Ajouter devise, pays de vente et type de transaction dans une section sales propre.</li>
 <li>Refaire sous-titre et screenshot 1 de Glass Master.</li>
@@ -220,12 +251,8 @@
 <h2>12. Conclusion décisionnelle</h2>
 <p>GogoLabs commence à avoir une boucle de pilotage : exposition, engagement, téléchargements, début de sales. Mais le cœur du problème reste la lisibilité commerciale. Les apps sont vues. Elles ne sont pas encore assez comprises.</p>
 <p>La décision immédiate est simple : corriger la collecte pricing, puis concentrer l’effort commercial sur Glass Master et Coupez!. Le critère de succès du prochain cycle n’est pas une impression supplémentaire. C’est une hausse du passage vers fiche produit, puis une lecture propre du revenu par app.</p></div>
-    
 
-    <h2>Erreurs</h2>
-    <p>Aucune erreur API ou reseau observee pendant la generation.</p>
-
-    <p class="footer">Genere depuis /home/runner/work/appstore-connect-digest/appstore-connect-digest. Les secrets App Store Connect, JWT et URLs signees ne sont pas inclus.</p>
+    <p class="footer">Généré depuis /home/runner/work/appstore-connect-digest/appstore-connect-digest. Les secrets App Store Connect, JWT et URLs signées ne sont pas inclus.</p>
   </div>
 </body>
 </html>
