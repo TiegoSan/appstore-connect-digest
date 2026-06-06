@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 from pathlib import Path
+import json
 import re
 
 path = Path('strategy/latest-digest.html')
+metrics_path = Path('strategy/latest-metrics.json')
+previous_metrics_path = Path('/tmp/previous-metrics.json')
 html = path.read_text(encoding='utf-8')
 
 start = html.find('    <h2>Analyse</h2>')
@@ -31,6 +34,8 @@ css = '''
     .decision-grid div { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:8px; padding:10px 12px; }
     .decision-grid span { display:block; color:#cbd5e1; font-size:12px; margin-bottom:5px; }
     .decision-grid strong { display:block; font-size:14px; line-height:1.35; }
+    .yesterday { background:#fff; border:1px solid #deded8; border-radius:10px; padding:14px 16px; margin:18px 0 24px; }
+    .yesterday ul { margin:8px 0 0; }
     .strategy-memory .markdown-table { margin:12px 0 16px; width:100%; border-collapse:collapse; }
     .strategy-memory .markdown-table th { background:#eeeeea; font-weight:700; }
     .strategy-memory .markdown-table th, .strategy-memory .markdown-table td { border:1px solid #e2e2dc; padding:7px 8px; font-size:12px; }
@@ -57,6 +62,65 @@ if 'class="decision-panel"' not in html:
     </section>
 '''
     html = html.replace('    <div class="cards">', panel + '\n    <div class="cards">', 1)
+
+def load_json(path):
+    if not path.exists():
+        return None
+    return json.loads(path.read_text(encoding='utf-8'))
+
+def by_key(payload):
+    return {app.get('key') or app.get('name'): app for app in payload.get('apps', [])}
+
+def val(app, field):
+    return int((app or {}).get(field) or 0)
+
+def has_store_signal(app):
+    return any(val(app, field) for field in ['downloads', 'first_time_downloads', 'impressions', 'product_page_views', 'taps'])
+
+def delta_line(label, current, previous):
+    diff = current - previous
+    sign = '+' if diff > 0 else ''
+    return f'<li><strong>{label}</strong> : {current} ({sign}{diff} vs hier)</li>'
+
+def yesterday_section():
+    current = load_json(metrics_path)
+    previous = load_json(previous_metrics_path)
+    if not current or not previous:
+        return '<section class="yesterday"><h2>Que s’est-il passé depuis hier</h2><p>Pas encore de point de comparaison fiable. Cette section sera exploitable après deux runs consécutifs avec métriques persistées.</p></section>'
+    ct = current.get('totals', {})
+    pt = previous.get('totals', {})
+    curr_apps = by_key(current)
+    prev_apps = by_key(previous)
+    rows = []
+    for key, app in curr_apps.items():
+        prev = prev_apps.get(key, {})
+        if not (has_store_signal(app) or has_store_signal(prev)):
+            continue
+        d_impr = val(app, 'impressions') - val(prev, 'impressions')
+        d_views = val(app, 'product_page_views') - val(prev, 'product_page_views')
+        d_down = val(app, 'downloads') - val(prev, 'downloads')
+        if d_impr or d_views or d_down:
+            rows.append((abs(d_impr) + abs(d_views) + abs(d_down), app.get('name', key), d_down, d_impr, d_views))
+    rows.sort(reverse=True)
+    lines = ''.join(f'<li><strong>{name}</strong> : downloads {down:+d}, impressions {impr:+d}, vues page {views:+d}</li>' for _, name, down, impr, views in rows[:6])
+    if not lines:
+        lines = '<li>Aucun mouvement significatif sur les apps présentes dans l’App Store.</li>'
+    return f'''<section class="yesterday">
+<h2>Que s’est-il passé depuis hier</h2>
+<ul>
+{delta_line('Downloads', val(ct, 'downloads'), val(pt, 'downloads'))}
+{delta_line('First-time downloads', val(ct, 'first_time_downloads'), val(pt, 'first_time_downloads'))}
+{delta_line('Impressions', val(ct, 'impressions'), val(pt, 'impressions'))}
+{delta_line('Page views', val(ct, 'product_page_views'), val(pt, 'product_page_views'))}
+{delta_line('Taps', val(ct, 'taps'), val(pt, 'taps'))}
+</ul>
+<h3>Apps qui ont bougé</h3>
+<ul>{lines}</ul>
+<p class="muted">Apps exclues : apps sans signal App Store dans les métriques actuelles et précédentes.</p>
+</section>'''
+
+if 'Que s’est-il passé depuis hier' not in html:
+    html = html.replace('    <h2>Synthèse exécutive</h2>', yesterday_section() + '\n\n    <h2>Synthèse exécutive</h2>', 1)
 
 def split_cells(line):
     line = re.sub(r'^<p>|</p>$', '', line.strip())
