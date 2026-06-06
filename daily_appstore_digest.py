@@ -429,7 +429,30 @@ def should_run_for_paris_hour(expected_hour: int) -> tuple[bool, str]:
     return False, f"skip: heure Paris {now.strftime('%Y-%m-%d %H:%M:%S %Z')}, attendu {expected_hour:02d}:xx"
 
 
-def generate_digest(recipient: str, should_send: bool, only_paris_hour: int | None = None) -> int:
+def should_run_for_schedule_cron(schedule_cron: str) -> tuple[bool, str]:
+    now = datetime.now(ZoneInfo("Europe/Paris"))
+    offset = now.utcoffset()
+    if offset is None:
+        return False, "skip: offset Europe/Paris indisponible"
+    offset_hours = int(offset.total_seconds() // 3600)
+    expected_cron = "50 21 * * *" if offset_hours == 2 else "50 22 * * *"
+    if schedule_cron == expected_cron:
+        return True, f"cron actif pour Paris UTC+{offset_hours}: {schedule_cron}; heure runner Paris {now.strftime('%Y-%m-%d %H:%M:%S %Z')}"
+    return False, f"skip: cron {schedule_cron} inactif pour Paris UTC+{offset_hours}; attendu {expected_cron}"
+
+
+def generate_digest(
+    recipient: str,
+    should_send: bool,
+    only_paris_hour: int | None = None,
+    schedule_cron: str | None = None,
+) -> int:
+    if schedule_cron:
+        should_run, detail = should_run_for_schedule_cron(schedule_cron)
+        print(detail)
+        if not should_run:
+            return 0
+
     if only_paris_hour is not None:
         should_run, detail = should_run_for_paris_hour(only_paris_hour)
         print(detail)
@@ -491,8 +514,16 @@ def main() -> None:
     parser.add_argument("--recipient", default=DEFAULT_RECIPIENT)
     parser.add_argument("--no-send", action="store_true", help="genere le HTML sans envoyer de mail")
     parser.add_argument("--only-paris-hour", type=int, help="ne lance le digest que si l'heure Europe/Paris correspond")
+    parser.add_argument("--schedule-cron", help="cron GitHub Actions declencheur; evite les doublons ete/hiver meme si GitHub retarde le run")
     args = parser.parse_args()
-    raise SystemExit(generate_digest(args.recipient, should_send=not args.no_send, only_paris_hour=args.only_paris_hour))
+    raise SystemExit(
+        generate_digest(
+            args.recipient,
+            should_send=not args.no_send,
+            only_paris_hour=args.only_paris_hour,
+            schedule_cron=args.schedule_cron,
+        )
+    )
 
 
 if __name__ == "__main__":

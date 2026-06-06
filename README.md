@@ -119,7 +119,11 @@ APPSTORE_DIGEST_FROM=App Store Connect Digest <gautier@gogolabs.fr>
 
 ### Horaire
 
-GitHub planifie les workflows en UTC. Le workflow est programme a `21:50` et `22:50` UTC pour couvrir l'heure d'ete et l'heure d'hiver. Le script applique ensuite un garde `Europe/Paris` et n'envoie vraiment que si l'heure locale Paris est dans l'heure `23`.
+GitHub planifie les workflows en UTC. Le workflow est programme a `21:50` et `22:50` UTC pour couvrir l'heure d'ete et l'heure d'hiver. GitHub peut declencher un run avec plusieurs minutes de retard; le script ne se base donc pas sur l'heure effective du runner, mais sur le cron declencheur fourni par GitHub.
+
+- Si Paris est en UTC+2, seul `50 21 * * *` envoie.
+- Si Paris est en UTC+1, seul `50 22 * * *` envoie.
+- L'autre run finit en succes avec un message `skip`, sans rapport ni mail.
 
 ### Test
 

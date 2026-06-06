@@ -172,8 +172,14 @@ def main() -> None:
     parser.add_argument("--recipient", default=base.DEFAULT_RECIPIENT)
     parser.add_argument("--no-send", action="store_true", help="genere le HTML sans envoyer de mail")
     parser.add_argument("--only-paris-hour", type=int, help="ne lance le digest que si l'heure Europe/Paris correspond")
+    parser.add_argument("--schedule-cron", help="cron GitHub Actions declencheur; evite les doublons ete/hiver meme si GitHub retarde le run")
     args = parser.parse_args()
-    exit_code = base.generate_digest(args.recipient, should_send=not args.no_send, only_paris_hour=args.only_paris_hour)
+    exit_code = base.generate_digest(
+        args.recipient,
+        should_send=not args.no_send,
+        only_paris_hour=args.only_paris_hour,
+        schedule_cron=args.schedule_cron,
+    )
     commit_latest_metrics()
     raise SystemExit(exit_code)
 

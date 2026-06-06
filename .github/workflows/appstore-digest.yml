@@ -44,7 +44,7 @@ jobs:
       - name: Generate and send digest
         run: |
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            python enhanced_daily_appstore_digest.py --recipient gautier@gogolabs.fr --only-paris-hour 23
+            python enhanced_daily_appstore_digest.py --recipient gautier@gogolabs.fr --schedule-cron '${{ github.event.schedule }}'
           else
             python enhanced_daily_appstore_digest.py --recipient gautier@gogolabs.fr
           fi
