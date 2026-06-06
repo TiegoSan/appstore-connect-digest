@@ -64,7 +64,10 @@ class PipelineTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
-            (strategy_dir / "strategic-review.md").write_text("# Review\n\n- Action", encoding="utf-8")
+            (strategy_dir / "strategic-review.md").write_text(
+                "# Review\n\nIntro\n\n## Synthèse exécutive stratégique\n\nRemove me\n\n## Segment A\n\n- Action\n\n## Segment B\n\nBody",
+                encoding="utf-8",
+            )
 
             postprocess_latest_digest.postprocess(root)
             html = html_path.read_text(encoding="utf-8")
@@ -72,11 +75,34 @@ class PipelineTests(unittest.TestCase):
         self.assertIn("Glass Master", html)
         self.assertIn("Gogo Labs Daily Business Digest", html)
         self.assertIn("cid:gogolabs-logo", html)
-        self.assertIn("Synthèse exécutive", html)
+        self.assertNotIn("<h2>Synthèse exécutive</h2>", html)
+        self.assertIn("Remove me", html)
         self.assertNotIn("Réflexion stratégique", html)
-        self.assertIn("<h2>Review</h2>", html)
+        self.assertIn('<div class="strategy-review" aria-label="Review">', html)
+        self.assertIn('<h2 class="strategy-review-title">Review</h2>', html)
+        self.assertNotIn('<section class="strategy-block" aria-label="Introduction">', html)
+        self.assertIn('<section class="strategy-block" aria-label="Synthèse exécutive stratégique">', html)
+        self.assertIn('<section class="strategy-block" aria-label="Segment A">', html)
+        self.assertIn('<section class="strategy-block" aria-label="Segment B">', html)
+        self.assertEqual(html.count('class="strategy-block"'), 3)
+        self.assertNotIn("<h2>1. ", html)
+        self.assertNotIn("<h3>2.1. ", html)
         self.assertIn("<li>Action</li>", html)
+        self.assertNotIn('class="strategy-memory"', html)
+        self.assertNotIn("Signaux par app", html)
         self.assertNotIn("Base analysis", html)
+
+    def test_bar_rows_hides_zero_values(self) -> None:
+        apps = [
+            daily_appstore_digest.AppDigest("one", "Visible", None, None, {"standard_total": 4}, None, None),
+            daily_appstore_digest.AppDigest("zero", "Hidden", None, None, {"standard_total": 0}, None, None),
+        ]
+
+        html = daily_appstore_digest.bar_rows(apps, "standard_total")
+
+        self.assertIn("Visible", html)
+        self.assertNotIn("Hidden", html)
+        self.assertIn("background:#", html)
 
     def test_build_message_attaches_logo_inline(self) -> None:
         msg = daily_appstore_digest.build_message(

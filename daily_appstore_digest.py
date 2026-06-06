@@ -97,16 +97,21 @@ def rate(app: AppDigest, field: str) -> Any:
 
 
 def bar_rows(apps: list[AppDigest], field: str, max_width: int = 220) -> str:
-    max_value = max((metric(app, field) for app in apps), default=0) or 1
+    visible_apps = [app for app in apps if metric(app, field) > 0]
+    if not visible_apps:
+        return '<tr><td class="muted" colspan="2">Aucune valeur non nulle.</td></tr>'
+    max_value = max((metric(app, field) for app in visible_apps), default=0) or 1
+    colors = ["#0f766e", "#2563eb", "#c2410c", "#7c3aed", "#be123c", "#15803d", "#b45309", "#0369a1"]
     rows = []
-    for app in sorted(apps, key=lambda item: (-metric(item, field), item.name)):
+    for index, app in enumerate(sorted(visible_apps, key=lambda item: (-metric(item, field), item.name))):
         value = metric(app, field)
-        width = max(2, round(value / max_value * max_width)) if value else 2
+        width = max(2, round(value / max_value * max_width))
+        color = colors[index % len(colors)]
         rows.append(
             "<tr>"
             f"<td class=\"bar-label\">{escape(app.name)}</td>"
             "<td class=\"bar-cell\">"
-            f"<span class=\"bar\" style=\"width:{width}px\"></span>"
+            f"<span class=\"bar\" style=\"width:{width}px;background:{color}\"></span>"
             f"<span class=\"bar-value\">{value}</span>"
             "</td>"
             "</tr>"
@@ -183,23 +188,6 @@ def render_html(apps: list[AppDigest], report_date: str) -> str:
     total_impressions = sum(metric(app, "impressions") for app in ok_apps)
     total_page_views = sum(metric(app, "product_page_views") for app in ok_apps)
     total_taps = sum(metric(app, "taps") for app in ok_apps)
-    downloads_leader = max(ok_apps, key=lambda app: metric(app, "standard_total"), default=None)
-    impressions_leader = max(ok_apps, key=lambda app: metric(app, "impressions"), default=None)
-
-    leader_sentence = ""
-    if downloads_leader:
-        leader_sentence = (
-            f"{escape(downloads_leader.name)} reste le principal contributeur avec "
-            f"{metric(downloads_leader, 'standard_total')} telechargements et "
-            f"{metric(downloads_leader, 'first_time_downloads')} first-time downloads."
-        )
-    engagement_sentence = ""
-    if impressions_leader:
-        engagement_sentence = (
-            f"Cote engagement, {escape(impressions_leader.name)} domine avec "
-            f"{metric(impressions_leader, 'impressions')} impressions."
-        )
-
     return f"""<!doctype html>
 <html>
 <head>
@@ -252,12 +240,6 @@ def render_html(apps: list[AppDigest], report_date: str) -> str:
       <div class="card"><div class="label">Taps</div><div class="value">{total_taps}</div></div>
     </div>
 
-    <h2>Synthese executive</h2>
-    <p>Le portefeuille totalise {total_downloads} telechargements standard, dont {total_first} first-time downloads.</p>
-    <p>{leader_sentence}</p>
-    <p>{engagement_sentence} Les impressions consolidees atteignent {total_impressions}, avec {total_page_views} vues page produit et {total_taps} taps.</p>
-    <p>Les volumes restent faibles: les signaux sont utiles pour detecter une direction, pas pour conclure statistiquement.</p>
-
     <h2>Tableau principal</h2>
     <table>
       <thead>
@@ -278,9 +260,6 @@ def render_html(apps: list[AppDigest], report_date: str) -> str:
     <div class="bars"><table>{bar_rows(apps, "standard_total")}</table></div>
     <p class="muted">Impressions par app</p>
     <div class="bars"><table>{bar_rows(apps, "impressions")}</table></div>
-
-    <h2>Signaux par app</h2>
-    <ul>{render_signals(apps)}</ul>
 
     <h2>Analyse</h2>
     <p><strong>Fait observe.</strong> Perroquet Piano concentre l’essentiel des telechargements et des impressions. Le search App Store est le principal canal d’acquisition visible pour cette app.</p>

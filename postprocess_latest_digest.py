@@ -133,6 +133,10 @@ def markdown_inline(text: str) -> str:
     return rendered
 
 
+def clean_heading_number(title: str) -> str:
+    return re.sub(r"^\d+(?:\.\d+)*\.\s*", "", title.strip())
+
+
 def split_table_cells(line: str) -> list[str]:
     line = re.sub(r"^<p>|</p>$", "", line.strip())
     return [cell.strip() for cell in line.strip("|").split("|")]
@@ -174,13 +178,13 @@ def markdown_to_html(markdown: str) -> str:
             continue
         if line.startswith("### "):
             close_lists()
-            out.append(f"<h3>{markdown_inline(line[4:])}</h3>")
+            out.append(f"<h3>{markdown_inline(clean_heading_number(line[4:]))}</h3>")
         elif line.startswith("## "):
             close_lists()
-            out.append(f"<h2>{markdown_inline(line[3:])}</h2>")
+            out.append(f"<h2>{markdown_inline(clean_heading_number(line[3:]))}</h2>")
         elif line.startswith("# "):
             close_lists()
-            out.append(f"<h2>{markdown_inline(line[2:])}</h2>")
+            out.append(f"<h2>{markdown_inline(clean_heading_number(line[2:]))}</h2>")
         elif line.startswith("- "):
             if not in_ul:
                 close_lists()
@@ -202,21 +206,71 @@ def markdown_to_html(markdown: str) -> str:
     return re.sub(r"(<p>\|[^<]+\|</p>\s*){3,}", lambda match: build_table(match.group(0)), rendered)
 
 
+def strategic_review_blocks(markdown: str) -> list[tuple[str, str]]:
+    blocks: list[tuple[str, list[str]]] = []
+    current_title = ""
+    current_lines: list[str] = []
+    in_section = False
+
+    for raw in markdown.splitlines():
+        line = raw.strip()
+        if line.startswith("# "):
+            continue
+        if line.startswith("## "):
+            if in_section and current_lines:
+                blocks.append((current_title, current_lines))
+            current_title = clean_heading_number(line[3:])
+            current_lines = [raw]
+            in_section = True
+            continue
+        if not in_section:
+            continue
+        current_lines.append(raw)
+
+    if in_section and current_lines:
+        blocks.append((current_title, current_lines))
+
+    return [(title, "\n".join(lines).strip()) for title, lines in blocks if "\n".join(lines).strip()]
+
+
 def strategic_review_section(review_path: Path) -> str:
     if not review_path.exists():
         return ""
     markdown = review_path.read_text(encoding="utf-8").strip()
     if not markdown:
         return ""
-    return f'\n    <div class="strategy-memory">{markdown_to_html(markdown)}</div>\n'
+
+    title = "Revue stratégique"
+    body_lines = []
+    for raw in markdown.splitlines():
+        if raw.strip().startswith("# "):
+            title = raw.strip()[2:].strip() or title
+            continue
+        body_lines.append(raw)
+
+    blocks = strategic_review_blocks("\n".join(body_lines).strip())
+    rendered_blocks = "\n".join(
+        f'      <section class="strategy-block" aria-label="{escape(block_title)}">{markdown_to_html(block_markdown)}</section>'
+        for block_title, block_markdown in blocks
+    )
+    return f"""
+    <div class="strategy-review" aria-label="{escape(title)}">
+      <h2 class="strategy-review-title">{escape(title)}</h2>
+{rendered_blocks}
+    </div>
+"""
 
 
 def inject_css(html: str) -> str:
-    brand_css = "" if ".brand-head {" in html else """
+    html = re.sub(r"\n\s*\.strategy-memory[^{]*\{[^}]*\}", "", html)
+    css_chunks: list[str] = []
+    if ".brand-head {" not in html:
+        css_chunks.append("""
     .brand-head { display:flex; align-items:center; gap:12px; margin:0 0 8px; }
     .brand-logo { width:42px; height:42px; border-radius:10px; object-fit:cover; }
-"""
-    css = brand_css + """
+""")
+    if ".decision-panel {" not in html:
+        css_chunks.append("""
     .decision-panel { background:#111827; color:#fff; border-radius:12px; padding:18px 20px; margin:22px 0 26px; }
     .decision-panel h2 { color:#fff; border:0; padding:0; margin:4px 0 16px; font-size:22px; }
     .decision-eyebrow { color:#cbd5e1; font-size:12px; text-transform:uppercase; letter-spacing:.08em; }
@@ -224,24 +278,31 @@ def inject_css(html: str) -> str:
     .decision-grid div { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:8px; padding:10px 12px; }
     .decision-grid span { display:block; color:#cbd5e1; font-size:12px; margin-bottom:5px; }
     .decision-grid strong { display:block; font-size:14px; line-height:1.35; }
+    @media (max-width:720px) { .decision-grid { grid-template-columns:1fr; } }
+""")
+    if ".yesterday {" not in html:
+        css_chunks.append("""
     .yesterday { background:#fff; border:1px solid #deded8; border-radius:10px; padding:14px 16px; margin:18px 0 24px; }
     .yesterday ul { margin:8px 0 0; }
-    .strategy-memory { background:#fff; border:1px solid #deded8; border-left:5px solid #4d5bd1; border-radius:8px; padding:14px 16px; overflow-x:auto; }
-    .strategy-memory h2 { border:0; margin:20px 0 8px; padding:0; }
-    .strategy-memory h3 { margin:16px 0 8px; font-size:15px; }
-    .strategy-memory p { margin:8px 0; }
-    .strategy-memory ul, .strategy-memory ol { margin:8px 0 14px; }
-    .strategy-memory code { background:#f1f1ed; border-radius:4px; padding:1px 4px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
-    .strategy-memory .markdown-table { margin:12px 0 16px; width:100%; border-collapse:collapse; }
-    .strategy-memory .markdown-table th { background:#eeeeea; font-weight:700; }
-    .strategy-memory .markdown-table th, .strategy-memory .markdown-table td { border:1px solid #e2e2dc; padding:7px 8px; font-size:12px; }
-    @media (max-width:720px) { .decision-grid { grid-template-columns:1fr; } }
-"""
-    if ".decision-panel" in html:
+""")
+    if ".strategy-block {" not in html:
+        css_chunks.append("""
+    .strategy-review { margin:24px 0; }
+    .strategy-review-title { margin:0 0 12px; }
+    .strategy-block { background:#fff; border:1px solid #deded8; border-radius:10px; padding:14px 16px; margin:0 0 18px; overflow-x:auto; }
+    .strategy-block h3 { margin:16px 0 8px; font-size:15px; }
+    .strategy-block p { margin:8px 0; }
+    .strategy-block ul, .strategy-block ol { margin:8px 0 14px; }
+    .strategy-block code { background:#f1f1ed; border-radius:4px; padding:1px 4px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
+    .strategy-block .markdown-table { margin:12px 0 16px; width:100%; border-collapse:collapse; }
+    .strategy-block .markdown-table th { background:#eeeeea; font-weight:700; }
+    .strategy-block .markdown-table th, .strategy-block .markdown-table td { border:1px solid #e2e2dc; padding:7px 8px; font-size:12px; }
+""")
+    if not css_chunks:
         return html
     if "  </style>" not in html:
         raise RuntimeError("Balise </style> introuvable dans le digest HTML.")
-    return html.replace("  </style>", css + "\n  </style>", 1)
+    return html.replace("  </style>", "".join(css_chunks) + "\n  </style>", 1)
 
 
 def apply_branding(html: str) -> str:
@@ -280,16 +341,24 @@ def remove_base_analysis(html: str) -> str:
     return html
 
 
+def remove_named_section(html: str, title: str) -> str:
+    pattern = rf"\s*<h2>{re.escape(title)}</h2>.*?(?=\s*<h2>|\s*<div class=\"strategy-review\"|\s*<p class=\"footer\">)"
+    return re.sub(pattern, "\n", html, count=1, flags=re.DOTALL)
+
+
 def replace_strategy_section(html: str, section: str) -> str:
+    html = re.sub(r"\s*<div class=\"strategy-review\".*?</div>\s*", "\n", html, flags=re.DOTALL)
     html = re.sub(r"\s*<h2>Reflexion strategique</h2>\s*<div class=\"strategy-memory\">.*?</div>\s*", "\n", html, flags=re.DOTALL)
     html = re.sub(r"\s*<h2>Réflexion stratégique</h2>\s*<div class=\"strategy-memory\">.*?</div>\s*", "\n", html, flags=re.DOTALL)
     html = re.sub(r"\s*<div class=\"strategy-memory\">.*?</div>\s*", "\n", html, flags=re.DOTALL)
     errors_start = html.find("    <h2>Erreurs</h2>")
-    footer_start = html.find('    <p class="footer">')
+    footer_match = re.search(r"\s*<p class=\"footer\">", html)
+    footer_start = footer_match.start() if footer_match else -1
+    footer_tail = "    " + html[footer_start:].lstrip() if footer_match else ""
     if errors_start != -1 and footer_start != -1 and errors_start < footer_start:
-        return html[:errors_start] + section + "\n" + html[footer_start:]
+        return html[:errors_start] + section + "\n" + footer_tail
     if footer_start != -1:
-        return html[:footer_start] + section + "\n" + html[footer_start:]
+        return html[:footer_start] + section + "\n" + footer_tail
     raise RuntimeError("Emplacement d'insertion de la réflexion stratégique introuvable.")
 
 
@@ -307,11 +376,13 @@ def postprocess(root: Path = ROOT) -> Path:
     html = remove_base_analysis(html)
     html = apply_branding(html)
     html = apply_text_replacements(html)
+    html = remove_named_section(html, "Synthèse exécutive")
+    html = remove_named_section(html, "Signaux par app")
     html = inject_css(html)
     if 'class="decision-panel"' not in html:
         html = html.replace('    <div class="cards">', decision_panel(metrics) + '\n    <div class="cards">', 1)
     if "Que s'est-il passé depuis hier" not in html and "Que s’est-il passé depuis hier" not in html:
-        html = html.replace("    <h2>Synthèse exécutive</h2>", yesterday_section(metrics, previous_metrics) + "\n\n    <h2>Synthèse exécutive</h2>", 1)
+        html = html.replace("    <h2>Tableau principal</h2>", yesterday_section(metrics, previous_metrics) + "\n\n    <h2>Tableau principal</h2>", 1)
     html = replace_strategy_section(html, strategic_review_section(review_path))
     html = re.sub(r"(<p>\|[^<]+\|</p>\s*){3,}", lambda match: build_table(match.group(0)), html)
     html_path.write_text(html, encoding="utf-8")

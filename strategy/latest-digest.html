@@ -43,18 +43,21 @@
     .decision-grid div { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:8px; padding:10px 12px; }
     .decision-grid span { display:block; color:#cbd5e1; font-size:12px; margin-bottom:5px; }
     .decision-grid strong { display:block; font-size:14px; line-height:1.35; }
+    @media (max-width:720px) { .decision-grid { grid-template-columns:1fr; } }
+
     .yesterday { background:#fff; border:1px solid #deded8; border-radius:10px; padding:14px 16px; margin:18px 0 24px; }
     .yesterday ul { margin:8px 0 0; }
-    .strategy-memory { background:#fff; border:1px solid #deded8; border-left:5px solid #4d5bd1; border-radius:8px; padding:14px 16px; overflow-x:auto; }
-    .strategy-memory h2 { border:0; margin:20px 0 8px; padding:0; }
-    .strategy-memory h3 { margin:16px 0 8px; font-size:15px; }
-    .strategy-memory p { margin:8px 0; }
-    .strategy-memory ul, .strategy-memory ol { margin:8px 0 14px; }
-    .strategy-memory code { background:#f1f1ed; border-radius:4px; padding:1px 4px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
-    .strategy-memory .markdown-table { margin:12px 0 16px; width:100%; border-collapse:collapse; }
-    .strategy-memory .markdown-table th { background:#eeeeea; font-weight:700; }
-    .strategy-memory .markdown-table th, .strategy-memory .markdown-table td { border:1px solid #e2e2dc; padding:7px 8px; font-size:12px; }
-    @media (max-width:720px) { .decision-grid { grid-template-columns:1fr; } }
+
+    .strategy-review { margin:24px 0; }
+    .strategy-review-title { margin:0 0 12px; }
+    .strategy-block { background:#fff; border:1px solid #deded8; border-radius:10px; padding:14px 16px; margin:0 0 18px; overflow-x:auto; }
+    .strategy-block h3 { margin:16px 0 8px; font-size:15px; }
+    .strategy-block p { margin:8px 0; }
+    .strategy-block ul, .strategy-block ol { margin:8px 0 14px; }
+    .strategy-block code { background:#f1f1ed; border-radius:4px; padding:1px 4px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
+    .strategy-block .markdown-table { margin:12px 0 16px; width:100%; border-collapse:collapse; }
+    .strategy-block .markdown-table th { background:#eeeeea; font-weight:700; }
+    .strategy-block .markdown-table th, .strategy-block .markdown-table td { border:1px solid #e2e2dc; padding:7px 8px; font-size:12px; }
 
   </style>
 </head>
@@ -84,12 +87,6 @@
 
 <section class="yesterday"><h2>Que s'est-il passé depuis hier</h2><p>Pas encore de point de comparaison fiable. Cette section sera exploitable après deux runs consécutifs avec métriques persistées.</p></section>
 
-    <h2>Synthèse exécutive</h2>
-    <p>Le portefeuille totalise 81 téléchargements standard, dont 57 first-time downloads.</p>
-    <p>Perroquet Piano reste le principal contributeur avec 57 téléchargements et 41 first-time downloads.</p>
-    <p>Côté engagement, Perroquet Piano domine avec 211 impressions. Les impressions consolidées atteignent 532, avec 11 vues page produit et 9 taps.</p>
-    <p>Les volumes restent faibles: les signaux sont utiles pour detecter une direction, pas pour conclure statistiquement.</p>
-
     <h2>Tableau principal</h2>
     <table>
       <thead>
@@ -115,52 +112,33 @@
 
     <h2>Graphiques</h2>
     <p class="muted">Téléchargements par app</p>
-    <div class="bars"><table><tr><td class="bar-label">Perroquet Piano</td><td class="bar-cell"><span class="bar" style="width:220px"></span><span class="bar-value">57</span></td></tr>
-<tr><td class="bar-label">Coupez!</td><td class="bar-cell"><span class="bar" style="width:39px"></span><span class="bar-value">10</span></td></tr>
-<tr><td class="bar-label">Glass Master</td><td class="bar-cell"><span class="bar" style="width:35px"></span><span class="bar-value">9</span></td></tr>
-<tr><td class="bar-label">FeedBacks!</td><td class="bar-cell"><span class="bar" style="width:15px"></span><span class="bar-value">4</span></td></tr>
-<tr><td class="bar-label">Odile!</td><td class="bar-cell"><span class="bar" style="width:4px"></span><span class="bar-value">1</span></td></tr>
-<tr><td class="bar-label">Bouclez!</td><td class="bar-cell"><span class="bar" style="width:2px"></span><span class="bar-value">0</span></td></tr>
-<tr><td class="bar-label">BounceDaTracks</td><td class="bar-cell"><span class="bar" style="width:2px"></span><span class="bar-value">0</span></td></tr>
-<tr><td class="bar-label">Gogo Looping</td><td class="bar-cell"><span class="bar" style="width:2px"></span><span class="bar-value">0</span></td></tr>
-<tr><td class="bar-label">My First Sampler</td><td class="bar-cell"><span class="bar" style="width:2px"></span><span class="bar-value">0</span></td></tr></table></div>
+    <div class="bars"><table><tr><td class="bar-label">Perroquet Piano</td><td class="bar-cell"><span class="bar" style="width:220px;background:#0f766e"></span><span class="bar-value">57</span></td></tr>
+<tr><td class="bar-label">Coupez!</td><td class="bar-cell"><span class="bar" style="width:39px;background:#2563eb"></span><span class="bar-value">10</span></td></tr>
+<tr><td class="bar-label">Glass Master</td><td class="bar-cell"><span class="bar" style="width:35px;background:#c2410c"></span><span class="bar-value">9</span></td></tr>
+<tr><td class="bar-label">FeedBacks!</td><td class="bar-cell"><span class="bar" style="width:15px;background:#7c3aed"></span><span class="bar-value">4</span></td></tr>
+<tr><td class="bar-label">Odile!</td><td class="bar-cell"><span class="bar" style="width:4px;background:#be123c"></span><span class="bar-value">1</span></td></tr></table></div>
     <p class="muted">Impressions par app</p>
-    <div class="bars"><table><tr><td class="bar-label">Perroquet Piano</td><td class="bar-cell"><span class="bar" style="width:220px"></span><span class="bar-value">211</span></td></tr>
-<tr><td class="bar-label">Glass Master</td><td class="bar-cell"><span class="bar" style="width:125px"></span><span class="bar-value">120</span></td></tr>
-<tr><td class="bar-label">Odile!</td><td class="bar-cell"><span class="bar" style="width:89px"></span><span class="bar-value">85</span></td></tr>
-<tr><td class="bar-label">FeedBacks!</td><td class="bar-cell"><span class="bar" style="width:62px"></span><span class="bar-value">59</span></td></tr>
-<tr><td class="bar-label">Coupez!</td><td class="bar-cell"><span class="bar" style="width:59px"></span><span class="bar-value">57</span></td></tr>
-<tr><td class="bar-label">Bouclez!</td><td class="bar-cell"><span class="bar" style="width:2px"></span><span class="bar-value">0</span></td></tr>
-<tr><td class="bar-label">BounceDaTracks</td><td class="bar-cell"><span class="bar" style="width:2px"></span><span class="bar-value">0</span></td></tr>
-<tr><td class="bar-label">Gogo Looping</td><td class="bar-cell"><span class="bar" style="width:2px"></span><span class="bar-value">0</span></td></tr>
-<tr><td class="bar-label">My First Sampler</td><td class="bar-cell"><span class="bar" style="width:2px"></span><span class="bar-value">0</span></td></tr></table></div>
-
-    <h2>Signaux par app</h2>
-    <ul><li><strong>Perroquet Piano</strong>: source dominante App Store search (205); pays dominant JP (38); device dominant iPhone (134).</li>
-<li><strong>Coupez!</strong>: source dominante App Store search (54); pays dominant US (24); device dominant Desktop (57).</li>
-<li><strong>Glass Master</strong>: source dominante App Store search (118); pays dominant US (45); device dominant Desktop (120).</li>
-<li><strong>FeedBacks!</strong>: source dominante App Store search (57); pays dominant US (21); device dominant Desktop (59).</li>
-<li><strong>Odile!</strong>: source dominante App Store search (64); pays dominant GB (13); device dominant Desktop (85).</li>
-<li><strong>Bouclez!</strong>: aucun signal exploitable dans les rapports actuels.</li>
-<li><strong>BounceDaTracks</strong>: aucun signal exploitable dans les rapports actuels.</li>
-<li><strong>Gogo Looping</strong>: aucun signal exploitable dans les rapports actuels.</li>
-<li><strong>My First Sampler</strong>: aucun signal exploitable dans les rapports actuels.</li></ul>
+    <div class="bars"><table><tr><td class="bar-label">Perroquet Piano</td><td class="bar-cell"><span class="bar" style="width:220px;background:#0f766e"></span><span class="bar-value">211</span></td></tr>
+<tr><td class="bar-label">Glass Master</td><td class="bar-cell"><span class="bar" style="width:125px;background:#2563eb"></span><span class="bar-value">120</span></td></tr>
+<tr><td class="bar-label">Odile!</td><td class="bar-cell"><span class="bar" style="width:89px;background:#c2410c"></span><span class="bar-value">85</span></td></tr>
+<tr><td class="bar-label">FeedBacks!</td><td class="bar-cell"><span class="bar" style="width:62px;background:#7c3aed"></span><span class="bar-value">59</span></td></tr>
+<tr><td class="bar-label">Coupez!</td><td class="bar-cell"><span class="bar" style="width:59px;background:#be123c"></span><span class="bar-value">57</span></td></tr></table></div>
 
 
-    <div class="strategy-memory"><h2>Revue stratégique GogoLabs</h2>
-<p><em>Source métrique : <code>strategy/latest-metrics.json</code>, généré le 2026-06-06 à 21:07:11 UTC. Rapport App Store du 2026-06-06. Rapport ventes utilisé : 2026-06-05. Exécution manuelle demandée le 2026-06-07.</em></p>
-<h2>1. Synthèse exécutive stratégique</h2>
+    <div class="strategy-review" aria-label="Revue stratégique GogoLabs">
+      <h2 class="strategy-review-title">Revue stratégique GogoLabs</h2>
+      <section class="strategy-block" aria-label="Synthèse exécutive stratégique"><h2>Synthèse exécutive stratégique</h2>
 <p>GogoLabs dispose maintenant d’un signal de marché réel mais fragile. Le portefeuille totalise 532 impressions, 11 vues page produit, 9 taps, 81 téléchargements, 57 premiers téléchargements et 2 paid units. Ce n’est pas un volume suffisant pour des certitudes statistiques, mais c’est assez pour identifier le défaut principal : l’App Store montre les apps, mais la promesse visible avant clic ne force pas encore l’ouverture des fiches.</p>
 <p>Le passage impressions vers page produit est la donnée la plus sévère : environ 2,07 %. Le problème n’est donc pas d’abord produit. Il est commercial. Nom, sous-titre, icône, premier screenshot et bénéfice métier ne vendent pas assez vite. Une app premium doit être comprise avant que l’utilisateur ne réfléchisse.</p>
 <p>Les paid units apparaissent sur Perroquet Piano et Odile!, mais les developer proceeds restent à 0.0 et les prix clients ne remontent pas proprement. La donnée de revenu reste insuffisante pour piloter une entreprise logicielle. GogoLabs doit corriger la collecte économique avant de conclure sur le modèle.</p>
-<p>Décision immédiate : prioriser Glass Master et Coupez! pour construire la ligne macOS pro, traiter Perroquet Piano comme ligne mobile/consumer séparée, corriger FeedBacks! et Odile! en surface, et limiter les apps à zéro à un audit de présence.</p>
-<h2>2. Ce que les métriques impliquent commercialement</h2>
+<p>Décision immédiate : prioriser Glass Master et Coupez! pour construire la ligne macOS pro, traiter Perroquet Piano comme ligne mobile/consumer séparée, corriger FeedBacks! et Odile! en surface, et limiter les apps à zéro à un audit de présence.</p></section>
+      <section class="strategy-block" aria-label="Ce que les métriques impliquent commercialement"><h2>Ce que les métriques impliquent commercialement</h2>
 <p>Les impressions prouvent que la gamme n’est pas invisible. Le marché croise les produits. Mais 11 vues page produit pour 532 impressions montrent une faiblesse de conversion avant même la fiche. Les résultats de recherche ne traduisent pas encore la valeur en décision.</p>
 <p>Les 81 téléchargements ne doivent pas masquer ce problème. Ils indiquent une activité, pas encore une demande premium. La donnée utile est la qualité du passage entre exposition, visite, action et paiement. Aujourd’hui, ce passage est trop flou.</p>
 <p>Perroquet Piano porte le volume le plus élevé avec 57 téléchargements, 41 premiers téléchargements, 211 impressions, 8 vues page produit et 3 taps. Mais son device dominant est iPhone et son territoire dominant est le Japon. Il ne valide pas la thèse macOS pro. Il valide une piste mobile musique/consumer.</p>
 <p>Glass Master, Coupez!, FeedBacks! et Odile! sont plus importants pour la stratégie premium. Ils sont principalement Desktop et App Store search. Leur problème commun est la lisibilité commerciale faible : ils apparaissent, mais ne déclenchent pas assez l’ouverture de fiche.</p>
-<p>Les apps à zéro — Bouclez!, My First Sampler, Gogo Looping, BounceDaTracks — ne doivent pas être refondues. Zéro impression ne prouve pas un rejet marché. Cela indique d’abord un problème de présence, d’indexation, de disponibilité, d’identifiant ou de reporting.</p>
-<h2>3. Diagnostic du portefeuille</h2>
+<p>Les apps à zéro — Bouclez!, My First Sampler, Gogo Looping, BounceDaTracks — ne doivent pas être refondues. Zéro impression ne prouve pas un rejet marché. Cela indique d’abord un problème de présence, d’indexation, de disponibilité, d’identifiant ou de reporting.</p></section>
+      <section class="strategy-block" aria-label="Diagnostic du portefeuille"><h2>Diagnostic du portefeuille</h2>
 <h3>Outils macOS pro</h3>
 <p>La ligne macOS pro doit devenir le centre stratégique. GogoLabs peut y défendre un prix premium parce que le client professionnel paie pour du temps gagné, des erreurs évitées, des exports plus sûrs et des workflows créatifs plus contrôlables.</p>
 <p>Glass Master, Coupez!, FeedBacks!, Odile! et éventuellement BounceDaTracks appartiennent à cette ligne. Elles doivent être présentées comme une gamme cohérente, pas comme des expériences isolées. Même rigueur de nommage, même niveau visuel, même logique de preuve, même promesse orientée résultat.</p>
@@ -172,31 +150,31 @@
 <p>Perroquet Piano doit être séparé de la ligne pro. Ses chiffres sont les meilleurs en volume, mais son usage dominant iPhone et son territoire JP indiquent une logique mobile/consumer. Il peut devenir une ligne utile, mais il ne doit pas brouiller la marque macOS premium.</p>
 <p>My First Sampler et Gogo Looping semblent aussi relever d’une logique musique ou apprentissage, mais leurs métriques sont nulles et leur pricing renvoie une erreur. Leur priorité est technique : vérifier existence, disponibilité, identifiants et indexation.</p>
 <h3>Apps dormantes</h3>
-<p>Bouclez!, My First Sampler, Gogo Looping et BounceDaTracks doivent être classées en audit. Le bon travail consiste à vérifier App Store Connect, territoires, état de publication, pricing, catégorie, mots-clés, captures et cohérence des identifiants. Aucun chantier produit avant retour d’impressions.</p>
-<h2>4. Diagnostic funnel</h2>
+<p>Bouclez!, My First Sampler, Gogo Looping et BounceDaTracks doivent être classées en audit. Le bon travail consiste à vérifier App Store Connect, territoires, état de publication, pricing, catégorie, mots-clés, captures et cohérence des identifiants. Aucun chantier produit avant retour d’impressions.</p></section>
+      <section class="strategy-block" aria-label="Diagnostic funnel"><h2>Diagnostic funnel</h2>
 <p>Le funnel actuel dit ceci : l’exposition existe, l’intention reste faible, la lecture économique est incomplète. La source dominante étant souvent App Store search, l’ASO doit être traité comme canal de vente principal.</p>
 <p>Le faible taux impressions vers page produit montre que la bataille se joue avant la fiche. Le nom et le sous-titre doivent fonctionner comme une annonce compacte. Si l’utilisateur doit ouvrir la fiche pour comprendre l’app, la vente est déjà perdue.</p>
 <p>Les taps et téléchargements sont présents mais encore trop petits pour guider seuls la décision. Les téléchargements supérieurs aux vues produit rendent le funnel non linéaire. Il faut donc suivre séparément impressions, product page views, taps, first-time downloads, paid units, revenus et refunds.</p>
-<p>La limite majeure est l’absence de revenu exploitable. Deux paid units sans proceeds lisibles ne suffisent pas. Le prochain reporting doit devenir économique, pas seulement marketing.</p>
-<h2>5. Priorités de vente</h2>
+<p>La limite majeure est l’absence de revenu exploitable. Deux paid units sans proceeds lisibles ne suffisent pas. Le prochain reporting doit devenir économique, pas seulement marketing.</p></section>
+      <section class="strategy-block" aria-label="Priorités de vente"><h2>Priorités de vente</h2>
 <p>Priorité 1 : Glass Master et Coupez!. Ce sont les meilleures bases pour la ligne macOS pro. Travail immédiat sur sous-titre, premier screenshot, bénéfice métier et preuve de valeur.</p>
 <p>Priorité 2 : FeedBacks! et Odile!. Correction de surface, pas chantier profond. Clarifier la promesse, spécialiser les screenshots, surveiller les prochains rapports.</p>
 <p>Priorité 3 : Perroquet Piano, séparé. Stratégie mobile/consumer spécifique, avec ASO orienté apprentissage musical, simplicité, progression et localisation si le Japon reste fort.</p>
-<p>Priorité 4 : apps à zéro. Audit de présence seulement. Pas de nouvelles features. Pas de refonte tant que l’App Store ne renvoie pas de signal.</p>
-<h2>6. Pricing</h2>
+<p>Priorité 4 : apps à zéro. Audit de présence seulement. Pas de nouvelles features. Pas de refonte tant que l’App Store ne renvoie pas de signal.</p></section>
+      <section class="strategy-block" aria-label="Pricing"><h2>Pricing</h2>
 <p>Les apps macOS pro doivent conserver une logique premium. Baisser le prix maintenant serait une erreur : le problème visible n’est pas la résistance au prix, c’est l’absence de compréhension rapide. Un prix bas ne corrige pas une promesse floue.</p>
 <p>Le prix doit être justifié par la preuve : temps gagné, erreurs évitées, livrables plus propres, workflow mieux contrôlé. Les screenshots doivent rendre le prix normal.</p>
 <p>Les bundles peuvent devenir utiles plus tard, quand Glass Master, Coupez! et une troisième app auront chacune une promesse claire et une conversion mesurable. Pour l’instant, un bundle risquerait d’assembler des ambiguïtés.</p>
 <p>Perroquet Piano doit avoir une logique de prix séparée. Le mobile/consumer ne paie pas pour les mêmes raisons que le pro macOS. Il paie pour progression, plaisir, apprentissage, simplicité.</p>
-<p>Métriques manquantes à collecter explicitement : revenus par app, prix courant, unités payantes, remboursements, notes, avis, conversion page vers achat ou téléchargement, historique J-1/J-7, prix client, proceeds nets et devises.</p>
-<h2>7. ASO</h2>
+<p>Métriques manquantes à collecter explicitement : revenus par app, prix courant, unités payantes, remboursements, notes, avis, conversion page vers achat ou téléchargement, historique J-1/J-7, prix client, proceeds nets et devises.</p></section>
+      <section class="strategy-block" aria-label="ASO"><h2>ASO</h2>
 <p>L’ASO est la surface commerciale principale. Les mots-clés doivent partir des douleurs utilisateur, pas des noms internes. L’utilisateur cherche une tâche, pas GogoLabs.</p>
 <p>Pour Coupez!, le sous-titre doit dire quoi couper, dans quel workflow, pour quel résultat. Pour Glass Master, il doit nommer la friction professionnelle supprimée. Pour FeedBacks!, il doit quitter le générique et viser les retours client ou créatifs transformés en actions. Pour Odile!, il doit compenser l’opacité du nom.</p>
-<p>Le résultat de recherche doit répondre à trois questions sans ouvrir la fiche : pour qui, quel problème, quel gain.</p>
-<h2>8. Screenshots</h2>
+<p>Le résultat de recherche doit répondre à trois questions sans ouvrir la fiche : pour qui, quel problème, quel gain.</p></section>
+      <section class="strategy-block" aria-label="Screenshots"><h2>Screenshots</h2>
 <p>Les screenshots doivent devenir des preuves. Le premier écran doit vendre le résultat, pas l’interface. L’ordre recommandé pour les apps pro : promesse métier, avant/après, résultat final, contrôle/fiabilité, intégration workflow.</p>
-<p>Glass Master doit montrer le problème résolu. Coupez! doit montrer la matière avant et après. FeedBacks! doit montrer la transformation de retours dispersés en décisions. Odile! doit rendre son cas d’usage immédiatement lisible. Perroquet Piano doit montrer progression, plaisir, simplicité et résultat musical.</p>
-<h2>9. Recommandations par app</h2>
+<p>Glass Master doit montrer le problème résolu. Coupez! doit montrer la matière avant et après. FeedBacks! doit montrer la transformation de retours dispersés en décisions. Odile! doit rendre son cas d’usage immédiatement lisible. Perroquet Piano doit montrer progression, plaisir, simplicité et résultat musical.</p></section>
+      <section class="strategy-block" aria-label="Recommandations par app"><h2>Recommandations par app</h2>
 <h3>Glass Master</h3>
 <p>Priorité haute. Réécrire le sous-titre autour du bénéfice professionnel. Refaire les trois premiers screenshots en logique preuve. Ajouter un avant/après. Ne pas développer de nouvelle fonctionnalité tant que le page view rate ne monte pas.</p>
 <h3>Coupez!</h3>
@@ -214,13 +192,13 @@
 <h3>Gogo Looping</h3>
 <p>Audit technique. Même lecture : présence non validée, signal inexploitable.</p>
 <h3>BounceDaTracks</h3>
-<p>Audit technique. Peut rejoindre la ligne pro audio plus tard, mais zéro impression et pricing 404 empêchent toute priorité actuelle.</p>
-<h2>10. Risques de dispersion</h2>
+<p>Audit technique. Peut rejoindre la ligne pro audio plus tard, mais zéro impression et pricing 404 empêchent toute priorité actuelle.</p></section>
+      <section class="strategy-block" aria-label="Risques de dispersion"><h2>Risques de dispersion</h2>
 <p>Le premier risque est de confondre portefeuille et stratégie. Une gamme existe quand le marché comprend le fil commun. Aujourd’hui, la doctrine est claire, mais les fiches ne la rendent pas encore visible.</p>
 <p>Le deuxième risque est de laisser Perroquet Piano piloter la marque parce qu’il a le plus de volume. Il doit être exploité, mais séparé.</p>
 <p>Le troisième risque est d’ajouter des features pour éviter le travail commercial. Quand le blocage se situe avant la fiche, une feature nouvelle ne règle rien.</p>
-<p>Le quatrième risque est de piloter sans revenus. GogoLabs veut construire un revenu logiciel indépendant ; le reporting doit donc devenir économique.</p>
-<h2>11. Actions concrètes avant le prochain rapport</h2>
+<p>Le quatrième risque est de piloter sans revenus. GogoLabs veut construire un revenu logiciel indépendant ; le reporting doit donc devenir économique.</p></section>
+      <section class="strategy-block" aria-label="Actions concrètes avant le prochain rapport"><h2>Actions concrètes avant le prochain rapport</h2>
 <ol>
 <li>Réécrire les sous-titres de Glass Master et Coupez!.</li>
 <li>Refaire le premier screenshot de Glass Master, Coupez!, FeedBacks! et Odile!.</li>
@@ -230,10 +208,11 @@
 <li>Ajouter historique J-1/J-7.</li>
 <li>Ajouter notes et avis App Store.</li>
 <li>Interdire les nouveaux chantiers feature tant que la lisibilité commerciale n’est pas corrigée.</li>
-</ol>
-<h2>12. Conclusion décisionnelle</h2>
+</ol></section>
+      <section class="strategy-block" aria-label="Conclusion décisionnelle"><h2>Conclusion décisionnelle</h2>
 <p>GogoLabs ne manque pas d’idées. GogoLabs manque d’un appareil de vente lisible. Les apps sont vues, mais pas assez comprises. La prochaine victoire ne sera pas une nouvelle feature. Ce sera une fiche App Store qui convertit mieux.</p>
-<p>La décision est nette : concentrer la ligne pro sur Glass Master et Coupez!, traiter FeedBacks! et Odile! en correction de surface, isoler Perroquet Piano comme ligne mobile/consumer, auditer les apps dormantes et rendre le reporting économique. GogoLabs doit agir comme une entreprise logicielle premium, pas comme un atelier qui publie des expériences.</p></div>
+<p>La décision est nette : concentrer la ligne pro sur Glass Master et Coupez!, traiter FeedBacks! et Odile! en correction de surface, isoler Perroquet Piano comme ligne mobile/consumer, auditer les apps dormantes et rendre le reporting économique. GogoLabs doit agir comme une entreprise logicielle premium, pas comme un atelier qui publie des expériences.</p></section>
+    </div>
 
     <p class="footer">Généré par Gogo Labs Daily Business Digest. Les secrets App Store Connect, JWT et URLs signées ne sont pas inclus.</p>
   </div>
