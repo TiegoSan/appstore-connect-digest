@@ -24,6 +24,8 @@ jobs:
       ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
       ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
       ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+      APPSTORE_VENDOR_NUMBER: ${{ secrets.APPSTORE_VENDOR_NUMBER }}
+      ASC_VENDOR_NUMBER: ${{ secrets.ASC_VENDOR_NUMBER }}
       APPSTORE_DIGEST_SMTP_HOST: ${{ secrets.APPSTORE_DIGEST_SMTP_HOST }}
       APPSTORE_DIGEST_SMTP_PORT: ${{ secrets.APPSTORE_DIGEST_SMTP_PORT }}
       APPSTORE_DIGEST_SMTP_SECURITY: ${{ secrets.APPSTORE_DIGEST_SMTP_SECURITY }}
@@ -58,12 +60,16 @@ jobs:
             python enhanced_daily_appstore_digest.py --recipient gautier@gogolabs.fr --no-send
           fi
 
+      - name: Enrich pricing and sales metrics
+        run: |
+          python enrich_pricing_metrics.py || echo "Pricing/sales enrichment failed; continuing digest"
+
       - name: Postprocess latest digest HTML
         run: |
           python postprocess_latest_digest.py
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add strategy/latest-digest.html
+          git add strategy/latest-metrics.json strategy/latest-digest.html
           git commit -m "Postprocess latest HTML digest" || echo "No postprocessed digest changes"
           git push || echo "No postprocessed digest push"
 
@@ -79,5 +85,6 @@ jobs:
             reports/daily-digests/*.html
             reports/*.json
             strategy/latest-digest.html
+            strategy/latest-metrics.json
           if-no-files-found: ignore
           retention-days: 14
