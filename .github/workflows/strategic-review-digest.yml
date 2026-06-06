@@ -20,6 +20,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
+    env:
+      APPSTORE_DIGEST_SMTP_HOST: ${{ secrets.APPSTORE_DIGEST_SMTP_HOST }}
+      APPSTORE_DIGEST_SMTP_PORT: ${{ secrets.APPSTORE_DIGEST_SMTP_PORT }}
+      APPSTORE_DIGEST_SMTP_SECURITY: ${{ secrets.APPSTORE_DIGEST_SMTP_SECURITY }}
+      APPSTORE_DIGEST_SMTP_USER: ${{ secrets.APPSTORE_DIGEST_SMTP_USER }}
+      APPSTORE_DIGEST_SMTP_PASSWORD: ${{ secrets.APPSTORE_DIGEST_SMTP_PASSWORD }}
+      APPSTORE_DIGEST_FROM: ${{ secrets.APPSTORE_DIGEST_FROM }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,3 +46,25 @@ jobs:
 
       - name: Postprocess latest digest HTML
         run: python postprocess_latest_digest.py
+
+      - name: Commit latest digest HTML
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add strategy/latest-digest.html reports/daily-digests/*.html
+          git commit -m "Render strategic review digest" || echo "No digest changes"
+          git push || echo "No digest push"
+
+      - name: Send postprocessed digest
+        run: python send_latest_digest.py
+
+      - name: Upload digest artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: strategic-review-digest
+          path: |
+            strategy/latest-digest.html
+            reports/daily-digests/*.html
+          if-no-files-found: ignore
+          retention-days: 14
