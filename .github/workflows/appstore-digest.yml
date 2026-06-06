@@ -12,6 +12,9 @@ concurrency:
   group: appstore-connect-digest
   cancel-in-progress: false
 
+permissions:
+  contents: write
+
 jobs:
   digest:
     runs-on: ubuntu-latest
