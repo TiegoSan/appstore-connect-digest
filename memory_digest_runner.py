@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parent
 STRATEGY_DIR = ROOT / "strategy"
 LATEST_METRICS_PATH = STRATEGY_DIR / "latest-metrics.json"
 STRATEGIC_REVIEW_PATH = STRATEGY_DIR / "strategic-review.md"
+LATEST_DIGEST_HTML_PATH = STRATEGY_DIR / "latest-digest.html"
 _ORIGINAL_RENDER_HTML = base.render_html
 
 
@@ -134,6 +135,11 @@ def strategic_review_html() -> str:
     """
 
 
+def write_latest_digest_html(html: str) -> None:
+    STRATEGY_DIR.mkdir(exist_ok=True)
+    LATEST_DIGEST_HTML_PATH.write_text(html, encoding="utf-8")
+
+
 def render_html(apps: list[base.AppDigest], report_date: str) -> str:
     write_latest_metrics(apps, report_date)
     html = _ORIGINAL_RENDER_HTML(apps, report_date)
@@ -143,26 +149,29 @@ def render_html(apps: list[base.AppDigest], report_date: str) -> str:
     .strategy-memory h3 { margin:16px 0 8px; font-size:15px; }
     """
     html = html.replace("  </style>", f"{css}\n  </style>")
-    return html.replace("    <h2>Erreurs</h2>", f"{strategic_review_html()}\n\n    <h2>Erreurs</h2>")
+    html = html.replace("    <h2>Erreurs</h2>", f"{strategic_review_html()}\n\n    <h2>Erreurs</h2>")
+    write_latest_digest_html(html)
+    return html
 
 
-def commit_latest_metrics() -> None:
-    if not LATEST_METRICS_PATH.exists():
+def commit_strategy_outputs() -> None:
+    paths = [path for path in (LATEST_METRICS_PATH, LATEST_DIGEST_HTML_PATH) if path.exists()]
+    if not paths:
         return
     if os.environ.get("GITHUB_ACTIONS") != "true":
         return
     commands = [
         ["git", "config", "user.name", "github-actions[bot]"],
         ["git", "config", "user.email", "github-actions[bot]@users.noreply.github.com"],
-        ["git", "add", str(LATEST_METRICS_PATH.relative_to(ROOT))],
-        ["git", "commit", "-m", "Update latest App Store metrics"],
+        ["git", "add", *[str(path.relative_to(ROOT)) for path in paths]],
+        ["git", "commit", "-m", "Update latest App Store strategy outputs"],
         ["git", "push"],
     ]
     for command in commands:
         proc = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, timeout=60)
         if proc.returncode != 0:
             detail = (proc.stderr or proc.stdout).strip()
-            print(f"strategy metrics commit skipped: {' '.join(command)} -> {detail}")
+            print(f"strategy outputs commit skipped: {' '.join(command)} -> {detail}")
             break
 
 
@@ -180,7 +189,7 @@ def main() -> None:
         only_paris_hour=args.only_paris_hour,
         schedule_cron=args.schedule_cron,
     )
-    commit_latest_metrics()
+    commit_strategy_outputs()
     raise SystemExit(exit_code)
 
 
