@@ -1,0 +1,40 @@
+name: Strategic Review Digest
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "strategy/strategic-review.md"
+
+concurrency:
+  group: strategic-review-digest
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  render-and-send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Render latest digest HTML
+        run: python render_latest_digest.py
+
+      - name: Postprocess latest digest HTML
+        run: python postprocess_latest_digest.py
