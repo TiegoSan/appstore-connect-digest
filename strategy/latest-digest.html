@@ -4,60 +4,63 @@
   <meta charset="utf-8">
   <title>Gogo Labs Daily Business Digest - 2026-06-06</title>
   <style>
-    body { margin:0; padding:0; background:#f5f5f3; color:#1f2328; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; }
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+    body { margin:0; padding:0; background:#f2f1ed; color:#161a20; font-family:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; }
     .wrap { max-width:960px; margin:0 auto; padding:28px 18px 40px; }
     .brand-head { display:flex; align-items:center; gap:12px; margin:0 0 8px; }
     .brand-logo { width:42px; height:42px; border-radius:10px; object-fit:cover; }
     h1 { margin:0 0 8px; font-size:28px; line-height:1.15; }
-    h2 { margin:30px 0 12px; font-size:18px; border-bottom:1px solid #d8d8d2; padding-bottom:7px; }
-    p { line-height:1.48; margin:8px 0; }
-    .muted { color:#687076; }
-    .cards { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin:18px 0 22px; }
-    .card { background:#fff; border:1px solid #deded8; border-radius:8px; padding:12px; }
-    .label { color:#687076; font-size:12px; text-transform:uppercase; letter-spacing:.03em; }
-    .value { font-size:24px; font-weight:700; margin-top:4px; }
-    table { width:100%; border-collapse:collapse; background:#fff; border:1px solid #deded8; }
-    th, td { padding:8px 9px; border-bottom:1px solid #ecece7; font-size:13px; text-align:left; vertical-align:top; }
-    th { background:#eeeeea; color:#3f454b; font-weight:700; }
+    h2 { margin:30px 0 12px; font-size:22px; font-weight:800; border-bottom:1px solid rgba(22,26,32,.12); padding-bottom:7px; color:#161a20; letter-spacing:-.02em; }
+    p { line-height:1.55; margin:8px 0; }
+    .muted { color:#5a646b; }
+    .cards { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin:18px 0 22px; background:#111827; border-radius:14px; padding:16px; }
+    .card { background:#242a36; border:1px solid rgba(255,255,255,.16); border-radius:8px; padding:12px; }
+    .label { color:#cbd5e1; font-size:12px; text-transform:uppercase; letter-spacing:.03em; }
+    .value { color:#ffffff; font-size:30px; font-weight:700; margin-top:4px; }
+    table { width:100%; border-collapse:collapse; background:#faf9f4; border:1px solid rgba(22,26,32,.12); }
+    th, td { padding:8px 9px; border-bottom:1px solid rgba(22,26,32,.12); font-size:13px; text-align:left; vertical-align:top; }
+    th { background:#ece8e0; color:#161a20; font-weight:700; }
     .num, .delta { text-align:right; white-space:nowrap; }
-    .bars { background:#fff; border:1px solid #deded8; border-radius:8px; padding:8px 10px; }
-    .bars table { border:0; background:transparent; }
-    .bars td { border:0; padding:5px 0; }
-    .bar-label { width:190px; color:#3f454b; }
-    .bar-cell { width:100%; }
-    .bar { display:inline-block; height:12px; background:#176b87; border-radius:3px; vertical-align:middle; }
-    .bar-value { display:inline-block; margin-left:8px; font-variant-numeric:tabular-nums; }
+    .bars { background:#faf9f4; border:1px solid rgba(22,26,32,.12); border-radius:10px; padding:14px 16px; }
+    .bar-row { display:grid; grid-template-columns:minmax(120px,180px) minmax(120px,1fr) auto; align-items:center; gap:12px; margin:8px 0; }
+    .bar-label { color:#3e4749; font-size:15px; line-height:1.2; }
+    .bar-track { height:15px; background:#ece8e0; border-radius:999px; overflow:hidden; }
+    .bar { display:block; height:100%; border-radius:999px; }
+    .bar-value { min-width:34px; font-size:15px; font-weight:700; font-variant-numeric:tabular-nums; }
     ul { padding-left:20px; }
     li { margin:7px 0; line-height:1.45; }
-    .footer { margin-top:28px; color:#687076; font-size:12px; }
+    .footer { margin-top:28px; color:#5a646b; font-size:12px; }
     @media (max-width:720px) {
       .cards { grid-template-columns:repeat(2,1fr); }
       th, td { font-size:12px; padding:7px 6px; }
-      .bar-label { width:120px; }
+      .bar-row { grid-template-columns:1fr auto; gap:8px; }
+      .bar-track { grid-column:1 / -1; }
     }
 
-    .decision-panel { background:#111827; color:#fff; border-radius:12px; padding:18px 20px; margin:22px 0 26px; }
-    .decision-panel h2 { color:#fff; border:0; padding:0; margin:4px 0 16px; font-size:22px; }
-    .decision-eyebrow { color:#cbd5e1; font-size:12px; text-transform:uppercase; letter-spacing:.08em; }
+    .decision-panel { background:#111827; color:#ffffff; border:0; border-radius:14px; padding:18px 20px; margin:0 0 18px; }
+    .decision-panel h2 { color:#ffffff; border:0; padding:0; margin:4px 0 16px; font-size:22px; }
+    .decision-eyebrow { color:#cbd5e1; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
     .decision-grid { display:grid; grid-template-columns:1fr 2fr 1fr; gap:12px; }
-    .decision-grid div { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:8px; padding:10px 12px; }
+    .decision-grid div { background:#242a36; border:1px solid rgba(255,255,255,.16); border-radius:8px; padding:10px 12px; }
     .decision-grid span { display:block; color:#cbd5e1; font-size:12px; margin-bottom:5px; }
+    .decision-grid strong { color:#ffffff; }
     .decision-grid strong { display:block; font-size:14px; line-height:1.35; }
     @media (max-width:720px) { .decision-grid { grid-template-columns:1fr; } }
 
-    .yesterday { background:#fff; border:1px solid #deded8; border-radius:10px; padding:14px 16px; margin:18px 0 24px; }
+    .yesterday { background:#faf9f4; border:1px solid rgba(22,26,32,.12); border-radius:10px; padding:14px 16px; margin:18px 0 24px; }
     .yesterday ul { margin:8px 0 0; }
+    .yesterday p, .yesterday li { font-size:15px; line-height:1.55; }
 
     .strategy-review { margin:24px 0; }
-    .strategy-review-title { margin:0 0 12px; }
-    .strategy-block { background:#fff; border:1px solid #deded8; border-radius:10px; padding:14px 16px; margin:0 0 18px; overflow-x:auto; }
+    .strategy-block { background:#faf9f4; border:1px solid rgba(22,26,32,.12); border-radius:10px; padding:14px 16px; margin:0 0 18px; overflow-x:auto; }
     .strategy-block h3 { margin:16px 0 8px; font-size:15px; }
-    .strategy-block p { margin:8px 0; }
+    .strategy-block p { margin:8px 0; font-size:15px; line-height:1.55; }
     .strategy-block ul, .strategy-block ol { margin:8px 0 14px; }
-    .strategy-block code { background:#f1f1ed; border-radius:4px; padding:1px 4px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
+    .strategy-block li { font-size:15px; line-height:1.55; }
+    .strategy-block code { background:#ece8e0; border-radius:4px; padding:1px 4px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
     .strategy-block .markdown-table { margin:12px 0 16px; width:100%; border-collapse:collapse; }
-    .strategy-block .markdown-table th { background:#eeeeea; font-weight:700; }
-    .strategy-block .markdown-table th, .strategy-block .markdown-table td { border:1px solid #e2e2dc; padding:7px 8px; font-size:12px; }
+    .strategy-block .markdown-table th { background:#ece8e0; font-weight:700; }
+    .strategy-block .markdown-table th, .strategy-block .markdown-table td { border:1px solid rgba(22,26,32,.12); padding:7px 8px; font-size:12px; }
 
   </style>
 </head>
@@ -65,17 +68,6 @@
   <div class="wrap">
     <div class="brand-head"><img class="brand-logo" src="cid:gogolabs-logo" alt="Gogo Labs"><h1>Gogo Labs Daily Business Digest</h1></div>
     <p class="muted">2026-06-06</p>
-
-
-    <section class="decision-panel">
-      <div class="decision-eyebrow">Décision du jour</div>
-      <h2>Repackager les apps visibles avant de produire de nouvelles apps.</h2>
-      <div class="decision-grid">
-        <div><span>Priorité #1</span><strong>Perroquet Piano</strong></div>
-        <div><span>Action avant demain</span><strong>Réécrire le sous-titre et le premier screenshot de Perroquet Piano.</strong></div>
-        <div><span>Signal à surveiller</span><strong>Impressions -> vues page : 2.07%</strong></div>
-      </div>
-    </section>
 
     <div class="cards">
       <div class="card"><div class="label">Downloads</div><div class="value">81</div></div>
@@ -90,43 +82,45 @@
     <h2>Tableau principal</h2>
     <table>
       <thead>
-        <tr>
-          <th>App</th><th class="num">Downloads</th><th class="delta">Delta</th>
-          <th class="num">First-time</th><th class="delta">Delta</th>
-          <th class="num">Impressions</th><th class="delta">Delta</th>
-          <th class="num">Page views</th><th class="delta">Delta</th>
-          <th class="num">Taps</th><th class="delta">Delta</th>
-          <th class="num">PV rate</th><th class="num">Tap rate</th>
-        </tr>
+        <tr><th>App</th><th class="num">Downloads</th><th class="num">First-time</th><th class="num">Impressions</th><th class="num">Page views</th><th class="num">Taps</th><th class="num">PV rate</th><th class="num">Tap rate</th></tr>
       </thead>
-      <tbody><tr><td>Perroquet Piano</td><td class="num">57</td><td class="delta">n/d</td><td class="num">41</td><td class="delta">n/d</td><td class="num">211</td><td class="delta">n/d</td><td class="num">8</td><td class="delta">n/d</td><td class="num">3</td><td class="delta">n/d</td><td class="num">4.73%</td><td class="num">1.78%</td></tr>
-<tr><td>Coupez!</td><td class="num">10</td><td class="delta">n/d</td><td class="num">5</td><td class="delta">n/d</td><td class="num">57</td><td class="delta">n/d</td><td class="num">1</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">1.79%</td><td class="num">0.0%</td></tr>
-<tr><td>Glass Master</td><td class="num">9</td><td class="delta">n/d</td><td class="num">6</td><td class="delta">n/d</td><td class="num">120</td><td class="delta">n/d</td><td class="num">2</td><td class="delta">n/d</td><td class="num">2</td><td class="delta">n/d</td><td class="num">2.38%</td><td class="num">2.38%</td></tr>
-<tr><td>FeedBacks!</td><td class="num">4</td><td class="delta">n/d</td><td class="num">4</td><td class="delta">n/d</td><td class="num">59</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">2</td><td class="delta">n/d</td><td class="num">0.0%</td><td class="num">4.35%</td></tr>
-<tr><td>Odile!</td><td class="num">1</td><td class="delta">n/d</td><td class="num">1</td><td class="delta">n/d</td><td class="num">85</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">2</td><td class="delta">n/d</td><td class="num">0.0%</td><td class="num">3.03%</td></tr>
-<tr><td>Bouclez!</td><td class="num">0</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">n/d</td><td class="num">n/d</td></tr>
-<tr><td>BounceDaTracks</td><td class="num">0</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">n/d</td><td class="num">n/d</td></tr>
-<tr><td>Gogo Looping</td><td class="num">0</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">n/d</td><td class="num">n/d</td></tr>
-<tr><td>My First Sampler</td><td class="num">0</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">0</td><td class="delta">n/d</td><td class="num">n/d</td><td class="num">n/d</td></tr></tbody>
+      <tbody><tr><td>Perroquet Piano</td><td class="num">57</td><td class="num">41</td><td class="num">211</td><td class="num">8</td><td class="num">3</td><td class="num">4.73%</td><td class="num">1.78%</td></tr>
+<tr><td>Coupez!</td><td class="num">10</td><td class="num">5</td><td class="num">57</td><td class="num">1</td><td class="num">0</td><td class="num">1.79%</td><td class="num">0.0%</td></tr>
+<tr><td>Glass Master</td><td class="num">9</td><td class="num">6</td><td class="num">120</td><td class="num">2</td><td class="num">2</td><td class="num">2.38%</td><td class="num">2.38%</td></tr>
+<tr><td>FeedBacks!</td><td class="num">4</td><td class="num">4</td><td class="num">59</td><td class="num">0</td><td class="num">2</td><td class="num">0.0%</td><td class="num">4.35%</td></tr>
+<tr><td>Odile!</td><td class="num">1</td><td class="num">1</td><td class="num">85</td><td class="num">0</td><td class="num">2</td><td class="num">0.0%</td><td class="num">3.03%</td></tr>
+<tr><td>Bouclez!</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">n/d</td><td class="num">n/d</td></tr>
+<tr><td>BounceDaTracks</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">n/d</td><td class="num">n/d</td></tr>
+<tr><td>Gogo Looping</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">n/d</td><td class="num">n/d</td></tr>
+<tr><td>My First Sampler</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">n/d</td><td class="num">n/d</td></tr></tbody>
     </table>
 
     <h2>Graphiques</h2>
     <p class="muted">Téléchargements par app</p>
-    <div class="bars"><table><tr><td class="bar-label">Perroquet Piano</td><td class="bar-cell"><span class="bar" style="width:220px;background:#0f766e"></span><span class="bar-value">57</span></td></tr>
-<tr><td class="bar-label">Coupez!</td><td class="bar-cell"><span class="bar" style="width:39px;background:#2563eb"></span><span class="bar-value">10</span></td></tr>
-<tr><td class="bar-label">Glass Master</td><td class="bar-cell"><span class="bar" style="width:35px;background:#c2410c"></span><span class="bar-value">9</span></td></tr>
-<tr><td class="bar-label">FeedBacks!</td><td class="bar-cell"><span class="bar" style="width:15px;background:#7c3aed"></span><span class="bar-value">4</span></td></tr>
-<tr><td class="bar-label">Odile!</td><td class="bar-cell"><span class="bar" style="width:4px;background:#be123c"></span><span class="bar-value">1</span></td></tr></table></div>
+    <div class="bars"><div class="bar-row"><div class="bar-label">Perroquet Piano</div><div class="bar-track"><span class="bar" style="width:100%;background:#6a89ff"></span></div><div class="bar-value">57</div></div>
+<div class="bar-row"><div class="bar-label">Coupez!</div><div class="bar-track"><span class="bar" style="width:18%;background:#88a5ff"></span></div><div class="bar-value">10</div></div>
+<div class="bar-row"><div class="bar-label">Glass Master</div><div class="bar-track"><span class="bar" style="width:16%;background:#57b8ff"></span></div><div class="bar-value">9</div></div>
+<div class="bar-row"><div class="bar-label">FeedBacks!</div><div class="bar-track"><span class="bar" style="width:7%;background:#97aefc"></span></div><div class="bar-value">4</div></div>
+<div class="bar-row"><div class="bar-label">Odile!</div><div class="bar-track"><span class="bar" style="width:2%;background:#3e4749"></span></div><div class="bar-value">1</div></div></div>
     <p class="muted">Impressions par app</p>
-    <div class="bars"><table><tr><td class="bar-label">Perroquet Piano</td><td class="bar-cell"><span class="bar" style="width:220px;background:#0f766e"></span><span class="bar-value">211</span></td></tr>
-<tr><td class="bar-label">Glass Master</td><td class="bar-cell"><span class="bar" style="width:125px;background:#2563eb"></span><span class="bar-value">120</span></td></tr>
-<tr><td class="bar-label">Odile!</td><td class="bar-cell"><span class="bar" style="width:89px;background:#c2410c"></span><span class="bar-value">85</span></td></tr>
-<tr><td class="bar-label">FeedBacks!</td><td class="bar-cell"><span class="bar" style="width:62px;background:#7c3aed"></span><span class="bar-value">59</span></td></tr>
-<tr><td class="bar-label">Coupez!</td><td class="bar-cell"><span class="bar" style="width:59px;background:#be123c"></span><span class="bar-value">57</span></td></tr></table></div>
+    <div class="bars"><div class="bar-row"><div class="bar-label">Perroquet Piano</div><div class="bar-track"><span class="bar" style="width:100%;background:#6a89ff"></span></div><div class="bar-value">211</div></div>
+<div class="bar-row"><div class="bar-label">Glass Master</div><div class="bar-track"><span class="bar" style="width:57%;background:#88a5ff"></span></div><div class="bar-value">120</div></div>
+<div class="bar-row"><div class="bar-label">Odile!</div><div class="bar-track"><span class="bar" style="width:40%;background:#57b8ff"></span></div><div class="bar-value">85</div></div>
+<div class="bar-row"><div class="bar-label">FeedBacks!</div><div class="bar-track"><span class="bar" style="width:28%;background:#97aefc"></span></div><div class="bar-value">59</div></div>
+<div class="bar-row"><div class="bar-label">Coupez!</div><div class="bar-track"><span class="bar" style="width:27%;background:#3e4749"></span></div><div class="bar-value">57</div></div></div>
 
 
     <div class="strategy-review" aria-label="Revue stratégique GogoLabs">
-      <h2 class="strategy-review-title">Revue stratégique GogoLabs</h2>
+
+      <section class="decision-panel">
+      <div class="decision-eyebrow">Décision du jour</div>
+      <h2>Repackager les apps visibles avant de produire de nouvelles apps.</h2>
+      <div class="decision-grid">
+        <div><span>Priorité #1</span><strong>Perroquet Piano</strong></div>
+        <div><span>Action avant demain</span><strong>Réécrire le sous-titre et le premier screenshot de Perroquet Piano.</strong></div>
+        <div><span>Signal à surveiller</span><strong>Impressions -> vues page : 2.07%</strong></div>
+      </div>
+    </section>
       <section class="strategy-block" aria-label="Synthèse exécutive stratégique"><h2>Synthèse exécutive stratégique</h2>
 <p>GogoLabs dispose maintenant d’un signal de marché réel mais fragile. Le portefeuille totalise 532 impressions, 11 vues page produit, 9 taps, 81 téléchargements, 57 premiers téléchargements et 2 paid units. Ce volume reste trop faible pour une certitude statistique, mais il suffit pour isoler le problème dominant : l’App Store expose les apps, mais la promesse visible avant clic ne convertit pas assez.</p>
 <p>Le passage impressions -&gt; page produit est l’indicateur le plus brutal : environ 2,07 %. Cela signifie que le marché voit les apps sans comprendre assez vite pourquoi il devrait ouvrir la fiche. Le problème n’est donc pas d’abord la profondeur fonctionnelle. Il est packaging, ASO, screenshots, nommage, preuve de valeur et clarté commerciale.</p>

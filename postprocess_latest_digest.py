@@ -62,7 +62,7 @@ def decision_panel(metrics: dict[str, Any] | None) -> str:
         action = f"Réécrire le sous-titre et le premier screenshot de {focus_name}."
 
     return f"""
-    <section class="decision-panel">
+      <section class="decision-panel">
       <div class="decision-eyebrow">Décision du jour</div>
       <h2>Repackager les apps visibles avant de produire de nouvelles apps.</h2>
       <div class="decision-grid">
@@ -233,7 +233,7 @@ def strategic_review_blocks(markdown: str) -> list[tuple[str, str]]:
     return [(title, "\n".join(lines).strip()) for title, lines in blocks if "\n".join(lines).strip()]
 
 
-def strategic_review_section(review_path: Path) -> str:
+def strategic_review_section(review_path: Path, decision_html: str = "") -> str:
     if not review_path.exists():
         return ""
     markdown = review_path.read_text(encoding="utf-8").strip()
@@ -255,7 +255,7 @@ def strategic_review_section(review_path: Path) -> str:
     )
     return f"""
     <div class="strategy-review" aria-label="{escape(title)}">
-      <h2 class="strategy-review-title">{escape(title)}</h2>
+{decision_html.rstrip()}
 {rendered_blocks}
     </div>
 """
@@ -271,32 +271,34 @@ def inject_css(html: str) -> str:
 """)
     if ".decision-panel {" not in html:
         css_chunks.append("""
-    .decision-panel { background:#111827; color:#fff; border-radius:12px; padding:18px 20px; margin:22px 0 26px; }
-    .decision-panel h2 { color:#fff; border:0; padding:0; margin:4px 0 16px; font-size:22px; }
-    .decision-eyebrow { color:#cbd5e1; font-size:12px; text-transform:uppercase; letter-spacing:.08em; }
+    .decision-panel { background:#111827; color:#ffffff; border:0; border-radius:14px; padding:18px 20px; margin:0 0 18px; }
+    .decision-panel h2 { color:#ffffff; border:0; padding:0; margin:4px 0 16px; font-size:22px; }
+    .decision-eyebrow { color:#cbd5e1; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
     .decision-grid { display:grid; grid-template-columns:1fr 2fr 1fr; gap:12px; }
-    .decision-grid div { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:8px; padding:10px 12px; }
+    .decision-grid div { background:#242a36; border:1px solid rgba(255,255,255,.16); border-radius:8px; padding:10px 12px; }
     .decision-grid span { display:block; color:#cbd5e1; font-size:12px; margin-bottom:5px; }
+    .decision-grid strong { color:#ffffff; }
     .decision-grid strong { display:block; font-size:14px; line-height:1.35; }
     @media (max-width:720px) { .decision-grid { grid-template-columns:1fr; } }
 """)
     if ".yesterday {" not in html:
         css_chunks.append("""
-    .yesterday { background:#fff; border:1px solid #deded8; border-radius:10px; padding:14px 16px; margin:18px 0 24px; }
+    .yesterday { background:#faf9f4; border:1px solid rgba(22,26,32,.12); border-radius:10px; padding:14px 16px; margin:18px 0 24px; }
     .yesterday ul { margin:8px 0 0; }
+    .yesterday p, .yesterday li { font-size:15px; line-height:1.55; }
 """)
     if ".strategy-block {" not in html:
         css_chunks.append("""
     .strategy-review { margin:24px 0; }
-    .strategy-review-title { margin:0 0 12px; }
-    .strategy-block { background:#fff; border:1px solid #deded8; border-radius:10px; padding:14px 16px; margin:0 0 18px; overflow-x:auto; }
+    .strategy-block { background:#faf9f4; border:1px solid rgba(22,26,32,.12); border-radius:10px; padding:14px 16px; margin:0 0 18px; overflow-x:auto; }
     .strategy-block h3 { margin:16px 0 8px; font-size:15px; }
-    .strategy-block p { margin:8px 0; }
+    .strategy-block p { margin:8px 0; font-size:15px; line-height:1.55; }
     .strategy-block ul, .strategy-block ol { margin:8px 0 14px; }
-    .strategy-block code { background:#f1f1ed; border-radius:4px; padding:1px 4px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
+    .strategy-block li { font-size:15px; line-height:1.55; }
+    .strategy-block code { background:#ece8e0; border-radius:4px; padding:1px 4px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
     .strategy-block .markdown-table { margin:12px 0 16px; width:100%; border-collapse:collapse; }
-    .strategy-block .markdown-table th { background:#eeeeea; font-weight:700; }
-    .strategy-block .markdown-table th, .strategy-block .markdown-table td { border:1px solid #e2e2dc; padding:7px 8px; font-size:12px; }
+    .strategy-block .markdown-table th { background:#ece8e0; font-weight:700; }
+    .strategy-block .markdown-table th, .strategy-block .markdown-table td { border:1px solid rgba(22,26,32,.12); padding:7px 8px; font-size:12px; }
 """)
     if not css_chunks:
         return html
@@ -379,11 +381,9 @@ def postprocess(root: Path = ROOT) -> Path:
     html = remove_named_section(html, "Synthèse exécutive")
     html = remove_named_section(html, "Signaux par app")
     html = inject_css(html)
-    if 'class="decision-panel"' not in html:
-        html = html.replace('    <div class="cards">', decision_panel(metrics) + '\n    <div class="cards">', 1)
     if "Que s'est-il passé depuis hier" not in html and "Que s’est-il passé depuis hier" not in html:
         html = html.replace("    <h2>Tableau principal</h2>", yesterday_section(metrics, previous_metrics) + "\n\n    <h2>Tableau principal</h2>", 1)
-    html = replace_strategy_section(html, strategic_review_section(review_path))
+    html = replace_strategy_section(html, strategic_review_section(review_path, decision_panel(metrics)))
     html = re.sub(r"(<p>\|[^<]+\|</p>\s*){3,}", lambda match: build_table(match.group(0)), html)
     html_path.write_text(html, encoding="utf-8")
     return html_path

@@ -96,48 +96,95 @@ def rate(app: AppDigest, field: str) -> Any:
     return app.data.get(field)
 
 
-def bar_rows(apps: list[AppDigest], field: str, max_width: int = 220) -> str:
+GOGOLABS_SITE_COLORS = [
+    "#6a89ff",
+    "#88a5ff",
+    "#57b8ff",
+    "#97aefc",
+    "#3e4749",
+    "#879499",
+]
+
+
+def bar_rows(apps: list[AppDigest], field: str) -> str:
     visible_apps = [app for app in apps if metric(app, field) > 0]
     if not visible_apps:
-        return '<tr><td class="muted" colspan="2">Aucune valeur non nulle.</td></tr>'
+        return '<p class="muted">Aucune valeur non nulle.</p>'
     max_value = max((metric(app, field) for app in visible_apps), default=0) or 1
-    colors = ["#0f766e", "#2563eb", "#c2410c", "#7c3aed", "#be123c", "#15803d", "#b45309", "#0369a1"]
     rows = []
     for index, app in enumerate(sorted(visible_apps, key=lambda item: (-metric(item, field), item.name))):
         value = metric(app, field)
-        width = max(2, round(value / max_value * max_width))
-        color = colors[index % len(colors)]
+        width = max(1, round(value / max_value * 100))
+        color = GOGOLABS_SITE_COLORS[index % len(GOGOLABS_SITE_COLORS)]
         rows.append(
-            "<tr>"
-            f"<td class=\"bar-label\">{escape(app.name)}</td>"
-            "<td class=\"bar-cell\">"
-            f"<span class=\"bar\" style=\"width:{width}px;background:{color}\"></span>"
-            f"<span class=\"bar-value\">{value}</span>"
-            "</td>"
-            "</tr>"
+            '<div class="bar-row">'
+            f'<div class="bar-label">{escape(app.name)}</div>'
+            '<div class="bar-track">'
+            f'<span class="bar" style="width:{width}%;background:{color}"></span>'
+            "</div>"
+            f'<div class="bar-value">{value}</div>'
+            "</div>"
         )
     return "\n".join(rows)
 
 
+def table_columns(apps: list[AppDigest]) -> list[dict[str, Any]]:
+    metric_columns = [
+        {"label": "Downloads", "class": "num", "value": lambda app: metric(app, "standard_total"), "visible": lambda: any(metric(app, "standard_total") for app in apps)},
+        {
+            "label": "Delta downloads",
+            "class": "delta",
+            "value": lambda app: fmt_delta(delta(app.data, app.previous_data, "standard_total")),
+            "visible": lambda: any(delta(app.data, app.previous_data, "standard_total") not in (None, 0) for app in apps),
+        },
+        {"label": "First-time", "class": "num", "value": lambda app: metric(app, "first_time_downloads"), "visible": lambda: any(metric(app, "first_time_downloads") for app in apps)},
+        {
+            "label": "Delta first-time",
+            "class": "delta",
+            "value": lambda app: fmt_delta(delta(app.data, app.previous_data, "first_time_downloads")),
+            "visible": lambda: any(delta(app.data, app.previous_data, "first_time_downloads") not in (None, 0) for app in apps),
+        },
+        {"label": "Impressions", "class": "num", "value": lambda app: metric(app, "impressions"), "visible": lambda: any(metric(app, "impressions") for app in apps)},
+        {
+            "label": "Delta impressions",
+            "class": "delta",
+            "value": lambda app: fmt_delta(delta(app.data, app.previous_data, "impressions")),
+            "visible": lambda: any(delta(app.data, app.previous_data, "impressions") not in (None, 0) for app in apps),
+        },
+        {"label": "Page views", "class": "num", "value": lambda app: metric(app, "product_page_views"), "visible": lambda: any(metric(app, "product_page_views") for app in apps)},
+        {
+            "label": "Delta page views",
+            "class": "delta",
+            "value": lambda app: fmt_delta(delta(app.data, app.previous_data, "product_page_views")),
+            "visible": lambda: any(delta(app.data, app.previous_data, "product_page_views") not in (None, 0) for app in apps),
+        },
+        {"label": "Taps", "class": "num", "value": lambda app: metric(app, "taps"), "visible": lambda: any(metric(app, "taps") for app in apps)},
+        {
+            "label": "Delta taps",
+            "class": "delta",
+            "value": lambda app: fmt_delta(delta(app.data, app.previous_data, "taps")),
+            "visible": lambda: any(delta(app.data, app.previous_data, "taps") not in (None, 0) for app in apps),
+        },
+        {"label": "PV rate", "class": "num", "value": lambda app: pct(rate(app, "page_view_rate")), "visible": lambda: any(rate(app, "page_view_rate") is not None for app in apps)},
+        {"label": "Tap rate", "class": "num", "value": lambda app: pct(rate(app, "tap_rate")), "visible": lambda: any(rate(app, "tap_rate") is not None for app in apps)},
+    ]
+    return [column for column in metric_columns if column["visible"]()]
+
+
+def render_table_header(apps: list[AppDigest]) -> str:
+    headers = ['<th>App</th>']
+    headers.extend(f'<th class="{column["class"]}">{escape(column["label"])}</th>' for column in table_columns(apps))
+    return "<tr>" + "".join(headers) + "</tr>"
+
+
 def render_table(apps: list[AppDigest]) -> str:
+    columns = table_columns(apps)
     rows = []
     for app in sorted(apps, key=lambda item: (-metric(item, "standard_total"), -metric(item, "impressions"), item.name)):
+        cells = [f"<td>{escape(app.name)}</td>"]
+        cells.extend(f'<td class="{column["class"]}">{column["value"](app)}</td>' for column in columns)
         rows.append(
-            "<tr>"
-            f"<td>{escape(app.name)}</td>"
-            f"<td class=\"num\">{metric(app, 'standard_total')}</td>"
-            f"<td class=\"delta\">{fmt_delta(delta(app.data, app.previous_data, 'standard_total'))}</td>"
-            f"<td class=\"num\">{metric(app, 'first_time_downloads')}</td>"
-            f"<td class=\"delta\">{fmt_delta(delta(app.data, app.previous_data, 'first_time_downloads'))}</td>"
-            f"<td class=\"num\">{metric(app, 'impressions')}</td>"
-            f"<td class=\"delta\">{fmt_delta(delta(app.data, app.previous_data, 'impressions'))}</td>"
-            f"<td class=\"num\">{metric(app, 'product_page_views')}</td>"
-            f"<td class=\"delta\">{fmt_delta(delta(app.data, app.previous_data, 'product_page_views'))}</td>"
-            f"<td class=\"num\">{metric(app, 'taps')}</td>"
-            f"<td class=\"delta\">{fmt_delta(delta(app.data, app.previous_data, 'taps'))}</td>"
-            f"<td class=\"num\">{pct(rate(app, 'page_view_rate'))}</td>"
-            f"<td class=\"num\">{pct(rate(app, 'tap_rate'))}</td>"
-            "</tr>"
+            "<tr>" + "".join(cells) + "</tr>"
         )
     return "\n".join(rows)
 
@@ -194,36 +241,37 @@ def render_html(apps: list[AppDigest], report_date: str) -> str:
   <meta charset="utf-8">
   <title>{escape(BRAND_NAME)} - {escape(report_date)}</title>
   <style>
-    body {{ margin:0; padding:0; background:#f5f5f3; color:#1f2328; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; }}
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+    body {{ margin:0; padding:0; background:#f2f1ed; color:#161a20; font-family:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; }}
     .wrap {{ max-width:960px; margin:0 auto; padding:28px 18px 40px; }}
     .brand-head {{ display:flex; align-items:center; gap:12px; margin:0 0 8px; }}
     .brand-logo {{ width:42px; height:42px; border-radius:10px; object-fit:cover; }}
     h1 {{ margin:0 0 8px; font-size:28px; line-height:1.15; }}
-    h2 {{ margin:30px 0 12px; font-size:18px; border-bottom:1px solid #d8d8d2; padding-bottom:7px; }}
-    p {{ line-height:1.48; margin:8px 0; }}
-    .muted {{ color:#687076; }}
-    .cards {{ display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin:18px 0 22px; }}
-    .card {{ background:#fff; border:1px solid #deded8; border-radius:8px; padding:12px; }}
-    .label {{ color:#687076; font-size:12px; text-transform:uppercase; letter-spacing:.03em; }}
-    .value {{ font-size:24px; font-weight:700; margin-top:4px; }}
-    table {{ width:100%; border-collapse:collapse; background:#fff; border:1px solid #deded8; }}
-    th, td {{ padding:8px 9px; border-bottom:1px solid #ecece7; font-size:13px; text-align:left; vertical-align:top; }}
-    th {{ background:#eeeeea; color:#3f454b; font-weight:700; }}
+    h2 {{ margin:30px 0 12px; font-size:22px; font-weight:800; border-bottom:1px solid rgba(22,26,32,.12); padding-bottom:7px; color:#161a20; letter-spacing:-.02em; }}
+    p {{ line-height:1.55; margin:8px 0; }}
+    .muted {{ color:#5a646b; }}
+    .cards {{ display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin:18px 0 22px; background:#111827; border-radius:14px; padding:16px; }}
+    .card {{ background:#242a36; border:1px solid rgba(255,255,255,.16); border-radius:8px; padding:12px; }}
+    .label {{ color:#cbd5e1; font-size:12px; text-transform:uppercase; letter-spacing:.03em; }}
+    .value {{ color:#ffffff; font-size:30px; font-weight:700; margin-top:4px; }}
+    table {{ width:100%; border-collapse:collapse; background:#faf9f4; border:1px solid rgba(22,26,32,.12); }}
+    th, td {{ padding:8px 9px; border-bottom:1px solid rgba(22,26,32,.12); font-size:13px; text-align:left; vertical-align:top; }}
+    th {{ background:#ece8e0; color:#161a20; font-weight:700; }}
     .num, .delta {{ text-align:right; white-space:nowrap; }}
-    .bars {{ background:#fff; border:1px solid #deded8; border-radius:8px; padding:8px 10px; }}
-    .bars table {{ border:0; background:transparent; }}
-    .bars td {{ border:0; padding:5px 0; }}
-    .bar-label {{ width:190px; color:#3f454b; }}
-    .bar-cell {{ width:100%; }}
-    .bar {{ display:inline-block; height:12px; background:#176b87; border-radius:3px; vertical-align:middle; }}
-    .bar-value {{ display:inline-block; margin-left:8px; font-variant-numeric:tabular-nums; }}
+    .bars {{ background:#faf9f4; border:1px solid rgba(22,26,32,.12); border-radius:10px; padding:14px 16px; }}
+    .bar-row {{ display:grid; grid-template-columns:minmax(120px,180px) minmax(120px,1fr) auto; align-items:center; gap:12px; margin:8px 0; }}
+    .bar-label {{ color:#3e4749; font-size:15px; line-height:1.2; }}
+    .bar-track {{ height:15px; background:#ece8e0; border-radius:999px; overflow:hidden; }}
+    .bar {{ display:block; height:100%; border-radius:999px; }}
+    .bar-value {{ min-width:34px; font-size:15px; font-weight:700; font-variant-numeric:tabular-nums; }}
     ul {{ padding-left:20px; }}
     li {{ margin:7px 0; line-height:1.45; }}
-    .footer {{ margin-top:28px; color:#687076; font-size:12px; }}
+    .footer {{ margin-top:28px; color:#5a646b; font-size:12px; }}
     @media (max-width:720px) {{
       .cards {{ grid-template-columns:repeat(2,1fr); }}
       th, td {{ font-size:12px; padding:7px 6px; }}
-      .bar-label {{ width:120px; }}
+      .bar-row {{ grid-template-columns:1fr auto; gap:8px; }}
+      .bar-track {{ grid-column:1 / -1; }}
     }}
   </style>
 </head>
@@ -243,23 +291,16 @@ def render_html(apps: list[AppDigest], report_date: str) -> str:
     <h2>Tableau principal</h2>
     <table>
       <thead>
-        <tr>
-          <th>App</th><th class="num">Downloads</th><th class="delta">Delta</th>
-          <th class="num">First-time</th><th class="delta">Delta</th>
-          <th class="num">Impressions</th><th class="delta">Delta</th>
-          <th class="num">Page views</th><th class="delta">Delta</th>
-          <th class="num">Taps</th><th class="delta">Delta</th>
-          <th class="num">PV rate</th><th class="num">Tap rate</th>
-        </tr>
+        {render_table_header(apps)}
       </thead>
       <tbody>{render_table(apps)}</tbody>
     </table>
 
     <h2>Graphiques</h2>
     <p class="muted">Telechargements par app</p>
-    <div class="bars"><table>{bar_rows(apps, "standard_total")}</table></div>
+    <div class="bars">{bar_rows(apps, "standard_total")}</div>
     <p class="muted">Impressions par app</p>
-    <div class="bars"><table>{bar_rows(apps, "impressions")}</table></div>
+    <div class="bars">{bar_rows(apps, "impressions")}</div>
 
     <h2>Analyse</h2>
     <p><strong>Fait observe.</strong> Perroquet Piano concentre l’essentiel des telechargements et des impressions. Le search App Store est le principal canal d’acquisition visible pour cette app.</p>

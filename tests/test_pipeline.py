@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -35,7 +36,7 @@ class PipelineTests(unittest.TestCase):
                 """<!doctype html>
 <html>
 <head><style>
-  body { color:#111; }
+  body { color:#582B36; }
   </style></head>
 <body>
   <div class="wrap">
@@ -79,7 +80,8 @@ class PipelineTests(unittest.TestCase):
         self.assertIn("Remove me", html)
         self.assertNotIn("Réflexion stratégique", html)
         self.assertIn('<div class="strategy-review" aria-label="Review">', html)
-        self.assertIn('<h2 class="strategy-review-title">Review</h2>', html)
+        self.assertNotIn("strategy-review-title", html)
+        self.assertNotIn(">Review</h2>", html)
         self.assertNotIn('<section class="strategy-block" aria-label="Introduction">', html)
         self.assertIn('<section class="strategy-block" aria-label="Synthèse exécutive stratégique">', html)
         self.assertIn('<section class="strategy-block" aria-label="Segment A">', html)
@@ -88,9 +90,46 @@ class PipelineTests(unittest.TestCase):
         self.assertNotIn("<h2>1. ", html)
         self.assertNotIn("<h3>2.1. ", html)
         self.assertIn("<li>Action</li>", html)
+        self.assertLess(html.find('class="decision-panel"'), html.find('aria-label="Synthèse exécutive stratégique"'))
+        self.assertGreater(html.find('class="decision-panel"'), html.find('class="strategy-review"'))
+        self.assertGreater(html.find('class="cards"'), html.find("Gogo Labs Daily Business Digest"))
+        self.assertLess(html.find('class="cards"'), html.find('class="strategy-review"'))
         self.assertNotIn('class="strategy-memory"', html)
         self.assertNotIn("Signaux par app", html)
         self.assertNotIn("Base analysis", html)
+
+    def test_rendered_colors_follow_gogolabs_site_palette(self) -> None:
+        apps = [
+            daily_appstore_digest.AppDigest(
+                "one",
+                "Visible",
+                None,
+                None,
+                {
+                    "standard_total": 4,
+                    "first_time_downloads": 2,
+                    "impressions": 10,
+                    "product_page_views": 1,
+                    "taps": 1,
+                    "page_view_rate": 10.0,
+                    "tap_rate": 10.0,
+                },
+                None,
+                None,
+            )
+        ]
+
+        html = daily_appstore_digest.render_html(apps, "2026-06-06")
+        colors = set(re.findall(r"#[0-9A-Fa-f]{6}", html))
+
+        self.assertIn("#f2f1ed", colors)
+        self.assertIn("#faf9f4", colors)
+        self.assertIn("#161a20", colors)
+        self.assertIn("#111827", colors)
+        self.assertIn("#242a36", colors)
+        self.assertIn("#ffffff", colors)
+        self.assertIn("#6a89ff", colors)
+        self.assertIn("#ece8e0", colors)
 
     def test_bar_rows_hides_zero_values(self) -> None:
         apps = [
@@ -102,7 +141,31 @@ class PipelineTests(unittest.TestCase):
 
         self.assertIn("Visible", html)
         self.assertNotIn("Hidden", html)
-        self.assertIn("background:#", html)
+        self.assertIn("background:#6a89ff", html)
+        self.assertIn('class="bar-track"', html)
+
+    def test_render_table_hides_empty_columns(self) -> None:
+        apps = [
+            daily_appstore_digest.AppDigest(
+                "one",
+                "Visible",
+                None,
+                None,
+                {"standard_total": 4, "first_time_downloads": 0, "impressions": 0, "product_page_views": 0, "taps": 0},
+                None,
+                None,
+            )
+        ]
+
+        header = daily_appstore_digest.render_table_header(apps)
+        body = daily_appstore_digest.render_table(apps)
+
+        self.assertIn("Downloads", header)
+        self.assertNotIn("Delta", header)
+        self.assertNotIn("First-time", header)
+        self.assertNotIn("Impressions", header)
+        self.assertIn("<td>Visible</td>", body)
+        self.assertIn('<td class="num">4</td>', body)
 
     def test_build_message_attaches_logo_inline(self) -> None:
         msg = daily_appstore_digest.build_message(
