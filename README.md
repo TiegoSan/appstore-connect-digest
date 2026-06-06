@@ -137,7 +137,8 @@ APPSTORE_DIGEST_SMTP_PORT=587
 APPSTORE_DIGEST_SMTP_SECURITY=starttls
 APPSTORE_DIGEST_SMTP_USER=gautier@gogolabs.fr
 APPSTORE_DIGEST_SMTP_PASSWORD=<mot de passe specifique a l'app iCloud>
-APPSTORE_DIGEST_FROM=App Store Connect Digest <gautier@gogolabs.fr>
+APPSTORE_DIGEST_FROM=Gogo Labs Daily Business Digest <gautier@gogolabs.fr>
+GOGOLABS_DIGEST_LOGO_PATH=assets/gogolabs-logo.png
 ```
 
 ## Sécurité

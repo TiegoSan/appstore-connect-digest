@@ -123,7 +123,6 @@ def simple_markdown_to_html(markdown: str) -> str:
 def strategic_review_html() -> str:
     if not STRATEGIC_REVIEW_PATH.exists():
         return """
-        <h2>Reflexion strategique ChatGPT</h2>
         <div class="strategy-memory">
           <p>Aucune analyse strategique ChatGPT n'est encore disponible.</p>
           <p>L'automatisation doit lire strategy/latest-metrics.json et ecrire strategy/strategic-review.md.</p>
@@ -131,7 +130,6 @@ def strategic_review_html() -> str:
         """
     markdown = STRATEGIC_REVIEW_PATH.read_text(encoding="utf-8").strip()
     return f"""
-    <h2>Reflexion strategique ChatGPT</h2>
     <div class="strategy-memory">{simple_markdown_to_html(markdown)}</div>
     """
 

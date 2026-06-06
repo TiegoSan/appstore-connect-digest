@@ -208,11 +208,15 @@ def strategic_review_section(review_path: Path) -> str:
     markdown = review_path.read_text(encoding="utf-8").strip()
     if not markdown:
         return ""
-    return f'\n    <h2>Réflexion stratégique</h2>\n    <div class="strategy-memory">{markdown_to_html(markdown)}</div>\n'
+    return f'\n    <div class="strategy-memory">{markdown_to_html(markdown)}</div>\n'
 
 
 def inject_css(html: str) -> str:
-    css = """
+    brand_css = "" if ".brand-head {" in html else """
+    .brand-head { display:flex; align-items:center; gap:12px; margin:0 0 8px; }
+    .brand-logo { width:42px; height:42px; border-radius:10px; object-fit:cover; }
+"""
+    css = brand_css + """
     .decision-panel { background:#111827; color:#fff; border-radius:12px; padding:18px 20px; margin:22px 0 26px; }
     .decision-panel h2 { color:#fff; border:0; padding:0; margin:4px 0 16px; font-size:22px; }
     .decision-eyebrow { color:#cbd5e1; font-size:12px; text-transform:uppercase; letter-spacing:.08em; }
@@ -240,6 +244,16 @@ def inject_css(html: str) -> str:
     return html.replace("  </style>", css + "\n  </style>", 1)
 
 
+def apply_branding(html: str) -> str:
+    html = html.replace("<title>Compte rendu App Store Connect -", "<title>Gogo Labs Daily Business Digest -")
+    html = html.replace(
+        "    <h1>Compte rendu App Store Connect</h1>",
+        '    <div class="brand-head"><img class="brand-logo" src="cid:gogolabs-logo" alt="Gogo Labs"><h1>Gogo Labs Daily Business Digest</h1></div>',
+        1,
+    )
+    return html
+
+
 def apply_text_replacements(html: str) -> str:
     replacements = {
         "Synthese executive": "Synthèse exécutive",
@@ -249,6 +263,7 @@ def apply_text_replacements(html: str) -> str:
         "consolidees": "consolidées",
         "donnees": "données",
         "Genere depuis": "Généré depuis",
+        "Genere par": "Généré par",
         "URLs signees": "URLs signées",
         "reseau observee pendant la generation": "réseau observée pendant la génération",
     }
@@ -268,6 +283,7 @@ def remove_base_analysis(html: str) -> str:
 def replace_strategy_section(html: str, section: str) -> str:
     html = re.sub(r"\s*<h2>Reflexion strategique</h2>\s*<div class=\"strategy-memory\">.*?</div>\s*", "\n", html, flags=re.DOTALL)
     html = re.sub(r"\s*<h2>Réflexion stratégique</h2>\s*<div class=\"strategy-memory\">.*?</div>\s*", "\n", html, flags=re.DOTALL)
+    html = re.sub(r"\s*<div class=\"strategy-memory\">.*?</div>\s*", "\n", html, flags=re.DOTALL)
     errors_start = html.find("    <h2>Erreurs</h2>")
     footer_start = html.find('    <p class="footer">')
     if errors_start != -1 and footer_start != -1 and errors_start < footer_start:
@@ -289,6 +305,7 @@ def postprocess(root: Path = ROOT) -> Path:
     metrics = load_json(metrics_path)
     previous_metrics = load_json(previous_metrics_path)
     html = remove_base_analysis(html)
+    html = apply_branding(html)
     html = apply_text_replacements(html)
     html = inject_css(html)
     if 'class="decision-panel"' not in html:

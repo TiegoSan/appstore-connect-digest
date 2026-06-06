@@ -26,7 +26,7 @@ jobs:
       APPSTORE_DIGEST_SMTP_SECURITY: ${{ secrets.APPSTORE_DIGEST_SMTP_SECURITY }}
       APPSTORE_DIGEST_SMTP_USER: ${{ secrets.APPSTORE_DIGEST_SMTP_USER }}
       APPSTORE_DIGEST_SMTP_PASSWORD: ${{ secrets.APPSTORE_DIGEST_SMTP_PASSWORD }}
-      APPSTORE_DIGEST_FROM: ${{ secrets.APPSTORE_DIGEST_FROM }}
+      APPSTORE_DIGEST_FROM: Gogo Labs Daily Business Digest <gautier@gogolabs.fr>
 
     steps:
       - name: Checkout

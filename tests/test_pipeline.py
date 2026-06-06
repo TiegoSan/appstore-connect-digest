@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 import enrich_pricing_metrics
+import daily_appstore_digest
 import postprocess_latest_digest
 
 
@@ -69,10 +70,24 @@ class PipelineTests(unittest.TestCase):
             html = html_path.read_text(encoding="utf-8")
 
         self.assertIn("Glass Master", html)
+        self.assertIn("Gogo Labs Daily Business Digest", html)
+        self.assertIn("cid:gogolabs-logo", html)
         self.assertIn("Synthèse exécutive", html)
-        self.assertIn("Réflexion stratégique", html)
+        self.assertNotIn("Réflexion stratégique", html)
+        self.assertIn("<h2>Review</h2>", html)
         self.assertIn("<li>Action</li>", html)
         self.assertNotIn("Base analysis", html)
+
+    def test_build_message_attaches_logo_inline(self) -> None:
+        msg = daily_appstore_digest.build_message(
+            "gautier@gogolabs.fr",
+            "Test",
+            '<html><body><img src="cid:gogolabs-logo"></body></html>',
+        )
+
+        rendered = msg.as_string()
+        self.assertIn("Gogo Labs Daily Business Digest", rendered)
+        self.assertIn("Content-ID: <gogolabs-logo>", rendered)
 
     def test_aggregate_sales_matches_sku_and_refunds(self) -> None:
         rows = [

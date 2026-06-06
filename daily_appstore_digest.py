@@ -24,7 +24,9 @@ ROOT = Path(__file__).resolve().parent
 REPORTS_DIR = ROOT / "reports"
 DIGEST_DIR = REPORTS_DIR / "daily-digests"
 DEFAULT_RECIPIENT = "gautier@gogolabs.fr"
-DEFAULT_FROM = "App Store Connect Digest <gautier@gogolabs.fr>"
+BRAND_NAME = "Gogo Labs Daily Business Digest"
+DEFAULT_FROM = f"{BRAND_NAME} <gautier@gogolabs.fr>"
+DEFAULT_LOGO_PATH = ROOT / "assets" / "gogolabs-logo.png"
 
 
 @dataclass
@@ -202,10 +204,12 @@ def render_html(apps: list[AppDigest], report_date: str) -> str:
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Compte rendu App Store Connect - {escape(report_date)}</title>
+  <title>{escape(BRAND_NAME)} - {escape(report_date)}</title>
   <style>
     body {{ margin:0; padding:0; background:#f5f5f3; color:#1f2328; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; }}
     .wrap {{ max-width:960px; margin:0 auto; padding:28px 18px 40px; }}
+    .brand-head {{ display:flex; align-items:center; gap:12px; margin:0 0 8px; }}
+    .brand-logo {{ width:42px; height:42px; border-radius:10px; object-fit:cover; }}
     h1 {{ margin:0 0 8px; font-size:28px; line-height:1.15; }}
     h2 {{ margin:30px 0 12px; font-size:18px; border-bottom:1px solid #d8d8d2; padding-bottom:7px; }}
     p {{ line-height:1.48; margin:8px 0; }}
@@ -237,7 +241,7 @@ def render_html(apps: list[AppDigest], report_date: str) -> str:
 </head>
 <body>
   <div class="wrap">
-    <h1>Compte rendu App Store Connect</h1>
+    <div class="brand-head"><img class="brand-logo" src="cid:gogolabs-logo" alt="Gogo Labs"><h1>{escape(BRAND_NAME)}</h1></div>
     <p class="muted">{escape(report_date)}</p>
 
     <div class="cards">
@@ -296,7 +300,7 @@ def render_html(apps: list[AppDigest], report_date: str) -> str:
     <h2>Erreurs</h2>
     {render_errors(apps)}
 
-    <p class="footer">Genere depuis {escape(str(ROOT))}. Les secrets App Store Connect, JWT et URLs signees ne sont pas inclus.</p>
+    <p class="footer">Genere par {escape(BRAND_NAME)}. Les secrets App Store Connect, JWT et URLs signees ne sont pas inclus.</p>
   </div>
 </body>
 </html>
@@ -314,6 +318,12 @@ def local_mail_system_available() -> tuple[bool, str]:
     return True, combined or "mailq OK"
 
 
+def logo_path() -> Path | None:
+    raw = os.environ.get("GOGOLABS_DIGEST_LOGO_PATH")
+    path = Path(raw) if raw else DEFAULT_LOGO_PATH
+    return path if path.exists() else None
+
+
 def build_message(recipient: str, subject: str, html: str) -> EmailMessage:
     msg = EmailMessage()
     msg["To"] = recipient
@@ -321,6 +331,16 @@ def build_message(recipient: str, subject: str, html: str) -> EmailMessage:
     msg["Subject"] = subject
     msg.set_content("Ce compte rendu est disponible en HTML. Ouvrir le message dans un client compatible HTML.")
     msg.add_alternative(html, subtype="html")
+    logo = logo_path()
+    if logo is not None:
+        html_part = msg.get_payload()[-1]
+        html_part.add_related(
+            logo.read_bytes(),
+            maintype="image",
+            subtype="png",
+            cid="<gogolabs-logo>",
+            filename=logo.name,
+        )
     return msg
 
 
@@ -387,7 +407,7 @@ def send_html_via_mail_app(recipient: str, subject: str, html_path: Path) -> tup
 
     script = f'''
 tell application "Mail"
-    set newMessage to make new outgoing message with properties {{subject:{applescript_string(subject)}, content:"Compte rendu App Store Connect en piece jointe HTML." & return & "Fichier: {html_path.name}" & return, visible:false}}
+    set newMessage to make new outgoing message with properties {{subject:{applescript_string(subject)}, content:"Gogo Labs Daily Business Digest en piece jointe HTML." & return & "Fichier: {html_path.name}" & return, visible:false}}
     tell newMessage
         make new to recipient at end of to recipients with properties {{address:{applescript_string(recipient)}}}
         make new attachment with properties {{file name:POSIX file {applescript_string(str(html_path))}}} at after the last paragraph
@@ -500,7 +520,7 @@ def generate_digest(
     print(f"HTML {html_path}")
 
     if should_send:
-        subject = f"Compte rendu App Store Connect - {report_date}"
+        subject = f"{BRAND_NAME} - {report_date}"
         ok, detail = send_html(recipient, subject, html, html_path)
         print(f"MAIL {'OK' if ok else 'ERREUR'}: {detail}")
         return 0 if ok else 2
