@@ -52,6 +52,18 @@ jobs:
             python enhanced_daily_appstore_digest.py --recipient gautier@gogolabs.fr
           fi
 
+      - name: Postprocess latest digest HTML
+        if: always()
+        run: |
+          if [ -f strategy/latest-digest.html ]; then
+            python postprocess_latest_digest.py
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add strategy/latest-digest.html
+            git commit -m "Postprocess latest HTML digest" || echo "No postprocessed digest changes"
+            git push || echo "No postprocessed digest push"
+          fi
+
       - name: Upload generated digest
         if: always()
         uses: actions/upload-artifact@v4
