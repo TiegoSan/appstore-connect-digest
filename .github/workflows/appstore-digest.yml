@@ -1,22 +1,21 @@
-name: App Store Connect Digest
+name: App Store Connect Metrics
 
 on:
   workflow_dispatch:
   schedule:
     # GitHub cron is UTC. These two times cover 23:50 Europe/Paris across DST.
-    # The script sends only when the current Paris hour is 23.
     - cron: "50 21 * * *"
     - cron: "50 22 * * *"
 
 concurrency:
-  group: appstore-connect-digest
+  group: appstore-connect-metrics
   cancel-in-progress: false
 
 permissions:
   contents: write
 
 jobs:
-  digest:
+  metrics:
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -26,12 +25,6 @@ jobs:
       ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
       APPSTORE_VENDOR_NUMBER: ${{ secrets.APPSTORE_VENDOR_NUMBER }}
       ASC_VENDOR_NUMBER: ${{ secrets.ASC_VENDOR_NUMBER }}
-      APPSTORE_DIGEST_SMTP_HOST: ${{ secrets.APPSTORE_DIGEST_SMTP_HOST }}
-      APPSTORE_DIGEST_SMTP_PORT: ${{ secrets.APPSTORE_DIGEST_SMTP_PORT }}
-      APPSTORE_DIGEST_SMTP_SECURITY: ${{ secrets.APPSTORE_DIGEST_SMTP_SECURITY }}
-      APPSTORE_DIGEST_SMTP_USER: ${{ secrets.APPSTORE_DIGEST_SMTP_USER }}
-      APPSTORE_DIGEST_SMTP_PASSWORD: ${{ secrets.APPSTORE_DIGEST_SMTP_PASSWORD }}
-      APPSTORE_DIGEST_FROM: ${{ secrets.APPSTORE_DIGEST_FROM }}
 
     steps:
       - name: Checkout
@@ -52,39 +45,28 @@ jobs:
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
 
-      - name: Generate digest without sending
-        run: |
-          if [ "${{ github.event_name }}" = "schedule" ]; then
-            python enhanced_daily_appstore_digest.py --recipient gautier@gogolabs.fr --schedule-cron '${{ github.event.schedule }}' --no-send
-          else
-            python enhanced_daily_appstore_digest.py --recipient gautier@gogolabs.fr --no-send
-          fi
+      - name: Collect latest metrics
+        run: python collect_latest_metrics.py
 
       - name: Enrich pricing and sales metrics
         run: |
-          python enrich_pricing_metrics.py || echo "Pricing/sales enrichment failed; continuing digest"
+          python enrich_pricing_metrics.py || echo "Pricing/sales enrichment failed; continuing metrics update"
 
-      - name: Postprocess latest digest HTML
+      - name: Commit enriched metrics
         run: |
-          python postprocess_latest_digest.py
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add strategy/latest-metrics.json strategy/latest-digest.html
-          git commit -m "Postprocess latest HTML digest" || echo "No postprocessed digest changes"
-          git push || echo "No postprocessed digest push"
+          git add strategy/latest-metrics.json
+          git commit -m "Update latest App Store metrics" || echo "No metrics changes"
+          git push || echo "No metrics push"
 
-      - name: Send postprocessed digest
-        run: python send_latest_digest.py
-
-      - name: Upload generated digest
+      - name: Upload metrics artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: appstore-digest
+          name: appstore-metrics
           path: |
-            reports/daily-digests/*.html
             reports/*.json
-            strategy/latest-digest.html
             strategy/latest-metrics.json
           if-no-files-found: ignore
           retention-days: 14
