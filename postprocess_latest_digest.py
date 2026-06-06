@@ -31,6 +31,9 @@ css = '''
     .decision-grid div { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:8px; padding:10px 12px; }
     .decision-grid span { display:block; color:#cbd5e1; font-size:12px; margin-bottom:5px; }
     .decision-grid strong { display:block; font-size:14px; line-height:1.35; }
+    .strategy-memory .markdown-table { margin:12px 0 16px; width:100%; border-collapse:collapse; }
+    .strategy-memory .markdown-table th { background:#eeeeea; font-weight:700; }
+    .strategy-memory .markdown-table th, .strategy-memory .markdown-table td { border:1px solid #e2e2dc; padding:7px 8px; font-size:12px; }
     @media (max-width:720px) { .decision-grid { grid-template-columns:1fr; } }
 '''
 if '.decision-panel' not in html:
@@ -42,19 +45,38 @@ if 'class="decision-panel"' not in html:
     total_impressions = int(impressions.group(1)) if impressions else 0
     total_page_views = int(page_views.group(1)) if page_views else 0
     rate = f'{total_page_views / total_impressions * 100:.2f}%' if total_impressions else 'n/d'
-    decision = 'Repackager les apps visibles avant de produire de nouvelles apps.'
-    action = 'Réécrire le sous-titre et le premier screenshot de l’app prioritaire.'
     panel = f'''
     <section class="decision-panel">
       <div class="decision-eyebrow">Décision du jour</div>
-      <h2>{decision}</h2>
+      <h2>Repackager les apps visibles avant de produire de nouvelles apps.</h2>
       <div class="decision-grid">
         <div><span>Priorité #1</span><strong>Glass Master</strong></div>
-        <div><span>Action avant demain</span><strong>{action}</strong></div>
+        <div><span>Action avant demain</span><strong>Réécrire le sous-titre et le premier screenshot de l’app prioritaire.</strong></div>
         <div><span>Signal à surveiller</span><strong>Impressions → vues page : {rate}</strong></div>
       </div>
     </section>
 '''
     html = html.replace('    <div class="cards">', panel + '\n    <div class="cards">', 1)
+
+def split_cells(line):
+    line = re.sub(r'^<p>|</p>$', '', line.strip())
+    return [c.strip() for c in line.strip('|').split('|')]
+
+def build_table(block):
+    rows = re.findall(r'<p>\|.*?\|</p>', block)
+    if len(rows) < 2:
+        return block
+    headers = split_cells(rows[0])
+    body = rows[2:]
+    th = ''.join(f'<th>{cell}</th>' for cell in headers)
+    trs = []
+    for row in body:
+        cells = split_cells(row)
+        td = ''.join(f'<td>{cell}</td>' for cell in cells)
+        trs.append(f'<tr>{td}</tr>')
+    return '<table class="markdown-table"><thead><tr>' + th + '</tr></thead><tbody>' + ''.join(trs) + '</tbody></table>'
+
+pattern = r'(<p>\|[^<]+\|</p>\s*){3,}'
+html = re.sub(pattern, lambda m: build_table(m.group(0)), html)
 
 path.write_text(html, encoding='utf-8')
