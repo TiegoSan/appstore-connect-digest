@@ -44,25 +44,25 @@ jobs:
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
 
-      - name: Generate and send digest
+      - name: Generate digest without sending
         run: |
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            python enhanced_daily_appstore_digest.py --recipient gautier@gogolabs.fr --schedule-cron '${{ github.event.schedule }}'
+            python enhanced_daily_appstore_digest.py --recipient gautier@gogolabs.fr --schedule-cron '${{ github.event.schedule }}' --no-send
           else
-            python enhanced_daily_appstore_digest.py --recipient gautier@gogolabs.fr
+            python enhanced_daily_appstore_digest.py --recipient gautier@gogolabs.fr --no-send
           fi
 
       - name: Postprocess latest digest HTML
-        if: always()
         run: |
-          if [ -f strategy/latest-digest.html ]; then
-            python postprocess_latest_digest.py
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add strategy/latest-digest.html
-            git commit -m "Postprocess latest HTML digest" || echo "No postprocessed digest changes"
-            git push || echo "No postprocessed digest push"
-          fi
+          python postprocess_latest_digest.py
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add strategy/latest-digest.html
+          git commit -m "Postprocess latest HTML digest" || echo "No postprocessed digest changes"
+          git push || echo "No postprocessed digest push"
+
+      - name: Send postprocessed digest
+        run: python send_latest_digest.py
 
       - name: Upload generated digest
         if: always()
@@ -72,5 +72,6 @@ jobs:
           path: |
             reports/daily-digests/*.html
             reports/*.json
+            strategy/latest-digest.html
           if-no-files-found: ignore
           retention-days: 14
