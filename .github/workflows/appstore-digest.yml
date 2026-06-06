@@ -35,6 +35,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Preserve previous metrics
+        run: |
+          if [ -f strategy/latest-metrics.json ]; then
+            cp strategy/latest-metrics.json /tmp/previous-metrics.json
+          fi
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
