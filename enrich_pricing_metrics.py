@@ -51,7 +51,7 @@ def fetch_pricing(client: asc.ASCClient, app_id: str) -> dict[str, Any]:
     path = (
         f"/apps/{app_id}/appPriceSchedule"
         "?include=baseTerritory,manualPrices,automaticPrices"
-        "&limit[manualPrices]=200&limit[automaticPrices]=200"
+        "&limit[manualPrices]=50&limit[automaticPrices]=50"
     )
     schedule, error = safe_get(client, path)
     if error:

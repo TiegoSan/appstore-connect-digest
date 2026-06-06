@@ -1,15 +1,21 @@
-# AppStore Connect Analytics
+# App Store Connect Analytics
 
-Dossier autonome pour relancer des analyses App Store Connect Analytics via l'API officielle Apple.
+Dossier autonome pour collecter des métriques App Store Connect, enrichir les données de vente/pricing, générer un digest HTML stratégique et l'envoyer par mail.
 
 ## Contenu
 
-- `appstore_config.json` : issuer id, key id, chemin de clé et apps connues.
-- `AuthKey_VKFLG2237C.p8` : clé privée App Store Connect API. Secret critique.
-- `appstore_analytics.py` : récupération et parsing des rapports `App Downloads Standard` / `Detailed`.
-- `reports/` : exports générés en JSON et Markdown.
+- `appstore_config.json` : issuer id, key id, chemin de clé locale et apps connues.
+- `AuthKey_VKFLG2237C.p8` : clé privée App Store Connect API locale. Secret critique, ignoré par Git.
+- `appstore_analytics.py` : client App Store Connect API, collecte des rapports downloads et engagement.
+- `collect_latest_metrics.py` : collecte les métriques de toutes les apps et écrit `strategy/latest-metrics.json`.
+- `enrich_pricing_metrics.py` : enrichit `strategy/latest-metrics.json` avec pricing et sales reports Apple, en best effort.
+- `render_latest_digest.py` : rend `strategy/latest-digest.html` depuis `strategy/latest-metrics.json`.
+- `postprocess_latest_digest.py` : ajoute décision, comparaison et revue stratégique au HTML final.
+- `send_latest_digest.py` : envoie `strategy/latest-digest.html` par SMTP.
+- `strategy/strategic-review.md` : revue stratégique éditable. Sa mise à jour déclenche le rendu/envoi via GitHub Actions.
+- `reports/` : exports locaux générés.
 
-## Commandes
+## Commandes locales
 
 Lister les apps configurées :
 
@@ -17,85 +23,102 @@ Lister les apps configurées :
 python3 appstore_analytics.py list-apps
 ```
 
-Produire un rapport téléchargements :
+Produire un rapport téléchargements pour une app :
 
 ```sh
 python3 appstore_analytics.py downloads perroquet
-python3 appstore_analytics.py downloads coupez
+python3 appstore_analytics.py downloads coupez --create-snapshot
 ```
 
-Produire le compte rendu quotidien HTML et l'envoyer par mail :
+Collecter les métriques portefeuille sans envoyer de mail :
 
 ```sh
-python3 daily_appstore_digest.py --recipient gautier@gogolabs.fr
+python3 collect_latest_metrics.py
+python3 enrich_pricing_metrics.py
 ```
 
-Produire le compte rendu HTML enrichi avec analyse commerciale et stratégie de vente :
+Rendre le digest HTML depuis les dernières métriques :
 
 ```sh
-python3 enhanced_daily_appstore_digest.py --recipient gautier@gogolabs.fr
+python3 render_latest_digest.py
+python3 postprocess_latest_digest.py
 ```
 
-Envoi mail :
-
-- Sur serveur/VPS, configurer SMTP via variables d'environnement :
+Envoyer le dernier digest :
 
 ```sh
-export APPSTORE_DIGEST_SMTP_HOST=smtp.mail.me.com
-export APPSTORE_DIGEST_SMTP_PORT=587
-export APPSTORE_DIGEST_SMTP_SECURITY=starttls
-export APPSTORE_DIGEST_SMTP_USER=gautier@gogolabs.fr
-export APPSTORE_DIGEST_SMTP_PASSWORD='mot-de-passe-specifique-app-icloud'
-export APPSTORE_DIGEST_FROM='App Store Connect Digest <gautier@gogolabs.fr>'
+python3 send_latest_digest.py
 ```
 
-- `sendmail` est utilise seulement si le systeme mail local est actif.
-- Si Postfix/mailq indique `mail system is down`, le script bascule sur Mail.app et envoie le HTML en piece jointe via le compte mail macOS configure.
-
-Tester la génération HTML sans envoyer de mail :
+Ancien mode tout-en-un encore disponible :
 
 ```sh
 python3 daily_appstore_digest.py --no-send
-```
-
-Créer un snapshot historique si aucune demande Analytics n'existe encore pour une app :
-
-```sh
-python3 appstore_analytics.py downloads glass-master --create-snapshot
-```
-
-Afficher aussi le JSON complet dans le terminal :
-
-```sh
-python3 appstore_analytics.py downloads perroquet --json
+python3 daily_appstore_digest.py --recipient gautier@gogolabs.fr
 ```
 
 ## Dépendances
 
-Le script utilise `PyJWT` et `cryptography` :
-
 ```sh
-python3 -m pip install PyJWT cryptography
+python3 -m pip install -r requirements.txt
 ```
+
+Le fichier `requirements.txt` contient `PyJWT` et `cryptography`.
 
 ## GitHub Actions
 
-Le dossier contient un workflow GitHub Actions :
+Deux workflows pilotent le système.
 
-```sh
+### Métriques App Store
+
+Workflow :
+
+```text
 .github/workflows/appstore-digest.yml
 ```
 
-Il lance `enhanced_daily_appstore_digest.py`, genere le compte rendu HTML enrichi avec une couche strategie commerciale, puis l'envoie par SMTP.
+Déclenchement :
 
-### Secrets GitHub requis
+- manuel via `workflow_dispatch` ;
+- planifié à `21:50` et `22:50` UTC pour couvrir 23:50 Europe/Paris selon heure d'été/hiver.
+- un garde horaire `TZ=Europe/Paris` ignore automatiquement le cron UTC inactif.
 
-Creer ces secrets dans le repo GitHub prive :
+Étapes :
+
+1. Préserve l'ancien `strategy/latest-metrics.json` dans `/tmp/previous-metrics.json`.
+2. Lance `collect_latest_metrics.py`.
+3. Lance `enrich_pricing_metrics.py`.
+4. Commit et push `strategy/latest-metrics.json` si les métriques changent.
+5. Upload les artefacts JSON.
+
+### Digest stratégique
+
+Workflow :
+
+```text
+.github/workflows/strategic-review-digest.yml
+```
+
+Déclenchement :
+
+- manuel via `workflow_dispatch` ;
+- push sur `main` quand `strategy/strategic-review.md` change.
+
+Étapes :
+
+1. Lance `render_latest_digest.py`.
+2. Lance `postprocess_latest_digest.py`.
+3. Commit et push `strategy/latest-digest.html` si le rendu change.
+4. Lance `send_latest_digest.py`.
+
+## Secrets GitHub requis
 
 ```text
 ASC_ISSUER_ID
 ASC_KEY_ID
 ASC_PRIVATE_KEY
+APPSTORE_VENDOR_NUMBER
+ASC_VENDOR_NUMBER
 APPSTORE_DIGEST_SMTP_HOST
 APPSTORE_DIGEST_SMTP_PORT
 APPSTORE_DIGEST_SMTP_SECURITY
@@ -103,6 +126,8 @@ APPSTORE_DIGEST_SMTP_USER
 APPSTORE_DIGEST_SMTP_PASSWORD
 APPSTORE_DIGEST_FROM
 ```
+
+`APPSTORE_VENDOR_NUMBER` ou `ASC_VENDOR_NUMBER` est nécessaire pour les Sales Reports. `ASC_PRIVATE_KEY` doit contenir le contenu complet de la clé `.p8`, avec les lignes `BEGIN PRIVATE KEY` et `END PRIVATE KEY`.
 
 Valeurs SMTP iCloud typiques :
 
@@ -115,20 +140,6 @@ APPSTORE_DIGEST_SMTP_PASSWORD=<mot de passe specifique a l'app iCloud>
 APPSTORE_DIGEST_FROM=App Store Connect Digest <gautier@gogolabs.fr>
 ```
 
-`ASC_PRIVATE_KEY` doit contenir le contenu complet de la cle `.p8`, avec les lignes `BEGIN PRIVATE KEY` / `END PRIVATE KEY`.
-
-### Horaire
-
-GitHub planifie les workflows en UTC. Le workflow est programme a `21:50` et `22:50` UTC pour couvrir l'heure d'ete et l'heure d'hiver. GitHub peut declencher un run avec plusieurs minutes de retard; le script ne se base donc pas sur l'heure effective du runner, mais sur le cron declencheur fourni par GitHub.
-
-- Si Paris est en UTC+2, seul `50 21 * * *` envoie.
-- Si Paris est en UTC+1, seul `50 22 * * *` envoie.
-- L'autre run finit en succes avec un message `skip`, sans rapport ni mail.
-
-### Test
-
-Utiliser `Run workflow` dans l'onglet Actions du repo. Le lancement manuel ignore le garde horaire et envoie immediatement le rapport.
-
 ## Sécurité
 
 Le fichier `.p8` permet de générer des JWT App Store Connect tant que la clé n'est pas révoquée dans App Store Connect. Il doit rester local et non versionné.
@@ -139,4 +150,4 @@ Permissions recommandées :
 chmod 600 AuthKey_VKFLG2237C.p8
 ```
 
-La clé est ignorée par `.gitignore`, mais `.gitignore` ne protège pas contre une copie manuelle ou un mauvais dossier de travail.
+La clé est ignorée par `.gitignore`, mais `.gitignore` ne protège pas contre une copie manuelle, une archive ou un mauvais dossier de travail.

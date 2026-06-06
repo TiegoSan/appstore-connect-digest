@@ -1,0 +1,95 @@
+from __future__ import annotations
+
+import json
+import tempfile
+import unittest
+from pathlib import Path
+
+import enrich_pricing_metrics
+import postprocess_latest_digest
+
+
+class PipelineTests(unittest.TestCase):
+    def test_choose_focus_app_prefers_visible_low_conversion_app(self) -> None:
+        metrics = {
+            "apps": [
+                {"name": "High Volume", "impressions": 100, "product_page_views": 60, "taps": 0},
+                {"name": "Visible Opportunity", "impressions": 90, "product_page_views": 1, "taps": 2},
+                {"name": "Invisible", "impressions": 0, "product_page_views": 0, "taps": 0},
+            ]
+        }
+
+        focus = postprocess_latest_digest.choose_focus_app(metrics)
+
+        self.assertIsNotNone(focus)
+        self.assertEqual(focus["name"], "Visible Opportunity")
+
+    def test_postprocess_injects_dynamic_decision_and_review(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            strategy_dir = root / "strategy"
+            strategy_dir.mkdir()
+            html_path = strategy_dir / "latest-digest.html"
+            html_path.write_text(
+                """<!doctype html>
+<html>
+<head><style>
+  body { color:#111; }
+  </style></head>
+<body>
+  <div class="wrap">
+    <h1>Compte rendu App Store Connect</h1>
+    <div class="cards"></div>
+    <h2>Synthese executive</h2>
+    <h2>Analyse</h2>
+    <p>Base analysis</p>
+    <h2>Erreurs</h2>
+    <p>No errors</p>
+    <p class="footer">Genere depuis local. URLs signees absentes.</p>
+  </div>
+</body>
+</html>
+""",
+                encoding="utf-8",
+            )
+            (strategy_dir / "latest-metrics.json").write_text(
+                json.dumps(
+                    {
+                        "totals": {"impressions": 100, "product_page_views": 2},
+                        "apps": [
+                            {"key": "glass", "name": "Glass Master", "impressions": 100, "product_page_views": 2, "downloads": 1}
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (strategy_dir / "strategic-review.md").write_text("# Review\n\n- Action", encoding="utf-8")
+
+            postprocess_latest_digest.postprocess(root)
+            html = html_path.read_text(encoding="utf-8")
+
+        self.assertIn("Glass Master", html)
+        self.assertIn("Synthèse exécutive", html)
+        self.assertIn("Réflexion stratégique", html)
+        self.assertIn("<li>Action</li>", html)
+        self.assertNotIn("Base analysis", html)
+
+    def test_aggregate_sales_matches_sku_and_refunds(self) -> None:
+        rows = [
+            {"SKU": "APP", "Units": "2", "Developer Proceeds": "5.50", "Customer Price": "9.99", "Customer Currency": "USD"},
+            {"SKU": "APP", "Units": "-1", "Developer Proceeds": "-2.00", "Customer Price": "9.99", "Customer Currency": "USD"},
+            {"SKU": "OTHER", "Units": "10", "Developer Proceeds": "10.00", "Customer Currency": "EUR"},
+        ]
+
+        sales = enrich_pricing_metrics.aggregate_sales(rows, "APP")
+
+        self.assertTrue(sales["available"])
+        self.assertEqual(sales["rows"], 2)
+        self.assertEqual(sales["paid_units"], 1)
+        self.assertEqual(sales["refund_units"], 1)
+        self.assertEqual(sales["developer_proceeds"], 3.5)
+        self.assertEqual(sales["currencies"], ["USD"])
+
+
+if __name__ == "__main__":
+    unittest.main()

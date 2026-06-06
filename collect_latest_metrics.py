@@ -3,8 +3,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
-import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -81,24 +79,6 @@ def write_latest_metrics(apps: list[digest.AppDigest], report_date: str) -> None
     print(f"METRICS {LATEST_METRICS_PATH}")
 
 
-def commit_metrics() -> None:
-    if os.environ.get("GITHUB_ACTIONS") != "true":
-        return
-    commands = [
-        ["git", "config", "user.name", "github-actions[bot]"],
-        ["git", "config", "user.email", "github-actions[bot]@users.noreply.github.com"],
-        ["git", "add", "strategy/latest-metrics.json"],
-        ["git", "commit", "-m", "Update latest App Store metrics"],
-        ["git", "push"],
-    ]
-    for command in commands:
-        proc = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, timeout=60)
-        if proc.returncode != 0:
-            detail = (proc.stderr or proc.stdout).strip()
-            print(f"metrics commit skipped: {' '.join(command)} -> {detail}")
-            break
-
-
 def collect() -> None:
     config = asc.load_config()
     apps: list[digest.AppDigest] = []
@@ -119,7 +99,6 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Collect latest App Store metrics without rendering or sending email")
     parser.parse_args()
     collect()
-    commit_metrics()
 
 
 if __name__ == "__main__":

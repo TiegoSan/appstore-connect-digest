@@ -30,38 +30,57 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check Paris schedule window
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$(TZ=Europe/Paris date +%H)" != "23" ]; then
+            echo "RUN_METRICS=false" >> "$GITHUB_ENV"
+            echo "Skipping inactive UTC cron for Europe/Paris 23:xx window"
+          else
+            echo "RUN_METRICS=true" >> "$GITHUB_ENV"
+          fi
+
       - name: Preserve previous metrics
+        if: env.RUN_METRICS == 'true'
         run: |
           if [ -f strategy/latest-metrics.json ]; then
             cp strategy/latest-metrics.json /tmp/previous-metrics.json
           fi
 
       - name: Set up Python
+        if: env.RUN_METRICS == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: pip
 
       - name: Install dependencies
+        if: env.RUN_METRICS == 'true'
         run: python -m pip install -r requirements.txt
 
       - name: Collect latest metrics
+        if: env.RUN_METRICS == 'true'
         run: python collect_latest_metrics.py
 
       - name: Enrich pricing and sales metrics
-        run: |
-          python enrich_pricing_metrics.py || echo "Pricing/sales enrichment failed; continuing metrics update"
+        if: env.RUN_METRICS == 'true'
+        run: python enrich_pricing_metrics.py
 
       - name: Commit enriched metrics
+        if: env.RUN_METRICS == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add strategy/latest-metrics.json
-          git commit -m "Update latest App Store metrics" || echo "No metrics changes"
-          git push || echo "No metrics push"
+          if git diff --cached --quiet; then
+            echo "No metrics changes"
+          else
+            git commit -m "Update latest App Store metrics"
+            git pull --rebase
+            git push
+          fi
 
       - name: Upload metrics artifacts
-        if: always()
+        if: env.RUN_METRICS == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: appstore-metrics
