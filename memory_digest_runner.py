@@ -36,6 +36,7 @@ def app_summary(app: base.AppDigest) -> dict[str, Any]:
     return {
         "key": app.key,
         "name": app.name,
+        "app_id": profile.get("app_id"),
         "bundle_id": profile.get("bundle_id"),
         "sku": profile.get("sku"),
         "error": app.error,
