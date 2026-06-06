@@ -105,6 +105,36 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(sales["developer_proceeds"], 3.5)
         self.assertEqual(sales["currencies"], ["USD"])
 
+    def test_unavailable_sales_preserves_previous_available_values(self) -> None:
+        previous = {"available": True, "paid_units": 2, "developer_proceeds": 0.0}
+        refresh = {"available": False, "error": "APPSTORE_VENDOR_NUMBER/ASC_VENDOR_NUMBER missing"}
+
+        sales = enrich_pricing_metrics.unavailable_sales_payload(refresh, previous)
+
+        self.assertTrue(sales["available"])
+        self.assertTrue(sales["stale"])
+        self.assertEqual(sales["paid_units"], 2)
+        self.assertEqual(sales["refresh_status"]["error"], "APPSTORE_VENDOR_NUMBER/ASC_VENDOR_NUMBER missing")
+
+    def test_public_sales_status_removes_vendor_number(self) -> None:
+        vendor = "12345678"
+        status = enrich_pricing_metrics.public_sales_status(
+            {
+                "available": True,
+                "vendor_number": vendor,
+                "report_date": "2026-06-05",
+                "rows": [{"SKU": "APP"}],
+                "errors_by_date": {"2026-06-04": f"bad vendorNumber={vendor}"},
+            },
+            vendor,
+        )
+
+        rendered = json.dumps(status)
+        self.assertNotIn("vendor_number", status)
+        self.assertNotIn(vendor, rendered)
+        self.assertNotIn("rows", status)
+        self.assertIn("[redacted]", rendered)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -31,10 +31,26 @@ except ImportError as exc:
 
 ROOT = Path(__file__).resolve().parent
 CONFIG_PATH = ROOT / "appstore_config.json"
+ENV_PATH = ROOT / ".env"
 BASE_URL = "https://api.appstoreconnect.apple.com/v1"
 
 
+def load_local_env(path: Path = ENV_PATH) -> None:
+    if not path.exists():
+        return
+    for line in path.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#") or "=" not in stripped:
+            continue
+        key, value = stripped.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip("\"'")
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+
 def load_config() -> dict[str, Any]:
+    load_local_env()
     with CONFIG_PATH.open("r", encoding="utf-8") as f:
         config = json.load(f)
     config["issuer_id"] = os.environ.get("ASC_ISSUER_ID", os.environ.get("APPSTORE_CONNECT_ISSUER_ID", config["issuer_id"]))

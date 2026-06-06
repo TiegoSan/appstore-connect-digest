@@ -31,6 +31,26 @@ def safe_get(client: asc.ASCClient, path: str) -> tuple[Any | None, str | None]:
         return None, str(exc)
 
 
+def redact_value(value: Any, secret: str | None) -> Any:
+    if not secret:
+        return value
+    if isinstance(value, str):
+        return value.replace(secret, "[redacted]")
+    if isinstance(value, dict):
+        return {key: redact_value(item, secret) for key, item in value.items()}
+    if isinstance(value, list):
+        return [redact_value(item, secret) for item in value]
+    return value
+
+
+def public_sales_status(sales: dict[str, Any], vendor: str | None = None) -> dict[str, Any]:
+    return {
+        key: redact_value(value, vendor)
+        for key, value in sales.items()
+        if key not in {"rows", "vendor_number"}
+    }
+
+
 def compact_price_schedule(resp: Any) -> dict[str, Any]:
     if not isinstance(resp, dict):
         return {"available": False, "raw_type": type(resp).__name__}
@@ -38,10 +58,24 @@ def compact_price_schedule(resp: Any) -> dict[str, Any]:
     attrs = data.get("attributes") or {}
     rel = data.get("relationships") or {}
     included = resp.get("included") or []
+    base_territory = ((rel.get("baseTerritory") or {}).get("data") or {}).get("id")
+    manual_prices = rel.get("manualPrices") or {}
+    automatic_prices = rel.get("automaticPrices") or {}
     return {
         "available": True,
+        "schedule_id": data.get("id"),
         "attributes": attrs,
-        "relationships": rel,
+        "base_territory": base_territory,
+        "manual_prices": {
+            "total": (((manual_prices.get("meta") or {}).get("paging") or {}).get("total")),
+            "returned": len(manual_prices.get("data") or []),
+            "limit": (((manual_prices.get("meta") or {}).get("paging") or {}).get("limit")),
+        },
+        "automatic_prices": {
+            "total": (((automatic_prices.get("meta") or {}).get("paging") or {}).get("total")),
+            "returned": len(automatic_prices.get("data") or []),
+            "limit": (((automatic_prices.get("meta") or {}).get("paging") or {}).get("limit")),
+        },
         "included_count": len(included),
         "included_sample": included[:5],
     }
@@ -141,6 +175,20 @@ def aggregate_sales(rows: list[dict[str, str]], sku: str) -> dict[str, Any]:
     }
 
 
+def unavailable_sales_payload(sales: dict[str, Any], previous_sales: Any = None) -> dict[str, Any]:
+    refresh_status = {
+        "available": False,
+        "error": sales.get("error"),
+        "errors_by_date": sales.get("errors_by_date"),
+    }
+    if isinstance(previous_sales, dict) and previous_sales.get("available"):
+        preserved = dict(previous_sales)
+        preserved["stale"] = True
+        preserved["refresh_status"] = {k: v for k, v in refresh_status.items() if v}
+        return preserved
+    return refresh_status
+
+
 def main() -> None:
     metrics = load_metrics()
     config = asc.load_config()
@@ -152,10 +200,11 @@ def main() -> None:
     totals = metrics.setdefault("totals", {})
     totals.setdefault("paid_units", 0)
     totals.setdefault("developer_proceeds", 0.0)
+    sales_available = bool(sales.get("available"))
     metrics["pricing_sales_source"] = {
         "pricing": "App Store Connect appPriceSchedule endpoint, best effort",
-        "sales": "App Store Connect salesReports DAILY SALES SUMMARY, best effort, using most recent available date",
-        "sales_status": {k: v for k, v in sales.items() if k != "rows"},
+        "sales": "App Store Connect salesReports DAILY SALES SUMMARY, best effort, preserving previous values when refresh is unavailable",
+        "sales_status": public_sales_status(sales, os.environ.get("APPSTORE_VENDOR_NUMBER") or os.environ.get("ASC_VENDOR_NUMBER")),
     }
 
     total_paid = 0
@@ -167,13 +216,15 @@ def main() -> None:
             app["pricing"] = fetch_pricing(client, app_id)
         else:
             app["pricing"] = {"available": False, "error": "missing app_id"}
-        app_sales = aggregate_sales(sales_rows, sku) if sales.get("available") else {"available": False, "error": sales.get("error"), "errors_by_date": sales.get("errors_by_date")}
+        app_sales = aggregate_sales(sales_rows, sku) if sales_available else unavailable_sales_payload(sales, app.get("sales"))
         app["sales"] = app_sales
-        total_paid += int(app_sales.get("paid_units") or 0)
-        total_proceeds += float(app_sales.get("developer_proceeds") or 0)
+        if sales_available:
+            total_paid += int(app_sales.get("paid_units") or 0)
+            total_proceeds += float(app_sales.get("developer_proceeds") or 0)
 
-    totals["paid_units"] = total_paid
-    totals["developer_proceeds"] = round(total_proceeds, 2)
+    if sales_available:
+        totals["paid_units"] = total_paid
+        totals["developer_proceeds"] = round(total_proceeds, 2)
     save_metrics(metrics)
 
 
