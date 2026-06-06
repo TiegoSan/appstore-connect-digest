@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 from pathlib import Path
+from html import escape
 import json
 import re
 
 path = Path('strategy/latest-digest.html')
 metrics_path = Path('strategy/latest-metrics.json')
 previous_metrics_path = Path('/tmp/previous-metrics.json')
+review_path = Path('strategy/strategic-review.md')
 html = path.read_text(encoding='utf-8')
 
 start = html.find('    <h2>Analyse</h2>')
@@ -22,6 +24,7 @@ replacements = {
     'donnees': 'données',
     'Genere depuis': 'Généré depuis',
     'URLs signees': 'URLs signées',
+    'reseau observee pendant la generation': 'réseau observée pendant la génération',
 }
 for source, target in replacements.items():
     html = html.replace(source, target)
@@ -36,6 +39,12 @@ css = '''
     .decision-grid strong { display:block; font-size:14px; line-height:1.35; }
     .yesterday { background:#fff; border:1px solid #deded8; border-radius:10px; padding:14px 16px; margin:18px 0 24px; }
     .yesterday ul { margin:8px 0 0; }
+    .strategy-memory { background:#fff; border:1px solid #deded8; border-left:5px solid #4d5bd1; border-radius:8px; padding:14px 16px; overflow-x:auto; }
+    .strategy-memory h2 { border:0; margin:20px 0 8px; padding:0; }
+    .strategy-memory h3 { margin:16px 0 8px; font-size:15px; }
+    .strategy-memory p { margin:8px 0; }
+    .strategy-memory ul, .strategy-memory ol { margin:8px 0 14px; }
+    .strategy-memory code { background:#f1f1ed; border-radius:4px; padding:1px 4px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
     .strategy-memory .markdown-table { margin:12px 0 16px; width:100%; border-collapse:collapse; }
     .strategy-memory .markdown-table th { background:#eeeeea; font-weight:700; }
     .strategy-memory .markdown-table th, .strategy-memory .markdown-table td { border:1px solid #e2e2dc; padding:7px 8px; font-size:12px; }
@@ -139,6 +148,78 @@ def build_table(block):
         td = ''.join(f'<td>{cell}</td>' for cell in cells)
         trs.append(f'<tr>{td}</tr>')
     return '<table class="markdown-table"><thead><tr>' + th + '</tr></thead><tbody>' + ''.join(trs) + '</tbody></table>'
+
+def md_inline(text):
+    text = escape(text.strip())
+    text = re.sub(r'`([^`]+)`', r'<code>\1</code>', text)
+    text = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', text)
+    text = re.sub(r'_(.+?)_', r'<em>\1</em>', text)
+    return text
+
+def markdown_to_html(md):
+    out = []
+    lines = md.splitlines()
+    in_ul = False
+    in_ol = False
+    def close_lists():
+        nonlocal in_ul, in_ol
+        if in_ul:
+            out.append('</ul>')
+            in_ul = False
+        if in_ol:
+            out.append('</ol>')
+            in_ol = False
+    for raw in lines:
+        line = raw.strip()
+        if not line:
+            close_lists()
+            continue
+        if line.startswith('### '):
+            close_lists()
+            out.append(f'<h3>{md_inline(line[4:])}</h3>')
+        elif line.startswith('## '):
+            close_lists()
+            out.append(f'<h2>{md_inline(line[3:])}</h2>')
+        elif line.startswith('# '):
+            close_lists()
+            out.append(f'<h2>{md_inline(line[2:])}</h2>')
+        elif line.startswith('- '):
+            if not in_ul:
+                close_lists()
+                out.append('<ul>')
+                in_ul = True
+            out.append(f'<li>{md_inline(line[2:])}</li>')
+        elif re.match(r'^\d+\.\s+', line):
+            if not in_ol:
+                close_lists()
+                out.append('<ol>')
+                in_ol = True
+            out.append(f'<li>{md_inline(re.sub(r"^\\d+\\.\\s+", "", line))}</li>')
+        else:
+            close_lists()
+            out.append(f'<p>{md_inline(line)}</p>')
+    close_lists()
+    rendered = '\n'.join(out)
+    pattern = r'(<p>\|[^<]+\|</p>\s*){3,}'
+    return re.sub(pattern, lambda m: build_table(m.group(0)), rendered)
+
+def strategic_review_section():
+    if not review_path.exists():
+        return ''
+    md = review_path.read_text(encoding='utf-8').strip()
+    if not md:
+        return ''
+    return f'\n    <h2>Réflexion stratégique</h2>\n    <div class="strategy-memory">{markdown_to_html(md)}</div>\n'
+
+html = re.sub(r'\s*<h2>Reflexion strategique</h2>\s*<div class="strategy-memory">.*?</div>\s*', '\n', html, flags=re.DOTALL)
+html = re.sub(r'\s*<h2>Réflexion stratégique</h2>\s*<div class="strategy-memory">.*?</div>\s*', '\n', html, flags=re.DOTALL)
+
+errors_start = html.find('    <h2>Erreurs</h2>')
+footer_start = html.find('    <p class="footer">')
+if errors_start != -1 and footer_start != -1 and errors_start < footer_start:
+    html = html[:errors_start] + strategic_review_section() + '\n' + html[footer_start:]
+elif footer_start != -1:
+    html = html[:footer_start] + strategic_review_section() + '\n' + html[footer_start:]
 
 pattern = r'(<p>\|[^<]+\|</p>\s*){3,}'
 html = re.sub(pattern, lambda m: build_table(m.group(0)), html)
