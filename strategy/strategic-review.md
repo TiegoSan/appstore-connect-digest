@@ -1,151 +1,162 @@
 # Revue stratégique GogoLabs
 
-_Source métrique : `strategy/latest-metrics.json`, généré le 2026-06-06 à 21:07:11 UTC. Rapport App Store du 2026-06-06. Rapport ventes utilisé : 2026-06-05. Exécution manuelle demandée et relancée le 2026-06-06._
+_Source métrique : `strategy/latest-metrics.json`, généré le 2026-06-06 à 21:07:11 UTC. Rapport App Store du 2026-06-06. Rapport ventes utilisé : 2026-06-05. Exécution manuelle demandée le 2026-06-07._
 
 ## 1. Synthèse exécutive stratégique
 
-GogoLabs dispose maintenant d’un vrai système de pilotage : les métriques App Store Connect sont récupérées, consolidées dans le repo, puis réinjectées dans une réflexion stratégique séparée. Le portefeuille totalise 81 téléchargements, 57 premiers téléchargements, 532 impressions, 11 vues page produit, 9 taps et 2 paid units. Ce n’est pas encore un volume permettant des certitudes statistiques, mais c’est assez pour identifier le problème central : la visibilité existe, la compréhension commerciale reste trop faible.
+GogoLabs dispose maintenant d’un signal de marché réel mais fragile. Le portefeuille totalise 532 impressions, 11 vues page produit, 9 taps, 81 téléchargements, 57 premiers téléchargements et 2 paid units. Ce n’est pas un volume suffisant pour des certitudes statistiques, mais c’est assez pour identifier le défaut principal : l’App Store montre les apps, mais la promesse visible avant clic ne force pas encore l’ouverture des fiches.
 
-Le taux impressions -> page produit est le signal dur : 11 vues page produit pour 532 impressions, soit environ 2,07 %. L’App Store montre les apps, mais les utilisateurs n’ouvrent pas assez les fiches. La priorité n’est donc pas d’ajouter des fonctions. La priorité est de rendre la promesse lisible avant le clic : nom, sous-titre, icône, premier screenshot, bénéfice métier, preuve immédiate.
+Le passage impressions vers page produit est la donnée la plus sévère : environ 2,07 %. Le problème n’est donc pas d’abord produit. Il est commercial. Nom, sous-titre, icône, premier screenshot et bénéfice métier ne vendent pas assez vite. Une app premium doit être comprise avant que l’utilisateur ne réfléchisse.
 
-Les paid units commencent à apparaître. Perroquet Piano et Odile! remontent chacun 1 paid unit dans le Sales Report. Les proceeds restent à 0.0, ce qui empêche encore une lecture économique propre. Le pipeline commercial existe, mais il faut corriger la collecte pricing/sales avant de piloter le revenu. Le bug technique est clair : l’appel `appPriceSchedule` utilise `limit[manualPrices]=200` et `limit[automaticPrices]=200`, alors qu’Apple indique une limite maximale de 50.
+Les paid units apparaissent sur Perroquet Piano et Odile!, mais les developer proceeds restent à 0.0 et les prix clients ne remontent pas proprement. La donnée de revenu reste insuffisante pour piloter une entreprise logicielle. GogoLabs doit corriger la collecte économique avant de conclure sur le modèle.
 
-Décision immédiate : concentrer les efforts commerciaux sur Glass Master et Coupez!, traiter Perroquet Piano comme ligne mobile/consumer séparée, corriger FeedBacks! et Odile! en surface, et limiter les apps sans signal à un audit de présence.
+Décision immédiate : prioriser Glass Master et Coupez! pour construire la ligne macOS pro, traiter Perroquet Piano comme ligne mobile/consumer séparée, corriger FeedBacks! et Odile! en surface, et limiter les apps à zéro à un audit de présence.
 
-## 2. Lecture du portefeuille
+## 2. Ce que les métriques impliquent commercialement
 
-### 2.1. Ligne pro macOS
+Les impressions prouvent que la gamme n’est pas invisible. Le marché croise les produits. Mais 11 vues page produit pour 532 impressions montrent une faiblesse de conversion avant même la fiche. Les résultats de recherche ne traduisent pas encore la valeur en décision.
 
-Glass Master, Coupez!, FeedBacks!, Odile! et BounceDaTracks doivent être lus comme une ligne d’outils professionnels. Leur valeur n’est pas le volume brut. Leur valeur est le temps économisé, les erreurs évitées, les livrables sécurisés, la réduction de friction entre Pro Tools, l’image, les retours client et les exports.
+Les 81 téléchargements ne doivent pas masquer ce problème. Ils indiquent une activité, pas encore une demande premium. La donnée utile est la qualité du passage entre exposition, visite, action et paiement. Aujourd’hui, ce passage est trop flou.
 
-La ligne pro doit être formulée comme une infrastructure légère pour workflows créatifs lourds. Une app GogoLabs pro ne doit pas ressembler à un gadget App Store. Elle doit ressembler à un outil issu d’un vrai contexte de production.
+Perroquet Piano porte le volume le plus élevé avec 57 téléchargements, 41 premiers téléchargements, 211 impressions, 8 vues page produit et 3 taps. Mais son device dominant est iPhone et son territoire dominant est le Japon. Il ne valide pas la thèse macOS pro. Il valide une piste mobile musique/consumer.
 
-### 2.2. Ligne consumer / musique
+Glass Master, Coupez!, FeedBacks! et Odile! sont plus importants pour la stratégie premium. Ils sont principalement Desktop et App Store search. Leur problème commun est la lisibilité commerciale faible : ils apparaissent, mais ne déclenchent pas assez l’ouverture de fiche.
 
-Perroquet Piano est l’actif de volume : 57 téléchargements, 41 first-time downloads, 211 impressions, source dominante App Store Search, territoire dominant Japon, device dominant iPhone. Ce signal ne doit pas contaminer la stratégie des apps pro. Perroquet suit une logique différente : localisation, pédagogie, mobile, friction faible, acquisition par recherche.
+Les apps à zéro — Bouclez!, My First Sampler, Gogo Looping, BounceDaTracks — ne doivent pas être refondues. Zéro impression ne prouve pas un rejet marché. Cela indique d’abord un problème de présence, d’indexation, de disponibilité, d’identifiant ou de reporting.
 
-### 2.3. Apps dormantes
+## 3. Diagnostic du portefeuille
 
-Bouclez!, My First Sampler, Gogo Looping et BounceDaTracks n’ont aucun signal exploitable dans cette fenêtre. Elles ne doivent pas recevoir d’effort marketing lourd avant audit : disponibilité, indexation, pays, catégorie, compatibilité, nom exact recherché dans l’App Store.
+### Outils macOS pro
 
-## 3. Diagnostic funnel
+La ligne macOS pro doit devenir le centre stratégique. GogoLabs peut y défendre un prix premium parce que le client professionnel paie pour du temps gagné, des erreurs évitées, des exports plus sûrs et des workflows créatifs plus contrôlables.
 
-Le haut de funnel fonctionne partiellement. Les apps apparaissent dans App Store Search. Le milieu de funnel est faible. Les vues page produit restent insuffisantes. Le bas de funnel commence à être visible avec les paid units, mais il reste instable.
+Glass Master, Coupez!, FeedBacks!, Odile! et éventuellement BounceDaTracks appartiennent à cette ligne. Elles doivent être présentées comme une gamme cohérente, pas comme des expériences isolées. Même rigueur de nommage, même niveau visuel, même logique de preuve, même promesse orientée résultat.
 
-Ordre de travail obligatoire :
+Glass Master a 120 impressions, 2 vues page produit, 2 taps et 9 téléchargements. Le signal Desktop est propre, mais la page view rate reste faible. Le résultat de recherche ne dit pas assez clairement quelle friction professionnelle disparaît.
 
-- augmenter le taux impressions -> page produit
-- améliorer la fiche produit
-- rendre le prix lisible
-- seulement ensuite juger le revenu
+Coupez! a 57 impressions, 1 vue page produit, 10 téléchargements et 5 premiers téléchargements. Le nom a de l’énergie mais peut rester opaque hors contexte. Le sous-titre doit expliquer immédiatement ce qui est coupé, pour qui, et avec quel gain.
 
-Ne pas inverser cet ordre. Un prix bas ne compensera pas une promesse floue. Une nouvelle feature ne compensera pas un premier screenshot qui ne vend rien.
+FeedBacks! a 59 impressions, 2 taps, 4 téléchargements et 0 vue produit. Le nom est compréhensible mais trop générique. Il doit être rattaché à une douleur professionnelle : transformer des retours dispersés en décisions exploitables.
 
-## 4. Priorités de vente
+Odile! a 85 impressions, 2 taps, 1 premier téléchargement et 1 paid unit, mais 0 vue produit. Le signal de paiement est intéressant, pas conclusif. Le nom seul ne vend rien. La fiche doit rendre le cas d’usage évident.
 
-### Priorité 1 : Glass Master
+### Apps musique, apprentissage et consumer
 
-Glass Master a 120 impressions, 2 vues page produit, 2 taps, 9 téléchargements et 6 first-time downloads. Le signal est faible mais propre : Desktop, US, App Store Search. C’est le meilleur candidat pour un test premium pro.
+Perroquet Piano doit être séparé de la ligne pro. Ses chiffres sont les meilleurs en volume, mais son usage dominant iPhone et son territoire JP indiquent une logique mobile/consumer. Il peut devenir une ligne utile, mais il ne doit pas brouiller la marque macOS premium.
 
-Objectif : faire monter le page view rate. Le travail doit porter sur le sous-titre, le premier screenshot, la première phrase et la promesse métier. L’app doit vendre le contrôle loudness, la conformité, le risque évité, le rapport clair. Pas seulement “analyse audio”.
+My First Sampler et Gogo Looping semblent aussi relever d’une logique musique ou apprentissage, mais leurs métriques sont nulles et leur pricing renvoie une erreur. Leur priorité est technique : vérifier existence, disponibilité, identifiants et indexation.
 
-### Priorité 2 : Coupez!
+### Apps dormantes
 
-Coupez! a 57 impressions, 1 page view, 10 téléchargements et 5 first-time downloads. Le nom est mémorisable mais probablement opaque hors français. Il faut compenser par un sous-titre anglais ultra fonctionnel : video cut detection, picture change review, AAF export, audio conform.
+Bouclez!, My First Sampler, Gogo Looping et BounceDaTracks doivent être classées en audit. Le bon travail consiste à vérifier App Store Connect, territoires, état de publication, pricing, catégorie, mots-clés, captures et cohérence des identifiants. Aucun chantier produit avant retour d’impressions.
 
-Premier screenshot : avant/après. Vidéo source, coupes détectées, export AAF vers Pro Tools. Le bénéfice doit être visible sans lire la description.
+## 4. Diagnostic funnel
 
-### Priorité 3 : FeedBacks!
+Le funnel actuel dit ceci : l’exposition existe, l’intention reste faible, la lecture économique est incomplète. La source dominante étant souvent App Store search, l’ASO doit être traité comme canal de vente principal.
 
-FeedBacks! a 59 impressions, 2 taps, 4 téléchargements, 4 first-time downloads, mais 0 page view. Le signal est étrange : il y a une forme d’intention, mais la fiche ne s’ouvre pas. Le mot “feedback” est trop générique. La valeur réelle est la transformation de retours client en corrections suivies, markers, traçabilité.
+Le faible taux impressions vers page produit montre que la bataille se joue avant la fiche. Le nom et le sous-titre doivent fonctionner comme une annonce compacte. Si l’utilisateur doit ouvrir la fiche pour comprendre l’app, la vente est déjà perdue.
 
-Promesse à tester : “Turn client notes into Pro Tools markers.”
+Les taps et téléchargements sont présents mais encore trop petits pour guider seuls la décision. Les téléchargements supérieurs aux vues produit rendent le funnel non linéaire. Il faut donc suivre séparément impressions, product page views, taps, first-time downloads, paid units, revenus et refunds.
 
-### Priorité 4 : Odile!
+La limite majeure est l’absence de revenu exploitable. Deux paid units sans proceeds lisibles ne suffisent pas. Le prochain reporting doit devenir économique, pas seulement marketing.
 
-Odile! a 85 impressions, 2 taps, 1 téléchargement, 1 paid unit. Le signal sales interdit de l’écarter. Mais le nom ne vend rien. Il faut rendre l’app compréhensible immédiatement : EDL, Pro Tools, exports structurés, assistants, timecode.
+## 5. Priorités de vente
 
-Odile! doit recevoir une phrase métier. Pas une refonte produit.
+Priorité 1 : Glass Master et Coupez!. Ce sont les meilleures bases pour la ligne macOS pro. Travail immédiat sur sous-titre, premier screenshot, bénéfice métier et preuve de valeur.
 
-### Priorité 5 : Perroquet Piano
+Priorité 2 : FeedBacks! et Odile!. Correction de surface, pas chantier profond. Clarifier la promesse, spécialiser les screenshots, surveiller les prochains rapports.
 
-Perroquet Piano domine le volume, mais il doit être optimisé séparément. Japon, iPhone, pédagogie, apprentissage musical. Le but n’est pas de forcer Perroquet dans la marque pro. Le but est d’exploiter sa traction consumer sans brouiller GogoLabs.
+Priorité 3 : Perroquet Piano, séparé. Stratégie mobile/consumer spécifique, avec ASO orienté apprentissage musical, simplicité, progression et localisation si le Japon reste fort.
 
-## 5. Pricing
+Priorité 4 : apps à zéro. Audit de présence seulement. Pas de nouvelles features. Pas de refonte tant que l’App Store ne renvoie pas de signal.
 
-Le pricing ne peut pas encore être exploité correctement. La collecte échoue sur `appPriceSchedule` à cause d’une limite Apple : remplacer `limit[manualPrices]=200` et `limit[automaticPrices]=200` par 50.
+## 6. Pricing
 
-Doctrine :
+Les apps macOS pro doivent conserver une logique premium. Baisser le prix maintenant serait une erreur : le problème visible n’est pas la résistance au prix, c’est l’absence de compréhension rapide. Un prix bas ne corrige pas une promesse floue.
 
-- apps pro : prix fondé sur temps gagné, risque évité, fiabilité
-- apps consumer : friction basse, volume, achat simple
-- ne pas baisser les prix tant que la fiche n’est pas claire
-- ne pas juger la willingness to pay avant d’avoir une page produit lisible
+Le prix doit être justifié par la preuve : temps gagné, erreurs évitées, livrables plus propres, workflow mieux contrôlé. Les screenshots doivent rendre le prix normal.
 
-Les paid units sont un signal de bas de funnel, pas encore un signal de pricing.
+Les bundles peuvent devenir utiles plus tard, quand Glass Master, Coupez! et une troisième app auront chacune une promesse claire et une conversion mesurable. Pour l’instant, un bundle risquerait d’assembler des ambiguïtés.
 
-## 6. ASO
+Perroquet Piano doit avoir une logique de prix séparée. Le mobile/consumer ne paie pas pour les mêmes raisons que le pro macOS. Il paie pour progression, plaisir, apprentissage, simplicité.
 
-L’ASO immédiat ne doit pas commencer par les mots-clés cachés. Il doit commencer par la lisibilité du résultat de recherche.
+Métriques manquantes à collecter explicitement : revenus par app, prix courant, unités payantes, remboursements, notes, avis, conversion page vers achat ou téléchargement, historique J-1/J-7, prix client, proceeds nets et devises.
 
-Chaque app doit répondre avant le clic :
+## 7. ASO
 
-- pour qui ?
-- quelle tâche disparaît ?
-- quelle erreur est évitée ?
-- quel résultat sort de l’app ?
+L’ASO est la surface commerciale principale. Les mots-clés doivent partir des douleurs utilisateur, pas des noms internes. L’utilisateur cherche une tâche, pas GogoLabs.
 
-Règle : nom créatif autorisé, sous-titre fonctionnel obligatoire.
+Pour Coupez!, le sous-titre doit dire quoi couper, dans quel workflow, pour quel résultat. Pour Glass Master, il doit nommer la friction professionnelle supprimée. Pour FeedBacks!, il doit quitter le générique et viser les retours client ou créatifs transformés en actions. Pour Odile!, il doit compenser l’opacité du nom.
 
-Coupez! peut rester Coupez!, mais le sous-titre doit vendre le conform. Odile! peut rester Odile!, mais le sous-titre doit révéler l’EDL / Pro Tools. FeedBacks! doit sortir du feedback vague. Glass Master doit parler de conformité, contrôle, livraison.
+Le résultat de recherche doit répondre à trois questions sans ouvrir la fiche : pour qui, quel problème, quel gain.
 
-## 7. Screenshots
+## 8. Screenshots
 
-La surface visuelle doit être reconstruite comme preuve de valeur.
+Les screenshots doivent devenir des preuves. Le premier écran doit vendre le résultat, pas l’interface. L’ordre recommandé pour les apps pro : promesse métier, avant/après, résultat final, contrôle/fiabilité, intégration workflow.
 
-Structure recommandée :
+Glass Master doit montrer le problème résolu. Coupez! doit montrer la matière avant et après. FeedBacks! doit montrer la transformation de retours dispersés en décisions. Odile! doit rendre son cas d’usage immédiatement lisible. Perroquet Piano doit montrer progression, plaisir, simplicité et résultat musical.
 
-- Screenshot 1 : promesse principale en gros, visible en vignette
-- Screenshot 2 : avant / après
-- Screenshot 3 : workflow en trois étapes
-- Screenshot 4 : contrôle avancé ou cas réel
-- Screenshot 5 : export, rapport, livraison, résultat final
+## 9. Recommandations par app
 
-Pas de capture décorative. Pas d’interface seule sans bénéfice. Chaque screenshot doit répondre à une objection commerciale.
+### Glass Master
 
-## 8. Risques
+Priorité haute. Réécrire le sous-titre autour du bénéfice professionnel. Refaire les trois premiers screenshots en logique preuve. Ajouter un avant/après. Ne pas développer de nouvelle fonctionnalité tant que le page view rate ne monte pas.
 
-### Dispersion
+### Coupez!
 
-Neuf apps dans plusieurs marchés. Danger majeur : donner la même attention à toutes. Il faut refuser la symétrie. Deux apps pro en priorité, deux apps en correction ciblée, Perroquet en ligne séparée, le reste en audit.
+Priorité haute. Le nom doit être soutenu par un sous-titre très explicite. Tester une formulation anglophone si les États-Unis restent territoire dominant. Premier screenshot : gain opérationnel immédiat.
 
-### Confusion volume / valeur
+### FeedBacks!
 
-Perroquet a le volume. La ligne pro peut avoir la valeur. Ne pas laisser la métrique la plus grosse décider seule de la stratégie.
+Priorité moyenne. Spécialiser la promesse : retours client, notes de validation, décisions créatives. Montrer le chaos avant l’app et l’action claire après l’app.
 
-### Fausse réponse produit
+### Odile!
 
-Ajouter des fonctions maintenant serait confortable mais prématuré. Le problème visible est commercial : packaging, compréhension, preuve.
+Priorité moyenne prudente. La paid unit est intéressante mais non suffisante. Clarifier radicalement le cas d’usage. Surveiller les prochains rapports avant d’investir plus.
 
-### Données incomplètes
+### Perroquet Piano
 
-Les prix et proceeds ne sont pas encore propres. Toute conclusion économique doit rester provisoire.
+Priorité séparée. Construire une stratégie mobile/consumer. Localisation possible pour le Japon. Screenshots orientés apprentissage et envie d’essayer. Pricing à juger séparément.
 
-## 9. Actions concrètes avant le prochain rapport
+### Bouclez!
 
-- Corriger `appPriceSchedule` avec `limit[manualPrices]=50` et `limit[automaticPrices]=50`.
-- Ajouter dans le mail une section sales lisible : paid units, app, pays/devise, date du sales report, proceeds.
-- Refaire le sous-titre de Glass Master autour de conformité / loudness / livraison.
-- Refaire le screenshot 1 de Glass Master comme preuve de contrôle.
-- Refaire le sous-titre de Coupez! en anglais fonctionnel.
-- Refaire le screenshot 1 de Coupez! autour du workflow post-production.
-- Écrire une promesse métier immédiate pour Odile!.
-- Repositionner FeedBacks! sur retours client -> markers / corrections traçables.
-- Auditer les apps sans signal avant toute énergie produit ou marketing.
-- Séparer mentalement Perroquet de la ligne pro dans le reporting.
+Audit. Vérifier disponibilité, indexation, catégorie, mots-clés, screenshots et territoires. Ne pas refondre avant signal.
 
-## 10. Décision
+### My First Sampler
 
-Ne pas disperser. Ne pas créer une nouvelle app pour compenser une fiche qui ne vend pas. Ne pas baisser les prix pour compenser une promesse floue.
+Audit technique. Pricing 404 et zéro signal. Vérifier app id, état App Store Connect, disponibilité et reporting.
 
-Le prochain progrès mesurable doit être : hausse du taux impressions -> page produit sur Glass Master et Coupez!. C’est la métrique de vérité du prochain cycle.
+### Gogo Looping
+
+Audit technique. Même lecture : présence non validée, signal inexploitable.
+
+### BounceDaTracks
+
+Audit technique. Peut rejoindre la ligne pro audio plus tard, mais zéro impression et pricing 404 empêchent toute priorité actuelle.
+
+## 10. Risques de dispersion
+
+Le premier risque est de confondre portefeuille et stratégie. Une gamme existe quand le marché comprend le fil commun. Aujourd’hui, la doctrine est claire, mais les fiches ne la rendent pas encore visible.
+
+Le deuxième risque est de laisser Perroquet Piano piloter la marque parce qu’il a le plus de volume. Il doit être exploité, mais séparé.
+
+Le troisième risque est d’ajouter des features pour éviter le travail commercial. Quand le blocage se situe avant la fiche, une feature nouvelle ne règle rien.
+
+Le quatrième risque est de piloter sans revenus. GogoLabs veut construire un revenu logiciel indépendant ; le reporting doit donc devenir économique.
+
+## 11. Actions concrètes avant le prochain rapport
+
+1. Réécrire les sous-titres de Glass Master et Coupez!.
+2. Refaire le premier screenshot de Glass Master, Coupez!, FeedBacks! et Odile!.
+3. Séparer Perroquet Piano dans la lecture stratégique.
+4. Auditer toutes les apps à zéro.
+5. Corriger la collecte revenus, prix, paid units, refunds, proceeds et devises.
+6. Ajouter historique J-1/J-7.
+7. Ajouter notes et avis App Store.
+8. Interdire les nouveaux chantiers feature tant que la lisibilité commerciale n’est pas corrigée.
+
+## 12. Conclusion décisionnelle
+
+GogoLabs ne manque pas d’idées. GogoLabs manque d’un appareil de vente lisible. Les apps sont vues, mais pas assez comprises. La prochaine victoire ne sera pas une nouvelle feature. Ce sera une fiche App Store qui convertit mieux.
+
+La décision est nette : concentrer la ligne pro sur Glass Master et Coupez!, traiter FeedBacks! et Odile! en correction de surface, isoler Perroquet Piano comme ligne mobile/consumer, auditer les apps dormantes et rendre le reporting économique. GogoLabs doit agir comme une entreprise logicielle premium, pas comme un atelier qui publie des expériences.
