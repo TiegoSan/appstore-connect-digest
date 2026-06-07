@@ -92,7 +92,8 @@ def collect() -> None:
         except Exception as exc:
             apps.append(digest.AppDigest(key, app.get("name", key), None, None, None, None, str(exc)))
             print(f"{key}: ERROR {exc}")
-    write_latest_metrics(apps, datetime.now().strftime("%Y-%m-%d"))
+    report_date = digest.latest_data_date(apps) or datetime.now().strftime("%Y-%m-%d")
+    write_latest_metrics(apps, report_date)
 
 
 def main() -> None:

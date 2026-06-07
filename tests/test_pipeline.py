@@ -9,9 +9,47 @@ from pathlib import Path
 import enrich_pricing_metrics
 import daily_appstore_digest
 import postprocess_latest_digest
+import send_latest_digest
 
 
 class PipelineTests(unittest.TestCase):
+    def test_latest_data_date_uses_latest_apple_metric_date(self) -> None:
+        apps = [
+            daily_appstore_digest.AppDigest(
+                "one",
+                "One",
+                None,
+                None,
+                {
+                    "by_date": {"2026-06-01": 1},
+                    "impressions_by_date": {"2026-06-03": 10},
+                },
+                None,
+            ),
+            daily_appstore_digest.AppDigest(
+                "two",
+                "Two",
+                None,
+                None,
+                {"product_page_views_by_date": {"2026-06-02": 2}},
+                None,
+            ),
+        ]
+
+        self.assertEqual(daily_appstore_digest.latest_data_date(apps), "2026-06-03")
+
+    def test_send_latest_digest_subject_uses_metrics_report_date(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            metrics_path = Path(temp_dir) / "latest-metrics.json"
+            metrics_path.write_text(json.dumps({"report_date": "2026-06-03"}), encoding="utf-8")
+
+            report_date = send_latest_digest.report_date_for_subject(
+                "<title>Gogo Labs Daily Business Digest - 2026-06-07</title>",
+                metrics_path,
+            )
+
+        self.assertEqual(report_date, "2026-06-03")
+
     def test_choose_focus_app_prefers_visible_low_conversion_app(self) -> None:
         metrics = {
             "apps": [

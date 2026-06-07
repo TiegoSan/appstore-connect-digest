@@ -90,6 +90,22 @@ def metric(app: AppDigest, field: str) -> int:
     return int(app.data.get(field) or 0)
 
 
+def latest_data_date(apps: list[AppDigest]) -> str | None:
+    dates: set[str] = set()
+    date_fields = [
+        "by_date",
+        "impressions_by_date",
+        "product_page_views_by_date",
+    ]
+    for app in apps:
+        data = app.data or {}
+        for field in date_fields:
+            values = data.get(field)
+            if isinstance(values, dict):
+                dates.update(str(date) for date in values if date)
+    return max(dates) if dates else None
+
+
 def rate(app: AppDigest, field: str) -> Any:
     if not app.data:
         return None
@@ -533,7 +549,7 @@ def generate_digest(
 
     DIGEST_DIR.mkdir(parents=True, exist_ok=True)
     now = datetime.now()
-    report_date = now.strftime("%Y-%m-%d")
+    report_date = latest_data_date(apps) or now.strftime("%Y-%m-%d")
     html = render_html(apps, report_date)
     html_path = DIGEST_DIR / f"appstore-digest-{now.strftime('%Y%m%d')}.html"
     html_path.write_text(html, encoding="utf-8")
