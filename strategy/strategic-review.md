@@ -4,56 +4,50 @@ _Source métrique : `strategy/latest-metrics.json`, généré le 2026-06-07 à 1
 
 ## 1. Synthèse exécutive stratégique
 
-GogoLabs dispose d’un signal de marché réel mais fragile. Le nouveau rapport confirme les mêmes volumes App Store : 532 impressions, 11 vues page produit, 9 taps, 81 téléchargements et 57 premiers téléchargements. Le changement important est la baisse des paid units globales à 1. Le seul signal payant exploitable vient désormais de Perroquet Piano.
+GogoLabs dispose d’un signal de marché réel mais fragile. Les métriques sont inchangées depuis la dernière exécution : 532 impressions, 11 vues page produit, 9 taps, 81 téléchargements, 57 premiers téléchargements, 1 paid unit et 0.0 developer proceeds. Le diagnostic reste stable : la visibilité existe, la conversion commerciale reste insuffisante.
 
-Le diagnostic se durcit : la ligne macOS pro est visible, mais elle ne démontre pas encore une capacité payante. Le portefeuille est exposé ; la promesse commerciale reste trop faible avant clic. Le ratio impressions -> page produit reste autour de 2,07 %, ce qui place le problème au niveau du résultat de recherche, du nom, du sous-titre, de l’icône et du premier screenshot.
+Le signal le plus dur reste le ratio impressions -> page produit, environ 2,07 %. Le blocage se situe avant l’ouverture de la fiche. La priorité n’est pas d’ajouter des features, mais de rendre la valeur lisible dans le résultat App Store : nom, sous-titre, icône, premier screenshot, bénéfice métier.
 
-Décision immédiate : Glass Master et Coupez! restent les priorités pour construire la gamme macOS pro ; FeedBacks! et Odile! doivent être clarifiées sans chantier profond ; Perroquet Piano doit être séparé comme ligne mobile/consumer/musique ; les apps sans signal restent en audit.
+La seule paid unit exploitable vient de Perroquet Piano. Cela sépare brutalement deux réalités : le volume et le paiement sont côté mobile/consumer, tandis que la thèse stratégique GogoLabs reste côté macOS pro. Ces deux lignes ne doivent pas être mélangées.
 
 ## 2. Ce que les métriques impliquent commercialement
 
-L’App Store montre les apps, mais les utilisateurs n’ouvrent pas assez les fiches. Ce n’est pas un problème de nouvelles fonctionnalités. C’est un problème de lisibilité commerciale.
+L’App Store affiche les apps. La recherche App Store est donc le canal prioritaire. Les utilisateurs voient la gamme, mais n’entrent pas assez dans les fiches. Le problème est une promesse trop peu lisible avant clic.
 
-Perroquet Piano concentre le volume et la seule paid unit : 57 téléchargements, 41 premiers téléchargements, 211 impressions, 8 vues produit, 3 taps, device dominant iPhone, territoire dominant JP. Ce signal doit être exploité, mais il ne valide pas la ligne macOS pro.
-
-Glass Master, Coupez!, FeedBacks! et Odile! restent les supports de la promesse premium macOS. Leur faiblesse est commune : la valeur n’est pas assez évidente dans la recherche App Store.
+Les téléchargements prouvent une activité, pas encore un revenu logiciel indépendant. Sans revenus par app, prix courant, remboursements, notes, avis et conversion page -> achat/téléchargement, le pilotage reste incomplet.
 
 ## 3. Diagnostic du portefeuille
 
 ### Outils macOS pro
 
-Glass Master a 120 impressions, 2 vues produit, 2 taps et 9 téléchargements. Le signal Desktop est propre, mais la fiche ne vend pas assez vite.
+Glass Master et Coupez! restent les deux piliers à travailler. Glass Master a un signal Desktop propre mais trop peu de vues produit. Coupez! a des téléchargements mais un nom opaque sans sous-titre explicite.
 
-Coupez! a 57 impressions, 1 vue produit, 10 téléchargements et 5 premiers téléchargements. Le nom est mémorable mais opaque. Le sous-titre doit dire quoi couper, pour qui, dans quel workflow, avec quel gain.
-
-FeedBacks! a 59 impressions, 0 vue produit, 2 taps et 4 téléchargements. Le nom est compréhensible mais trop générique. Il faut le rattacher à une douleur : retours client ou créatifs transformés en actions.
-
-Odile! a 85 impressions, 0 vue produit, 2 taps et 1 téléchargement. La paid unit n’est plus confirmée dans ce rapport. Odile! redevient une app à clarifier, pas une priorité commerciale validée.
+FeedBacks! et Odile! doivent être clarifiées en surface. FeedBacks! est trop générique. Odile! n’a plus de paid unit confirmée dans le rapport actuel.
 
 ### Apps musique/apprentissage/consumer
 
-Perroquet Piano doit être traité séparément. Il porte la seule paid unit et le plus fort volume, mais sa logique est iPhone, musique, apprentissage, consumer. Il ne doit pas brouiller la marque pro macOS.
+Perroquet Piano est séparé. Il porte la seule paid unit, le plus fort volume, un usage iPhone dominant et un signal JP. Il doit être optimisé comme produit mobile/consumer, pas comme preuve de la ligne pro.
 
 ### Apps dormantes
 
-Bouclez!, My First Sampler, Gogo Looping et BounceDaTracks restent sans impression exploitable ou avec erreurs pricing 404. Le bon statut est audit de présence, disponibilité, indexation, pricing et identifiants.
+Bouclez!, My First Sampler, Gogo Looping et BounceDaTracks restent en audit : présence, disponibilité, indexation, pricing, territoires, screenshots, mots-clés, identifiants.
 
 ## 4. Diagnostic funnel
 
-Le funnel bloque avant la page produit. Les impressions existent, mais le passage vers la fiche est faible. Les paid units ne sont pas économiquement exploitables : proceeds à 0.0, prix client absent, conversion page -> achat/téléchargement absente.
+Le funnel bloque avant la page produit. Les impressions sont présentes, les vues produit faibles, les paid units non économiquement exploitables. Les proceeds restent à 0.0.
 
 ## 5. Priorités de vente
 
-1. Glass Master et Coupez! : construire la ligne macOS pro.
-2. FeedBacks! et Odile! : correction de packaging.
-3. Perroquet Piano : ligne mobile/consumer séparée.
-4. Apps à zéro : audit seulement.
+1. Glass Master et Coupez! : ligne macOS pro.
+2. FeedBacks! et Odile! : correction packaging.
+3. Perroquet Piano : ligne consumer séparée.
+4. Apps à zéro : audit uniquement.
 
 ## 6. Pricing
 
-Conserver la logique premium pour les apps macOS pro. Baisser le prix serait une erreur : le problème mesuré est l’incompréhension avant clic, pas la résistance au prix.
+Conserver une logique premium pour les apps macOS pro. Baisser le prix serait une erreur de diagnostic : le problème mesuré est l’incompréhension avant clic.
 
-Métriques à collecter : revenus par app, prix courant, unités payantes, remboursements, notes, avis, conversion page -> achat/téléchargement, historique J-1/J-7, prix client, proceeds nets et devises.
+Ajouter aux métriques : revenus par app, prix courant, unités payantes, remboursements, notes, avis, conversion page -> achat/téléchargement, historique J-1/J-7, prix client, proceeds nets, devise.
 
 ## 7. ASO
 
@@ -109,4 +103,4 @@ Le risque principal est de laisser Perroquet Piano piloter la marque parce qu’
 
 ## 12. Conclusion décisionnelle
 
-Le rapport du 2026-06-07 confirme la visibilité mais retire un faux confort : la paid unit n’est plus répartie sur la ligne pro. GogoLabs doit maintenant vendre plus clairement avant d’ajouter du produit. La prochaine victoire sera une fiche App Store qui transforme une impression en intention.
+Le rapport courant confirme la visibilité mais pas la vente. La prochaine victoire sera une fiche App Store qui transforme une impression en intention. GogoLabs doit d’abord vendre plus clairement avant d’ajouter du produit.
