@@ -8,6 +8,7 @@ Dossier autonome pour collecter des métriques App Store Connect, enrichir les d
 - `AuthKey_VKFLG2237C.p8` : clé privée App Store Connect API locale. Secret critique, ignoré par Git.
 - `appstore_analytics.py` : client App Store Connect API, collecte des rapports downloads et engagement.
 - `collect_latest_metrics.py` : collecte les métriques de toutes les apps et écrit `strategy/latest-metrics.json`.
+- `enrich_review_metrics.py` : enrichit `strategy/latest-metrics.json` avec les versions App Store en préparation/review/release pending, leurs builds et leurs metadata localisées, sans committer les champs App Review sensibles.
 - `enrich_pricing_metrics.py` : enrichit `strategy/latest-metrics.json` avec pricing et sales reports Apple, en best effort.
 - `render_latest_digest.py` : rend `strategy/latest-digest.html` depuis `strategy/latest-metrics.json`.
 - `postprocess_latest_digest.py` : ajoute décision, comparaison et revue stratégique au HTML final.
@@ -34,6 +35,7 @@ Collecter les métriques portefeuille sans envoyer de mail :
 
 ```sh
 python3 collect_latest_metrics.py
+python3 enrich_review_metrics.py
 python3 enrich_pricing_metrics.py
 ```
 
@@ -87,9 +89,10 @@ Déclenchement :
 
 1. Préserve l'ancien `strategy/latest-metrics.json` dans `/tmp/previous-metrics.json`.
 2. Lance `collect_latest_metrics.py`.
-3. Lance `enrich_pricing_metrics.py`.
-4. Commit et push `strategy/latest-metrics.json` si les métriques changent.
-5. Upload les artefacts JSON.
+3. Lance `enrich_review_metrics.py`.
+4. Lance `enrich_pricing_metrics.py`.
+5. Commit et push `strategy/latest-metrics.json` si les métriques changent.
+6. Upload les artefacts JSON.
 
 ### Digest stratégique
 

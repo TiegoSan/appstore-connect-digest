@@ -73,7 +73,7 @@ def write_latest_metrics(apps: list[digest.AppDigest], report_date: str) -> None
             "taps": sum(item["taps"] for item in summaries),
         },
         "apps": summaries,
-        "analysis_instruction": "Produire une réflexion stratégique longue mais structurée: diagnostic funnel, priorités ventes, pricing, ASO, screenshots, promesse par app, focus pro vs consumer, actions concrètes.",
+        "analysis_instruction": "Produire une réflexion stratégique longue mais structurée: diagnostic funnel, priorités ventes, pricing, ASO, screenshots, promesse par app, focus pro vs consumer, actions concrètes. Avant de recommander une modification produit, pricing, ASO, screenshots ou metadata, vérifier app.review_pipeline: si une version est READY_FOR_REVIEW, WAITING_FOR_REVIEW, IN_REVIEW, PENDING_APPLE_RELEASE, PENDING_DEVELOPER_RELEASE, PROCESSING_FOR_APP_STORE ou WAITING_FOR_EXPORT_COMPLIANCE, traiter ces changements comme déjà engagés et proposer uniquement des actions compatibles avec ce pipeline.",
     }
     LATEST_METRICS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"METRICS {LATEST_METRICS_PATH}")

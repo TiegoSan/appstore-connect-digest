@@ -7,12 +7,95 @@ import unittest
 from pathlib import Path
 
 import enrich_pricing_metrics
+import enrich_review_metrics
 import daily_appstore_digest
 import postprocess_latest_digest
 import send_latest_digest
 
 
 class PipelineTests(unittest.TestCase):
+    def test_review_pipeline_compacts_pending_versions_and_redacts_review_details(self) -> None:
+        class FakeClient:
+            def get(self, path: str) -> dict:
+                self.path = path
+                return {
+                    "data": [
+                        {
+                            "type": "appStoreVersions",
+                            "id": "live-version",
+                            "attributes": {
+                                "platform": "MAC_OS",
+                                "versionString": "1.0",
+                                "appStoreState": "READY_FOR_SALE",
+                                "createdDate": "2026-06-01T10:00:00Z",
+                            },
+                        },
+                        {
+                            "type": "appStoreVersions",
+                            "id": "review-version",
+                            "attributes": {
+                                "platform": "MAC_OS",
+                                "versionString": "1.1",
+                                "appStoreState": "IN_REVIEW",
+                                "appVersionState": "IN_REVIEW",
+                                "reviewType": "APP_STORE",
+                                "releaseType": "MANUAL",
+                                "createdDate": "2026-06-08T10:00:00Z",
+                            },
+                            "relationships": {
+                                "build": {"data": {"type": "builds", "id": "build-1"}},
+                                "appStoreVersionLocalizations": {
+                                    "data": [{"type": "appStoreVersionLocalizations", "id": "loc-1"}]
+                                },
+                                "appStoreReviewDetail": {
+                                    "data": {"type": "appStoreReviewDetails", "id": "review-detail-1"}
+                                },
+                            },
+                        },
+                    ],
+                    "included": [
+                        {
+                            "type": "builds",
+                            "id": "build-1",
+                            "attributes": {"version": "42", "uploadedDate": "2026-06-08T09:00:00Z"},
+                        },
+                        {
+                            "type": "appStoreVersionLocalizations",
+                            "id": "loc-1",
+                            "attributes": {
+                                "locale": "fr-FR",
+                                "description": "Nouvelle description deja soumise.",
+                                "promotionalText": "Promo pipeline",
+                                "whatsNew": "Nouveaux screenshots et promesse clarifiee.",
+                                "keywords": "audio,pro tools",
+                            },
+                        },
+                        {
+                            "type": "appStoreReviewDetails",
+                            "id": "review-detail-1",
+                            "attributes": {
+                                "contactEmail": "private@example.com",
+                                "demoAccountName": "demo-user",
+                                "demoAccountPassword": "secret",
+                                "notes": "private notes",
+                            },
+                        },
+                    ],
+                }
+
+        pipeline = enrich_review_metrics.fetch_review_pipeline(FakeClient(), "123")
+        rendered = json.dumps(pipeline)
+
+        self.assertTrue(pipeline["available"])
+        self.assertTrue(pipeline["has_pending_version"])
+        self.assertTrue(pipeline["has_blocking_pipeline_change"])
+        self.assertEqual(pipeline["versions"][0]["id"], "review-version")
+        self.assertEqual(pipeline["versions"][0]["build"]["version"], "42")
+        self.assertEqual(pipeline["versions"][0]["localizations"][0]["promotional_text"], "Promo pipeline")
+        self.assertIn("demoAccountPassword", pipeline["versions"][0]["app_store_review_detail"]["redacted_fields"])
+        self.assertNotIn("secret", rendered)
+        self.assertNotIn("private@example.com", rendered)
+
     def test_latest_data_date_uses_latest_apple_metric_date(self) -> None:
         apps = [
             daily_appstore_digest.AppDigest(

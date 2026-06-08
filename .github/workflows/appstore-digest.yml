@@ -61,6 +61,10 @@ jobs:
         if: env.RUN_METRICS == 'true'
         run: python collect_latest_metrics.py
 
+      - name: Enrich review pipeline metrics
+        if: env.RUN_METRICS == 'true'
+        run: python enrich_review_metrics.py
+
       - name: Enrich pricing and sales metrics
         if: env.RUN_METRICS == 'true'
         run: python enrich_pricing_metrics.py
