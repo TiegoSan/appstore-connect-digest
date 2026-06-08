@@ -69,6 +69,10 @@ jobs:
         if: env.RUN_METRICS == 'true'
         run: python enrich_pricing_metrics.py
 
+      - name: Enrich market intelligence metrics
+        if: env.RUN_METRICS == 'true'
+        run: python enrich_market_metrics.py
+
       - name: Commit enriched metrics
         if: env.RUN_METRICS == 'true'
         run: |

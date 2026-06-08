@@ -38,13 +38,16 @@ BLOCKING_RECOMMENDATION_STATES = {
 LIVE_STATES = {"READY_FOR_SALE"}
 
 ANALYSIS_INSTRUCTION = (
-    "Produire une réflexion stratégique longue mais structurée: diagnostic funnel, priorités ventes, "
-    "pricing, ASO, screenshots, promesse par app, focus pro vs consumer, actions concrètes. "
-    "Avant de recommander une modification produit, pricing, ASO, screenshots ou metadata, vérifier "
-    "app.review_pipeline: si une version est READY_FOR_REVIEW, WAITING_FOR_REVIEW, IN_REVIEW, "
-    "PENDING_APPLE_RELEASE, PENDING_DEVELOPER_RELEASE, PROCESSING_FOR_APP_STORE ou "
-    "WAITING_FOR_EXPORT_COMPLIANCE, traiter ces changements comme déjà engagés et proposer "
-    "uniquement des actions compatibles avec ce pipeline."
+    "Produire une réflexion stratégique longue seulement si les données le justifient: utiliser les "
+    "valeurs primaires filtrées sur report_date pour tout diagnostic quotidien et toute comparaison; "
+    "les champs *_total_available servent uniquement à l'audit de collecte. Lire freshness/report_date, "
+    "history J-7/J-30, funnel_by_source, funnel_by_territory, sales/pricing, reviews, metadata, "
+    "screenshot_inventory et quality_signals. Distinguer signal réel, bruit probable, hypothèse et "
+    "donnée manquante. Avant toute recommandation produit, pricing, ASO, screenshots ou metadata, "
+    "vérifier app.review_pipeline: si has_blocking_pipeline_change vaut true ou si une version est "
+    "READY_FOR_REVIEW, WAITING_FOR_REVIEW, IN_REVIEW, PENDING_APPLE_RELEASE, "
+    "PENDING_DEVELOPER_RELEASE, PROCESSING_FOR_APP_STORE ou WAITING_FOR_EXPORT_COMPLIANCE, traiter ces "
+    "changements comme déjà engagés et proposer uniquement des actions compatibles."
 )
 
 REDACTED_REVIEW_DETAIL_FIELDS = {

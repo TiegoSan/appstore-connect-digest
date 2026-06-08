@@ -163,15 +163,44 @@ def aggregate_sales(rows: list[dict[str, str]], sku: str) -> dict[str, Any]:
     customer_price_values = [number(row, "Customer Price") for row in matches if number(row, "Customer Price")]
     currencies = sorted({row.get("Customer Currency") or row.get("Currency of Proceeds") or "" for row in matches if row})
     refunds = sum(abs(number(row, "Units")) for row in matches if number(row, "Units") < 0)
+    by_territory: dict[str, dict[str, Any]] = {}
+    for row in matches:
+        territory = row.get("Country Code") or row.get("Country") or row.get("Territory") or "(unknown)"
+        item = by_territory.setdefault(
+            territory,
+            {"territory": territory, "paid_units": 0, "refund_units": 0, "developer_proceeds": 0.0, "currencies": set()},
+        )
+        row_units = number(row, "Units")
+        item["paid_units"] += int(row_units)
+        if row_units < 0:
+            item["refund_units"] += int(abs(row_units))
+        item["developer_proceeds"] += number(row, "Developer Proceeds", "Proceeds")
+        currency = row.get("Customer Currency") or row.get("Currency of Proceeds") or ""
+        if currency:
+            item["currencies"].add(currency)
+    territory_rows = []
+    for item in by_territory.values():
+        territory_rows.append({
+            **item,
+            "developer_proceeds": round(float(item["developer_proceeds"]), 2),
+            "currencies": sorted(item["currencies"]),
+        })
+    territory_rows = sorted(
+        territory_rows,
+        key=lambda item: (-float(item.get("developer_proceeds") or 0), -int(item.get("paid_units") or 0), item["territory"]),
+    )
     return {
         "available": bool(matches),
         "rows": len(matches),
         "paid_units": int(units),
         "refund_units": int(refunds),
         "developer_proceeds": round(proceeds, 2),
+        "refund_rate": round(refunds / (units + refunds) * 100, 2) if (units + refunds) else None,
         "customer_price_min": min(customer_price_values) if customer_price_values else None,
         "customer_price_max": max(customer_price_values) if customer_price_values else None,
         "currencies": [c for c in currencies if c],
+        "by_territory": territory_rows[:10],
+        "by_territory_omitted_count": max(len(territory_rows) - 10, 0),
     }
 
 

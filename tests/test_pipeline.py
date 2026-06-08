@@ -8,6 +8,7 @@ from pathlib import Path
 
 import enrich_pricing_metrics
 import enrich_review_metrics
+import enrich_market_metrics
 import daily_appstore_digest
 import assemble_latest_digest
 import send_latest_digest
@@ -329,6 +330,69 @@ class PipelineTests(unittest.TestCase):
         self.assertNotIn(vendor, rendered)
         self.assertNotIn("rows", status)
         self.assertIn("[redacted]", rendered)
+
+    def test_market_history_and_funnel_use_raw_report_rows(self) -> None:
+        report = {
+            "by_date": {
+                "2026-06-01": 2,
+                "2026-06-02": 1,
+                "2026-06-07": 4,
+                "2026-05-25": 9,
+            },
+            "impressions_by_date": {"2026-06-01": 10, "2026-06-07": 30, "2026-05-25": 5},
+            "product_page_views_by_date": {"2026-06-01": 1, "2026-06-07": 6, "2026-05-25": 1},
+            "raw_standard_rows": [
+                {"Date": "2026-06-07", "Download Type": "First-time download", "Source Type": "App Store search", "Territory": "US", "Counts": "3"},
+                {"Date": "2026-06-07", "Download Type": "Restore", "Source Type": "App Store search", "Territory": "US", "Counts": "1"},
+                {"Date": "2026-05-25", "Download Type": "First-time download", "Source Type": "Browse", "Territory": "FR", "Counts": "9"},
+            ],
+            "raw_engagement_rows": [
+                {"Event": "Impression", "Source Type": "App Store search", "Territory": "US", "Counts": "30", "Unique Counts": "20"},
+                {"Event": "Page view", "Source Type": "App Store search", "Territory": "US", "Counts": "6", "Unique Counts": "5"},
+                {"Event": "Tap", "Source Type": "App Store search", "Territory": "US", "Counts": "2", "Unique Counts": "2"},
+            ],
+        }
+
+        history = enrich_market_metrics.build_history(report)
+        funnel = enrich_market_metrics.funnel_by_dimension(report, "Source Type")
+
+        self.assertTrue(history["available"])
+        self.assertEqual(history["latest_metric_date"], "2026-06-07")
+        self.assertEqual(history["current_7d"]["downloads"], 7)
+        self.assertEqual(history["current_7d"]["first_time_downloads"], 3)
+        self.assertEqual(history["delta_7d"]["downloads"], -2)
+        self.assertTrue(funnel["available"])
+        self.assertEqual(funnel["rows"][0]["name"], "App Store search")
+        self.assertEqual(funnel["rows"][0]["impressions"], 30)
+        self.assertEqual(funnel["rows"][0]["product_page_views"], 6)
+        self.assertEqual(funnel["rows"][0]["first_time_downloads"], 3)
+        self.assertEqual(funnel["rows"][0]["page_view_rate"], 30.0)
+
+    def test_market_freshness_exposes_report_date_checks(self) -> None:
+        freshness = enrich_market_metrics.build_freshness(
+            {"generated_at": "2026-06-08T10:00:00+00:00", "report_date": "2026-06-07"}
+        )
+
+        self.assertTrue(freshness["has_report_date"])
+        self.assertEqual(freshness["report_date"], "2026-06-07")
+        self.assertIn("is_generated_recent_72h", freshness)
+
+    def test_aggregate_sales_exposes_territory_breakdown_and_refund_rate(self) -> None:
+        rows = [
+            {"SKU": "APP", "Units": "3", "Developer Proceeds": "12.00", "Country Code": "US", "Customer Currency": "USD"},
+            {"SKU": "APP", "Units": "-1", "Developer Proceeds": "-4.00", "Country Code": "US", "Customer Currency": "USD"},
+            {"SKU": "APP", "Units": "1", "Developer Proceeds": "3.00", "Country Code": "FR", "Customer Currency": "EUR"},
+        ]
+
+        sales = enrich_pricing_metrics.aggregate_sales(rows, "APP")
+
+        self.assertEqual(sales["paid_units"], 3)
+        self.assertEqual(sales["refund_units"], 1)
+        self.assertEqual(sales["refund_rate"], 25.0)
+        self.assertEqual(sales["by_territory"][0]["territory"], "US")
+        self.assertEqual(sales["by_territory"][0]["paid_units"], 2)
+        self.assertEqual(sales["by_territory"][0]["refund_units"], 1)
+        self.assertEqual(sales["by_territory"][0]["developer_proceeds"], 8.0)
 
 
 if __name__ == "__main__":

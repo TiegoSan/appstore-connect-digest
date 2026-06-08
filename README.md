@@ -10,6 +10,7 @@ Dossier autonome pour collecter des métriques App Store Connect, enrichir les d
 - `collect_latest_metrics.py` : collecte les métriques de toutes les apps et écrit `strategy/latest-metrics.json`.
 - `enrich_review_metrics.py` : enrichit `strategy/latest-metrics.json` avec les versions App Store en préparation/review/release pending, leurs builds et leurs metadata localisées, sans committer les champs App Review sensibles.
 - `enrich_pricing_metrics.py` : enrichit `strategy/latest-metrics.json` avec pricing et sales reports Apple, en best effort.
+- `enrich_market_metrics.py` : enrichit `strategy/latest-metrics.json` avec historique J-7/J-30, funnels par source/pays, reviews, metadata live, inventaire screenshots et signaux qualité, en best effort.
 - `render_latest_digest.py` : rend `strategy/latest-digest.html` depuis `strategy/latest-metrics.json`.
 - `assemble_latest_digest.py` : assemble le HTML final, ajoute la comparaison J-1 et intègre `strategy/strategic-review.md` produit par l'automatisation ChatGPT.
 - `send_latest_digest.py` : envoie `strategy/latest-digest.html` par SMTP.
@@ -37,6 +38,7 @@ Collecter les métriques portefeuille sans envoyer de mail :
 python3 collect_latest_metrics.py
 python3 enrich_review_metrics.py
 python3 enrich_pricing_metrics.py
+python3 enrich_market_metrics.py
 ```
 
 Rendre le digest HTML depuis les dernières métriques :
@@ -103,8 +105,9 @@ Déclenchement :
 2. Lance `collect_latest_metrics.py`.
 3. Lance `enrich_review_metrics.py`.
 4. Lance `enrich_pricing_metrics.py`.
-5. Commit et push `strategy/latest-metrics.json` si les métriques changent.
-6. Upload les artefacts JSON.
+5. Lance `enrich_market_metrics.py`.
+6. Commit et push `strategy/latest-metrics.json` si les métriques changent.
+7. Upload les artefacts JSON.
 
 ### Digest stratégique
 
