@@ -1,17 +1,27 @@
 {
-  "generated_at": "2026-06-08T19:47:27.566578+00:00",
+  "generated_at": "2026-06-08T20:22:42.929888+00:00",
   "report_date": "2026-06-07",
+  "metrics_scope": "report_date",
+  "metrics_semantics": {
+    "primary_values": "downloads, first_time_downloads, impressions, product_page_views and taps are filtered to rows where Date == report_date.",
+    "total_available_values": "*_total_available fields preserve the previous unfiltered aggregate across all rows returned by Apple Analytics."
+  },
   "positioning": {
     "brand": "GogoLabs",
     "goal": "Vendre les apps et construire un revenu logiciel indépendant.",
     "doctrine": "Transformer l'expertise de production en apps macOS premium qui économisent du temps, réduisent les erreurs et rendent les workflows créatifs plus contrôlables."
   },
   "totals": {
-    "downloads": 81,
-    "first_time_downloads": 57,
-    "impressions": 923,
-    "product_page_views": 26,
-    "taps": 24,
+    "downloads": 0,
+    "first_time_downloads": 0,
+    "impressions": 71,
+    "product_page_views": 8,
+    "taps": 3,
+    "downloads_total_available": 81,
+    "first_time_downloads_total_available": 57,
+    "impressions_total_available": 923,
+    "product_page_views_total_available": 26,
+    "taps_total_available": 24,
     "paid_units": 1,
     "developer_proceeds": 0.0
   },
@@ -23,38 +33,78 @@
       "bundle_id": "GogoLabs.Coupez",
       "sku": "GogoLabs.Coupez",
       "error": null,
-      "downloads": 10,
-      "first_time_downloads": 5,
-      "impressions": 120,
-      "unique_impressions": 106,
-      "product_page_views": 1,
-      "unique_product_page_views": 1,
+      "metrics_scope": "report_date",
+      "metrics_report_date": "2026-06-07",
+      "downloads": 0,
+      "first_time_downloads": 0,
+      "impressions": 14,
+      "unique_impressions": 11,
+      "product_page_views": 0,
+      "unique_product_page_views": 0,
       "taps": 0,
       "unique_taps": 0,
-      "conversion_rate": null,
-      "page_view_rate": 0.94,
+      "conversion_rate": 0.0,
+      "page_view_rate": 0.0,
       "tap_rate": 0.0,
       "dominant_source": {
         "name": "App Store search",
-        "count": 117
+        "count": 14
       },
       "dominant_territory": {
         "name": "US",
-        "count": 51
+        "count": 6
       },
       "dominant_device": {
         "name": "Desktop",
-        "count": 120
+        "count": 14
       },
       "delta_downloads": null,
       "delta_first_time_downloads": null,
       "delta_impressions": null,
       "delta_product_page_views": null,
       "delta_taps": null,
+      "engagement_report_date_available": true,
+      "downloads_report_date_available": false,
+      "impressions_by_date": {
+        "2026-06-07": 14
+      },
+      "product_page_views_by_date": {},
+      "taps_by_date": {},
+      "impressions_by_source_type_report_date": {
+        "App Store search": 14
+      },
+      "impressions_by_territory_report_date": {
+        "IN": 2,
+        "US": 6,
+        "FR": 3,
+        "NZ": 1,
+        "CA": 1,
+        "AR": 1
+      },
+      "impressions_by_device_report_date": {
+        "Desktop": 14
+      },
+      "engagement_by_event_report_date": {
+        "Impression": 14
+      },
+      "engagement_unique_by_event_report_date": {
+        "Impression": 11
+      },
+      "impressions_total_available": 120,
+      "unique_impressions_total_available": 106,
+      "product_page_views_total_available": 1,
+      "unique_product_page_views_total_available": 1,
+      "taps_total_available": 0,
+      "unique_taps_total_available": 0,
+      "downloads_total_available": 10,
+      "first_time_downloads_total_available": 5,
+      "conversion_rate_total_available": null,
+      "page_view_rate_total_available": 0.94,
+      "tap_rate_total_available": 0.0,
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-08T19:47:28.661434+00:00",
+        "fetched_at": "2026-06-08T20:22:43.870937+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": true,
         "pipeline_states": [
@@ -96,20 +146,6 @@
             },
             "localizations": [
               {
-                "id": "31f41a56-4fbd-4335-a63f-e549bca02381",
-                "locale": "fr-FR",
-                "name": null,
-                "subtitle": null,
-                "privacy_policy_url": null,
-                "privacy_policy_text": null,
-                "promotional_text": "Détectez les coupes d’une vidéo en local, validez la cutlist et exportez un AAF pensé pour le conform audio.",
-                "description": "Coupez! est un outil macOS pour les équipes de post-production qui veulent transformer une vidéo en cutlist claire et en export AAF exploitable.\n\nChargez une vidéo, lancez une analyse locale, vérifiez les coupes détectées, puis exportez un AAF conçu pour préparer le conform audio.\n\nCoupez! aide les monteurs, assistants montage, sound editors et superviseurs workflow à gagner du temps avant le conform en rendant les changements de plan plus faciles à détecter, contrôler et transférer.\n\nFonctions principales :\n\n• Détection locale des changements de plan\n• Validation manuelle des coupes détectées\n• Cutlist lisible avec timecodes et références visuelles\n• Plusieurs moteurs de détection selon les sources\n• Export AAF avec piste de coupes et piste de marqueurs\n• Préparation de workflow pour sessions Pro Tools\n• Conversion vidéo locale en outil bonus\n\nVos médias restent sur votre Mac. Coupez! n’a pas besoin d’un service cloud pour analyser vos fichiers.\n\nLe téléchargement inclut 3 analyses vidéo gratuites avec export AAF. Débloquez ensuite l’analyse et la comparaison illimitées avec un achat unique.\n\nUtilisez Coupez! pour préparer plus rapidement et plus proprement un conform audio à partir d’un montage image.",
-                "keywords": "aaf,conform,audio,video,coupes,cutlist,montage,timecode,scene,detection,post",
-                "marketing_url": "https://gogolabs.fr",
-                "support_url": "https://gogolabs.fr/support-fr.html",
-                "whats_new": "Ajout de la conversion vidéo intégrée directement dans la fenêtre principale.\nAjout d’images de début et de fin modifiables, avec aperçu en direct.\nAjout des réglages de codec et de preset pour H.264, H.265, ProRes, DNxHD et DNxHR.\nAmélioration du workflow de conversion avec progression, annulation et affichage dans le Finder."
-              },
-              {
                 "id": "333e4604-aaab-4ed8-9372-b054c8bcf88a",
                 "locale": "en-US",
                 "name": null,
@@ -122,6 +158,20 @@
                 "marketing_url": "https://gogolabs.fr",
                 "support_url": "https://gogolabs.fr/support.html",
                 "whats_new": "- Added integrated video conversion directly in the main window.\n- Added editable start and end frames with live frame preview.\n- Added codec and preset controls for H.264, H.265, ProRes, DNxHD, and DNxHR.\n- Improved conversion workflow with progress, cancel, and Finder reveal.\n- Added built-in appearance presets, including Base and June.\n- Improved the README and project documentation for the new release."
+              },
+              {
+                "id": "31f41a56-4fbd-4335-a63f-e549bca02381",
+                "locale": "fr-FR",
+                "name": null,
+                "subtitle": null,
+                "privacy_policy_url": null,
+                "privacy_policy_text": null,
+                "promotional_text": "Détectez les coupes d’une vidéo en local, validez la cutlist et exportez un AAF pensé pour le conform audio.",
+                "description": "Coupez! est un outil macOS pour les équipes de post-production qui veulent transformer une vidéo en cutlist claire et en export AAF exploitable.\n\nChargez une vidéo, lancez une analyse locale, vérifiez les coupes détectées, puis exportez un AAF conçu pour préparer le conform audio.\n\nCoupez! aide les monteurs, assistants montage, sound editors et superviseurs workflow à gagner du temps avant le conform en rendant les changements de plan plus faciles à détecter, contrôler et transférer.\n\nFonctions principales :\n\n• Détection locale des changements de plan\n• Validation manuelle des coupes détectées\n• Cutlist lisible avec timecodes et références visuelles\n• Plusieurs moteurs de détection selon les sources\n• Export AAF avec piste de coupes et piste de marqueurs\n• Préparation de workflow pour sessions Pro Tools\n• Conversion vidéo locale en outil bonus\n\nVos médias restent sur votre Mac. Coupez! n’a pas besoin d’un service cloud pour analyser vos fichiers.\n\nLe téléchargement inclut 3 analyses vidéo gratuites avec export AAF. Débloquez ensuite l’analyse et la comparaison illimitées avec un achat unique.\n\nUtilisez Coupez! pour préparer plus rapidement et plus proprement un conform audio à partir d’un montage image.",
+                "keywords": "aaf,conform,audio,video,coupes,cutlist,montage,timecode,scene,detection,post",
+                "marketing_url": "https://gogolabs.fr",
+                "support_url": "https://gogolabs.fr/support-fr.html",
+                "whats_new": "Ajout de la conversion vidéo intégrée directement dans la fenêtre principale.\nAjout d’images de début et de fin modifiables, avec aperçu en direct.\nAjout des réglages de codec et de preset pour H.264, H.265, ProRes, DNxHD et DNxHR.\nAmélioration du workflow de conversion avec progression, annulation et affichage dans le Finder."
               }
             ],
             "app_store_review_detail": {
@@ -173,20 +223,6 @@
             },
             "localizations": [
               {
-                "id": "c91c6d9c-9480-4407-b5bb-05e09f8d4676",
-                "locale": "en-US",
-                "name": null,
-                "subtitle": null,
-                "privacy_policy_url": null,
-                "privacy_policy_text": null,
-                "promotional_text": "Free to download with 3 free video analyses, including full AAF export. Unlock unlimited analysis and comparison with a one-time purchase.",
-                "description": "Coupez! is a macOS app for post-production teams who need fast, reliable cut detection from picture source.\n\nLoad a local video, click Analyze, and Coupez! automatically detects shot changes. Review every cut, adjust detection settings, and fine-tune the results to match your workflow.\n\nYour first 3 video analyses are free and include full AAF export. After that, unlock the full app with a one-time purchase for unlimited analysis and comparison tools.\n\nWhen you are ready, create an AAF or prepare a conform workflow for Pro Tools and other DAWs. Coupez! helps turn picture edits into clean, usable session structure faster.",
-                "keywords": "shot detection,cut track,AAF,DAW,cuttrack,conform,post production,Pro Tools,video compare,markers",
-                "marketing_url": "https://gogolabs.fr",
-                "support_url": "https://gogolabs.fr/support.html",
-                "whats_new": "This version introduces a new one-time unlock model:\n- 3 free video analyses included\n- Full AAF export available during the free analyses\n- Permanent unlock available as a one-time purchase\n- Updated paywall and purchase flow"
-              },
-              {
                 "id": "71aea2c9-c3be-4b5f-9097-ec1e19dcdc68",
                 "locale": "fr-FR",
                 "name": null,
@@ -199,6 +235,20 @@
                 "marketing_url": "https://gogolabs.fr",
                 "support_url": "https://gogolabs.fr/support-fr.html",
                 "whats_new": "Cette version introduit un nouveau modèle de déblocage :\n- 3 analyses vidéo gratuites incluses\n- Export AAF complet disponible pendant les analyses gratuites\n- Déblocage définitif via un achat unique\n- Paywall et parcours d’achat mis à jour"
+              },
+              {
+                "id": "c91c6d9c-9480-4407-b5bb-05e09f8d4676",
+                "locale": "en-US",
+                "name": null,
+                "subtitle": null,
+                "privacy_policy_url": null,
+                "privacy_policy_text": null,
+                "promotional_text": "Free to download with 3 free video analyses, including full AAF export. Unlock unlimited analysis and comparison with a one-time purchase.",
+                "description": "Coupez! is a macOS app for post-production teams who need fast, reliable cut detection from picture source.\n\nLoad a local video, click Analyze, and Coupez! automatically detects shot changes. Review every cut, adjust detection settings, and fine-tune the results to match your workflow.\n\nYour first 3 video analyses are free and include full AAF export. After that, unlock the full app with a one-time purchase for unlimited analysis and comparison tools.\n\nWhen you are ready, create an AAF or prepare a conform workflow for Pro Tools and other DAWs. Coupez! helps turn picture edits into clean, usable session structure faster.",
+                "keywords": "shot detection,cut track,AAF,DAW,cuttrack,conform,post production,Pro Tools,video compare,markers",
+                "marketing_url": "https://gogolabs.fr",
+                "support_url": "https://gogolabs.fr/support.html",
+                "whats_new": "This version introduces a new one-time unlock model:\n- 3 free video analyses included\n- Full AAF export available during the free analyses\n- Permanent unlock available as a one-time purchase\n- Updated paywall and purchase flow"
               }
             ],
             "app_store_review_detail": {
@@ -321,38 +371,93 @@
       "bundle_id": "com.gogolabs.perroquet",
       "sku": "PERROQUET-IPAD",
       "error": null,
-      "downloads": 57,
-      "first_time_downloads": 41,
-      "impressions": 377,
-      "unique_impressions": 287,
-      "product_page_views": 20,
-      "unique_product_page_views": 14,
-      "taps": 12,
-      "unique_taps": 12,
-      "conversion_rate": null,
-      "page_view_rate": 6.97,
-      "tap_rate": 4.18,
+      "metrics_scope": "report_date",
+      "metrics_report_date": "2026-06-07",
+      "downloads": 0,
+      "first_time_downloads": 0,
+      "impressions": 36,
+      "unique_impressions": 18,
+      "product_page_views": 7,
+      "unique_product_page_views": 4,
+      "taps": 3,
+      "unique_taps": 3,
+      "conversion_rate": 0.0,
+      "page_view_rate": 38.89,
+      "tap_rate": 16.67,
       "dominant_source": {
         "name": "App Store search",
-        "count": 344
+        "count": 19
       },
       "dominant_territory": {
         "name": "FR",
-        "count": 72
+        "count": 17
       },
       "dominant_device": {
         "name": "iPhone",
-        "count": 240
+        "count": 28
       },
       "delta_downloads": null,
       "delta_first_time_downloads": null,
       "delta_impressions": null,
       "delta_product_page_views": null,
       "delta_taps": null,
+      "engagement_report_date_available": true,
+      "downloads_report_date_available": false,
+      "impressions_by_date": {
+        "2026-06-07": 36
+      },
+      "product_page_views_by_date": {
+        "2026-06-07": 7
+      },
+      "taps_by_date": {
+        "2026-06-07": 3
+      },
+      "impressions_by_source_type_report_date": {
+        "App Store search": 19,
+        "App Store browse": 17
+      },
+      "impressions_by_territory_report_date": {
+        "FR": 17,
+        "IQ": 1,
+        "CN": 6,
+        "CH": 1,
+        "JP": 2,
+        "MX": 1,
+        "DZ": 1,
+        "ML": 1,
+        "US": 3,
+        "MA": 1,
+        "VN": 2
+      },
+      "impressions_by_device_report_date": {
+        "iPhone": 28,
+        "iPad": 8
+      },
+      "engagement_by_event_report_date": {
+        "Impression": 36,
+        "Tap": 3,
+        "Page view": 7
+      },
+      "engagement_unique_by_event_report_date": {
+        "Impression": 18,
+        "Tap": 3,
+        "Page view": 4
+      },
+      "impressions_total_available": 377,
+      "unique_impressions_total_available": 287,
+      "product_page_views_total_available": 20,
+      "unique_product_page_views_total_available": 14,
+      "taps_total_available": 12,
+      "unique_taps_total_available": 12,
+      "downloads_total_available": 57,
+      "first_time_downloads_total_available": 41,
+      "conversion_rate_total_available": null,
+      "page_view_rate_total_available": 6.97,
+      "tap_rate_total_available": 4.18,
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-08T19:47:29.189671+00:00",
+        "fetched_at": "2026-06-08T20:22:44.339598+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -553,38 +658,75 @@
       "bundle_id": "GogoLabs.GOGOMasters",
       "sku": "GogoLabs.GOGOMasters",
       "error": null,
-      "downloads": 9,
-      "first_time_downloads": 6,
-      "impressions": 199,
-      "unique_impressions": 140,
-      "product_page_views": 2,
-      "unique_product_page_views": 2,
-      "taps": 2,
-      "unique_taps": 2,
-      "conversion_rate": null,
-      "page_view_rate": 1.43,
-      "tap_rate": 1.43,
+      "metrics_scope": "report_date",
+      "metrics_report_date": "2026-06-07",
+      "downloads": 0,
+      "first_time_downloads": 0,
+      "impressions": 10,
+      "unique_impressions": 8,
+      "product_page_views": 0,
+      "unique_product_page_views": 0,
+      "taps": 0,
+      "unique_taps": 0,
+      "conversion_rate": 0.0,
+      "page_view_rate": 0.0,
+      "tap_rate": 0.0,
       "dominant_source": {
         "name": "App Store search",
-        "count": 197
+        "count": 10
       },
       "dominant_territory": {
         "name": "US",
-        "count": 71
+        "count": 8
       },
       "dominant_device": {
         "name": "Desktop",
-        "count": 199
+        "count": 10
       },
       "delta_downloads": null,
       "delta_first_time_downloads": null,
       "delta_impressions": null,
       "delta_product_page_views": null,
       "delta_taps": null,
+      "engagement_report_date_available": true,
+      "downloads_report_date_available": false,
+      "impressions_by_date": {
+        "2026-06-07": 10
+      },
+      "product_page_views_by_date": {},
+      "taps_by_date": {},
+      "impressions_by_source_type_report_date": {
+        "App Store search": 10
+      },
+      "impressions_by_territory_report_date": {
+        "US": 8,
+        "DE": 1,
+        "KG": 1
+      },
+      "impressions_by_device_report_date": {
+        "Desktop": 10
+      },
+      "engagement_by_event_report_date": {
+        "Impression": 10
+      },
+      "engagement_unique_by_event_report_date": {
+        "Impression": 8
+      },
+      "impressions_total_available": 199,
+      "unique_impressions_total_available": 140,
+      "product_page_views_total_available": 2,
+      "unique_product_page_views_total_available": 2,
+      "taps_total_available": 2,
+      "unique_taps_total_available": 2,
+      "downloads_total_available": 9,
+      "first_time_downloads_total_available": 6,
+      "conversion_rate_total_available": null,
+      "page_view_rate_total_available": 1.43,
+      "tap_rate_total_available": 1.43,
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-08T19:47:29.744947+00:00",
+        "fetched_at": "2026-06-08T20:22:44.817845+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -755,6 +897,8 @@
       "bundle_id": "com.gautier.GogoBouclesToProtools",
       "sku": "com.gautier.GogoBouclesToProtools",
       "error": null,
+      "metrics_scope": "report_date",
+      "metrics_report_date": "2026-06-07",
       "downloads": 0,
       "first_time_downloads": 0,
       "impressions": 0,
@@ -783,10 +927,31 @@
       "delta_impressions": null,
       "delta_product_page_views": null,
       "delta_taps": null,
+      "engagement_report_date_available": false,
+      "downloads_report_date_available": false,
+      "impressions_by_date": {},
+      "product_page_views_by_date": {},
+      "taps_by_date": {},
+      "impressions_by_source_type_report_date": {},
+      "impressions_by_territory_report_date": {},
+      "impressions_by_device_report_date": {},
+      "engagement_by_event_report_date": {},
+      "engagement_unique_by_event_report_date": {},
+      "impressions_total_available": 0,
+      "unique_impressions_total_available": 0,
+      "product_page_views_total_available": 0,
+      "unique_product_page_views_total_available": 0,
+      "taps_total_available": 0,
+      "unique_taps_total_available": 0,
+      "downloads_total_available": 0,
+      "first_time_downloads_total_available": 0,
+      "conversion_rate_total_available": null,
+      "page_view_rate_total_available": null,
+      "tap_rate_total_available": null,
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-08T19:47:30.015721+00:00",
+        "fetched_at": "2026-06-08T20:22:45.017914+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -950,6 +1115,8 @@
       "bundle_id": "com.gogolabs.myfirstsampler",
       "sku": "com.gogolabs.myfirstsampler",
       "error": null,
+      "metrics_scope": "report_date",
+      "metrics_report_date": "2026-06-07",
       "downloads": 0,
       "first_time_downloads": 0,
       "impressions": 0,
@@ -978,10 +1145,31 @@
       "delta_impressions": null,
       "delta_product_page_views": null,
       "delta_taps": null,
+      "engagement_report_date_available": false,
+      "downloads_report_date_available": false,
+      "impressions_by_date": {},
+      "product_page_views_by_date": {},
+      "taps_by_date": {},
+      "impressions_by_source_type_report_date": {},
+      "impressions_by_territory_report_date": {},
+      "impressions_by_device_report_date": {},
+      "engagement_by_event_report_date": {},
+      "engagement_unique_by_event_report_date": {},
+      "impressions_total_available": 0,
+      "unique_impressions_total_available": 0,
+      "product_page_views_total_available": 0,
+      "unique_product_page_views_total_available": 0,
+      "taps_total_available": 0,
+      "unique_taps_total_available": 0,
+      "downloads_total_available": 0,
+      "first_time_downloads_total_available": 0,
+      "conversion_rate_total_available": null,
+      "page_view_rate_total_available": null,
+      "tap_rate_total_available": null,
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-08T19:47:30.281150+00:00",
+        "fetched_at": "2026-06-08T20:22:45.237281+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -1038,7 +1226,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6772350677/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '08ac6500-5ac0-493d-ba7a-d016f0372727', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6772350677'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6772350677/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '63f32fbf-665e-48d4-84a9-4fc2b9946e0b', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6772350677'\"}]}"
       },
       "sales": {
         "available": false,
@@ -1058,6 +1246,8 @@
       "bundle_id": "com.gogolabs.looping",
       "sku": "com.gogolabs.looping",
       "error": null,
+      "metrics_scope": "report_date",
+      "metrics_report_date": "2026-06-07",
       "downloads": 0,
       "first_time_downloads": 0,
       "impressions": 0,
@@ -1086,10 +1276,31 @@
       "delta_impressions": null,
       "delta_product_page_views": null,
       "delta_taps": null,
+      "engagement_report_date_available": false,
+      "downloads_report_date_available": false,
+      "impressions_by_date": {},
+      "product_page_views_by_date": {},
+      "taps_by_date": {},
+      "impressions_by_source_type_report_date": {},
+      "impressions_by_territory_report_date": {},
+      "impressions_by_device_report_date": {},
+      "engagement_by_event_report_date": {},
+      "engagement_unique_by_event_report_date": {},
+      "impressions_total_available": 0,
+      "unique_impressions_total_available": 0,
+      "product_page_views_total_available": 0,
+      "unique_product_page_views_total_available": 0,
+      "taps_total_available": 0,
+      "unique_taps_total_available": 0,
+      "downloads_total_available": 0,
+      "first_time_downloads_total_available": 0,
+      "conversion_rate_total_available": null,
+      "page_view_rate_total_available": null,
+      "tap_rate_total_available": null,
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-08T19:47:30.550328+00:00",
+        "fetched_at": "2026-06-08T20:22:45.426381+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -1146,7 +1357,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6770716816/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '439b2d7d-c98a-4d50-baf1-18e6167f6ea0', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6770716816'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6770716816/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'f07e23a1-1cd4-4463-838a-a1322351183d', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6770716816'\"}]}"
       },
       "sales": {
         "available": false,
@@ -1166,38 +1377,84 @@
       "bundle_id": "com.gautier.odile",
       "sku": "ODILE-MAC",
       "error": null,
-      "downloads": 1,
-      "first_time_downloads": 1,
-      "impressions": 140,
-      "unique_impressions": 107,
-      "product_page_views": 3,
-      "unique_product_page_views": 3,
-      "taps": 8,
-      "unique_taps": 8,
-      "conversion_rate": null,
-      "page_view_rate": 2.8,
-      "tap_rate": 7.48,
+      "metrics_scope": "report_date",
+      "metrics_report_date": "2026-06-07",
+      "downloads": 0,
+      "first_time_downloads": 0,
+      "impressions": 10,
+      "unique_impressions": 8,
+      "product_page_views": 1,
+      "unique_product_page_views": 1,
+      "taps": 0,
+      "unique_taps": 0,
+      "conversion_rate": 0.0,
+      "page_view_rate": 12.5,
+      "tap_rate": 0.0,
       "dominant_source": {
         "name": "App Store search",
-        "count": 101
+        "count": 8
       },
       "dominant_territory": {
-        "name": "CN",
-        "count": 19
+        "name": "IT",
+        "count": 3
       },
       "dominant_device": {
         "name": "Desktop",
-        "count": 140
+        "count": 10
       },
       "delta_downloads": null,
       "delta_first_time_downloads": null,
       "delta_impressions": null,
       "delta_product_page_views": null,
       "delta_taps": null,
+      "engagement_report_date_available": true,
+      "downloads_report_date_available": false,
+      "impressions_by_date": {
+        "2026-06-07": 10
+      },
+      "product_page_views_by_date": {
+        "2026-06-07": 1
+      },
+      "taps_by_date": {},
+      "impressions_by_source_type_report_date": {
+        "App Store search": 8,
+        "App Store browse": 2
+      },
+      "impressions_by_territory_report_date": {
+        "IT": 3,
+        "FR": 2,
+        "IN": 1,
+        "NO": 1,
+        "CN": 1,
+        "CZ": 1,
+        "GR": 1
+      },
+      "impressions_by_device_report_date": {
+        "Desktop": 10
+      },
+      "engagement_by_event_report_date": {
+        "Impression": 10,
+        "Page view": 1
+      },
+      "engagement_unique_by_event_report_date": {
+        "Impression": 8,
+        "Page view": 1
+      },
+      "impressions_total_available": 140,
+      "unique_impressions_total_available": 107,
+      "product_page_views_total_available": 3,
+      "unique_product_page_views_total_available": 3,
+      "taps_total_available": 8,
+      "unique_taps_total_available": 8,
+      "downloads_total_available": 1,
+      "first_time_downloads_total_available": 1,
+      "conversion_rate_total_available": null,
+      "page_view_rate_total_available": 2.8,
+      "tap_rate_total_available": 7.48,
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-08T19:47:30.896269+00:00",
+        "fetched_at": "2026-06-08T20:22:45.710461+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -1369,38 +1626,73 @@
       "bundle_id": "fr.gogolabs.feedbacks",
       "sku": "gogolabs-feedbacks-macos",
       "error": null,
-      "downloads": 4,
-      "first_time_downloads": 4,
-      "impressions": 87,
-      "unique_impressions": 66,
+      "metrics_scope": "report_date",
+      "metrics_report_date": "2026-06-07",
+      "downloads": 0,
+      "first_time_downloads": 0,
+      "impressions": 1,
+      "unique_impressions": 1,
       "product_page_views": 0,
       "unique_product_page_views": 0,
-      "taps": 2,
-      "unique_taps": 2,
-      "conversion_rate": 1.52,
+      "taps": 0,
+      "unique_taps": 0,
+      "conversion_rate": 0.0,
       "page_view_rate": 0.0,
-      "tap_rate": 3.03,
+      "tap_rate": 0.0,
       "dominant_source": {
         "name": "App Store search",
-        "count": 85
+        "count": 1
       },
       "dominant_territory": {
         "name": "US",
-        "count": 36
+        "count": 1
       },
       "dominant_device": {
         "name": "Desktop",
-        "count": 87
+        "count": 1
       },
       "delta_downloads": null,
       "delta_first_time_downloads": null,
       "delta_impressions": null,
       "delta_product_page_views": null,
       "delta_taps": null,
+      "engagement_report_date_available": true,
+      "downloads_report_date_available": false,
+      "impressions_by_date": {
+        "2026-06-07": 1
+      },
+      "product_page_views_by_date": {},
+      "taps_by_date": {},
+      "impressions_by_source_type_report_date": {
+        "App Store search": 1
+      },
+      "impressions_by_territory_report_date": {
+        "US": 1
+      },
+      "impressions_by_device_report_date": {
+        "Desktop": 1
+      },
+      "engagement_by_event_report_date": {
+        "Impression": 1
+      },
+      "engagement_unique_by_event_report_date": {
+        "Impression": 1
+      },
+      "impressions_total_available": 87,
+      "unique_impressions_total_available": 66,
+      "product_page_views_total_available": 0,
+      "unique_product_page_views_total_available": 0,
+      "taps_total_available": 2,
+      "unique_taps_total_available": 2,
+      "downloads_total_available": 4,
+      "first_time_downloads_total_available": 4,
+      "conversion_rate_total_available": 1.52,
+      "page_view_rate_total_available": 0.0,
+      "tap_rate_total_available": 3.03,
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-08T19:47:31.256160+00:00",
+        "fetched_at": "2026-06-08T20:22:46.016677+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -1572,6 +1864,8 @@
       "bundle_id": "com.gautier.BounceDaTracks",
       "sku": "com.gautier.BounceDaTracks",
       "error": null,
+      "metrics_scope": "report_date",
+      "metrics_report_date": "2026-06-07",
       "downloads": 0,
       "first_time_downloads": 0,
       "impressions": 0,
@@ -1600,10 +1894,31 @@
       "delta_impressions": null,
       "delta_product_page_views": null,
       "delta_taps": null,
+      "engagement_report_date_available": false,
+      "downloads_report_date_available": false,
+      "impressions_by_date": {},
+      "product_page_views_by_date": {},
+      "taps_by_date": {},
+      "impressions_by_source_type_report_date": {},
+      "impressions_by_territory_report_date": {},
+      "impressions_by_device_report_date": {},
+      "engagement_by_event_report_date": {},
+      "engagement_unique_by_event_report_date": {},
+      "impressions_total_available": 0,
+      "unique_impressions_total_available": 0,
+      "product_page_views_total_available": 0,
+      "unique_product_page_views_total_available": 0,
+      "taps_total_available": 0,
+      "unique_taps_total_available": 0,
+      "downloads_total_available": 0,
+      "first_time_downloads_total_available": 0,
+      "conversion_rate_total_available": null,
+      "page_view_rate_total_available": null,
+      "tap_rate_total_available": null,
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-08T19:47:31.520417+00:00",
+        "fetched_at": "2026-06-08T20:22:46.210226+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -1660,7 +1975,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6761501191/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '4f2e464d-7789-4995-ad27-2e87a50084de', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6761501191'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6761501191/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'f518a93f-19e3-423a-a51f-89d4a909e208', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6761501191'\"}]}"
       },
       "sales": {
         "available": false,
