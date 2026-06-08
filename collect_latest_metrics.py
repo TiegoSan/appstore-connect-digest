@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -15,51 +16,210 @@ STRATEGY_DIR = ROOT / "strategy"
 LATEST_METRICS_PATH = STRATEGY_DIR / "latest-metrics.json"
 
 
+ENGAGEMENT_TOTAL_FIELDS = {
+    "impressions": "impressions_total_available",
+    "unique_impressions": "unique_impressions_total_available",
+    "product_page_views": "product_page_views_total_available",
+    "unique_product_page_views": "unique_product_page_views_total_available",
+    "taps": "taps_total_available",
+    "unique_taps": "unique_taps_total_available",
+}
+
+
+def count_field_value(row: dict[str, str], field: str) -> int:
+    raw = (row.get(field) or "0").replace(",", "")
+    return int(raw) if raw.isdigit() else 0
+
+
+def count_value(row: dict[str, str]) -> int:
+    return count_field_value(row, "Counts")
+
+
+def pct(numerator: int, denominator: int) -> float | None:
+    if not denominator:
+        return None
+    return round(numerator / denominator * 100, 2)
+
+
+def top(data: dict[str, int] | None) -> tuple[str, int]:
+    if not data:
+        return "", 0
+    return sorted(data.items(), key=lambda kv: (-kv[1], kv[0]))[0]
+
+
+def rows_for_date(rows: list[dict[str, str]], report_date: str) -> list[dict[str, str]]:
+    return [row for row in rows if row.get("Date") == report_date]
+
+
+def rows_for_event(rows: list[dict[str, str]], event: str) -> list[dict[str, str]]:
+    return [row for row in rows if row.get("Event") == event]
+
+
+def aggregate(rows: list[dict[str, str]], dim: str) -> dict[str, int]:
+    counter: Counter[str] = Counter()
+    for row in rows:
+        if dim in row:
+            counter[row.get(dim) or ""] += count_value(row)
+    return dict(counter)
+
+
+def aggregate_field(rows: list[dict[str, str]], dim: str, field: str) -> dict[str, int]:
+    counter: Counter[str] = Counter()
+    for row in rows:
+        if dim in row:
+            counter[row.get(dim) or ""] += count_field_value(row, field)
+    return dict(counter)
+
+
+def latest_row_date(apps: list[digest.AppDigest]) -> str | None:
+    dates: set[str] = set()
+    for app in apps:
+        data = app.data or {}
+        for row in data.get("raw_standard_rows") or []:
+            if row.get("Date"):
+                dates.add(str(row["Date"]))
+        for row in data.get("raw_engagement_rows") or []:
+            if row.get("Date"):
+                dates.add(str(row["Date"]))
+    return max(dates) if dates else None
+
+
 def metric(app: digest.AppDigest, field: str) -> int:
     return digest.metric(app, field)
 
 
-def app_summary(app: digest.AppDigest) -> dict[str, Any]:
+def filtered_summary_data(data: dict[str, Any], report_date: str) -> dict[str, Any]:
+    standard_rows = rows_for_date(data.get("raw_standard_rows") or [], report_date)
+    engagement_rows = rows_for_date(data.get("raw_engagement_rows") or [], report_date)
+
+    impression_rows = rows_for_event(engagement_rows, "Impression")
+    product_page_view_rows = rows_for_event(engagement_rows, "Page view")
+    tap_rows = rows_for_event(engagement_rows, "Tap")
+    first_time_rows = [row for row in standard_rows if row.get("Download Type") == "First-time download"]
+
+    downloads = sum(count_value(row) for row in standard_rows)
+    first_time_downloads = sum(count_value(row) for row in first_time_rows)
+    impressions = sum(count_value(row) for row in impression_rows)
+    unique_impressions = sum(count_field_value(row, "Unique Counts") for row in impression_rows)
+    product_page_views = sum(count_value(row) for row in product_page_view_rows)
+    unique_product_page_views = sum(count_field_value(row, "Unique Counts") for row in product_page_view_rows)
+    taps = sum(count_value(row) for row in tap_rows)
+    unique_taps = sum(count_field_value(row, "Unique Counts") for row in tap_rows)
+
+    return {
+        "downloads": downloads,
+        "first_time_downloads": first_time_downloads,
+        "impressions": impressions,
+        "unique_impressions": unique_impressions,
+        "product_page_views": product_page_views,
+        "unique_product_page_views": unique_product_page_views,
+        "taps": taps,
+        "unique_taps": unique_taps,
+        "conversion_rate": pct(first_time_downloads, unique_impressions),
+        "page_view_rate": pct(product_page_views, unique_impressions),
+        "tap_rate": pct(taps, unique_impressions),
+        "dominant_source": top(aggregate(impression_rows, "Source Type")),
+        "dominant_territory": top(aggregate(impression_rows, "Territory")),
+        "dominant_device": top(aggregate(impression_rows, "Device")),
+        "engagement_report_date_available": bool(engagement_rows),
+        "downloads_report_date_available": bool(standard_rows),
+        "impressions_by_date": aggregate(impression_rows, "Date"),
+        "product_page_views_by_date": aggregate(product_page_view_rows, "Date"),
+        "taps_by_date": aggregate(tap_rows, "Date"),
+        "impressions_by_source_type_report_date": aggregate(impression_rows, "Source Type"),
+        "impressions_by_territory_report_date": aggregate(impression_rows, "Territory"),
+        "impressions_by_device_report_date": aggregate(impression_rows, "Device"),
+        "engagement_by_event_report_date": aggregate(engagement_rows, "Event"),
+        "engagement_unique_by_event_report_date": aggregate_field(engagement_rows, "Event", "Unique Counts"),
+    }
+
+
+def previous_filtered_value(previous_data: dict[str, Any] | None, field: str) -> int | None:
+    if not previous_data:
+        return None
+    previous_date = latest_row_date([digest.AppDigest("previous", "previous", None, None, previous_data, None)])
+    if not previous_date:
+        return None
+    return int(filtered_summary_data(previous_data, previous_date).get(field) or 0)
+
+
+def delta_filtered(current_value: int, previous_data: dict[str, Any] | None, field: str) -> int | None:
+    previous_value = previous_filtered_value(previous_data, field)
+    if previous_value is None:
+        return None
+    return current_value - previous_value
+
+
+def app_summary(app: digest.AppDigest, report_date: str) -> dict[str, Any]:
     data = app.data or {}
     profile = data.get("app", {})
-    source = digest.top(data.get("impressions_by_source_type") or data.get("by_source_type") or {})
-    territory = digest.top(data.get("impressions_by_territory") or data.get("by_territory") or {})
-    device = digest.top(data.get("impressions_by_device") or data.get("by_device") or {})
-    return {
+    filtered = filtered_summary_data(data, report_date)
+    source = filtered["dominant_source"]
+    territory = filtered["dominant_territory"]
+    device = filtered["dominant_device"]
+
+    summary = {
         "key": app.key,
         "name": app.name,
         "app_id": profile.get("app_id"),
         "bundle_id": profile.get("bundle_id"),
         "sku": profile.get("sku"),
         "error": app.error,
-        "downloads": metric(app, "standard_total"),
-        "first_time_downloads": metric(app, "first_time_downloads"),
-        "impressions": metric(app, "impressions"),
-        "unique_impressions": metric(app, "unique_impressions"),
-        "product_page_views": metric(app, "product_page_views"),
-        "unique_product_page_views": metric(app, "unique_product_page_views"),
-        "taps": metric(app, "taps"),
-        "unique_taps": metric(app, "unique_taps"),
-        "conversion_rate": data.get("conversion_rate"),
-        "page_view_rate": data.get("page_view_rate"),
-        "tap_rate": data.get("tap_rate"),
+        "metrics_scope": "report_date",
+        "metrics_report_date": report_date,
+        "downloads": filtered["downloads"],
+        "first_time_downloads": filtered["first_time_downloads"],
+        "impressions": filtered["impressions"],
+        "unique_impressions": filtered["unique_impressions"],
+        "product_page_views": filtered["product_page_views"],
+        "unique_product_page_views": filtered["unique_product_page_views"],
+        "taps": filtered["taps"],
+        "unique_taps": filtered["unique_taps"],
+        "conversion_rate": filtered["conversion_rate"],
+        "page_view_rate": filtered["page_view_rate"],
+        "tap_rate": filtered["tap_rate"],
         "dominant_source": {"name": source[0], "count": source[1]},
         "dominant_territory": {"name": territory[0], "count": territory[1]},
         "dominant_device": {"name": device[0], "count": device[1]},
-        "delta_downloads": digest.delta(app.data, app.previous_data, "standard_total"),
-        "delta_first_time_downloads": digest.delta(app.data, app.previous_data, "first_time_downloads"),
-        "delta_impressions": digest.delta(app.data, app.previous_data, "impressions"),
-        "delta_product_page_views": digest.delta(app.data, app.previous_data, "product_page_views"),
-        "delta_taps": digest.delta(app.data, app.previous_data, "taps"),
+        "delta_downloads": delta_filtered(filtered["downloads"], app.previous_data, "downloads"),
+        "delta_first_time_downloads": delta_filtered(filtered["first_time_downloads"], app.previous_data, "first_time_downloads"),
+        "delta_impressions": delta_filtered(filtered["impressions"], app.previous_data, "impressions"),
+        "delta_product_page_views": delta_filtered(filtered["product_page_views"], app.previous_data, "product_page_views"),
+        "delta_taps": delta_filtered(filtered["taps"], app.previous_data, "taps"),
+        "engagement_report_date_available": filtered["engagement_report_date_available"],
+        "downloads_report_date_available": filtered["downloads_report_date_available"],
+        "impressions_by_date": filtered["impressions_by_date"],
+        "product_page_views_by_date": filtered["product_page_views_by_date"],
+        "taps_by_date": filtered["taps_by_date"],
+        "impressions_by_source_type_report_date": filtered["impressions_by_source_type_report_date"],
+        "impressions_by_territory_report_date": filtered["impressions_by_territory_report_date"],
+        "impressions_by_device_report_date": filtered["impressions_by_device_report_date"],
+        "engagement_by_event_report_date": filtered["engagement_by_event_report_date"],
+        "engagement_unique_by_event_report_date": filtered["engagement_unique_by_event_report_date"],
     }
+
+    for source_field, target_field in ENGAGEMENT_TOTAL_FIELDS.items():
+        summary[target_field] = metric(app, source_field)
+    summary["downloads_total_available"] = metric(app, "standard_total")
+    summary["first_time_downloads_total_available"] = metric(app, "first_time_downloads")
+    summary["conversion_rate_total_available"] = data.get("conversion_rate")
+    summary["page_view_rate_total_available"] = data.get("page_view_rate")
+    summary["tap_rate_total_available"] = data.get("tap_rate")
+
+    return summary
 
 
 def write_latest_metrics(apps: list[digest.AppDigest], report_date: str) -> None:
     STRATEGY_DIR.mkdir(exist_ok=True)
-    summaries = [app_summary(app) for app in apps]
+    summaries = [app_summary(app, report_date) for app in apps]
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "report_date": report_date,
+        "metrics_scope": "report_date",
+        "metrics_semantics": {
+            "primary_values": "downloads, first_time_downloads, impressions, product_page_views and taps are filtered to rows where Date == report_date.",
+            "total_available_values": "*_total_available fields preserve the previous unfiltered aggregate across all rows returned by Apple Analytics.",
+        },
         "positioning": {
             "brand": "GogoLabs",
             "goal": "Vendre les apps et construire un revenu logiciel indépendant.",
@@ -71,9 +231,14 @@ def write_latest_metrics(apps: list[digest.AppDigest], report_date: str) -> None
             "impressions": sum(item["impressions"] for item in summaries),
             "product_page_views": sum(item["product_page_views"] for item in summaries),
             "taps": sum(item["taps"] for item in summaries),
+            "downloads_total_available": sum(item["downloads_total_available"] for item in summaries),
+            "first_time_downloads_total_available": sum(item["first_time_downloads_total_available"] for item in summaries),
+            "impressions_total_available": sum(item["impressions_total_available"] for item in summaries),
+            "product_page_views_total_available": sum(item["product_page_views_total_available"] for item in summaries),
+            "taps_total_available": sum(item["taps_total_available"] for item in summaries),
         },
         "apps": summaries,
-        "analysis_instruction": "Produire une réflexion stratégique longue mais structurée: diagnostic funnel, priorités ventes, pricing, ASO, screenshots, promesse par app, focus pro vs consumer, actions concrètes. Avant de recommander une modification produit, pricing, ASO, screenshots ou metadata, vérifier app.review_pipeline: si une version est READY_FOR_REVIEW, WAITING_FOR_REVIEW, IN_REVIEW, PENDING_APPLE_RELEASE, PENDING_DEVELOPER_RELEASE, PROCESSING_FOR_APP_STORE ou WAITING_FOR_EXPORT_COMPLIANCE, traiter ces changements comme déjà engagés et proposer uniquement des actions compatibles avec ce pipeline.",
+        "analysis_instruction": "Produire une réflexion stratégique longue mais structurée: diagnostic funnel, priorités ventes, pricing, ASO, screenshots, promesse par app, focus pro vs consumer, actions concrètes. Utiliser les valeurs primaires filtrées sur report_date pour tout diagnostic quotidien et toute comparaison. Les champs *_total_available servent uniquement à l'audit de collecte. Avant de recommander une modification produit, pricing, ASO, screenshots ou metadata, vérifier app.review_pipeline: si une version est READY_FOR_REVIEW, WAITING_FOR_REVIEW, IN_REVIEW, PENDING_APPLE_RELEASE, PENDING_DEVELOPER_RELEASE, PROCESSING_FOR_APP_STORE ou WAITING_FOR_EXPORT_COMPLIANCE, traiter ces changements comme déjà engagés et proposer uniquement des actions compatibles avec ce pipeline.",
     }
     LATEST_METRICS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"METRICS {LATEST_METRICS_PATH}")
@@ -92,7 +257,7 @@ def collect() -> None:
         except Exception as exc:
             apps.append(digest.AppDigest(key, app.get("name", key), None, None, None, None, str(exc)))
             print(f"{key}: ERROR {exc}")
-    report_date = digest.latest_data_date(apps) or datetime.now().strftime("%Y-%m-%d")
+    report_date = latest_row_date(apps) or datetime.now().strftime("%Y-%m-%d")
     write_latest_metrics(apps, report_date)
 
 
