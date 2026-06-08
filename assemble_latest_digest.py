@@ -33,47 +33,6 @@ def app_map(payload: dict[str, Any] | None) -> dict[str, dict[str, Any]]:
     return {app.get("key") or app.get("name"): app for app in payload.get("apps", [])}
 
 
-def choose_focus_app(metrics: dict[str, Any] | None) -> dict[str, Any] | None:
-    apps = (metrics or {}).get("apps", [])
-    candidates = [app for app in apps if int_value(app.get("impressions")) > 0]
-    if not candidates:
-        return None
-
-    def score(app: dict[str, Any]) -> tuple[float, int, int, str]:
-        impressions = int_value(app.get("impressions"))
-        views = int_value(app.get("product_page_views"))
-        taps = int_value(app.get("taps"))
-        view_rate = views / impressions if impressions else 0.0
-        opportunity = impressions * (1 - min(view_rate, 1))
-        return (opportunity, taps, impressions, app.get("name") or "")
-
-    return max(candidates, key=score)
-
-
-def decision_panel(metrics: dict[str, Any] | None) -> str:
-    totals = (metrics or {}).get("totals", {})
-    impressions = int_value(totals.get("impressions"))
-    page_views = int_value(totals.get("product_page_views"))
-    rate = f"{page_views / impressions * 100:.2f}%" if impressions else "n/d"
-    focus = choose_focus_app(metrics)
-    focus_name = focus.get("name") if focus else "App prioritaire"
-    action = "Réécrire le sous-titre et le premier screenshot de l'app prioritaire."
-    if focus:
-        action = f"Réécrire le sous-titre et le premier screenshot de {focus_name}."
-
-    return f"""
-      <section class="decision-panel">
-      <div class="decision-eyebrow">Décision du jour</div>
-      <h2>Repackager les apps visibles avant de produire de nouvelles apps.</h2>
-      <div class="decision-grid">
-        <div><span>Priorité #1</span><strong>{escape(str(focus_name))}</strong></div>
-        <div><span>Action avant demain</span><strong>{escape(action)}</strong></div>
-        <div><span>Signal à surveiller</span><strong>Impressions -> vues page : {escape(rate)}</strong></div>
-      </div>
-    </section>
-"""
-
-
 def delta_line(label: str, current: int, previous: int) -> str:
     diff = current - previous
     sign = "+" if diff > 0 else ""
@@ -233,7 +192,7 @@ def strategic_review_blocks(markdown: str) -> list[tuple[str, str]]:
     return [(title, "\n".join(lines).strip()) for title, lines in blocks if "\n".join(lines).strip()]
 
 
-def strategic_review_section(review_path: Path, decision_html: str = "") -> str:
+def strategic_review_section(review_path: Path) -> str:
     if not review_path.exists():
         return ""
     markdown = review_path.read_text(encoding="utf-8").strip()
@@ -255,7 +214,6 @@ def strategic_review_section(review_path: Path, decision_html: str = "") -> str:
     )
     return f"""
     <div class="strategy-review" aria-label="{escape(title)}">
-{decision_html.rstrip()}
 {rendered_blocks}
     </div>
 """
@@ -268,18 +226,6 @@ def inject_css(html: str) -> str:
         css_chunks.append("""
     .brand-head { display:flex; align-items:center; gap:12px; margin:0 0 8px; }
     .brand-logo { width:42px; height:42px; border-radius:10px; object-fit:cover; }
-""")
-    if ".decision-panel {" not in html:
-        css_chunks.append("""
-    .decision-panel { background:#111827; color:#ffffff; border:0; border-radius:14px; padding:18px 20px; margin:0 0 18px; }
-    .decision-panel h2 { color:#ffffff; border:0; padding:0; margin:4px 0 16px; font-size:22px; }
-    .decision-eyebrow { color:#cbd5e1; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
-    .decision-grid { display:grid; grid-template-columns:1fr 2fr 1fr; gap:12px; }
-    .decision-grid div { background:#242a36; border:1px solid rgba(255,255,255,.16); border-radius:8px; padding:10px 12px; }
-    .decision-grid span { display:block; color:#cbd5e1; font-size:12px; margin-bottom:5px; }
-    .decision-grid strong { color:#ffffff; }
-    .decision-grid strong { display:block; font-size:14px; line-height:1.35; }
-    @media (max-width:720px) { .decision-grid { grid-template-columns:1fr; } }
 """)
     if ".yesterday {" not in html:
         css_chunks.append("""
@@ -364,7 +310,7 @@ def replace_strategy_section(html: str, section: str) -> str:
     raise RuntimeError("Emplacement d'insertion de la réflexion stratégique introuvable.")
 
 
-def postprocess(root: Path = ROOT) -> Path:
+def assemble(root: Path = ROOT) -> Path:
     html_path = root / "strategy" / "latest-digest.html"
     metrics_path = root / "strategy" / "latest-metrics.json"
     previous_metrics_path = Path("/tmp/previous-metrics.json")
@@ -383,15 +329,15 @@ def postprocess(root: Path = ROOT) -> Path:
     html = inject_css(html)
     if "Que s'est-il passé depuis hier" not in html and "Que s’est-il passé depuis hier" not in html:
         html = html.replace("    <h2>Tableau principal</h2>", yesterday_section(metrics, previous_metrics) + "\n\n    <h2>Tableau principal</h2>", 1)
-    html = replace_strategy_section(html, strategic_review_section(review_path, decision_panel(metrics)))
+    html = replace_strategy_section(html, strategic_review_section(review_path))
     html = re.sub(r"(<p>\|[^<]+\|</p>\s*){3,}", lambda match: build_table(match.group(0)), html)
     html_path.write_text(html, encoding="utf-8")
     return html_path
 
 
 def main() -> None:
-    path = postprocess()
-    print(f"POSTPROCESS {path}")
+    path = assemble()
+    print(f"ASSEMBLE {path}")
 
 
 if __name__ == "__main__":

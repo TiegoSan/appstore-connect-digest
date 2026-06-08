@@ -44,8 +44,8 @@ jobs:
       - name: Render latest digest HTML
         run: python render_latest_digest.py
 
-      - name: Postprocess latest digest HTML
-        run: python postprocess_latest_digest.py
+      - name: Assemble latest digest HTML
+        run: python assemble_latest_digest.py
 
       - name: Commit latest digest HTML
         run: |

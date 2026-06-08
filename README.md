@@ -4,14 +4,14 @@ Dossier autonome pour collecter des métriques App Store Connect, enrichir les d
 
 ## Contenu
 
-- `appstore_config.json` : issuer id, key id, chemin de clé locale et apps connues.
+- `appstore_config.json` : catalogue non secret des apps connues (`app_id`, bundle id, SKU).
 - `AuthKey_VKFLG2237C.p8` : clé privée App Store Connect API locale. Secret critique, ignoré par Git.
 - `appstore_analytics.py` : client App Store Connect API, collecte des rapports downloads et engagement.
 - `collect_latest_metrics.py` : collecte les métriques de toutes les apps et écrit `strategy/latest-metrics.json`.
 - `enrich_review_metrics.py` : enrichit `strategy/latest-metrics.json` avec les versions App Store en préparation/review/release pending, leurs builds et leurs metadata localisées, sans committer les champs App Review sensibles.
 - `enrich_pricing_metrics.py` : enrichit `strategy/latest-metrics.json` avec pricing et sales reports Apple, en best effort.
 - `render_latest_digest.py` : rend `strategy/latest-digest.html` depuis `strategy/latest-metrics.json`.
-- `postprocess_latest_digest.py` : ajoute décision, comparaison et revue stratégique au HTML final.
+- `assemble_latest_digest.py` : assemble le HTML final, ajoute la comparaison J-1 et intègre `strategy/strategic-review.md` produit par l'automatisation ChatGPT.
 - `send_latest_digest.py` : envoie `strategy/latest-digest.html` par SMTP.
 - `strategy/strategic-review.md` : revue stratégique éditable. Sa mise à jour déclenche le rendu/envoi via GitHub Actions.
 - `reports/` : exports locaux générés.
@@ -43,7 +43,7 @@ Rendre le digest HTML depuis les dernières métriques :
 
 ```sh
 python3 render_latest_digest.py
-python3 postprocess_latest_digest.py
+python3 assemble_latest_digest.py
 ```
 
 Envoyer le dernier digest :
@@ -66,6 +66,18 @@ python3 -m pip install -r requirements.txt
 ```
 
 Le fichier `requirements.txt` contient `PyJWT` et `cryptography`.
+
+## Configuration locale
+
+`appstore_config.json` ne doit contenir que le catalogue des apps. Les credentials App Store Connect restent dans `.env` local ou dans les secrets GitHub :
+
+```text
+ASC_ISSUER_ID=
+ASC_KEY_ID=
+ASC_PRIVATE_KEY_PATH=AuthKey_<KEY_ID>.p8
+```
+
+`ASC_PRIVATE_KEY` peut remplacer `ASC_PRIVATE_KEY_PATH` dans GitHub Actions. Dans ce cas, le script écrit une clé temporaire protégée dans `RUNNER_TEMP`.
 
 ## GitHub Actions
 
@@ -110,7 +122,7 @@ Déclenchement :
 Étapes :
 
 1. Lance `render_latest_digest.py`.
-2. Lance `postprocess_latest_digest.py`.
+2. Lance `assemble_latest_digest.py`.
 3. Commit et push `strategy/latest-digest.html` si le rendu change.
 4. Lance `send_latest_digest.py`.
 

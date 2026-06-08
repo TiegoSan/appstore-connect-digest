@@ -9,7 +9,7 @@ from pathlib import Path
 import enrich_pricing_metrics
 import enrich_review_metrics
 import daily_appstore_digest
-import postprocess_latest_digest
+import assemble_latest_digest
 import send_latest_digest
 
 
@@ -133,21 +133,7 @@ class PipelineTests(unittest.TestCase):
 
         self.assertEqual(report_date, "2026-06-03")
 
-    def test_choose_focus_app_prefers_visible_low_conversion_app(self) -> None:
-        metrics = {
-            "apps": [
-                {"name": "High Volume", "impressions": 100, "product_page_views": 60, "taps": 0},
-                {"name": "Visible Opportunity", "impressions": 90, "product_page_views": 1, "taps": 2},
-                {"name": "Invisible", "impressions": 0, "product_page_views": 0, "taps": 0},
-            ]
-        }
-
-        focus = postprocess_latest_digest.choose_focus_app(metrics)
-
-        self.assertIsNotNone(focus)
-        self.assertEqual(focus["name"], "Visible Opportunity")
-
-    def test_postprocess_injects_dynamic_decision_and_review(self) -> None:
+    def test_assemble_injects_chatgpt_review_without_dynamic_decision(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             strategy_dir = root / "strategy"
@@ -191,10 +177,9 @@ class PipelineTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            postprocess_latest_digest.postprocess(root)
+            assemble_latest_digest.assemble(root)
             html = html_path.read_text(encoding="utf-8")
 
-        self.assertIn("Glass Master", html)
         self.assertIn("Gogo Labs Daily Business Digest", html)
         self.assertIn("cid:gogolabs-logo", html)
         self.assertNotIn("<h2>Synthèse exécutive</h2>", html)
@@ -211,8 +196,8 @@ class PipelineTests(unittest.TestCase):
         self.assertNotIn("<h2>1. ", html)
         self.assertNotIn("<h3>2.1. ", html)
         self.assertIn("<li>Action</li>", html)
-        self.assertLess(html.find('class="decision-panel"'), html.find('aria-label="Synthèse exécutive stratégique"'))
-        self.assertGreater(html.find('class="decision-panel"'), html.find('class="strategy-review"'))
+        self.assertNotIn('class="decision-panel"', html)
+        self.assertNotIn("Décision du jour", html)
         self.assertGreater(html.find('class="cards"'), html.find("Gogo Labs Daily Business Digest"))
         self.assertLess(html.find('class="cards"'), html.find('class="strategy-review"'))
         self.assertNotIn('class="strategy-memory"', html)

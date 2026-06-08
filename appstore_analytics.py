@@ -53,11 +53,13 @@ def load_config() -> dict[str, Any]:
     load_local_env()
     with CONFIG_PATH.open("r", encoding="utf-8") as f:
         config = json.load(f)
-    config["issuer_id"] = os.environ.get("ASC_ISSUER_ID", os.environ.get("APPSTORE_CONNECT_ISSUER_ID", config["issuer_id"]))
-    config["key_id"] = os.environ.get("ASC_KEY_ID", os.environ.get("APPSTORE_CONNECT_KEY_ID", config["key_id"]))
+    config["issuer_id"] = os.environ.get("ASC_ISSUER_ID") or os.environ.get("APPSTORE_CONNECT_ISSUER_ID") or config.get("issuer_id")
+    config["key_id"] = os.environ.get("ASC_KEY_ID") or os.environ.get("APPSTORE_CONNECT_KEY_ID") or config.get("key_id")
 
     private_key = os.environ.get("ASC_PRIVATE_KEY") or os.environ.get("APPSTORE_CONNECT_PRIVATE_KEY")
     if private_key:
+        if not config["key_id"]:
+            raise RuntimeError("ASC_KEY_ID/APPSTORE_CONNECT_KEY_ID manquant.")
         key_dir = Path(os.environ.get("RUNNER_TEMP", ROOT))
         key_dir.mkdir(parents=True, exist_ok=True)
         key_path = key_dir / f"AuthKey_{config['key_id']}.p8"
@@ -70,6 +72,11 @@ def load_config() -> dict[str, Any]:
     if env_key_path:
         config["private_key_path"] = env_key_path
 
+    if not config.get("private_key_path") and config.get("key_id"):
+        config["private_key_path"] = f"AuthKey_{config['key_id']}.p8"
+    if not config.get("private_key_path"):
+        return config
+
     key_path = Path(config["private_key_path"])
     if not key_path.is_absolute():
         key_path = ROOT / key_path
@@ -78,6 +85,12 @@ def load_config() -> dict[str, Any]:
 
 
 def make_token(config: dict[str, Any]) -> str:
+    if not config.get("issuer_id"):
+        raise RuntimeError("ASC_ISSUER_ID/APPSTORE_CONNECT_ISSUER_ID manquant.")
+    if not config.get("key_id"):
+        raise RuntimeError("ASC_KEY_ID/APPSTORE_CONNECT_KEY_ID manquant.")
+    if not config.get("private_key_path"):
+        raise RuntimeError("ASC_PRIVATE_KEY ou ASC_PRIVATE_KEY_PATH manquant.")
     with open(config["private_key_path"], "r", encoding="utf-8") as f:
         private_key = f.read()
     now = int(time.time())
