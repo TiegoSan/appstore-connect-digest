@@ -1,6 +1,6 @@
 # Revue stratégique GogoLabs
 
-_Source métrique : `strategy/latest-metrics.json`, généré le 2026-06-08 à 20:22:42 UTC. Rapport App Store du 2026-06-07. Portée des métriques : `report_date`. Les valeurs primaires sont filtrées sur `Date == report_date`. Les champs `*_total_available` sont exclus du diagnostic commercial quotidien et conservés uniquement comme audit de collecte. Relance manuelle déclenchée le 2026-06-09._
+_Source métrique : `strategy/latest-metrics.json`, généré le 2026-06-08 à 20:22:42 UTC. Rapport App Store du 2026-06-07. Portée des métriques : `report_date`. Les valeurs primaires sont filtrées sur `Date == report_date`. Les champs `*_total_available` sont exclus du diagnostic commercial quotidien et conservés uniquement comme audit de collecte. Relance manuelle déclenchée le 2026-06-09, passe 2._
 
 ## 1. Synthèse exécutive stratégique
 
