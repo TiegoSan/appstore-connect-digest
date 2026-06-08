@@ -274,6 +274,37 @@ class PipelineTests(unittest.TestCase):
         self.assertIn("<td>Visible</td>", body)
         self.assertIn('<td class="num">4</td>', body)
 
+    def test_render_html_includes_global_available_recap_and_graphs(self) -> None:
+        apps = [
+            daily_appstore_digest.AppDigest(
+                "one",
+                "Visible",
+                None,
+                None,
+                {
+                    "standard_total": 1,
+                    "impressions": 2,
+                    "downloads_total_available": 10,
+                    "first_time_downloads_total_available": 7,
+                    "impressions_total_available": 100,
+                    "product_page_views_total_available": 9,
+                    "taps_total_available": 3,
+                },
+                None,
+                None,
+            )
+        ]
+
+        html = daily_appstore_digest.render_html(apps, "2026-06-07")
+
+        self.assertIn("Récap global disponible", html)
+        self.assertIn("Downloads globaux", html)
+        self.assertIn('<div class="value">10</div>', html)
+        self.assertIn("Graphiques globaux disponibles", html)
+        self.assertIn("Téléchargements globaux disponibles par app", html)
+        self.assertLess(html.find('<div class="value">1</div>'), html.find("Récap global disponible"))
+        self.assertLess(html.find("Récap global disponible"), html.find("Tableau principal"))
+
     def test_build_message_attaches_logo_inline(self) -> None:
         msg = daily_appstore_digest.build_message(
             "gautier@gogolabs.fr",

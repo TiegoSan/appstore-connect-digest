@@ -251,6 +251,34 @@ def render_html(apps: list[AppDigest], report_date: str) -> str:
     total_impressions = sum(metric(app, "impressions") for app in ok_apps)
     total_page_views = sum(metric(app, "product_page_views") for app in ok_apps)
     total_taps = sum(metric(app, "taps") for app in ok_apps)
+    global_downloads = sum(metric(app, "downloads_total_available") for app in ok_apps)
+    global_first = sum(metric(app, "first_time_downloads_total_available") for app in ok_apps)
+    global_impressions = sum(metric(app, "impressions_total_available") for app in ok_apps)
+    global_page_views = sum(metric(app, "product_page_views_total_available") for app in ok_apps)
+    global_taps = sum(metric(app, "taps_total_available") for app in ok_apps)
+    global_available = any([global_downloads, global_first, global_impressions, global_page_views, global_taps])
+    global_cards = ""
+    if global_available:
+        global_cards = f"""
+    <h2>Récap global disponible</h2>
+    <p class="muted">Agrégat non filtré de toutes les lignes App Store Analytics disponibles dans les rapports récupérés. À lire comme contexte global, pas comme le signal du jour.</p>
+    <div class="cards global-cards">
+      <div class="card"><div class="label">Downloads globaux</div><div class="value">{global_downloads}</div></div>
+      <div class="card"><div class="label">First-time globaux</div><div class="value">{global_first}</div></div>
+      <div class="card"><div class="label">Impressions globales</div><div class="value">{global_impressions}</div></div>
+      <div class="card"><div class="label">Page views globales</div><div class="value">{global_page_views}</div></div>
+      <div class="card"><div class="label">Taps globaux</div><div class="value">{global_taps}</div></div>
+    </div>
+"""
+    global_graphs = ""
+    if global_available:
+        global_graphs = f"""
+    <h2>Graphiques globaux disponibles</h2>
+    <p class="muted">Téléchargements globaux disponibles par app</p>
+    <div class="bars">{bar_rows(apps, "downloads_total_available")}</div>
+    <p class="muted">Impressions globales disponibles par app</p>
+    <div class="bars">{bar_rows(apps, "impressions_total_available")}</div>
+"""
     return f"""<!doctype html>
 <html>
 <head>
@@ -303,6 +331,7 @@ def render_html(apps: list[AppDigest], report_date: str) -> str:
       <div class="card"><div class="label">Page views</div><div class="value">{total_page_views}</div></div>
       <div class="card"><div class="label">Taps</div><div class="value">{total_taps}</div></div>
     </div>
+{global_cards}
 
     <h2>Tableau principal</h2>
     <table>
@@ -317,6 +346,7 @@ def render_html(apps: list[AppDigest], report_date: str) -> str:
     <div class="bars">{bar_rows(apps, "standard_total")}</div>
     <p class="muted">Impressions par app</p>
     <div class="bars">{bar_rows(apps, "impressions")}</div>
+{global_graphs}
 
     <h2>Analyse</h2>
     <p><strong>Fait observe.</strong> Perroquet Piano concentre l’essentiel des telechargements et des impressions. Le search App Store est le principal canal d’acquisition visible pour cette app.</p>
