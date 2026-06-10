@@ -14,6 +14,8 @@ Dossier autonome pour collecter des métriques App Store Connect, enrichir les d
 - `render_latest_digest.py` : rend `strategy/latest-digest.html` depuis `strategy/latest-metrics.json`.
 - `assemble_latest_digest.py` : assemble le HTML final, ajoute la comparaison J-1 et intègre `strategy/strategic-review.md` produit par l'automatisation ChatGPT.
 - `send_latest_digest.py` : envoie `strategy/latest-digest.html` par SMTP.
+- `appstore_dashboard.py` : génère `dashboard/latest-appstore-dashboard.json`, payload compact pour dashboard privé statique, et `dashboard/latest-appstore-alerts.json`.
+- `send_appstore_alerts.py` : envoie un mail court uniquement quand des alertes `warning` ou `critical` existent.
 - `strategy/strategic-review.md` : revue stratégique éditable. Sa mise à jour déclenche le rendu/envoi via GitHub Actions.
 - `reports/` : exports locaux générés.
 
@@ -46,6 +48,35 @@ Rendre le digest HTML depuis les dernières métriques :
 ```sh
 python3 render_latest_digest.py
 python3 assemble_latest_digest.py
+```
+
+Générer le payload dashboard privé :
+
+```sh
+python3 appstore_dashboard.py
+python3 appstore_dashboard.py --copy-to-site "/Users/gautier/GogoLabs/Apps/Gogolabs.fr/private/appstore"
+```
+
+Servir le dashboard privé local avec bouton de rafraîchissement API :
+
+```sh
+python3 private_dashboard_server.py
+```
+
+Ce serveur expose `POST /private/appstore/api/refresh`, relance la collecte App Store Connect, enrichit les métriques, régénère le payload dashboard et le recopie dans le site. En production, ce endpoint doit rester derrière l'auth privée du dashboard.
+
+Variables utiles pour le serveur :
+
+```text
+APPSTORE_DASHBOARD_SITE_ROOT=/Users/gautier/GogoLabs/Apps/Gogolabs.fr
+APPSTORE_DASHBOARD_HOST=127.0.0.1
+APPSTORE_DASHBOARD_PORT=4173
+```
+
+Un exemple de déploiement privé vit dans :
+
+```text
+deploy/private-dashboard/
 ```
 
 Envoyer le dernier digest :
@@ -106,8 +137,19 @@ Déclenchement :
 3. Lance `enrich_review_metrics.py`.
 4. Lance `enrich_pricing_metrics.py`.
 5. Lance `enrich_market_metrics.py`.
-6. Commit et push `strategy/latest-metrics.json` si les métriques changent.
-7. Upload les artefacts JSON.
+6. Lance `appstore_dashboard.py`.
+7. Commit et push `strategy/latest-metrics.json` si les métriques changent.
+8. Si `GOGOLABS_ANALYTICS_REPO_TOKEN` existe, pousse les payloads dashboard vers le repo privé `TiegoSan/gogolabs-analytics`.
+9. Lance `send_appstore_alerts.py` si des alertes warning/critical existent.
+10. Upload les artefacts JSON non privés.
+
+Le dashboard privé statique vit côté site dans :
+
+```text
+/Users/gautier/GogoLabs/Apps/Gogolabs.fr/private/appstore/
+```
+
+Les repos publics `gogolabs.fr` et `appstore-connect-digest` ne doivent pas commiter les payloads dashboard complets. Le dashboard privé est publié dans `TiegoSan/gogolabs-analytics`, repo privé utilisé par Cloudflare Pages pour `analytics.gogolabs.fr`.
 
 ### Digest stratégique
 
@@ -143,9 +185,12 @@ APPSTORE_DIGEST_SMTP_SECURITY
 APPSTORE_DIGEST_SMTP_USER
 APPSTORE_DIGEST_SMTP_PASSWORD
 APPSTORE_DIGEST_FROM
+GOGOLABS_ANALYTICS_REPO_TOKEN
 ```
 
 `APPSTORE_VENDOR_NUMBER` ou `ASC_VENDOR_NUMBER` est nécessaire pour les Sales Reports. `ASC_PRIVATE_KEY` doit contenir le contenu complet de la clé `.p8`, avec les lignes `BEGIN PRIVATE KEY` et `END PRIVATE KEY`.
+
+`GOGOLABS_ANALYTICS_REPO_TOKEN` est optionnel. S'il est présent, le workflow pousse `latest-appstore-dashboard.json` et `latest-appstore-alerts.json` dans le repo privé `TiegoSan/gogolabs-analytics`, utilisé par Cloudflare Pages pour `analytics.gogolabs.fr`.
 
 Valeurs SMTP iCloud typiques :
 

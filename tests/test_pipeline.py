@@ -12,9 +12,82 @@ import enrich_market_metrics
 import daily_appstore_digest
 import assemble_latest_digest
 import send_latest_digest
+import appstore_dashboard
 
 
 class PipelineTests(unittest.TestCase):
+    def test_dashboard_payload_compacts_metrics_and_builds_alerts(self) -> None:
+        payload = appstore_dashboard.build_dashboard_payload(
+            {
+                "generated_at": "2026-06-08T10:00:00+00:00",
+                "report_date": "2026-06-07",
+                "metrics_scope": "report_date",
+                "freshness": {"report_age_days": 1},
+                "apps": [
+                    {
+                        "key": "coupez",
+                        "name": "Coupez!",
+                        "app_id": "123",
+                        "bundle_id": "com.gogolabs.coupez",
+                        "sku": "coupez",
+                        "downloads": 0,
+                        "first_time_downloads": 0,
+                        "impressions": 120,
+                        "product_page_views": 0,
+                        "taps": 0,
+                        "downloads_report_date_available": True,
+                        "engagement_report_date_available": True,
+                        "history": {
+                            "available": True,
+                            "current_7d": {"downloads": 1, "impressions": 120, "product_page_views": 0},
+                            "previous_7d": {"downloads": 8},
+                        },
+                        "sales": {"available": True, "paid_units": 1, "refund_units": 1, "developer_proceeds": 4.2, "refund_rate": 50.0},
+                        "reviews": {"available": True, "recent_low_rating_count": 0},
+                        "review_pipeline": {
+                            "available": True,
+                            "has_pending_version": True,
+                            "has_blocking_pipeline_change": True,
+                            "blocking_recommendation_states": ["WAITING_FOR_REVIEW"],
+                            "versions": [
+                                {
+                                    "id": "private-version-id",
+                                    "version_string": "2.0",
+                                    "app_store_state": "WAITING_FOR_REVIEW",
+                                    "build": {"version": "42"},
+                                }
+                            ],
+                        },
+                        "funnel_by_source": {"available": True, "rows": [{"name": "App Store search", "impressions": 120}]},
+                        "funnel_by_territory": {"available": True, "rows": [{"name": "FR", "impressions": 20}]},
+                        "pricing": {"available": True, "base_territory": "FRA"},
+                    }
+                ],
+            }
+        )
+
+        self.assertEqual(payload["totals"]["impressions"], 120)
+        self.assertEqual(len(payload["apps"][0]["history"]["time_series"]["rows"]), 30)
+        self.assertEqual(payload["apps"][0]["review_pipeline"]["versions"][0]["version_string"], "2.0")
+        self.assertNotIn("private-version-id", json.dumps(payload))
+        self.assertGreaterEqual(len(payload["alerts"]), 3)
+        self.assertEqual(payload["alerts"][0]["level"], "critical")
+
+    def test_alert_email_skips_info_only_alerts(self) -> None:
+        payload = {
+            "report_date": "2026-06-07",
+            "alerts": [{"level": "info", "title": "Info", "detail": "Detail"}],
+        }
+
+        import send_appstore_alerts
+
+        html = send_appstore_alerts.render_alert_email(
+            {"report_date": payload["report_date"], "alerts": [{"level": "warning", "title": "Signal", "detail": "Détail"}]}
+        )
+
+        self.assertIn("Signal", html)
+        self.assertNotIn("Info", html)
+
     def test_review_pipeline_compacts_pending_versions_and_redacts_review_details(self) -> None:
         class FakeClient:
             def get(self, path: str) -> dict:

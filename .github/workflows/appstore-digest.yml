@@ -25,6 +25,13 @@ jobs:
       ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
       APPSTORE_VENDOR_NUMBER: ${{ secrets.APPSTORE_VENDOR_NUMBER }}
       ASC_VENDOR_NUMBER: ${{ secrets.ASC_VENDOR_NUMBER }}
+      APPSTORE_DIGEST_SMTP_HOST: ${{ secrets.APPSTORE_DIGEST_SMTP_HOST }}
+      APPSTORE_DIGEST_SMTP_PORT: ${{ secrets.APPSTORE_DIGEST_SMTP_PORT }}
+      APPSTORE_DIGEST_SMTP_SECURITY: ${{ secrets.APPSTORE_DIGEST_SMTP_SECURITY }}
+      APPSTORE_DIGEST_SMTP_USER: ${{ secrets.APPSTORE_DIGEST_SMTP_USER }}
+      APPSTORE_DIGEST_SMTP_PASSWORD: ${{ secrets.APPSTORE_DIGEST_SMTP_PASSWORD }}
+      APPSTORE_DIGEST_FROM: Gogo Labs App Store Alerts <gautier@gogolabs.fr>
+      GOGOLABS_ANALYTICS_REPO_TOKEN: ${{ secrets.GOGOLABS_ANALYTICS_REPO_TOKEN }}
 
     steps:
       - name: Checkout
@@ -73,6 +80,10 @@ jobs:
         if: env.RUN_METRICS == 'true'
         run: python enrich_market_metrics.py
 
+      - name: Build private dashboard payload
+        if: env.RUN_METRICS == 'true'
+        run: python appstore_dashboard.py
+
       - name: Commit enriched metrics
         if: env.RUN_METRICS == 'true'
         run: |
@@ -86,6 +97,28 @@ jobs:
             git pull --rebase
             git push
           fi
+
+      - name: Publish dashboard payload to private analytics repo
+        if: env.RUN_METRICS == 'true' && env.GOGOLABS_ANALYTICS_REPO_TOKEN != ''
+        run: |
+          workdir="$(mktemp -d)"
+          git clone "https://x-access-token:${GOGOLABS_ANALYTICS_REPO_TOKEN}@github.com/TiegoSan/gogolabs-analytics.git" "$workdir"
+          cp dashboard/latest-appstore-dashboard.json "$workdir/latest-appstore-dashboard.json"
+          cp dashboard/latest-appstore-alerts.json "$workdir/latest-appstore-alerts.json"
+          cd "$workdir"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add latest-appstore-dashboard.json latest-appstore-alerts.json
+          if git diff --cached --quiet; then
+            echo "No private dashboard payload changes"
+          else
+            git commit -m "Update private App Store dashboard payload"
+            git push
+          fi
+
+      - name: Send alert email
+        if: env.RUN_METRICS == 'true'
+        run: python send_appstore_alerts.py
 
       - name: Upload metrics artifacts
         if: env.RUN_METRICS == 'true'

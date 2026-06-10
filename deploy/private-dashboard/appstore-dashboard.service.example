@@ -1,0 +1,18 @@
+[Unit]
+Description=GogoLabs private App Store dashboard
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/Users/gautier/GogoLabs/Sources/AppStore Connect
+Environment=APPSTORE_DASHBOARD_SITE_ROOT=/Users/gautier/GogoLabs/Apps/Gogolabs.fr
+Environment=APPSTORE_DASHBOARD_HOST=127.0.0.1
+Environment=APPSTORE_DASHBOARD_PORT=4173
+EnvironmentFile=/Users/gautier/GogoLabs/Sources/AppStore Connect/.env
+ExecStart=/usr/bin/env python3 private_dashboard_server.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

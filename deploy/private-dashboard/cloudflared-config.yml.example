@@ -1,0 +1,7 @@
+tunnel: appstore-dashboard
+credentials-file: /etc/cloudflared/appstore-dashboard.json
+
+ingress:
+  - hostname: analytics.gogolabs.fr
+    service: http://127.0.0.1:4173
+  - service: http_status:404
