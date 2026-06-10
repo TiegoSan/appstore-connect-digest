@@ -9,7 +9,7 @@ import appstore_dashboard
 import daily_appstore_digest as digest
 
 ALERT_LEVELS_TO_SEND = {"critical", "warning"}
-DASHBOARD_URL = "https://admin.gogolabs.fr/appstore/"
+DASHBOARD_URL = "https://analytics.gogolabs.fr/"
 
 
 def alert_subject(report_date: str | None, alerts: list[dict]) -> str:
@@ -67,7 +67,10 @@ def main() -> None:
 
     subject = alert_subject(payload.get("report_date"), alerts)
     html_body = render_alert_email(payload)
-    ok, detail = digest.send_html("gautier@gogolabs.fr", subject, html_body)
+    html_path = appstore_dashboard.DASHBOARD_DIR / "latest-appstore-alerts.html"
+    html_path.parent.mkdir(parents=True, exist_ok=True)
+    html_path.write_text(html_body, encoding="utf-8")
+    ok, detail = digest.send_html("gautier@gogolabs.fr", subject, html_body, html_path)
     print(f"ALERT_MAIL {'OK' if ok else 'ERREUR'}: {detail}")
     raise SystemExit(0 if ok else 2)
 
