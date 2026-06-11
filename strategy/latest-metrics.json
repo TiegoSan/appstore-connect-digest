@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T00:36:48.246241+00:00",
+  "generated_at": "2026-06-11T00:38:28.648543+00:00",
   "report_date": "2026-06-09",
   "metrics_scope": "report_date",
   "metrics_semantics": {
@@ -32,7 +32,7 @@
       "app_id": null,
       "bundle_id": null,
       "sku": null,
-      "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReports/r4-428b1705-6aba-4a4a-9a80-3eb0e87190f8/instances?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}",
+      "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportRequests/a0f5608a-6c2d-4f9b-a230-60515029b84a/reports?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}",
       "metrics_scope": "report_date",
       "metrics_report_date": "2026-06-09",
       "downloads": 0,
@@ -144,7 +144,7 @@
       "app_id": null,
       "bundle_id": null,
       "sku": null,
-      "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportRequests/302a0a2d-851a-49f2-9810-94711c845191/reports?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}",
+      "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/49615d9f-a475-48b0-a4aa-de990d286bf9/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}",
       "metrics_scope": "report_date",
       "metrics_report_date": "2026-06-09",
       "downloads": 0,
@@ -332,7 +332,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-11T00:36:48.763185+00:00",
+        "fetched_at": "2026-06-11T00:38:29.279030+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -750,7 +750,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-11T00:36:50.390419+00:00",
+        "fetched_at": "2026-06-11T00:38:31.325091+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -762,7 +762,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-11T00:36:51.085618+00:00",
+        "fetched_at": "2026-06-11T00:38:32.024817+00:00",
         "localizations": [
           {
             "id": "4f732e72-4179-4f06-9a3e-a6b9fcd79174",
@@ -803,7 +803,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-11T00:36:51.169798+00:00",
+        "fetched_at": "2026-06-11T00:38:32.209586+00:00",
         "localizations": [],
         "errors": [
           {
@@ -811,7 +811,7 @@
             "locale": "en-GB",
             "version_string": "1.3",
             "app_store_state": "READY_FOR_SALE",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/6851d61b-be2d-465d-867b-1919cf6764ea/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'df4f5f39-bc5e-4f3d-a1dc-d66530717e47', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/6851d61b-be2d-465d-867b-1919cf6764ea/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'a3a7d1b1-114b-409c-ac92-4ea696a62db2', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -829,7 +829,7 @@
       "app_id": null,
       "bundle_id": null,
       "sku": null,
-      "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReports/r15-307a0177-9034-4c68-b9b8-501992752dc5/instances?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}",
+      "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReports/r3-16f0ab42-5155-4bda-904d-7087a54ec595/instances?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}",
       "metrics_scope": "report_date",
       "metrics_report_date": "2026-06-09",
       "downloads": 0,
@@ -996,7 +996,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-11T00:36:48.906095+00:00",
+        "fetched_at": "2026-06-11T00:38:29.537853+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -1053,7 +1053,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6772350677/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'a5db0cf2-eeab-43a2-9d7f-2ae02ad7ba1c', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6772350677'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6772350677/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'b3464b08-36d5-4f3e-a401-143655e58011', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6772350677'\"}]}"
       },
       "sales": {
         "available": false,
@@ -1089,7 +1089,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-11T00:36:51.359319+00:00",
+        "fetched_at": "2026-06-11T00:38:32.475083+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -1101,7 +1101,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-11T00:36:51.556837+00:00",
+        "fetched_at": "2026-06-11T00:38:32.770073+00:00",
         "localizations": [
           {
             "id": "df6ef245-510f-4714-88ca-53331d3e6937",
@@ -1117,7 +1117,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-11T00:36:51.626505+00:00",
+        "fetched_at": "2026-06-11T00:38:32.951375+00:00",
         "localizations": [],
         "errors": [
           {
@@ -1125,7 +1125,7 @@
             "locale": "en-US",
             "version_string": "1.0",
             "app_store_state": "PREPARE_FOR_SUBMISSION",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/93f2b14e-2de8-42a5-9fce-60010185891e/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '83067ce9-cc9c-449f-8bf4-cb04f15e285a', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/93f2b14e-2de8-42a5-9fce-60010185891e/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '03e05814-a55f-4422-8af9-2a964604e293', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -1140,10 +1140,10 @@
     {
       "key": "gogo-looping",
       "name": "Gogo Looping",
-      "app_id": "6770716816",
-      "bundle_id": "com.gogolabs.looping",
-      "sku": "com.gogolabs.looping",
-      "error": null,
+      "app_id": null,
+      "bundle_id": null,
+      "sku": null,
+      "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReports/r3-01a9b45a-e541-4f20-a01c-f7b32a53c004/instances?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}",
       "metrics_scope": "report_date",
       "metrics_report_date": "2026-06-09",
       "downloads": 0,
@@ -1196,66 +1196,13 @@
       "page_view_rate_total_available": null,
       "tap_rate_total_available": null,
       "review_pipeline": {
-        "available": true,
+        "available": false,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-11T00:36:49.053186+00:00",
-        "has_pending_version": true,
-        "has_blocking_pipeline_change": false,
-        "pipeline_states": [
-          "PREPARE_FOR_SUBMISSION"
-        ],
-        "blocking_recommendation_states": [],
-        "version_count": 1,
-        "included_version_count": 1,
-        "omitted_historical_version_count": 0,
-        "pipeline_version_count": 1,
-        "versions": [
-          {
-            "id": "de6a5f23-8f50-459d-80c1-3b8d27a688b5",
-            "platform": "IOS",
-            "version_string": "1.0",
-            "app_store_state": "PREPARE_FOR_SUBMISSION",
-            "app_version_state": "PREPARE_FOR_SUBMISSION",
-            "review_type": "APP_STORE",
-            "release_type": "AFTER_APPROVAL",
-            "earliest_release_date": null,
-            "created_date": "2026-05-18T15:21:47-07:00",
-            "downloadable": true,
-            "uses_idfa": null,
-            "is_live": false,
-            "is_pipeline": true,
-            "blocks_redundant_recommendations": false,
-            "build": null,
-            "localizations": [
-              {
-                "id": "a15c1d85-88cc-4c02-b75e-e3b8d2acecf5",
-                "locale": "en-US",
-                "name": null,
-                "subtitle": null,
-                "privacy_policy_url": null,
-                "privacy_policy_text": null,
-                "promotional_text": null,
-                "description": null,
-                "keywords": null,
-                "marketing_url": null,
-                "support_url": null,
-                "whats_new": null
-              }
-            ],
-            "app_store_review_detail": null,
-            "app_store_version_submission": null,
-            "app_store_version_phased_release": null
-          }
-        ],
-        "automation_context": [
-          "Lire ce bloc avant toute recommandation ASO, screenshots, metadata, pricing ou produit.",
-          "Si has_blocking_pipeline_change vaut true, ne pas proposer comme prochaine action un changement deja contenu dans la version en attente/review.",
-          "Comparer les localizations et le build de la version pipeline avec les metriques actuelles avant de conclure."
-        ]
+        "error": "missing app_id"
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6770716816/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '90f54dae-9680-4e2d-90e4-a0a051f4905a', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6770716816'\"}]}"
+        "error": "missing app_id"
       },
       "sales": {
         "available": false,
@@ -1272,64 +1219,27 @@
       },
       "history": {
         "available": false,
-        "error": "missing dated metrics in local report JSON"
+        "error": "missing local report JSON"
       },
       "funnel_by_source": {
         "available": false,
-        "dimension": "Source Type",
-        "limit": 10,
-        "rows": [],
-        "omitted_count": 0
+        "error": "missing local report JSON"
       },
       "funnel_by_territory": {
         "available": false,
-        "dimension": "Territory",
-        "limit": 10,
-        "rows": [],
-        "omitted_count": 0
+        "error": "missing local report JSON"
       },
       "reviews": {
-        "available": true,
-        "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-11T00:36:51.808919+00:00",
-        "recent_count": 0,
-        "recent_average_rating": null,
-        "recent_low_rating_count": 0,
-        "recent_high_rating_count": 0,
-        "recent_low_rating_reviews": [],
-        "recent_high_rating_reviews": [],
-        "recent_reviews": []
+        "available": false,
+        "error": "missing app_id"
       },
       "metadata": {
-        "available": true,
-        "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-11T00:36:52.412269+00:00",
-        "localizations": [
-          {
-            "id": "962852b5-ebb3-4367-9327-9aeb18dbc0cd",
-            "locale": "en-US",
-            "name": "Gogo Looping",
-            "subtitle": null,
-            "privacy_policy_url": null,
-            "has_privacy_policy_text": false
-          }
-        ],
-        "categories": []
+        "available": false,
+        "error": "missing app_id"
       },
       "screenshot_inventory": {
         "available": false,
-        "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-11T00:36:52.481007+00:00",
-        "localizations": [],
-        "errors": [
-          {
-            "localization_id": "a15c1d85-88cc-4c02-b75e-e3b8d2acecf5",
-            "locale": "en-US",
-            "version_string": "1.0",
-            "app_store_state": "PREPARE_FOR_SUBMISSION",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/a15c1d85-88cc-4c02-b75e-e3b8d2acecf5/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '4e52f955-11b1-463a-8143-d4823fd052fa', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
-          }
-        ]
+        "error": "missing app_id"
       },
       "quality_signals": {
         "refund_rate": null,
@@ -1345,7 +1255,7 @@
       "app_id": null,
       "bundle_id": null,
       "sku": null,
-      "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/apps/6769386761/analyticsReportRequests?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}",
+      "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReports/r4-7a700331-b3cc-4ab1-b4c5-81469844a1fb/instances?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}",
       "metrics_scope": "report_date",
       "metrics_report_date": "2026-06-09",
       "downloads": 0,
@@ -1457,7 +1367,7 @@
       "app_id": null,
       "bundle_id": null,
       "sku": null,
-      "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/apps/6764426243/analyticsReportRequests?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}",
+      "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/afde5f7e-ada6-444e-85bd-e7641a387e99/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}",
       "metrics_scope": "report_date",
       "metrics_report_date": "2026-06-09",
       "downloads": 0,
@@ -1569,7 +1479,7 @@
       "app_id": null,
       "bundle_id": null,
       "sku": null,
-      "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReports/r14-ec6ae59e-f7a5-4735-8e7c-73be7ecba311/instances?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}",
+      "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReports/r4-ec6ae59e-f7a5-4735-8e7c-73be7ecba311/instances?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}",
       "metrics_scope": "report_date",
       "metrics_report_date": "2026-06-09",
       "downloads": 0,
@@ -1701,8 +1611,8 @@
     }
   },
   "freshness": {
-    "checked_at": "2026-06-11T00:36:50.234914+00:00",
-    "generated_at": "2026-06-11T00:36:48.246241+00:00",
+    "checked_at": "2026-06-11T00:38:31.046610+00:00",
+    "generated_at": "2026-06-11T00:38:28.648543+00:00",
     "report_date": "2026-06-09",
     "generated_age_hours": 0.0,
     "report_age_days": 2,
