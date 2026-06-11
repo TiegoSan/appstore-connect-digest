@@ -80,9 +80,19 @@ jobs:
         if: env.RUN_METRICS == 'true'
         run: python enrich_market_metrics.py
 
+      - name: Checkout private analytics dashboard
+        if: env.RUN_METRICS == 'true' && env.GOGOLABS_ANALYTICS_REPO_TOKEN != ''
+        run: |
+          git clone "https://x-access-token:${GOGOLABS_ANALYTICS_REPO_TOKEN}@github.com/TiegoSan/gogolabs-analytics.git" /tmp/gogolabs-analytics
+
       - name: Build private dashboard payload
         if: env.RUN_METRICS == 'true'
-        run: python appstore_dashboard.py
+        run: |
+          if [ -f /tmp/gogolabs-analytics/latest-appstore-dashboard.json ]; then
+            python appstore_dashboard.py --previous-dashboard /tmp/gogolabs-analytics/latest-appstore-dashboard.json
+          else
+            python appstore_dashboard.py
+          fi
 
       - name: Commit enriched metrics
         if: env.RUN_METRICS == 'true'
@@ -101,8 +111,7 @@ jobs:
       - name: Publish dashboard payload to private analytics repo
         if: env.RUN_METRICS == 'true' && env.GOGOLABS_ANALYTICS_REPO_TOKEN != ''
         run: |
-          workdir="$(mktemp -d)"
-          git clone "https://x-access-token:${GOGOLABS_ANALYTICS_REPO_TOKEN}@github.com/TiegoSan/gogolabs-analytics.git" "$workdir"
+          workdir="/tmp/gogolabs-analytics"
           cp dashboard/latest-appstore-dashboard.json "$workdir/latest-appstore-dashboard.json"
           cp dashboard/latest-appstore-alerts.json "$workdir/latest-appstore-alerts.json"
           cd "$workdir"

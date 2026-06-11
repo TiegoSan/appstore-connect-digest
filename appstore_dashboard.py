@@ -86,8 +86,33 @@ def int_by_date(*sources: Any) -> dict[str, int]:
     return values
 
 
-def merged_metric(reports: list[dict[str, Any]], field: str, app: dict[str, Any]) -> dict[str, int]:
-    sources = [report.get(field) for report in reports]
+def previous_metric(previous_time_series: dict[str, Any] | None, field: str) -> dict[str, int]:
+    if not isinstance(previous_time_series, dict):
+        return {}
+    values: dict[str, int] = {}
+    for row in previous_time_series.get("rows") or []:
+        if not isinstance(row, dict):
+            continue
+        key = row.get("date")
+        if parse_date(key) and row.get(field) is not None:
+            values[str(key)] = as_int(row.get(field))
+    return values
+
+
+def merged_metric(
+    reports: list[dict[str, Any]],
+    field: str,
+    app: dict[str, Any],
+    previous_time_series: dict[str, Any] | None = None,
+) -> dict[str, int]:
+    previous_field = {
+        "by_date": "downloads",
+        "impressions_by_date": "impressions",
+        "product_page_views_by_date": "product_page_views",
+        "taps_by_date": "taps",
+    }.get(field, field)
+    sources = [previous_metric(previous_time_series, previous_field)]
+    sources.extend(report.get(field) for report in reports)
     sources.append(app.get(field))
     return int_by_date(*sources)
 
@@ -105,11 +130,16 @@ def metric_freshness(series: dict[str, int], end: date) -> dict[str, Any]:
     }
 
 
-def build_time_series(app: dict[str, Any], reports: list[dict[str, Any]], days: int = 30) -> dict[str, Any]:
-    downloads = merged_metric(reports, "by_date", app)
-    impressions = merged_metric(reports, "impressions_by_date", app)
-    page_views = merged_metric(reports, "product_page_views_by_date", app)
-    taps = merged_metric(reports, "taps_by_date", app)
+def build_time_series(
+    app: dict[str, Any],
+    reports: list[dict[str, Any]],
+    previous_time_series: dict[str, Any] | None = None,
+    days: int = 30,
+) -> dict[str, Any]:
+    downloads = merged_metric(reports, "by_date", app, previous_time_series)
+    impressions = merged_metric(reports, "impressions_by_date", app, previous_time_series)
+    page_views = merged_metric(reports, "product_page_views_by_date", app, previous_time_series)
+    taps = merged_metric(reports, "taps_by_date", app, previous_time_series)
 
     explicit_end = parse_date(app.get("metrics_report_date")) or parse_date(app.get("report_date"))
     dates = [parse_date(key) for series in [downloads, impressions, page_views, taps] for key in series]
@@ -200,7 +230,11 @@ def compact_versions(versions: Any, limit: int = 4) -> list[dict[str, Any]]:
     return compacted
 
 
-def compact_app(app: dict[str, Any], reports: list[dict[str, Any]] | None = None) -> dict[str, Any]:
+def compact_app(
+    app: dict[str, Any],
+    reports: list[dict[str, Any]] | None = None,
+    previous_app: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     history = app.get("history") if isinstance(app.get("history"), dict) else {}
     sales = app.get("sales") if isinstance(app.get("sales"), dict) else {}
     reviews = app.get("reviews") if isinstance(app.get("reviews"), dict) else {}
@@ -211,6 +245,8 @@ def compact_app(app: dict[str, Any], reports: list[dict[str, Any]] | None = None
     territory_funnel = app.get("funnel_by_territory") if isinstance(app.get("funnel_by_territory"), dict) else {}
     screenshots = app.get("screenshot_inventory") if isinstance(app.get("screenshot_inventory"), dict) else {}
     reports = reports or []
+    previous_history = previous_app.get("history") if isinstance(previous_app, dict) and isinstance(previous_app.get("history"), dict) else {}
+    previous_time_series = previous_history.get("time_series") if isinstance(previous_history.get("time_series"), dict) else None
 
     return {
         "key": app.get("key"),
@@ -249,7 +285,7 @@ def compact_app(app: dict[str, Any], reports: list[dict[str, Any]] | None = None
             "previous_7d": history.get("previous_7d") or {},
             "current_30d": history.get("current_30d") or {},
             "delta_7d": history.get("delta_7d") or {},
-            "time_series": build_time_series(app, reports),
+            "time_series": build_time_series(app, reports, previous_time_series),
         },
         "sales": {
             "available": bool(sales.get("available")),
@@ -321,6 +357,40 @@ def totals_from_apps(apps: list[dict[str, Any]]) -> dict[str, Any]:
         "refund_units": sum(app["sales"]["refund_units"] for app in apps),
         "developer_proceeds": round(sum(app["sales"]["developer_proceeds"] for app in apps), 2),
     }
+
+
+def totals_from_time_series(apps: list[dict[str, Any]], days: int = 7) -> dict[str, Any]:
+    totals = {
+        "downloads": 0,
+        "impressions": 0,
+        "product_page_views": 0,
+        "taps": 0,
+        "measured_points": 0,
+        "possible_points": 0,
+        "days": days,
+    }
+    for app in apps:
+        rows = (((app.get("history") or {}).get("time_series") or {}).get("rows") or [])[-days:]
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            for key in ["downloads", "impressions", "product_page_views", "taps"]:
+                totals["possible_points"] += 1
+                if row.get(key) is not None:
+                    totals[key] += as_int(row.get(key))
+                    totals["measured_points"] += 1
+    totals["coverage_rate"] = round((totals["measured_points"] / totals["possible_points"]) * 100, 1) if totals["possible_points"] else 0
+    return totals
+
+
+def load_previous_dashboard(path: Path | None) -> dict[str, Any]:
+    if not path or not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        return payload if isinstance(payload, dict) else {}
+    except (OSError, json.JSONDecodeError):
+        return {}
 
 
 def build_alerts(payload: dict[str, Any]) -> list[dict[str, Any]]:
@@ -428,9 +498,14 @@ def build_alerts(payload: dict[str, Any]) -> list[dict[str, Any]]:
     return sorted(alerts, key=lambda item: (level_rank.get(item["level"], 9), item.get("title") or ""))
 
 
-def build_dashboard_payload(metrics: dict[str, Any]) -> dict[str, Any]:
+def build_dashboard_payload(metrics: dict[str, Any], previous_dashboard: dict[str, Any] | None = None) -> dict[str, Any]:
+    previous_apps = {
+        app.get("key"): app
+        for app in (previous_dashboard or {}).get("apps", [])
+        if isinstance(app, dict) and app.get("key")
+    }
     apps = [
-        compact_app(app, load_reports(app.get("key") or ""))
+        compact_app(app, load_reports(app.get("key") or ""), previous_apps.get(app.get("key")))
         for app in metrics.get("apps", [])
         if isinstance(app, dict)
     ]
@@ -448,6 +523,7 @@ def build_dashboard_payload(metrics: dict[str, Any]) -> dict[str, Any]:
         },
         "apps": apps,
         "totals": totals_from_apps(apps),
+        "totals_7d": totals_from_time_series(apps, 7),
     }
     payload["alerts"] = build_alerts(payload)
     return payload
@@ -458,9 +534,13 @@ def write_json(path: Path, payload: Any) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
-def write_dashboard(metrics_path: Path = METRICS_PATH, output_path: Path = DASHBOARD_PAYLOAD_PATH) -> dict[str, Any]:
+def write_dashboard(
+    metrics_path: Path = METRICS_PATH,
+    output_path: Path = DASHBOARD_PAYLOAD_PATH,
+    previous_dashboard_path: Path | None = None,
+) -> dict[str, Any]:
     metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
-    payload = build_dashboard_payload(metrics)
+    payload = build_dashboard_payload(metrics, load_previous_dashboard(previous_dashboard_path))
     write_json(output_path, payload)
     write_json(ALERTS_PATH, {"report_date": payload.get("report_date"), "alerts": payload["alerts"]})
     return payload
@@ -477,10 +557,11 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Build the private static App Store dashboard payload.")
     parser.add_argument("--metrics", type=Path, default=METRICS_PATH)
     parser.add_argument("--output", type=Path, default=DASHBOARD_PAYLOAD_PATH)
+    parser.add_argument("--previous-dashboard", type=Path, help="Optional previous dashboard payload used to preserve time series.")
     parser.add_argument("--copy-to-site", type=Path, help="Optional target directory, usually Gogolabs.fr/private/appstore.")
     args = parser.parse_args()
 
-    payload = write_dashboard(args.metrics, args.output)
+    payload = write_dashboard(args.metrics, args.output, args.previous_dashboard)
     print(f"DASHBOARD {args.output}")
     print(f"ALERTS {ALERTS_PATH}")
     print(f"ALERT_COUNT {len(payload['alerts'])}")
