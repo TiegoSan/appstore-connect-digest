@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T02:53:25.842769+00:00",
+  "generated_at": "2026-06-20T02:58:43.073376+00:00",
   "report_date": "2026-06-17",
   "metrics_scope": "report_date",
   "metrics_semantics": {
@@ -12,16 +12,16 @@
     "doctrine": "Transformer l'expertise de production en apps macOS premium qui économisent du temps, réduisent les erreurs et rendent les workflows créatifs plus contrôlables."
   },
   "totals": {
-    "downloads": 0,
-    "first_time_downloads": 0,
-    "impressions": 79,
-    "product_page_views": 4,
-    "taps": 2,
-    "downloads_total_available": 81,
-    "first_time_downloads_total_available": 57,
-    "impressions_total_available": 2742,
-    "product_page_views_total_available": 125,
-    "taps_total_available": 89,
+    "downloads": 1,
+    "first_time_downloads": 1,
+    "impressions": 306,
+    "product_page_views": 18,
+    "taps": 4,
+    "downloads_total_available": 82,
+    "first_time_downloads_total_available": 58,
+    "impressions_total_available": 2969,
+    "product_page_views_total_available": 139,
+    "taps_total_available": 91,
     "paid_units": 3,
     "developer_proceeds": 0.0
   },
@@ -58,11 +58,11 @@
         "name": "Desktop",
         "count": 6
       },
-      "delta_downloads": null,
-      "delta_first_time_downloads": null,
-      "delta_impressions": null,
-      "delta_product_page_views": null,
-      "delta_taps": null,
+      "delta_downloads": 0,
+      "delta_first_time_downloads": 0,
+      "delta_impressions": 0,
+      "delta_product_page_views": 0,
+      "delta_taps": 0,
       "engagement_report_date_available": true,
       "downloads_report_date_available": false,
       "impressions_by_date": {
@@ -103,7 +103,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:53:26.877222+00:00",
+        "fetched_at": "2026-06-20T02:58:48.186256+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -544,7 +544,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:53:34.625229+00:00",
+        "fetched_at": "2026-06-20T02:59:06.636023+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -556,7 +556,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:53:35.113667+00:00",
+        "fetched_at": "2026-06-20T02:59:07.434988+00:00",
         "localizations": [
           {
             "id": "4c4aae4b-0ecd-4d91-a0e4-528442efa26c",
@@ -605,7 +605,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:53:35.607817+00:00",
+        "fetched_at": "2026-06-20T02:59:08.480186+00:00",
         "localizations": [],
         "errors": [
           {
@@ -613,14 +613,14 @@
             "locale": "fr-FR",
             "version_string": "2.0",
             "app_store_state": "READY_FOR_SALE",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/31f41a56-4fbd-4335-a63f-e549bca02381/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'd2c78bef-4abe-436b-aff4-435b159a50d6', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/31f41a56-4fbd-4335-a63f-e549bca02381/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '9dd480f7-46db-4a8c-a73c-5495b0978bb8', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           },
           {
             "localization_id": "333e4604-aaab-4ed8-9372-b054c8bcf88a",
             "locale": "en-US",
             "version_string": "2.0",
             "app_store_state": "READY_FOR_SALE",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/333e4604-aaab-4ed8-9372-b054c8bcf88a/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '9ba14bad-8428-44f2-a42b-a11fb00aee43', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/333e4604-aaab-4ed8-9372-b054c8bcf88a/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '881f6c1f-8cdf-4fe1-b22a-8ac455ecf9a7', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -664,11 +664,11 @@
         "name": "iPhone",
         "count": 18
       },
-      "delta_downloads": null,
-      "delta_first_time_downloads": null,
-      "delta_impressions": null,
-      "delta_product_page_views": null,
-      "delta_taps": null,
+      "delta_downloads": 0,
+      "delta_first_time_downloads": 0,
+      "delta_impressions": 0,
+      "delta_product_page_views": 0,
+      "delta_taps": 0,
       "engagement_report_date_available": true,
       "downloads_report_date_available": false,
       "impressions_by_date": {
@@ -726,7 +726,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:53:27.551617+00:00",
+        "fetched_at": "2026-06-20T02:58:49.141831+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -1186,7 +1186,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:53:35.963784+00:00",
+        "fetched_at": "2026-06-20T02:59:09.242413+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -1198,7 +1198,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:53:36.397421+00:00",
+        "fetched_at": "2026-06-20T02:59:10.095760+00:00",
         "localizations": [
           {
             "id": "e713dc7a-0d94-4c3c-b555-95f187c1d06c",
@@ -1255,7 +1255,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:53:37.120995+00:00",
+        "fetched_at": "2026-06-20T02:59:12.077200+00:00",
         "localizations": [],
         "errors": [
           {
@@ -1263,21 +1263,21 @@
             "locale": "fr-FR",
             "version_string": "1.2",
             "app_store_state": "READY_FOR_SALE",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/bd592743-9c00-49c5-9234-47a9129b4a6a/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'f82ff506-147c-4950-9ecc-c3d77bbae546', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/bd592743-9c00-49c5-9234-47a9129b4a6a/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '09f82668-18d5-4355-ac75-c2d543beafa7', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           },
           {
             "localization_id": "1cb2298c-15fe-42f5-a930-43908984358d",
             "locale": "en-US",
             "version_string": "1.2",
             "app_store_state": "READY_FOR_SALE",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/1cb2298c-15fe-42f5-a930-43908984358d/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'b8b4949f-4925-4243-95e0-43a253fb3b46', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/1cb2298c-15fe-42f5-a930-43908984358d/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '62bf01ba-a15d-44de-85b8-5ad7d79fe415', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           },
           {
             "localization_id": "19e90ce3-149b-4c75-ac8b-06e4a5f657fe",
             "locale": "ja",
             "version_string": "1.2",
             "app_store_state": "READY_FOR_SALE",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/19e90ce3-149b-4c75-ac8b-06e4a5f657fe/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'ccbcb431-5d30-400c-9915-84716a530abe', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/19e90ce3-149b-4c75-ac8b-06e4a5f657fe/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '2d6a75b8-dfb9-4394-b51f-219577376054', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -1321,11 +1321,11 @@
         "name": "Desktop",
         "count": 14
       },
-      "delta_downloads": null,
-      "delta_first_time_downloads": null,
-      "delta_impressions": null,
-      "delta_product_page_views": null,
-      "delta_taps": null,
+      "delta_downloads": 0,
+      "delta_first_time_downloads": 0,
+      "delta_impressions": 0,
+      "delta_product_page_views": 0,
+      "delta_taps": 0,
       "engagement_report_date_available": true,
       "downloads_report_date_available": false,
       "impressions_by_date": {
@@ -1367,7 +1367,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:53:28.148475+00:00",
+        "fetched_at": "2026-06-20T02:58:49.991179+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -1785,7 +1785,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:53:37.435604+00:00",
+        "fetched_at": "2026-06-20T02:59:12.681597+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -1797,7 +1797,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:53:37.984023+00:00",
+        "fetched_at": "2026-06-20T02:59:13.465734+00:00",
         "localizations": [
           {
             "id": "4f732e72-4179-4f06-9a3e-a6b9fcd79174",
@@ -1838,7 +1838,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:53:38.208976+00:00",
+        "fetched_at": "2026-06-20T02:59:14.000688+00:00",
         "localizations": [],
         "errors": [
           {
@@ -1846,7 +1846,7 @@
             "locale": "en-GB",
             "version_string": "1.3",
             "app_store_state": "READY_FOR_SALE",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/6851d61b-be2d-465d-867b-1919cf6764ea/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '618aebd9-31ac-4e80-b198-9d5e2c6b27cb', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/6851d61b-be2d-465d-867b-1919cf6764ea/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '989742de-e9b1-4166-9c5e-ac298ba40564', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -1919,7 +1919,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:53:28.485727+00:00",
+        "fetched_at": "2026-06-20T02:58:50.575083+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -2099,7 +2099,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:53:38.535609+00:00",
+        "fetched_at": "2026-06-20T02:59:14.637537+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -2111,7 +2111,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:53:39.002207+00:00",
+        "fetched_at": "2026-06-20T02:59:15.386403+00:00",
         "localizations": [
           {
             "id": "96fb5fd9-0438-40e5-bef3-691a906f13f2",
@@ -2148,7 +2148,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:53:39.468956+00:00",
+        "fetched_at": "2026-06-20T02:59:16.525862+00:00",
         "localizations": [],
         "errors": [
           {
@@ -2156,14 +2156,14 @@
             "locale": "fr-FR",
             "version_string": "1.0",
             "app_store_state": "PREPARE_FOR_SUBMISSION",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/64530e1f-f128-4252-8408-98274dcf2ff8/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'a385e006-0143-4ed0-a84c-0af8f32c0bc7', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/64530e1f-f128-4252-8408-98274dcf2ff8/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'ed237a63-1b01-4716-a32a-8fd61387d33b', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           },
           {
             "localization_id": "bb7ef7d9-d047-4ef2-9ece-19703885f468",
             "locale": "en-US",
             "version_string": "1.0",
             "app_store_state": "PREPARE_FOR_SUBMISSION",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/bb7ef7d9-d047-4ef2-9ece-19703885f468/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '90590622-14c7-45dd-b5b3-d555f8957e61', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/bb7ef7d9-d047-4ef2-9ece-19703885f468/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '291a58be-0259-4823-bf1e-94e0d5e67ad1', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -2236,7 +2236,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:53:28.786443+00:00",
+        "fetched_at": "2026-06-20T02:58:52.277843+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -2293,7 +2293,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6772350677/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'b1a9041c-b8bc-42a2-b7e2-413fbd9345b4', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6772350677'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6772350677/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'bacb8375-5817-4736-8b23-e8e702c86201', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6772350677'\"}]}"
       },
       "sales": {
         "available": false,
@@ -2329,7 +2329,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:53:39.782361+00:00",
+        "fetched_at": "2026-06-20T02:59:17.117568+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -2341,7 +2341,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:53:40.152132+00:00",
+        "fetched_at": "2026-06-20T02:59:17.753610+00:00",
         "localizations": [
           {
             "id": "df6ef245-510f-4714-88ca-53331d3e6937",
@@ -2357,7 +2357,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:53:40.400117+00:00",
+        "fetched_at": "2026-06-20T02:59:18.310237+00:00",
         "localizations": [],
         "errors": [
           {
@@ -2365,7 +2365,7 @@
             "locale": "en-US",
             "version_string": "1.0",
             "app_store_state": "PREPARE_FOR_SUBMISSION",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/93f2b14e-2de8-42a5-9fce-60010185891e/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'e5ae2743-9395-40c0-af06-d703e3b752d3', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/93f2b14e-2de8-42a5-9fce-60010185891e/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '1d806153-4e01-4807-9539-001456543120', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -2438,7 +2438,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:53:29.081066+00:00",
+        "fetched_at": "2026-06-20T02:58:52.955665+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -2495,7 +2495,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6770716816/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '24b0c7e1-53ef-4bda-9999-341ad5600300', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6770716816'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6770716816/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'f518f29a-18ea-48de-9611-974a5028c6f4', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6770716816'\"}]}"
       },
       "sales": {
         "available": false,
@@ -2531,7 +2531,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:53:40.727543+00:00",
+        "fetched_at": "2026-06-20T02:59:18.870014+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -2543,7 +2543,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:53:41.082260+00:00",
+        "fetched_at": "2026-06-20T02:59:19.523475+00:00",
         "localizations": [
           {
             "id": "962852b5-ebb3-4367-9327-9aeb18dbc0cd",
@@ -2559,7 +2559,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:53:41.340555+00:00",
+        "fetched_at": "2026-06-20T02:59:20.045058+00:00",
         "localizations": [],
         "errors": [
           {
@@ -2567,7 +2567,7 @@
             "locale": "en-US",
             "version_string": "1.0",
             "app_store_state": "PREPARE_FOR_SUBMISSION",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/a15c1d85-88cc-4c02-b75e-e3b8d2acecf5/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '6dccea16-6369-49db-9db2-b5d6fa04eb2b', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/a15c1d85-88cc-4c02-b75e-e3b8d2acecf5/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '23fa82ce-3a1d-45b5-8bb1-2f2696b40655', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -2611,11 +2611,11 @@
         "name": "Desktop",
         "count": 21
       },
-      "delta_downloads": null,
-      "delta_first_time_downloads": null,
-      "delta_impressions": null,
-      "delta_product_page_views": null,
-      "delta_taps": null,
+      "delta_downloads": 0,
+      "delta_first_time_downloads": 0,
+      "delta_impressions": 0,
+      "delta_product_page_views": 0,
+      "delta_taps": 0,
       "engagement_report_date_available": true,
       "downloads_report_date_available": false,
       "impressions_by_date": {
@@ -2661,7 +2661,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:53:29.480108+00:00",
+        "fetched_at": "2026-06-20T02:58:53.625391+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -3078,7 +3078,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:53:41.689913+00:00",
+        "fetched_at": "2026-06-20T02:59:20.657733+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -3090,7 +3090,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:53:42.157186+00:00",
+        "fetched_at": "2026-06-20T02:59:21.357969+00:00",
         "localizations": [
           {
             "id": "4968b391-9f8d-4643-824c-819e5189b35c",
@@ -3131,7 +3131,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:53:42.403867+00:00",
+        "fetched_at": "2026-06-20T02:59:21.975916+00:00",
         "localizations": [],
         "errors": [
           {
@@ -3139,7 +3139,7 @@
             "locale": "en-US",
             "version_string": "1.0",
             "app_store_state": "READY_FOR_SALE",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/2cb2abc2-5837-4d3b-a9ca-4064ef5b46dd/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'a2038ae7-b940-442e-838a-b04c7b1dadc8', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/2cb2abc2-5837-4d3b-a9ca-4064ef5b46dd/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'd13d1d38-f273-433e-a9bf-88e1f20eb463', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -3183,11 +3183,11 @@
         "name": "Desktop",
         "count": 6
       },
-      "delta_downloads": null,
-      "delta_first_time_downloads": null,
-      "delta_impressions": null,
-      "delta_product_page_views": null,
-      "delta_taps": null,
+      "delta_downloads": 0,
+      "delta_first_time_downloads": 0,
+      "delta_impressions": 0,
+      "delta_product_page_views": 0,
+      "delta_taps": 0,
       "engagement_report_date_available": true,
       "downloads_report_date_available": false,
       "impressions_by_date": {
@@ -3228,7 +3228,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:53:29.878916+00:00",
+        "fetched_at": "2026-06-20T02:58:54.321840+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -3633,7 +3633,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:53:42.712802+00:00",
+        "fetched_at": "2026-06-20T02:59:22.623558+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -3645,7 +3645,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:53:43.168617+00:00",
+        "fetched_at": "2026-06-20T02:59:23.410624+00:00",
         "localizations": [
           {
             "id": "2e0b6f17-74a7-4ef9-b622-90fbc6e1a5cc",
@@ -3686,7 +3686,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:53:43.416145+00:00",
+        "fetched_at": "2026-06-20T02:59:23.945159+00:00",
         "localizations": [],
         "errors": [
           {
@@ -3694,7 +3694,7 @@
             "locale": "en-US",
             "version_string": "1.0",
             "app_store_state": "READY_FOR_SALE",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/5df6c660-4d41-4889-a06e-b5317e5ff0b6/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '4e5eb383-3d75-4177-adb8-0e2c3b981d5a', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/5df6c660-4d41-4889-a06e-b5317e5ff0b6/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'e95c07f9-5ab9-4619-b118-4a674c663892', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -3767,7 +3767,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:53:30.170979+00:00",
+        "fetched_at": "2026-06-20T02:58:54.878438+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -3824,7 +3824,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6761501191/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'dcde95ca-47a7-4469-9e4d-4717a76e67a3', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6761501191'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6761501191/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'ecb7d382-58f4-466f-8b2c-1fc406a6fa35', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6761501191'\"}]}"
       },
       "sales": {
         "available": false,
@@ -3860,7 +3860,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:53:43.763228+00:00",
+        "fetched_at": "2026-06-20T02:59:24.563475+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -3872,7 +3872,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:53:44.067243+00:00",
+        "fetched_at": "2026-06-20T02:59:25.298150+00:00",
         "localizations": [
           {
             "id": "0e6f2197-5185-4e12-9382-fc8380d45593",
@@ -3888,7 +3888,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:53:44.290155+00:00",
+        "fetched_at": "2026-06-20T02:59:25.810331+00:00",
         "localizations": [],
         "errors": [
           {
@@ -3896,7 +3896,815 @@
             "locale": "en-GB",
             "version_string": "1.0",
             "app_store_state": "PREPARE_FOR_SUBMISSION",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/84901e45-1475-493c-a0b5-a6b70912b32b/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '389762ad-25fd-4288-9df2-c045273ca21e', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/84901e45-1475-493c-a0b5-a6b70912b32b/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '1ef7bf1c-2f2b-45e4-ade1-56b342055a0a', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+          }
+        ]
+      },
+      "quality_signals": {
+        "refund_rate": null,
+        "has_paid_signal": false,
+        "has_review_signal": false,
+        "has_source_funnel": false,
+        "has_territory_funnel": false
+      }
+    },
+    {
+      "key": "dorequiz",
+      "name": "DoReQuiz",
+      "app_id": "6780059863",
+      "bundle_id": "com.gogolabs.dorequiz",
+      "sku": "com.gogolabs.dorequiz",
+      "error": null,
+      "metrics_scope": "report_date",
+      "metrics_report_date": "2026-06-17",
+      "downloads": 1,
+      "first_time_downloads": 1,
+      "impressions": 227,
+      "unique_impressions": 193,
+      "product_page_views": 14,
+      "unique_product_page_views": 7,
+      "taps": 2,
+      "unique_taps": 2,
+      "conversion_rate": 0.52,
+      "page_view_rate": 7.25,
+      "tap_rate": 1.04,
+      "dominant_source": {
+        "name": "App Store search",
+        "count": 227
+      },
+      "dominant_territory": {
+        "name": "JP",
+        "count": 67
+      },
+      "dominant_device": {
+        "name": "iPhone",
+        "count": 177
+      },
+      "delta_downloads": 0,
+      "delta_first_time_downloads": 0,
+      "delta_impressions": 0,
+      "delta_product_page_views": 0,
+      "delta_taps": 0,
+      "engagement_report_date_available": true,
+      "downloads_report_date_available": true,
+      "impressions_by_date": {
+        "2026-06-17": 227
+      },
+      "product_page_views_by_date": {
+        "2026-06-17": 14
+      },
+      "taps_by_date": {
+        "2026-06-17": 2
+      },
+      "impressions_by_source_type_report_date": {
+        "App Store search": 227
+      },
+      "impressions_by_territory_report_date": {
+        "ID": 6,
+        "KR": 24,
+        "PH": 9,
+        "GR": 2,
+        "NP": 2,
+        "CA": 2,
+        "HK": 2,
+        "US": 5,
+        "JP": 67,
+        "PK": 1,
+        "GE": 1,
+        "FR": 5,
+        "VN": 9,
+        "PL": 6,
+        "BR": 5,
+        "RU": 13,
+        "QA": 2,
+        "TN": 1,
+        "MX": 1,
+        "GB": 5,
+        "MY": 4,
+        "ZA": 1,
+        "AU": 1,
+        "MG": 1,
+        "TW": 2,
+        "CN": 10,
+        "EG": 1,
+        "MA": 1,
+        "GH": 1,
+        "UG": 1,
+        "BE": 3,
+        "UA": 2,
+        "ES": 1,
+        "SL": 1,
+        "TR": 5,
+        "NO": 6,
+        "CI": 1,
+        "IQ": 1,
+        "SI": 1,
+        "IT": 1,
+        "AF": 2,
+        "SA": 4,
+        "TH": 1,
+        "AE": 2,
+        "VU": 1,
+        "DE": 1,
+        "MM": 2,
+        "CH": 1
+      },
+      "impressions_by_device_report_date": {
+        "iPad": 50,
+        "iPhone": 177
+      },
+      "engagement_by_event_report_date": {
+        "Impression": 227,
+        "Tap": 2,
+        "Page view": 14
+      },
+      "engagement_unique_by_event_report_date": {
+        "Impression": 193,
+        "Tap": 2,
+        "Page view": 7
+      },
+      "impressions_total_available": 227,
+      "unique_impressions_total_available": 193,
+      "product_page_views_total_available": 14,
+      "unique_product_page_views_total_available": 7,
+      "taps_total_available": 2,
+      "unique_taps_total_available": 2,
+      "downloads_total_available": 1,
+      "first_time_downloads_total_available": 1,
+      "conversion_rate_total_available": 0.52,
+      "page_view_rate_total_available": 7.25,
+      "tap_rate_total_available": 1.04,
+      "review_pipeline": {
+        "available": true,
+        "source": "App Store Connect appStoreVersions",
+        "fetched_at": "2026-06-20T02:58:55.664143+00:00",
+        "has_pending_version": false,
+        "has_blocking_pipeline_change": false,
+        "pipeline_states": [],
+        "blocking_recommendation_states": [],
+        "version_count": 1,
+        "included_version_count": 1,
+        "omitted_historical_version_count": 0,
+        "pipeline_version_count": 0,
+        "versions": [
+          {
+            "id": "e5283753-2ee4-4030-9656-919f9d0025df",
+            "platform": "IOS",
+            "version_string": "1.0",
+            "app_store_state": "READY_FOR_SALE",
+            "app_version_state": "READY_FOR_DISTRIBUTION",
+            "review_type": "APP_STORE",
+            "release_type": "AFTER_APPROVAL",
+            "earliest_release_date": null,
+            "created_date": "2026-06-13T14:36:36-07:00",
+            "downloadable": true,
+            "uses_idfa": null,
+            "is_live": true,
+            "is_pipeline": false,
+            "blocks_redundant_recommendations": false,
+            "build": {
+              "id": "281108b4-c004-426b-81e2-fffdfa0130bc",
+              "version": "2",
+              "uploaded_date": "2026-06-13T15:19:14-07:00",
+              "processing_state": "VALID",
+              "min_os_version": "15.0",
+              "ls_minimum_system_version": null,
+              "computed_min_macos_version": "12.0",
+              "expired": false,
+              "uses_non_exempt_encryption": false
+            },
+            "localizations": [
+              {
+                "id": "c712b947-b421-4a80-b8a1-a5600f60c487",
+                "locale": "en-US",
+                "name": null,
+                "subtitle": null,
+                "privacy_policy_url": null,
+                "privacy_policy_text": null,
+                "promotional_text": "Listen to a melody, find the notes on the keyboard, and progress through guided, instrument, chord, and freestyle modes.",
+                "description": "DoReQuiz turns musical listening into a tactile game.\n\nListen to a short melody, find the notes on the keyboard, and progress round after round. The app is designed to train musical hearing without a complicated interface: a clear keyboard, immediate feedback, several difficulty modes, and a playful visual style inspired by small electronic instruments.\n\nIncluded modes:\n- Guided mode: keys light up to show the melody.\n- Easy mode: short phrases on one octave.\n- Normal mode: longer and more demanding melodies.\n- Instrument quiz: listen to a sound and choose the matching image.\n- Chords: find several notes played together.\n- Freestyle: play freely on the keyboard.\n\nDoReQuiz is made for beginners, children, curious musicians, and anyone who wants to practice listening, melodic memory, and note recognition in a direct way.\n\nNo theory required to start: listen, play, repeat.",
+                "keywords": "music,piano,keyboard,notes,ear,melody,chords,instruments,listening,kids,quiz,training",
+                "marketing_url": "https://gogolabs.fr/",
+                "support_url": "https://gogolabs.fr/support.html",
+                "whats_new": null
+              }
+            ],
+            "app_store_review_detail": {
+              "id": "d1e8e472-c85c-471a-98a2-46328ed60599",
+              "attributes": {},
+              "redacted_fields": [
+                "contactEmail",
+                "contactFirstName",
+                "contactLastName",
+                "contactPhone"
+              ],
+              "has_contact_email": true,
+              "has_contact_phone": true,
+              "has_demo_account": false,
+              "has_notes": false
+            },
+            "app_store_version_submission": null,
+            "app_store_version_phased_release": null
+          }
+        ],
+        "automation_context": [
+          "Lire ce bloc avant toute recommandation ASO, screenshots, metadata, pricing ou produit.",
+          "Si has_blocking_pipeline_change vaut true, ne pas proposer comme prochaine action un changement deja contenu dans la version en attente/review.",
+          "Comparer les localizations et le build de la version pipeline avec les metriques actuelles avant de conclure."
+        ]
+      },
+      "pricing": {
+        "available": true,
+        "schedule_id": "6780059863",
+        "attributes": {},
+        "base_territory": "USA",
+        "manual_prices": {
+          "total": 1,
+          "returned": 1,
+          "limit": 50
+        },
+        "automatic_prices": {
+          "total": 174,
+          "returned": 50,
+          "limit": 50
+        },
+        "included_count": 52,
+        "included_sample": [
+          {
+            "type": "territories",
+            "id": "USA",
+            "attributes": {
+              "currency": "USD"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/territories/USA"
+            }
+          },
+          {
+            "type": "appPrices",
+            "id": "eyJzIjoiNjc4MDA1OTg2MyIsInQiOiJVU0EiLCJwIjoiMTAwMDAiLCJzZCI6MC4wLCJlZCI6MC4wfQ",
+            "attributes": {
+              "manual": true,
+              "startDate": null,
+              "endDate": null
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v2/appPrices/eyJzIjoiNjc4MDA1OTg2MyIsInQiOiJVU0EiLCJwIjoiMTAwMDAiLCJzZCI6MC4wLCJlZCI6MC4wfQ"
+            }
+          },
+          {
+            "type": "appPrices",
+            "id": "eyJzIjoiNjc4MDA1OTg2MyIsInQiOiJBRkciLCJwIjoiMTAwMDAiLCJzZCI6MC4wLCJlZCI6MC4wfQ",
+            "attributes": {
+              "manual": false,
+              "startDate": null,
+              "endDate": null
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v2/appPrices/eyJzIjoiNjc4MDA1OTg2MyIsInQiOiJBRkciLCJwIjoiMTAwMDAiLCJzZCI6MC4wLCJlZCI6MC4wfQ"
+            }
+          },
+          {
+            "type": "appPrices",
+            "id": "eyJzIjoiNjc4MDA1OTg2MyIsInQiOiJBR08iLCJwIjoiMTAwMDAiLCJzZCI6MC4wLCJlZCI6MC4wfQ",
+            "attributes": {
+              "manual": false,
+              "startDate": null,
+              "endDate": null
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v2/appPrices/eyJzIjoiNjc4MDA1OTg2MyIsInQiOiJBR08iLCJwIjoiMTAwMDAiLCJzZCI6MC4wLCJlZCI6MC4wfQ"
+            }
+          },
+          {
+            "type": "appPrices",
+            "id": "eyJzIjoiNjc4MDA1OTg2MyIsInQiOiJBSUEiLCJwIjoiMTAwMDAiLCJzZCI6MC4wLCJlZCI6MC4wfQ",
+            "attributes": {
+              "manual": false,
+              "startDate": null,
+              "endDate": null
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v2/appPrices/eyJzIjoiNjc4MDA1OTg2MyIsInQiOiJBSUEiLCJwIjoiMTAwMDAiLCJzZCI6MC4wLCJlZCI6MC4wfQ"
+            }
+          }
+        ]
+      },
+      "sales": {
+        "available": false,
+        "rows": 0,
+        "paid_units": 0,
+        "refund_units": 0,
+        "developer_proceeds": 0,
+        "refund_rate": null,
+        "customer_price_min": null,
+        "customer_price_max": null,
+        "currencies": [],
+        "by_territory": [],
+        "by_territory_omitted_count": 0
+      },
+      "history": {
+        "available": true,
+        "source": "local reports raw App Store Analytics rows",
+        "latest_metric_date": "2026-06-17",
+        "current_7d": {
+          "days": 7,
+          "start_date": "2026-06-11",
+          "end_date": "2026-06-17",
+          "downloads": 1,
+          "first_time_downloads": 1,
+          "impressions": 227,
+          "product_page_views": 14,
+          "page_view_rate": 6.17,
+          "avg_daily_downloads": 0.14,
+          "avg_daily_impressions": 32.43,
+          "avg_daily_product_page_views": 2.0
+        },
+        "previous_7d": {
+          "days": 7,
+          "start_date": "2026-06-04",
+          "end_date": "2026-06-10",
+          "downloads": 0,
+          "first_time_downloads": 0,
+          "impressions": 0,
+          "product_page_views": 0,
+          "page_view_rate": null,
+          "avg_daily_downloads": 0.0,
+          "avg_daily_impressions": 0.0,
+          "avg_daily_product_page_views": 0.0
+        },
+        "current_30d": {
+          "days": 30,
+          "start_date": "2026-05-19",
+          "end_date": "2026-06-17",
+          "downloads": 1,
+          "first_time_downloads": 1,
+          "impressions": 227,
+          "product_page_views": 14,
+          "page_view_rate": 6.17,
+          "avg_daily_downloads": 0.03,
+          "avg_daily_impressions": 7.57,
+          "avg_daily_product_page_views": 0.47
+        },
+        "delta_7d": {
+          "downloads": 1,
+          "first_time_downloads": 1,
+          "impressions": 227,
+          "product_page_views": 14,
+          "page_view_rate": null
+        }
+      },
+      "funnel_by_source": {
+        "available": true,
+        "dimension": "Source Type",
+        "limit": 10,
+        "rows": [
+          {
+            "name": "App Store search",
+            "impressions": 227,
+            "unique_impressions": 193,
+            "product_page_views": 14,
+            "unique_product_page_views": 7,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 1,
+            "downloads": 1,
+            "page_view_rate": 7.25,
+            "tap_rate": 0.0,
+            "download_rate": 0.52
+          },
+          {
+            "name": "App Store browse",
+            "impressions": 0,
+            "unique_impressions": 0,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 2,
+            "unique_taps": 2,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": null,
+            "tap_rate": null,
+            "download_rate": null
+          }
+        ],
+        "omitted_count": 0
+      },
+      "funnel_by_territory": {
+        "available": true,
+        "dimension": "Territory",
+        "limit": 10,
+        "rows": [
+          {
+            "name": "JP",
+            "impressions": 67,
+            "unique_impressions": 55,
+            "product_page_views": 1,
+            "unique_product_page_views": 1,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 1.82,
+            "tap_rate": 0.0,
+            "download_rate": 0.0
+          },
+          {
+            "name": "KR",
+            "impressions": 24,
+            "unique_impressions": 23,
+            "product_page_views": 1,
+            "unique_product_page_views": 1,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 4.35,
+            "tap_rate": 0.0,
+            "download_rate": 0.0
+          },
+          {
+            "name": "RU",
+            "impressions": 13,
+            "unique_impressions": 9,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 0.0,
+            "tap_rate": 0.0,
+            "download_rate": 0.0
+          },
+          {
+            "name": "CN",
+            "impressions": 10,
+            "unique_impressions": 8,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 0.0,
+            "tap_rate": 0.0,
+            "download_rate": 0.0
+          },
+          {
+            "name": "PH",
+            "impressions": 9,
+            "unique_impressions": 6,
+            "product_page_views": 1,
+            "unique_product_page_views": 1,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 16.67,
+            "tap_rate": 0.0,
+            "download_rate": 0.0
+          },
+          {
+            "name": "VN",
+            "impressions": 9,
+            "unique_impressions": 9,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 0.0,
+            "tap_rate": 0.0,
+            "download_rate": 0.0
+          },
+          {
+            "name": "ID",
+            "impressions": 6,
+            "unique_impressions": 4,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 0.0,
+            "tap_rate": 0.0,
+            "download_rate": 0.0
+          },
+          {
+            "name": "NO",
+            "impressions": 6,
+            "unique_impressions": 4,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 0.0,
+            "tap_rate": 0.0,
+            "download_rate": 0.0
+          },
+          {
+            "name": "PL",
+            "impressions": 6,
+            "unique_impressions": 5,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 0.0,
+            "tap_rate": 0.0,
+            "download_rate": 0.0
+          },
+          {
+            "name": "FR",
+            "impressions": 5,
+            "unique_impressions": 4,
+            "product_page_views": 5,
+            "unique_product_page_views": 2,
+            "taps": 2,
+            "unique_taps": 2,
+            "first_time_downloads": 1,
+            "downloads": 1,
+            "page_view_rate": 125.0,
+            "tap_rate": 50.0,
+            "download_rate": 25.0
+          }
+        ],
+        "omitted_count": 38
+      },
+      "reviews": {
+        "available": true,
+        "source": "App Store Connect customerReviews",
+        "fetched_at": "2026-06-20T02:59:26.401046+00:00",
+        "recent_count": 0,
+        "recent_average_rating": null,
+        "recent_low_rating_count": 0,
+        "recent_high_rating_count": 0,
+        "recent_low_rating_reviews": [],
+        "recent_high_rating_reviews": [],
+        "recent_reviews": []
+      },
+      "metadata": {
+        "available": true,
+        "source": "App Store Connect appInfos",
+        "fetched_at": "2026-06-20T02:59:27.188283+00:00",
+        "localizations": [
+          {
+            "id": "9f1fa9cf-132f-4fe2-ba9c-560de25f9cf8",
+            "locale": "en-US",
+            "name": "DoReQuiz",
+            "subtitle": "Music ear training game",
+            "privacy_policy_url": "https://gogolabs.fr/privacy-policy.html",
+            "has_privacy_policy_text": false
+          }
+        ],
+        "categories": [
+          {
+            "relation": "primaryCategory",
+            "id": "MUSIC",
+            "attributes": {
+              "platforms": [
+                "IOS",
+                "MAC_OS",
+                "TV_OS",
+                "VISION_OS"
+              ]
+            }
+          },
+          {
+            "relation": "secondaryCategory",
+            "id": "GAMES",
+            "attributes": {
+              "platforms": [
+                "IOS",
+                "MAC_OS",
+                "TV_OS",
+                "VISION_OS"
+              ]
+            }
+          }
+        ]
+      },
+      "screenshot_inventory": {
+        "available": false,
+        "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
+        "fetched_at": "2026-06-20T02:59:27.765112+00:00",
+        "localizations": [],
+        "errors": [
+          {
+            "localization_id": "c712b947-b421-4a80-b8a1-a5600f60c487",
+            "locale": "en-US",
+            "version_string": "1.0",
+            "app_store_state": "READY_FOR_SALE",
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/c712b947-b421-4a80-b8a1-a5600f60c487/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'd099b7b4-cc5d-48e5-b66e-8e470a1c9a6b', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+          }
+        ]
+      },
+      "quality_signals": {
+        "refund_rate": null,
+        "has_paid_signal": false,
+        "has_review_signal": false,
+        "has_source_funnel": true,
+        "has_territory_funnel": true
+      }
+    },
+    {
+      "key": "mathemagique",
+      "name": "Mathémagique",
+      "app_id": "6782224830",
+      "bundle_id": "com.gogolabs.mathemagique",
+      "sku": "com.gogolabs.mathemagique",
+      "error": null,
+      "metrics_scope": "report_date",
+      "metrics_report_date": "2026-06-17",
+      "downloads": 0,
+      "first_time_downloads": 0,
+      "impressions": 0,
+      "unique_impressions": 0,
+      "product_page_views": 0,
+      "unique_product_page_views": 0,
+      "taps": 0,
+      "unique_taps": 0,
+      "conversion_rate": null,
+      "page_view_rate": null,
+      "tap_rate": null,
+      "dominant_source": {
+        "name": "",
+        "count": 0
+      },
+      "dominant_territory": {
+        "name": "",
+        "count": 0
+      },
+      "dominant_device": {
+        "name": "",
+        "count": 0
+      },
+      "delta_downloads": null,
+      "delta_first_time_downloads": null,
+      "delta_impressions": null,
+      "delta_product_page_views": null,
+      "delta_taps": null,
+      "engagement_report_date_available": false,
+      "downloads_report_date_available": false,
+      "impressions_by_date": {},
+      "product_page_views_by_date": {},
+      "taps_by_date": {},
+      "impressions_by_source_type_report_date": {},
+      "impressions_by_territory_report_date": {},
+      "impressions_by_device_report_date": {},
+      "engagement_by_event_report_date": {},
+      "engagement_unique_by_event_report_date": {},
+      "impressions_total_available": 0,
+      "unique_impressions_total_available": 0,
+      "product_page_views_total_available": 0,
+      "unique_product_page_views_total_available": 0,
+      "taps_total_available": 0,
+      "unique_taps_total_available": 0,
+      "downloads_total_available": 0,
+      "first_time_downloads_total_available": 0,
+      "conversion_rate_total_available": null,
+      "page_view_rate_total_available": null,
+      "tap_rate_total_available": null,
+      "review_pipeline": {
+        "available": true,
+        "source": "App Store Connect appStoreVersions",
+        "fetched_at": "2026-06-20T02:58:56.276446+00:00",
+        "has_pending_version": true,
+        "has_blocking_pipeline_change": false,
+        "pipeline_states": [
+          "PREPARE_FOR_SUBMISSION"
+        ],
+        "blocking_recommendation_states": [],
+        "version_count": 1,
+        "included_version_count": 1,
+        "omitted_historical_version_count": 0,
+        "pipeline_version_count": 1,
+        "versions": [
+          {
+            "id": "e0443156-b335-4eb3-9202-5659551336d0",
+            "platform": "IOS",
+            "version_string": "0.1",
+            "app_store_state": "PREPARE_FOR_SUBMISSION",
+            "app_version_state": "PREPARE_FOR_SUBMISSION",
+            "review_type": "APP_STORE",
+            "release_type": "AFTER_APPROVAL",
+            "earliest_release_date": null,
+            "created_date": "2026-06-19T17:28:00-07:00",
+            "downloadable": true,
+            "uses_idfa": null,
+            "is_live": false,
+            "is_pipeline": true,
+            "blocks_redundant_recommendations": false,
+            "build": null,
+            "localizations": [
+              {
+                "id": "437fc1ca-35de-4430-bc13-3f822699e0ed",
+                "locale": "fr-FR",
+                "name": null,
+                "subtitle": null,
+                "privacy_policy_url": null,
+                "privacy_policy_text": null,
+                "promotional_text": null,
+                "description": null,
+                "keywords": null,
+                "marketing_url": null,
+                "support_url": null,
+                "whats_new": null
+              }
+            ],
+            "app_store_review_detail": null,
+            "app_store_version_submission": null,
+            "app_store_version_phased_release": null
+          }
+        ],
+        "automation_context": [
+          "Lire ce bloc avant toute recommandation ASO, screenshots, metadata, pricing ou produit.",
+          "Si has_blocking_pipeline_change vaut true, ne pas proposer comme prochaine action un changement deja contenu dans la version en attente/review.",
+          "Comparer les localizations et le build de la version pipeline avec les metriques actuelles avant de conclure."
+        ]
+      },
+      "pricing": {
+        "available": false,
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6782224830/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '6901b0d5-5a1d-4b7b-8fe0-38fb8fe2e1ba', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6782224830'\"}]}"
+      },
+      "sales": {
+        "available": false,
+        "rows": 0,
+        "paid_units": 0,
+        "refund_units": 0,
+        "developer_proceeds": 0,
+        "refund_rate": null,
+        "customer_price_min": null,
+        "customer_price_max": null,
+        "currencies": [],
+        "by_territory": [],
+        "by_territory_omitted_count": 0
+      },
+      "history": {
+        "available": false,
+        "error": "missing dated metrics in local report JSON"
+      },
+      "funnel_by_source": {
+        "available": false,
+        "dimension": "Source Type",
+        "limit": 10,
+        "rows": [],
+        "omitted_count": 0
+      },
+      "funnel_by_territory": {
+        "available": false,
+        "dimension": "Territory",
+        "limit": 10,
+        "rows": [],
+        "omitted_count": 0
+      },
+      "reviews": {
+        "available": true,
+        "source": "App Store Connect customerReviews",
+        "fetched_at": "2026-06-20T02:59:28.385906+00:00",
+        "recent_count": 0,
+        "recent_average_rating": null,
+        "recent_low_rating_count": 0,
+        "recent_high_rating_count": 0,
+        "recent_low_rating_reviews": [],
+        "recent_high_rating_reviews": [],
+        "recent_reviews": []
+      },
+      "metadata": {
+        "available": true,
+        "source": "App Store Connect appInfos",
+        "fetched_at": "2026-06-20T02:59:29.198606+00:00",
+        "localizations": [
+          {
+            "id": "3724fc93-2be7-42d2-bd44-25e8fa68b81b",
+            "locale": "fr-FR",
+            "name": "Mathémagique",
+            "subtitle": null,
+            "privacy_policy_url": null,
+            "has_privacy_policy_text": false
+          }
+        ],
+        "categories": []
+      },
+      "screenshot_inventory": {
+        "available": false,
+        "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
+        "fetched_at": "2026-06-20T02:59:29.724577+00:00",
+        "localizations": [],
+        "errors": [
+          {
+            "localization_id": "437fc1ca-35de-4430-bc13-3f822699e0ed",
+            "locale": "fr-FR",
+            "version_string": "0.1",
+            "app_store_state": "PREPARE_FOR_SUBMISSION",
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/437fc1ca-35de-4430-bc13-3f822699e0ed/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '0e54e02f-2c78-4d5f-9e96-1f22c1460bb0', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -3934,10 +4742,10 @@
     }
   },
   "freshness": {
-    "checked_at": "2026-06-20T02:53:34.256943+00:00",
-    "generated_at": "2026-06-20T02:53:25.842769+00:00",
+    "checked_at": "2026-06-20T02:59:06.019524+00:00",
+    "generated_at": "2026-06-20T02:58:43.073376+00:00",
     "report_date": "2026-06-17",
-    "generated_age_hours": 0.0,
+    "generated_age_hours": 0.01,
     "report_age_days": 3,
     "is_generated_recent_72h": true,
     "has_report_date": true
