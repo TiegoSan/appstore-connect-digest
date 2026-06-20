@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T02:47:58.281342+00:00",
+  "generated_at": "2026-06-20T02:53:25.842769+00:00",
   "report_date": "2026-06-17",
   "metrics_scope": "report_date",
   "metrics_semantics": {
@@ -103,7 +103,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:47:59.248001+00:00",
+        "fetched_at": "2026-06-20T02:53:26.877222+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -544,7 +544,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:48:07.364019+00:00",
+        "fetched_at": "2026-06-20T02:53:34.625229+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -556,7 +556,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:48:07.919077+00:00",
+        "fetched_at": "2026-06-20T02:53:35.113667+00:00",
         "localizations": [
           {
             "id": "4c4aae4b-0ecd-4d91-a0e4-528442efa26c",
@@ -605,7 +605,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:48:08.423741+00:00",
+        "fetched_at": "2026-06-20T02:53:35.607817+00:00",
         "localizations": [],
         "errors": [
           {
@@ -613,14 +613,14 @@
             "locale": "fr-FR",
             "version_string": "2.0",
             "app_store_state": "READY_FOR_SALE",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/31f41a56-4fbd-4335-a63f-e549bca02381/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '86643161-3627-4f19-bad0-836672675914', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/31f41a56-4fbd-4335-a63f-e549bca02381/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'd2c78bef-4abe-436b-aff4-435b159a50d6', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           },
           {
             "localization_id": "333e4604-aaab-4ed8-9372-b054c8bcf88a",
             "locale": "en-US",
             "version_string": "2.0",
             "app_store_state": "READY_FOR_SALE",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/333e4604-aaab-4ed8-9372-b054c8bcf88a/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '1f9a8b92-f662-4389-8f8c-445c4c72e85c', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/333e4604-aaab-4ed8-9372-b054c8bcf88a/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '9ba14bad-8428-44f2-a42b-a11fb00aee43', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -726,7 +726,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:47:59.899651+00:00",
+        "fetched_at": "2026-06-20T02:53:27.551617+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -764,20 +764,6 @@
             },
             "localizations": [
               {
-                "id": "19e90ce3-149b-4c75-ac8b-06e4a5f657fe",
-                "locale": "ja",
-                "name": null,
-                "subtitle": null,
-                "privacy_policy_url": null,
-                "privacy_policy_text": null,
-                "promotional_text": "メロディを録音し、音符を見て、ピアノ鍵盤で再現。実際の音から耳を鍛えるシンプルな練習アプリです。",
-                "description": "Perroquet Pianoは、短いメロディを「聴く・見る・弾く」練習に変える音楽アプリです。\n\n声、楽器、曲の一部をマイクで録音すると、Perroquetが音を解析し、練習しやすいメロディラインとしてピアノ鍵盤に音符を表示します。\n\nできること：\n• 短いメロディで耳を鍛える\n• 音符を見ながら鍵盤で再現する\n• 速いフレーズをゆっくり確認する\n• 複雑な解析結果を練習しやすく簡略化する\n• 音色を変えながらフレーズを覚える\n\nPerroquetは、聴いて、音を見つけて、メロディを弾くためのシンプルな練習ツールです。",
-                "keywords": "音楽,鍵盤,耳コピ,メロディ,音符,歌,声,採譜,ピッチ,練習,録音,再現,学習",
-                "marketing_url": "https://gogolabs.fr/perroquet",
-                "support_url": "https://gogolabs.fr/perroquet/support",
-                "whats_new": "Perroquet 1.2では、主旋律の選択精度を改善し、Basic Pitchの診断情報を追加しました。解析JSONの保存にも対応し、あとから再読み込みしやすくなりました。"
-              },
-              {
                 "id": "bd592743-9c00-49c5-9234-47a9129b4a6a",
                 "locale": "fr-FR",
                 "name": null,
@@ -804,6 +790,20 @@
                 "marketing_url": "https://gogolabs.fr/perroquet",
                 "support_url": "https://gogolabs.fr/perroquet/support",
                 "whats_new": "Perroquet 1.2 improves melody analysis with better main melody selection, clearer Basic Pitch diagnostics, and saved JSON analysis exports that can be reloaded more easily."
+              },
+              {
+                "id": "19e90ce3-149b-4c75-ac8b-06e4a5f657fe",
+                "locale": "ja",
+                "name": null,
+                "subtitle": null,
+                "privacy_policy_url": null,
+                "privacy_policy_text": null,
+                "promotional_text": "メロディを録音し、音符を見て、ピアノ鍵盤で再現。実際の音から耳を鍛えるシンプルな練習アプリです。",
+                "description": "Perroquet Pianoは、短いメロディを「聴く・見る・弾く」練習に変える音楽アプリです。\n\n声、楽器、曲の一部をマイクで録音すると、Perroquetが音を解析し、練習しやすいメロディラインとしてピアノ鍵盤に音符を表示します。\n\nできること：\n• 短いメロディで耳を鍛える\n• 音符を見ながら鍵盤で再現する\n• 速いフレーズをゆっくり確認する\n• 複雑な解析結果を練習しやすく簡略化する\n• 音色を変えながらフレーズを覚える\n\nPerroquetは、聴いて、音を見つけて、メロディを弾くためのシンプルな練習ツールです。",
+                "keywords": "音楽,鍵盤,耳コピ,メロディ,音符,歌,声,採譜,ピッチ,練習,録音,再現,学習",
+                "marketing_url": "https://gogolabs.fr/perroquet",
+                "support_url": "https://gogolabs.fr/perroquet/support",
+                "whats_new": "Perroquet 1.2では、主旋律の選択精度を改善し、Basic Pitchの診断情報を追加しました。解析JSONの保存にも対応し、あとから再読み込みしやすくなりました。"
               }
             ],
             "app_store_review_detail": {
@@ -1186,7 +1186,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:48:08.762906+00:00",
+        "fetched_at": "2026-06-20T02:53:35.963784+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -1198,7 +1198,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:48:09.232893+00:00",
+        "fetched_at": "2026-06-20T02:53:36.397421+00:00",
         "localizations": [
           {
             "id": "e713dc7a-0d94-4c3c-b555-95f187c1d06c",
@@ -1255,29 +1255,29 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:48:10.001734+00:00",
+        "fetched_at": "2026-06-20T02:53:37.120995+00:00",
         "localizations": [],
         "errors": [
-          {
-            "localization_id": "19e90ce3-149b-4c75-ac8b-06e4a5f657fe",
-            "locale": "ja",
-            "version_string": "1.2",
-            "app_store_state": "READY_FOR_SALE",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/19e90ce3-149b-4c75-ac8b-06e4a5f657fe/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '3fed2103-8862-480b-9797-b92bb1db2be1', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
-          },
           {
             "localization_id": "bd592743-9c00-49c5-9234-47a9129b4a6a",
             "locale": "fr-FR",
             "version_string": "1.2",
             "app_store_state": "READY_FOR_SALE",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/bd592743-9c00-49c5-9234-47a9129b4a6a/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '5af63657-2630-4def-8589-b648b3f4bacf', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/bd592743-9c00-49c5-9234-47a9129b4a6a/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'f82ff506-147c-4950-9ecc-c3d77bbae546', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           },
           {
             "localization_id": "1cb2298c-15fe-42f5-a930-43908984358d",
             "locale": "en-US",
             "version_string": "1.2",
             "app_store_state": "READY_FOR_SALE",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/1cb2298c-15fe-42f5-a930-43908984358d/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'ee8aa646-38ee-4aa5-a75b-af01e4039447', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/1cb2298c-15fe-42f5-a930-43908984358d/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'b8b4949f-4925-4243-95e0-43a253fb3b46', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+          },
+          {
+            "localization_id": "19e90ce3-149b-4c75-ac8b-06e4a5f657fe",
+            "locale": "ja",
+            "version_string": "1.2",
+            "app_store_state": "READY_FOR_SALE",
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/19e90ce3-149b-4c75-ac8b-06e4a5f657fe/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'ccbcb431-5d30-400c-9915-84716a530abe', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -1367,7 +1367,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:48:00.493341+00:00",
+        "fetched_at": "2026-06-20T02:53:28.148475+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -1785,7 +1785,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:48:10.356624+00:00",
+        "fetched_at": "2026-06-20T02:53:37.435604+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -1797,7 +1797,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:48:10.837632+00:00",
+        "fetched_at": "2026-06-20T02:53:37.984023+00:00",
         "localizations": [
           {
             "id": "4f732e72-4179-4f06-9a3e-a6b9fcd79174",
@@ -1838,7 +1838,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:48:11.089894+00:00",
+        "fetched_at": "2026-06-20T02:53:38.208976+00:00",
         "localizations": [],
         "errors": [
           {
@@ -1846,7 +1846,7 @@
             "locale": "en-GB",
             "version_string": "1.3",
             "app_store_state": "READY_FOR_SALE",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/6851d61b-be2d-465d-867b-1919cf6764ea/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '109bdd9b-7d4a-4683-baed-d6c9729825e8', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/6851d61b-be2d-465d-867b-1919cf6764ea/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '618aebd9-31ac-4e80-b198-9d5e2c6b27cb', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -1919,7 +1919,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:48:00.825333+00:00",
+        "fetched_at": "2026-06-20T02:53:28.485727+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -2099,7 +2099,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:48:11.424903+00:00",
+        "fetched_at": "2026-06-20T02:53:38.535609+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -2111,7 +2111,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:48:11.874075+00:00",
+        "fetched_at": "2026-06-20T02:53:39.002207+00:00",
         "localizations": [
           {
             "id": "96fb5fd9-0438-40e5-bef3-691a906f13f2",
@@ -2148,7 +2148,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:48:12.382418+00:00",
+        "fetched_at": "2026-06-20T02:53:39.468956+00:00",
         "localizations": [],
         "errors": [
           {
@@ -2156,14 +2156,14 @@
             "locale": "fr-FR",
             "version_string": "1.0",
             "app_store_state": "PREPARE_FOR_SUBMISSION",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/64530e1f-f128-4252-8408-98274dcf2ff8/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '9286838b-e93c-4aca-901e-c40b5a713e6d', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/64530e1f-f128-4252-8408-98274dcf2ff8/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'a385e006-0143-4ed0-a84c-0af8f32c0bc7', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           },
           {
             "localization_id": "bb7ef7d9-d047-4ef2-9ece-19703885f468",
             "locale": "en-US",
             "version_string": "1.0",
             "app_store_state": "PREPARE_FOR_SUBMISSION",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/bb7ef7d9-d047-4ef2-9ece-19703885f468/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'fc6be935-004e-4c02-8eae-c4ffcbf46042', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/bb7ef7d9-d047-4ef2-9ece-19703885f468/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '90590622-14c7-45dd-b5b3-d555f8957e61', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -2236,7 +2236,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:48:01.140625+00:00",
+        "fetched_at": "2026-06-20T02:53:28.786443+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -2293,7 +2293,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6772350677/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '39a848f7-dc7a-4b74-9c0f-7708514d53ae', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6772350677'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6772350677/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'b1a9041c-b8bc-42a2-b7e2-413fbd9345b4', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6772350677'\"}]}"
       },
       "sales": {
         "available": false,
@@ -2329,7 +2329,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:48:12.714950+00:00",
+        "fetched_at": "2026-06-20T02:53:39.782361+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -2341,7 +2341,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:48:13.032193+00:00",
+        "fetched_at": "2026-06-20T02:53:40.152132+00:00",
         "localizations": [
           {
             "id": "df6ef245-510f-4714-88ca-53331d3e6937",
@@ -2357,7 +2357,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:48:13.318429+00:00",
+        "fetched_at": "2026-06-20T02:53:40.400117+00:00",
         "localizations": [],
         "errors": [
           {
@@ -2365,7 +2365,7 @@
             "locale": "en-US",
             "version_string": "1.0",
             "app_store_state": "PREPARE_FOR_SUBMISSION",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/93f2b14e-2de8-42a5-9fce-60010185891e/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '35417d2a-a65c-42f1-9197-4bac353dede6', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/93f2b14e-2de8-42a5-9fce-60010185891e/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'e5ae2743-9395-40c0-af06-d703e3b752d3', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -2438,7 +2438,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:48:01.462923+00:00",
+        "fetched_at": "2026-06-20T02:53:29.081066+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -2495,7 +2495,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6770716816/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '0f37c92f-a82e-4b9e-bd08-a7d37ca959ea', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6770716816'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6770716816/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '24b0c7e1-53ef-4bda-9999-341ad5600300', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6770716816'\"}]}"
       },
       "sales": {
         "available": false,
@@ -2531,7 +2531,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:48:13.653723+00:00",
+        "fetched_at": "2026-06-20T02:53:40.727543+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -2543,7 +2543,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:48:13.984764+00:00",
+        "fetched_at": "2026-06-20T02:53:41.082260+00:00",
         "localizations": [
           {
             "id": "962852b5-ebb3-4367-9327-9aeb18dbc0cd",
@@ -2559,7 +2559,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:48:14.252421+00:00",
+        "fetched_at": "2026-06-20T02:53:41.340555+00:00",
         "localizations": [],
         "errors": [
           {
@@ -2567,7 +2567,7 @@
             "locale": "en-US",
             "version_string": "1.0",
             "app_store_state": "PREPARE_FOR_SUBMISSION",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/a15c1d85-88cc-4c02-b75e-e3b8d2acecf5/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '0f353007-ebf8-4bae-a45c-b021a5ef991b', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/a15c1d85-88cc-4c02-b75e-e3b8d2acecf5/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '6dccea16-6369-49db-9db2-b5d6fa04eb2b', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -2661,7 +2661,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:48:01.858638+00:00",
+        "fetched_at": "2026-06-20T02:53:29.480108+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -3078,7 +3078,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:48:14.583013+00:00",
+        "fetched_at": "2026-06-20T02:53:41.689913+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -3090,7 +3090,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:48:15.159921+00:00",
+        "fetched_at": "2026-06-20T02:53:42.157186+00:00",
         "localizations": [
           {
             "id": "4968b391-9f8d-4643-824c-819e5189b35c",
@@ -3131,7 +3131,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:48:15.407206+00:00",
+        "fetched_at": "2026-06-20T02:53:42.403867+00:00",
         "localizations": [],
         "errors": [
           {
@@ -3139,7 +3139,7 @@
             "locale": "en-US",
             "version_string": "1.0",
             "app_store_state": "READY_FOR_SALE",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/2cb2abc2-5837-4d3b-a9ca-4064ef5b46dd/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '4a37da5f-94cd-44c7-8faf-b1b1e3ceb37b', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/2cb2abc2-5837-4d3b-a9ca-4064ef5b46dd/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'a2038ae7-b940-442e-838a-b04c7b1dadc8', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -3228,7 +3228,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:48:02.278233+00:00",
+        "fetched_at": "2026-06-20T02:53:29.878916+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -3633,7 +3633,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:48:15.731991+00:00",
+        "fetched_at": "2026-06-20T02:53:42.712802+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -3645,7 +3645,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:48:16.284993+00:00",
+        "fetched_at": "2026-06-20T02:53:43.168617+00:00",
         "localizations": [
           {
             "id": "2e0b6f17-74a7-4ef9-b622-90fbc6e1a5cc",
@@ -3686,7 +3686,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:48:16.547567+00:00",
+        "fetched_at": "2026-06-20T02:53:43.416145+00:00",
         "localizations": [],
         "errors": [
           {
@@ -3694,7 +3694,7 @@
             "locale": "en-US",
             "version_string": "1.0",
             "app_store_state": "READY_FOR_SALE",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/5df6c660-4d41-4889-a06e-b5317e5ff0b6/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'ac309527-cebe-4f5b-8e18-3953a8902acf', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/5df6c660-4d41-4889-a06e-b5317e5ff0b6/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '4e5eb383-3d75-4177-adb8-0e2c3b981d5a', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -3767,7 +3767,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-20T02:48:02.597666+00:00",
+        "fetched_at": "2026-06-20T02:53:30.170979+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -3824,7 +3824,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6761501191/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '25041b5e-c1d8-4016-8b8c-51a44f612bcc', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6761501191'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6761501191/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'dcde95ca-47a7-4469-9e4d-4717a76e67a3', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6761501191'\"}]}"
       },
       "sales": {
         "available": false,
@@ -3860,7 +3860,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-20T02:48:16.884013+00:00",
+        "fetched_at": "2026-06-20T02:53:43.763228+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -3872,7 +3872,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-20T02:48:17.244598+00:00",
+        "fetched_at": "2026-06-20T02:53:44.067243+00:00",
         "localizations": [
           {
             "id": "0e6f2197-5185-4e12-9382-fc8380d45593",
@@ -3888,7 +3888,7 @@
       "screenshot_inventory": {
         "available": false,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-20T02:48:17.494749+00:00",
+        "fetched_at": "2026-06-20T02:53:44.290155+00:00",
         "localizations": [],
         "errors": [
           {
@@ -3896,7 +3896,7 @@
             "locale": "en-GB",
             "version_string": "1.0",
             "app_store_state": "PREPARE_FOR_SUBMISSION",
-            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/84901e45-1475-493c-a0b5-a6b70912b32b/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': 'bec25992-d513-42e0-bbdf-9bd187bc2b81', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
+            "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/84901e45-1475-493c-a0b5-a6b70912b32b/appScreenshotSets?include=appScreenshots&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,uploaded&limit=50&limit[appScreenshots]=50: {'errors': [{'id': '389762ad-25fd-4288-9df2-c045273ca21e', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"'uploaded' is not a valid field name\", 'source': {'parameter': 'fields[appScreenshots]'}}]}"
           }
         ]
       },
@@ -3934,8 +3934,8 @@
     }
   },
   "freshness": {
-    "checked_at": "2026-06-20T02:48:07.010590+00:00",
-    "generated_at": "2026-06-20T02:47:58.281342+00:00",
+    "checked_at": "2026-06-20T02:53:34.256943+00:00",
+    "generated_at": "2026-06-20T02:53:25.842769+00:00",
     "report_date": "2026-06-17",
     "generated_age_hours": 0.0,
     "report_age_days": 3,
