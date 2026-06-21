@@ -25,6 +25,8 @@ BLOCKING_STATES = {
     "WAITING_FOR_EXPORT_COMPLIANCE",
 }
 
+LIVE_STATES = {"READY_FOR_SALE"}
+
 
 def as_int(value: Any) -> int:
     try:
@@ -230,6 +232,26 @@ def compact_versions(versions: Any, limit: int = 4) -> list[dict[str, Any]]:
     return compacted
 
 
+def review_states(review_pipeline: dict[str, Any]) -> set[str]:
+    states = set(review_pipeline.get("pipeline_states") or [])
+    states.update(review_pipeline.get("blocking_recommendation_states") or [])
+    for version in review_pipeline.get("versions") or []:
+        if isinstance(version, dict) and version.get("app_store_state"):
+            states.add(str(version["app_store_state"]))
+    return states
+
+
+def analytics_scope(review_pipeline: dict[str, Any]) -> dict[str, Any]:
+    states = review_states(review_pipeline)
+    is_live = bool(states.intersection(LIVE_STATES))
+    return {
+        "is_live": is_live,
+        "included_in_portfolio_metrics": is_live,
+        "reason": "ready_for_sale_version" if is_live else "no_ready_for_sale_version",
+        "states": sorted(states),
+    }
+
+
 def compact_app(
     app: dict[str, Any],
     reports: list[dict[str, Any]] | None = None,
@@ -247,6 +269,7 @@ def compact_app(
     reports = reports or []
     previous_history = previous_app.get("history") if isinstance(previous_app, dict) and isinstance(previous_app.get("history"), dict) else {}
     previous_time_series = previous_history.get("time_series") if isinstance(previous_history.get("time_series"), dict) else None
+    scope = analytics_scope(review_pipeline)
 
     return {
         "key": app.get("key"),
@@ -255,6 +278,7 @@ def compact_app(
         "bundle_id": app.get("bundle_id"),
         "sku": app.get("sku"),
         "metrics_report_date": app.get("metrics_report_date"),
+        "analytics_scope": scope,
         "availability": {
             "downloads_report_date": bool(app.get("downloads_report_date_available")),
             "engagement_report_date": bool(app.get("engagement_report_date_available")),
@@ -383,6 +407,14 @@ def totals_from_time_series(apps: list[dict[str, Any]], days: int = 7) -> dict[s
     return totals
 
 
+def apps_in_portfolio_metrics(apps: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return [
+        app
+        for app in apps
+        if ((app.get("analytics_scope") or {}).get("included_in_portfolio_metrics"))
+    ]
+
+
 def load_previous_dashboard(path: Path | None) -> dict[str, Any]:
     if not path or not path.exists():
         return {}
@@ -416,6 +448,7 @@ def build_alerts(payload: dict[str, Any]) -> list[dict[str, Any]]:
         reviews = app.get("reviews") or {}
         pipeline = app.get("review_pipeline") or {}
         availability = app.get("availability") or {}
+        scope = app.get("analytics_scope") or {}
 
         states = set(pipeline.get("blocking_recommendation_states") or pipeline.get("pipeline_states") or [])
         if pipeline.get("has_blocking_pipeline_change") or states.intersection(BLOCKING_STATES):
@@ -427,6 +460,9 @@ def build_alerts(payload: dict[str, Any]) -> list[dict[str, Any]]:
                     "detail": ", ".join(sorted(states)) or "Pipeline App Store actif.",
                 }
             )
+
+        if not scope.get("included_in_portfolio_metrics"):
+            continue
 
         if not availability.get("downloads_report_date") and not availability.get("engagement_report_date"):
             alerts.append(
@@ -509,6 +545,7 @@ def build_dashboard_payload(metrics: dict[str, Any], previous_dashboard: dict[st
         for app in metrics.get("apps", [])
         if isinstance(app, dict)
     ]
+    portfolio_apps = apps_in_portfolio_metrics(apps)
     payload = {
         "schema_version": 1,
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -522,8 +559,14 @@ def build_dashboard_payload(metrics: dict[str, Any], previous_dashboard: dict[st
             "review_pipeline": metrics.get("review_pipeline_source"),
         },
         "apps": apps,
-        "totals": totals_from_apps(apps),
-        "totals_7d": totals_from_time_series(apps, 7),
+        "analytics_scope": {
+            "mode": "live_apps_only",
+            "total_app_count": len(apps),
+            "live_app_count": len(portfolio_apps),
+            "excluded_app_count": len(apps) - len(portfolio_apps),
+        },
+        "totals": totals_from_apps(portfolio_apps),
+        "totals_7d": totals_from_time_series(portfolio_apps, 7),
     }
     payload["alerts"] = build_alerts(payload)
     return payload

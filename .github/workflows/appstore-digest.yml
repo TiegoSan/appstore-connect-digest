@@ -3,9 +3,8 @@ name: App Store Connect Metrics
 on:
   workflow_dispatch:
   schedule:
-    # GitHub cron is UTC. These two times cover 23:50 Europe/Paris across DST.
-    - cron: "50 21 * * *"
-    - cron: "50 22 * * *"
+    # Server-side dashboard refresh. GitHub cron is UTC.
+    - cron: "17 * * * *"
 
 concurrency:
   group: appstore-connect-metrics
@@ -37,13 +36,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check Paris schedule window
+      - name: Set schedule context
         run: |
-          if [ "${{ github.event_name }}" = "schedule" ] && [ "$(TZ=Europe/Paris date +%H)" != "23" ]; then
-            echo "RUN_METRICS=false" >> "$GITHUB_ENV"
-            echo "Skipping inactive UTC cron for Europe/Paris 23:xx window"
+          echo "RUN_METRICS=true" >> "$GITHUB_ENV"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "$(TZ=Europe/Paris date +%H)" = "23" ]; then
+            echo "SEND_ALERT_EMAIL=true" >> "$GITHUB_ENV"
           else
-            echo "RUN_METRICS=true" >> "$GITHUB_ENV"
+            echo "SEND_ALERT_EMAIL=false" >> "$GITHUB_ENV"
+            echo "Hourly dashboard refresh: alert email suppressed outside 23:xx Europe/Paris"
           fi
 
       - name: Preserve previous metrics
@@ -126,7 +126,7 @@ jobs:
           fi
 
       - name: Send alert email
-        if: env.RUN_METRICS == 'true'
+        if: env.RUN_METRICS == 'true' && env.SEND_ALERT_EMAIL == 'true'
         run: python send_appstore_alerts.py
 
       - name: Upload metrics artifacts
