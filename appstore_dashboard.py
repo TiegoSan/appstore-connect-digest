@@ -136,7 +136,7 @@ def build_time_series(
     app: dict[str, Any],
     reports: list[dict[str, Any]],
     previous_time_series: dict[str, Any] | None = None,
-    days: int = 30,
+    days: int = 90,
 ) -> dict[str, Any]:
     downloads = merged_metric(reports, "by_date", app, previous_time_series)
     impressions = merged_metric(reports, "impressions_by_date", app, previous_time_series)
