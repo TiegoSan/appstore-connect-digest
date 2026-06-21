@@ -81,6 +81,56 @@ def compact_price_schedule(resp: Any) -> dict[str, Any]:
     }
 
 
+def included_by_type_and_id(resp: dict[str, Any]) -> dict[tuple[str, str], dict[str, Any]]:
+    return {
+        (str(item.get("type") or ""), str(item.get("id") or "")): item
+        for item in resp.get("included") or []
+        if item.get("type") and item.get("id")
+    }
+
+
+def relationship_item(resource: dict[str, Any], name: str) -> dict[str, str] | None:
+    data = ((resource.get("relationships") or {}).get(name) or {}).get("data")
+    return data if isinstance(data, dict) else None
+
+
+def compact_app_price(resource: dict[str, Any], included: dict[tuple[str, str], dict[str, Any]]) -> dict[str, Any]:
+    attrs = resource.get("attributes") or {}
+    price_point_ref = relationship_item(resource, "appPricePoint") or {}
+    territory_ref = relationship_item(resource, "territory") or {}
+    price_point = included.get((str(price_point_ref.get("type") or ""), str(price_point_ref.get("id") or ""))) or {}
+    territory = included.get((str(territory_ref.get("type") or ""), str(territory_ref.get("id") or ""))) or {}
+    price_attrs = price_point.get("attributes") or {}
+    territory_attrs = territory.get("attributes") or {}
+    return {
+        "territory": territory_ref.get("id"),
+        "currency": territory_attrs.get("currency"),
+        "customer_price": price_attrs.get("customerPrice"),
+        "proceeds": price_attrs.get("proceeds"),
+        "manual": attrs.get("manual"),
+        "start_date": attrs.get("startDate"),
+        "end_date": attrs.get("endDate"),
+    }
+
+
+def fetch_price_rows(client: asc.ASCClient, app_id: str, relation: str, limit: int = 10) -> dict[str, Any]:
+    path = f"/appPriceSchedules/{app_id}/{relation}?include=appPricePoint,territory&limit={limit}"
+    resp, error = safe_get(client, path)
+    if error:
+        return {"available": False, "error": error}
+    if not isinstance(resp, dict):
+        return {"available": False, "raw_type": type(resp).__name__}
+    included = included_by_type_and_id(resp)
+    rows = [compact_app_price(item, included) for item in resp.get("data") or [] if isinstance(item, dict)]
+    total = (((resp.get("meta") or {}).get("paging") or {}).get("total"))
+    return {
+        "available": True,
+        "total": total if isinstance(total, int) else len(rows),
+        "returned": len(rows),
+        "rows": rows,
+    }
+
+
 def fetch_pricing(client: asc.ASCClient, app_id: str) -> dict[str, Any]:
     path = (
         f"/apps/{app_id}/appPriceSchedule"
@@ -90,7 +140,18 @@ def fetch_pricing(client: asc.ASCClient, app_id: str) -> dict[str, Any]:
     schedule, error = safe_get(client, path)
     if error:
         return {"available": False, "error": error}
-    return compact_price_schedule(schedule)
+    compacted = compact_price_schedule(schedule)
+    manual_prices = fetch_price_rows(client, app_id, "manualPrices")
+    automatic_prices = fetch_price_rows(client, app_id, "automaticPrices")
+    compacted["manual_price_rows"] = manual_prices
+    compacted["automatic_price_rows"] = automatic_prices
+    base_territory = compacted.get("base_territory")
+    base_price = next(
+        (row for row in (manual_prices.get("rows") or []) if row.get("territory") == base_territory),
+        None,
+    ) or next(iter(manual_prices.get("rows") or []), None)
+    compacted["base_price"] = base_price
+    return compacted
 
 
 def decode_sales(raw: Any) -> list[dict[str, str]]:

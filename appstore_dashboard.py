@@ -505,6 +505,7 @@ def compact_app(
         "pricing": {
             "available": bool(pricing.get("available")),
             "base_territory": pricing.get("base_territory"),
+            "base_price": pricing.get("base_price") or {},
             "manual_prices": pricing.get("manual_prices") or {},
             "automatic_prices": pricing.get("automatic_prices") or {},
         },

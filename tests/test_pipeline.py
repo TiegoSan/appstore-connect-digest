@@ -67,7 +67,11 @@ class PipelineTests(unittest.TestCase):
                         },
                         "funnel_by_source": {"available": True, "rows": [{"name": "App Store search", "impressions": 120}]},
                         "funnel_by_territory": {"available": True, "rows": [{"name": "FR", "impressions": 20}]},
-                        "pricing": {"available": True, "base_territory": "FRA"},
+                        "pricing": {
+                            "available": True,
+                            "base_territory": "FRA",
+                            "base_price": {"customer_price": "0.0", "currency": "EUR", "proceeds": "0.0"},
+                        },
                         "metadata": {
                             "available": True,
                             "localizations": [{"locale": "fr-FR", "name": "Coupez!", "subtitle": "Conform audio"}],
@@ -109,6 +113,7 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(payload["apps"][0]["review_pipeline"]["versions"][0]["version_string"], "2.0")
         self.assertEqual(payload["apps"][0]["metadata"]["localizations"][0]["locale"], "fr-FR")
         self.assertEqual(payload["apps"][0]["screenshot_inventory"]["screenshot_total"], 3)
+        self.assertEqual(payload["apps"][0]["pricing"]["base_price"]["currency"], "EUR")
         self.assertEqual(payload["apps"][0]["in_app_purchases"]["items"][0]["product_id"], "coupez.unlimited")
         self.assertEqual(payload["apps"][0]["subscriptions"]["groups"][0]["reference_name"], "Pro")
         self.assertEqual(payload["apps"][0]["game_center"]["leaderboards_count"], 1)
@@ -477,6 +482,50 @@ class PipelineTests(unittest.TestCase):
         self.assertNotIn(vendor, rendered)
         self.assertNotIn("rows", status)
         self.assertIn("[redacted]", rendered)
+
+    def test_fetch_pricing_adds_base_price_rows(self) -> None:
+        class FakeClient:
+            def get(self, path: str) -> dict:
+                if path.startswith("/apps/123/appPriceSchedule"):
+                    return {
+                        "data": {
+                            "id": "123",
+                            "relationships": {
+                                "baseTerritory": {"data": {"type": "territories", "id": "FRA"}},
+                                "manualPrices": {"data": [{"type": "appPrices", "id": "price-1"}], "meta": {"paging": {"total": 1, "limit": 50}}},
+                                "automaticPrices": {"data": [], "meta": {"paging": {"total": 0, "limit": 50}}},
+                            },
+                        },
+                        "included": [],
+                    }
+                if "/appPriceSchedules/123/manualPrices" in path:
+                    return {
+                        "data": [
+                            {
+                                "type": "appPrices",
+                                "id": "price-1",
+                                "attributes": {"manual": True},
+                                "relationships": {
+                                    "appPricePoint": {"data": {"type": "appPricePoints", "id": "point-1"}},
+                                    "territory": {"data": {"type": "territories", "id": "FRA"}},
+                                },
+                            }
+                        ],
+                        "included": [
+                            {"type": "appPricePoints", "id": "point-1", "attributes": {"customerPrice": "4.99", "proceeds": "3.50"}},
+                            {"type": "territories", "id": "FRA", "attributes": {"currency": "EUR"}},
+                        ],
+                        "meta": {"paging": {"total": 1}},
+                    }
+                if "/appPriceSchedules/123/automaticPrices" in path:
+                    return {"data": [], "included": [], "meta": {"paging": {"total": 0}}}
+                raise AssertionError(path)
+
+        pricing = enrich_pricing_metrics.fetch_pricing(FakeClient(), "123")
+
+        self.assertTrue(pricing["available"])
+        self.assertEqual(pricing["base_price"]["customer_price"], "4.99")
+        self.assertEqual(pricing["base_price"]["currency"], "EUR")
 
     def test_market_history_and_funnel_use_raw_report_rows(self) -> None:
         report = {
