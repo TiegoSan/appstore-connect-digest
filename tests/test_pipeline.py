@@ -9,6 +9,7 @@ from pathlib import Path
 import enrich_pricing_metrics
 import enrich_review_metrics
 import enrich_market_metrics
+import enrich_store_capabilities
 import daily_appstore_digest
 import assemble_latest_digest
 import send_latest_digest
@@ -55,20 +56,62 @@ class PipelineTests(unittest.TestCase):
                                     "version_string": "2.0",
                                     "app_store_state": "WAITING_FOR_REVIEW",
                                     "build": {"version": "42"},
+                                },
+                                {
+                                    "id": "live-version-id",
+                                    "version_string": "1.0",
+                                    "app_store_state": "READY_FOR_SALE",
+                                    "build": {"version": "41"},
                                 }
                             ],
                         },
                         "funnel_by_source": {"available": True, "rows": [{"name": "App Store search", "impressions": 120}]},
                         "funnel_by_territory": {"available": True, "rows": [{"name": "FR", "impressions": 20}]},
                         "pricing": {"available": True, "base_territory": "FRA"},
+                        "metadata": {
+                            "available": True,
+                            "localizations": [{"locale": "fr-FR", "name": "Coupez!", "subtitle": "Conform audio"}],
+                            "categories": [{"relation": "primaryCategory", "id": "MUSIC", "attributes": {"name": "Music"}}],
+                        },
+                        "screenshot_inventory": {
+                            "available": True,
+                            "localizations": [
+                                {
+                                    "locale": "fr-FR",
+                                    "version_string": "2.0",
+                                    "app_store_state": "WAITING_FOR_REVIEW",
+                                    "screenshot_total": 3,
+                                    "sets": [{"screenshot_display_type": "APP_IPHONE_65", "screenshot_count": 3}],
+                                }
+                            ],
+                        },
+                        "in_app_purchases": {
+                            "available": True,
+                            "total": 1,
+                            "returned": 1,
+                            "items": [{"name": "Unlimited", "product_id": "coupez.unlimited", "state": "APPROVED"}],
+                        },
+                        "subscriptions": {
+                            "available": True,
+                            "groups": {"total": 1, "items": [{"reference_name": "Pro", "subscriptions_count": 1}]},
+                            "subscriptions": {
+                                "items": [{"name": "Monthly", "product_id": "coupez.monthly", "state": "APPROVED"}]
+                            },
+                        },
+                        "game_center": {"available": True, "state": "ENABLED", "leaderboards_count": 1},
                     }
                 ],
             }
         )
 
         self.assertEqual(payload["totals"]["impressions"], 120)
-        self.assertEqual(len(payload["apps"][0]["history"]["time_series"]["rows"]), 30)
+        self.assertEqual(len(payload["apps"][0]["history"]["time_series"]["rows"]), 90)
         self.assertEqual(payload["apps"][0]["review_pipeline"]["versions"][0]["version_string"], "2.0")
+        self.assertEqual(payload["apps"][0]["metadata"]["localizations"][0]["locale"], "fr-FR")
+        self.assertEqual(payload["apps"][0]["screenshot_inventory"]["screenshot_total"], 3)
+        self.assertEqual(payload["apps"][0]["in_app_purchases"]["items"][0]["product_id"], "coupez.unlimited")
+        self.assertEqual(payload["apps"][0]["subscriptions"]["groups"][0]["reference_name"], "Pro")
+        self.assertEqual(payload["apps"][0]["game_center"]["leaderboards_count"], 1)
         self.assertNotIn("private-version-id", json.dumps(payload))
         self.assertGreaterEqual(len(payload["alerts"]), 3)
         self.assertEqual(payload["alerts"][0]["level"], "critical")
@@ -497,6 +540,93 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(sales["by_territory"][0]["paid_units"], 2)
         self.assertEqual(sales["by_territory"][0]["refund_units"], 1)
         self.assertEqual(sales["by_territory"][0]["developer_proceeds"], 8.0)
+
+    def test_screenshot_request_uses_valid_public_fields(self) -> None:
+        class FakeClient:
+            def get(self, path: str) -> dict:
+                self.path = path
+                return {"data": [], "included": []}
+
+        client = FakeClient()
+        payload = enrich_market_metrics.fetch_screenshot_sets(client, "loc-1")
+
+        self.assertTrue(payload["available"])
+        self.assertIn("fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum", client.path)
+        self.assertNotIn("uploaded", client.path)
+
+    def test_store_capabilities_compacts_iap_subscriptions_and_game_center(self) -> None:
+        class FakeClient:
+            def __init__(self) -> None:
+                self.paths = []
+
+            def get(self, path: str) -> dict:
+                self.paths.append(path)
+                if "inAppPurchases" in path:
+                    return {
+                        "data": [
+                            {
+                                "type": "inAppPurchases",
+                                "id": "iap-1",
+                                "attributes": {
+                                    "name": "Unlimited",
+                                    "productId": "app.unlimited",
+                                    "state": "APPROVED",
+                                    "inAppPurchaseType": "NON_CONSUMABLE",
+                                },
+                            }
+                        ],
+                        "meta": {"paging": {"total": 1}},
+                    }
+                if "subscriptionGroups/group-1/subscriptions" in path:
+                    return {
+                        "data": [
+                            {
+                                "type": "subscriptions",
+                                "id": "sub-1",
+                                "attributes": {
+                                    "name": "Monthly",
+                                    "productId": "app.monthly",
+                                    "state": "APPROVED",
+                                    "subscriptionPeriod": "ONE_MONTH",
+                                },
+                            }
+                        ]
+                    }
+                if "subscriptionGroups" in path:
+                    return {
+                        "data": [
+                            {
+                                "type": "subscriptionGroups",
+                                "id": "group-1",
+                                "attributes": {"referenceName": "Pro"},
+                                "relationships": {"subscriptions": {"data": [{"type": "subscriptions", "id": "sub-1"}]}},
+                            }
+                        ],
+                        "meta": {"paging": {"total": 1}},
+                    }
+                if "gameCenterDetail" in path:
+                    return {
+                        "data": {
+                            "type": "gameCenterDetails",
+                            "id": "gc-1",
+                            "attributes": {"gameCenterState": "ENABLED"},
+                            "relationships": {
+                                "gameCenterLeaderboards": {"data": [{"type": "gameCenterLeaderboards", "id": "lb-1"}]},
+                                "gameCenterAchievements": {"data": []},
+                            },
+                        }
+                    }
+                raise AssertionError(path)
+
+        metrics = {"apps": [{"app_id": "123", "key": "app"}]}
+        enriched = enrich_store_capabilities.enrich(metrics, FakeClient())
+        app = enriched["apps"][0]
+
+        self.assertEqual(app["in_app_purchases"]["items"][0]["product_id"], "app.unlimited")
+        self.assertEqual(app["subscriptions"]["groups"]["items"][0]["reference_name"], "Pro")
+        self.assertEqual(app["subscriptions"]["subscriptions"]["items"][0]["product_id"], "app.monthly")
+        self.assertTrue(app["game_center"]["available"])
+        self.assertEqual(app["game_center"]["leaderboards_count"], 1)
 
 
 if __name__ == "__main__":

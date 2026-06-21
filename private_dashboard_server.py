@@ -67,6 +67,7 @@ def refresh_metrics(site_root: Path) -> tuple[int, dict[str, object]]:
         ["python3", "enrich_review_metrics.py"],
         ["python3", "enrich_pricing_metrics.py"],
         ["python3", "enrich_market_metrics.py"],
+        ["python3", "enrich_store_capabilities.py"],
         ["python3", "appstore_dashboard.py", "--copy-to-site", str(site_root / "private" / "appstore")],
     ]
     steps = []

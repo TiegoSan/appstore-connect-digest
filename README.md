@@ -11,6 +11,7 @@ Dossier autonome pour collecter des métriques App Store Connect, enrichir les d
 - `enrich_review_metrics.py` : enrichit `strategy/latest-metrics.json` avec les versions App Store en préparation/review/release pending, leurs builds et leurs metadata localisées, sans committer les champs App Review sensibles.
 - `enrich_pricing_metrics.py` : enrichit `strategy/latest-metrics.json` avec pricing et sales reports Apple, en best effort.
 - `enrich_market_metrics.py` : enrichit `strategy/latest-metrics.json` avec historique J-7/J-30, funnels par source/pays, reviews, metadata live, inventaire screenshots et signaux qualité, en best effort.
+- `enrich_store_capabilities.py` : enrichit `strategy/latest-metrics.json` avec IAP/subscriptions et Game Center en lecture seule, en best effort.
 - `render_latest_digest.py` : rend `strategy/latest-digest.html` depuis `strategy/latest-metrics.json`.
 - `assemble_latest_digest.py` : assemble le HTML final, ajoute la comparaison J-1 et intègre `strategy/strategic-review.md` produit par l'automatisation ChatGPT.
 - `send_latest_digest.py` : envoie `strategy/latest-digest.html` par SMTP.
@@ -41,6 +42,7 @@ python3 collect_latest_metrics.py
 python3 enrich_review_metrics.py
 python3 enrich_pricing_metrics.py
 python3 enrich_market_metrics.py
+python3 enrich_store_capabilities.py
 ```
 
 Rendre le digest HTML depuis les dernières métriques :
@@ -137,11 +139,12 @@ Déclenchement :
 3. Lance `enrich_review_metrics.py`.
 4. Lance `enrich_pricing_metrics.py`.
 5. Lance `enrich_market_metrics.py`.
-6. Lance `appstore_dashboard.py`.
-7. Commit et push `strategy/latest-metrics.json` si les métriques changent.
-8. Si `GOGOLABS_ANALYTICS_REPO_TOKEN` existe, pousse les payloads dashboard vers le repo privé `TiegoSan/gogolabs-analytics`.
-9. Lance `send_appstore_alerts.py` si des alertes warning/critical existent.
-10. Upload les artefacts JSON non privés.
+6. Lance `enrich_store_capabilities.py`.
+7. Lance `appstore_dashboard.py`.
+8. Commit et push `strategy/latest-metrics.json` si les métriques changent.
+9. Si `GOGOLABS_ANALYTICS_REPO_TOKEN` existe, pousse les payloads dashboard vers le repo privé `TiegoSan/gogolabs-analytics`.
+10. Lance `send_appstore_alerts.py` si des alertes warning/critical existent.
+11. Upload les artefacts JSON non privés.
 
 Le dashboard privé statique vit côté site dans :
 

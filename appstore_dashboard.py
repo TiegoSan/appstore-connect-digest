@@ -232,6 +232,145 @@ def compact_versions(versions: Any, limit: int = 4) -> list[dict[str, Any]]:
     return compacted
 
 
+def compact_metadata(metadata: dict[str, Any]) -> dict[str, Any]:
+    localizations = metadata.get("localizations") if isinstance(metadata.get("localizations"), list) else []
+    categories = metadata.get("categories") if isinstance(metadata.get("categories"), list) else []
+    return {
+        "available": bool(metadata.get("available")),
+        "localization_count": len(localizations),
+        "localizations": [
+            {
+                "locale": item.get("locale"),
+                "name": item.get("name"),
+                "subtitle": item.get("subtitle"),
+                "privacy_policy_url": item.get("privacy_policy_url"),
+                "has_privacy_policy_text": bool(item.get("has_privacy_policy_text")),
+            }
+            for item in localizations[:8]
+            if isinstance(item, dict)
+        ],
+        "categories": [
+            {
+                "relation": item.get("relation"),
+                "id": item.get("id"),
+                "name": ((item.get("attributes") or {}).get("name") if isinstance(item.get("attributes"), dict) else None),
+            }
+            for item in categories[:4]
+            if isinstance(item, dict)
+        ],
+        "error": metadata.get("error"),
+    }
+
+
+def compact_screenshots(screenshots: dict[str, Any]) -> dict[str, Any]:
+    localizations = screenshots.get("localizations") if isinstance(screenshots.get("localizations"), list) else []
+    errors = screenshots.get("errors") if isinstance(screenshots.get("errors"), list) else []
+    rows = []
+    total = 0
+    for loc in localizations[:8]:
+        if not isinstance(loc, dict):
+            continue
+        count = as_int(loc.get("screenshot_total"))
+        total += count
+        rows.append(
+            {
+                "locale": loc.get("locale"),
+                "version_string": loc.get("version_string"),
+                "app_store_state": loc.get("app_store_state"),
+                "screenshot_total": count,
+                "sets": [
+                    {
+                        "screenshot_display_type": item.get("screenshot_display_type"),
+                        "screenshot_count": as_int(item.get("screenshot_count")),
+                    }
+                    for item in (loc.get("sets") or [])[:8]
+                    if isinstance(item, dict)
+                ],
+            }
+        )
+    return {
+        "available": bool(screenshots.get("available")),
+        "localization_count": len(localizations),
+        "screenshot_total": total,
+        "localizations": rows,
+        "error_count": len(errors),
+        "errors": [
+            {"locale": item.get("locale"), "version_string": item.get("version_string"), "error": item.get("error")}
+            for item in errors[:3]
+            if isinstance(item, dict)
+        ],
+        "error": screenshots.get("error"),
+    }
+
+
+def compact_iap(iap: dict[str, Any]) -> dict[str, Any]:
+    items = iap.get("items") if isinstance(iap.get("items"), list) else []
+    return {
+        "available": bool(iap.get("available")),
+        "total": as_int(iap.get("total")),
+        "returned": as_int(iap.get("returned")),
+        "items": [
+            {
+                "name": item.get("name"),
+                "product_id": item.get("product_id"),
+                "in_app_purchase_type": item.get("in_app_purchase_type"),
+                "state": item.get("state"),
+                "family_sharable": item.get("family_sharable"),
+            }
+            for item in items[:8]
+            if isinstance(item, dict)
+        ],
+        "error": iap.get("error"),
+        "errors": iap.get("errors") if isinstance(iap.get("errors"), list) else None,
+    }
+
+
+def compact_subscriptions(subscriptions: dict[str, Any]) -> dict[str, Any]:
+    groups = ((subscriptions.get("groups") or {}).get("items") if isinstance(subscriptions.get("groups"), dict) else []) or []
+    subs = (
+        ((subscriptions.get("subscriptions") or {}).get("items") if isinstance(subscriptions.get("subscriptions"), dict) else [])
+        or []
+    )
+    return {
+        "available": bool(subscriptions.get("available")),
+        "group_count": as_int((subscriptions.get("groups") or {}).get("total")) if isinstance(subscriptions.get("groups"), dict) else 0,
+        "subscription_count": len(subs),
+        "groups": [
+            {
+                "reference_name": item.get("reference_name"),
+                "subscriptions_count": item.get("subscriptions_count"),
+            }
+            for item in groups[:8]
+            if isinstance(item, dict)
+        ],
+        "subscriptions": [
+            {
+                "name": item.get("name"),
+                "product_id": item.get("product_id"),
+                "state": item.get("state"),
+                "subscription_period": item.get("subscription_period"),
+                "family_sharable": item.get("family_sharable"),
+            }
+            for item in subs[:8]
+            if isinstance(item, dict)
+        ],
+        "error": subscriptions.get("error"),
+    }
+
+
+def compact_game_center(game_center: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "available": bool(game_center.get("available")),
+        "state": game_center.get("state"),
+        "achievements_count": game_center.get("achievements_count"),
+        "leaderboards_count": game_center.get("leaderboards_count"),
+        "challenges_count": game_center.get("challenges_count"),
+        "activities_count": game_center.get("activities_count"),
+        "app_versions_count": game_center.get("app_versions_count"),
+        "error": game_center.get("error"),
+    }
+
+
 def review_states(review_pipeline: dict[str, Any]) -> set[str]:
     states = set(review_pipeline.get("pipeline_states") or [])
     states.update(review_pipeline.get("blocking_recommendation_states") or [])
@@ -266,6 +405,10 @@ def compact_app(
     source_funnel = app.get("funnel_by_source") if isinstance(app.get("funnel_by_source"), dict) else {}
     territory_funnel = app.get("funnel_by_territory") if isinstance(app.get("funnel_by_territory"), dict) else {}
     screenshots = app.get("screenshot_inventory") if isinstance(app.get("screenshot_inventory"), dict) else {}
+    metadata = app.get("metadata") if isinstance(app.get("metadata"), dict) else {}
+    iap = app.get("in_app_purchases") if isinstance(app.get("in_app_purchases"), dict) else {}
+    subscriptions = app.get("subscriptions") if isinstance(app.get("subscriptions"), dict) else {}
+    game_center = app.get("game_center") if isinstance(app.get("game_center"), dict) else {}
     reports = reports or []
     previous_history = previous_app.get("history") if isinstance(previous_app, dict) and isinstance(previous_app.get("history"), dict) else {}
     previous_time_series = previous_history.get("time_series") if isinstance(previous_history.get("time_series"), dict) else None
@@ -286,7 +429,11 @@ def compact_app(
             "sales": bool(sales.get("available")),
             "reviews": bool(reviews.get("available")),
             "review_pipeline": bool(review_pipeline.get("available")),
+            "metadata": bool(metadata.get("available")),
             "screenshots": bool(screenshots.get("available")),
+            "in_app_purchases": bool(iap.get("available")),
+            "subscriptions": bool(subscriptions.get("available")),
+            "game_center": bool(game_center.get("available")),
         },
         "today": {
             "downloads": as_int(app.get("downloads")),
@@ -361,6 +508,11 @@ def compact_app(
             "manual_prices": pricing.get("manual_prices") or {},
             "automatic_prices": pricing.get("automatic_prices") or {},
         },
+        "metadata": compact_metadata(metadata),
+        "screenshot_inventory": compact_screenshots(screenshots),
+        "in_app_purchases": compact_iap(iap),
+        "subscriptions": compact_subscriptions(subscriptions),
+        "game_center": compact_game_center(game_center),
         "dominants": {
             "source": app.get("dominant_source") or {},
             "territory": app.get("dominant_territory") or {},
@@ -557,6 +709,7 @@ def build_dashboard_payload(metrics: dict[str, Any], previous_dashboard: dict[st
             "market_intelligence": metrics.get("market_intelligence_source"),
             "pricing_sales": metrics.get("pricing_sales_source"),
             "review_pipeline": metrics.get("review_pipeline_source"),
+            "store_capabilities": metrics.get("store_capabilities_source"),
         },
         "apps": apps,
         "analytics_scope": {

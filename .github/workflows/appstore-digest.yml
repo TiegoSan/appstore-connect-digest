@@ -81,6 +81,10 @@ jobs:
         if: env.RUN_METRICS == 'true'
         run: python enrich_market_metrics.py
 
+      - name: Enrich Store capabilities
+        if: env.RUN_METRICS == 'true'
+        run: python enrich_store_capabilities.py
+
       - name: Checkout private analytics dashboard
         if: env.RUN_METRICS == 'true' && env.GOGOLABS_ANALYTICS_REPO_TOKEN != ''
         run: |
