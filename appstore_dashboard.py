@@ -282,6 +282,11 @@ def compact_screenshots(screenshots: dict[str, Any]) -> dict[str, Any]:
                     {
                         "screenshot_display_type": item.get("screenshot_display_type"),
                         "screenshot_count": as_int(item.get("screenshot_count")),
+                        "screenshots": [
+                            compact_screenshot_item(shot, item.get("screenshot_display_type"))
+                            for shot in (item.get("screenshots") or [])[:12]
+                            if isinstance(shot, dict)
+                        ],
                     }
                     for item in (loc.get("sets") or [])[:8]
                     if isinstance(item, dict)
@@ -300,6 +305,34 @@ def compact_screenshots(screenshots: dict[str, Any]) -> dict[str, Any]:
             if isinstance(item, dict)
         ],
         "error": screenshots.get("error"),
+    }
+
+
+def screenshot_display_url(image_asset: dict[str, Any], target_width: int = 720) -> str | None:
+    template_url = image_asset.get("template_url") or image_asset.get("templateUrl")
+    if not isinstance(template_url, str) or not template_url:
+        return None
+    width = as_int(image_asset.get("width"))
+    height = as_int(image_asset.get("height"))
+    target_height = round(target_width * height / width) if width and height else target_width
+    return (
+        template_url
+        .replace("{w}", str(target_width))
+        .replace("{h}", str(target_height))
+        .replace("{f}", "png")
+    )
+
+
+def compact_screenshot_item(item: dict[str, Any], display_type: Any) -> dict[str, Any]:
+    image_asset = item.get("image_asset") if isinstance(item.get("image_asset"), dict) else {}
+    return {
+        "id": item.get("id"),
+        "file_name": item.get("file_name"),
+        "display_type": display_type,
+        "asset_delivery_state": item.get("asset_delivery_state"),
+        "width": as_int(image_asset.get("width")),
+        "height": as_int(image_asset.get("height")),
+        "display_url": screenshot_display_url(image_asset),
     }
 
 

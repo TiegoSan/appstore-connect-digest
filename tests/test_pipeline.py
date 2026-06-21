@@ -85,7 +85,23 @@ class PipelineTests(unittest.TestCase):
                                     "version_string": "2.0",
                                     "app_store_state": "WAITING_FOR_REVIEW",
                                     "screenshot_total": 3,
-                                    "sets": [{"screenshot_display_type": "APP_IPHONE_65", "screenshot_count": 3}],
+                                    "sets": [
+                                        {
+                                            "screenshot_display_type": "APP_IPHONE_65",
+                                            "screenshot_count": 3,
+                                            "screenshots": [
+                                                {
+                                                    "id": "shot-1",
+                                                    "file_name": "01.png",
+                                                    "image_asset": {
+                                                        "templateUrl": "https://example.test/image/{w}x{h}bb.{f}",
+                                                        "width": 2880,
+                                                        "height": 1800,
+                                                    },
+                                                }
+                                            ],
+                                        }
+                                    ],
                                 }
                             ],
                         },
@@ -113,6 +129,10 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(payload["apps"][0]["review_pipeline"]["versions"][0]["version_string"], "2.0")
         self.assertEqual(payload["apps"][0]["metadata"]["localizations"][0]["locale"], "fr-FR")
         self.assertEqual(payload["apps"][0]["screenshot_inventory"]["screenshot_total"], 3)
+        self.assertEqual(
+            payload["apps"][0]["screenshot_inventory"]["localizations"][0]["sets"][0]["screenshots"][0]["display_url"],
+            "https://example.test/image/720x450bb.png",
+        )
         self.assertEqual(payload["apps"][0]["pricing"]["base_price"]["currency"], "EUR")
         self.assertEqual(payload["apps"][0]["in_app_purchases"]["items"][0]["product_id"], "coupez.unlimited")
         self.assertEqual(payload["apps"][0]["subscriptions"]["groups"][0]["reference_name"], "Pro")
@@ -600,7 +620,7 @@ class PipelineTests(unittest.TestCase):
         payload = enrich_market_metrics.fetch_screenshot_sets(client, "loc-1")
 
         self.assertTrue(payload["available"])
-        self.assertIn("fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum", client.path)
+        self.assertIn("fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,imageAsset", client.path)
         self.assertNotIn("uploaded", client.path)
 
     def test_store_capabilities_compacts_iap_subscriptions_and_game_center(self) -> None:

@@ -371,7 +371,7 @@ def fetch_screenshot_sets(client: asc.ASCClient, localization_id: str) -> dict[s
         f"/appStoreVersionLocalizations/{localization_id}/appScreenshotSets"
         "?include=appScreenshots"
         "&fields[appScreenshotSets]=screenshotDisplayType,appScreenshots"
-        "&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum"
+        "&fields[appScreenshots]=fileName,fileSize,assetDeliveryState,sourceFileChecksum,imageAsset"
         "&limit=50&limit[appScreenshots]=50"
     )
     resp, error = safe_get(client, path)
@@ -387,12 +387,14 @@ def fetch_screenshot_sets(client: asc.ASCClient, localization_id: str) -> dict[s
             if not item:
                 continue
             shot_attrs = item.get("attributes") or {}
+            image_asset = shot_attrs.get("imageAsset") if isinstance(shot_attrs.get("imageAsset"), dict) else {}
             screenshots.append({
                 "id": item.get("id"),
                 "file_name": shot_attrs.get("fileName"),
                 "file_size": shot_attrs.get("fileSize"),
                 "asset_delivery_state": shot_attrs.get("assetDeliveryState"),
                 "source_file_checksum": shot_attrs.get("sourceFileChecksum"),
+                "image_asset": image_asset,
             })
         sets.append({
             "id": screenshot_set.get("id"),
