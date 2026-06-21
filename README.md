@@ -149,7 +149,7 @@ Le dashboard privé statique vit côté site dans :
 /Users/gautier/GogoLabs/Apps/Gogolabs.fr/private/appstore/
 ```
 
-Les repos publics `gogolabs.fr` et `appstore-connect-digest` ne doivent pas commiter les payloads dashboard complets. Le dashboard privé est publié dans `TiegoSan/gogolabs-analytics`, repo privé utilisé par Cloudflare Pages pour `analytics.gogolabs.fr`.
+Les repos publics `gogolabs.fr` et `appstore-connect-digest` ne doivent pas commiter les payloads dashboard complets. Le dashboard privé est publié dans `TiegoSan/gogolabs-analytics`, repo privé utilisé par Cloudflare Pages pour `analytics.gogolabs.fr`. Sa copie locale vit dans `/Users/gautier/GogoLabs/Sources/Analytics Dashboard`.
 
 ### Digest stratégique
 
@@ -190,7 +190,7 @@ GOGOLABS_ANALYTICS_REPO_TOKEN
 
 `APPSTORE_VENDOR_NUMBER` ou `ASC_VENDOR_NUMBER` est nécessaire pour les Sales Reports. `ASC_PRIVATE_KEY` doit contenir le contenu complet de la clé `.p8`, avec les lignes `BEGIN PRIVATE KEY` et `END PRIVATE KEY`.
 
-`GOGOLABS_ANALYTICS_REPO_TOKEN` est optionnel. S'il est présent, le workflow pousse `latest-appstore-dashboard.json` et `latest-appstore-alerts.json` dans le repo privé `TiegoSan/gogolabs-analytics`, utilisé par Cloudflare Pages pour `analytics.gogolabs.fr`.
+`GOGOLABS_ANALYTICS_REPO_TOKEN` est optionnel. S'il est présent, le workflow pousse `latest-appstore-dashboard.json` et `latest-appstore-alerts.json` dans le repo privé `TiegoSan/gogolabs-analytics`, utilisé par Cloudflare Pages pour `analytics.gogolabs.fr`. Sa copie locale vit dans `/Users/gautier/GogoLabs/Sources/Analytics Dashboard`.
 
 Valeurs SMTP iCloud typiques :
 
