@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T05:41:33.926994+00:00",
+  "generated_at": "2026-06-24T07:30:28.925898+00:00",
   "report_date": "2026-06-22",
   "metrics_scope": "report_date",
   "metrics_semantics": {
@@ -100,7 +100,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-24T05:41:34.836344+00:00",
+        "fetched_at": "2026-06-24T07:30:29.784849+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -641,7 +641,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-24T05:41:49.415380+00:00",
+        "fetched_at": "2026-06-24T07:30:46.882754+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -653,7 +653,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-24T05:41:49.859474+00:00",
+        "fetched_at": "2026-06-24T07:30:47.864108+00:00",
         "localizations": [
           {
             "id": "4c4aae4b-0ecd-4d91-a0e4-528442efa26c",
@@ -702,7 +702,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-24T05:41:50.399345+00:00",
+        "fetched_at": "2026-06-24T07:30:48.315403+00:00",
         "localizations": [
           {
             "localization_id": "31f41a56-4fbd-4335-a63f-e549bca02381",
@@ -973,7 +973,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-24T05:42:02.885761+00:00",
+        "fetched_at": "2026-06-24T07:30:58.318604+00:00",
         "total": 1,
         "returned": 1,
         "items": [
@@ -1000,11 +1000,11 @@
           "errors": [
             {
               "path": "/apps/6761286310/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6761286310/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'f753d10c-391d-492e-b5d0-7c5636bfa045', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6761286310/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '6881e4d1-e0e7-4249-954e-047f4ee96381', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6761286310&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6761286310&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'd75fd652-d617-4128-b93e-1a1ebc7d7c20', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6761286310&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '9fe910f8-8f87-4ddd-b0d9-9f5e747868bb', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -1109,7 +1109,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-24T05:41:35.416576+00:00",
+        "fetched_at": "2026-06-24T07:30:30.406105+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -1703,7 +1703,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-24T05:41:50.668121+00:00",
+        "fetched_at": "2026-06-24T07:30:48.537216+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -1715,7 +1715,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-24T05:41:51.137528+00:00",
+        "fetched_at": "2026-06-24T07:30:48.968255+00:00",
         "localizations": [
           {
             "id": "e713dc7a-0d94-4c3c-b555-95f187c1d06c",
@@ -1772,7 +1772,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-24T05:41:51.859901+00:00",
+        "fetched_at": "2026-06-24T07:30:49.537873+00:00",
         "localizations": [
           {
             "localization_id": "19e90ce3-149b-4c75-ac8b-06e4a5f657fe",
@@ -1952,7 +1952,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-24T05:42:03.798913+00:00",
+        "fetched_at": "2026-06-24T07:30:59.166315+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -1968,11 +1968,11 @@
           "errors": [
             {
               "path": "/apps/6766993396/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6766993396/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'bf3a8905-da3c-4a21-9efd-1d006ca019a1', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6766993396/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'd7155530-4db6-4664-bc77-6c04955301f6', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6766993396&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6766993396&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'c54c66b3-26ca-4cf5-8489-472cd3c79939', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6766993396&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '02452772-a499-4bb1-8179-c0304c694ccb', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -2066,7 +2066,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-24T05:41:35.931845+00:00",
+        "fetched_at": "2026-06-24T07:30:30.904791+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -2606,7 +2606,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-24T05:41:52.130749+00:00",
+        "fetched_at": "2026-06-24T07:30:49.772362+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -2618,7 +2618,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-24T05:41:52.523070+00:00",
+        "fetched_at": "2026-06-24T07:30:50.193518+00:00",
         "localizations": [
           {
             "id": "4f732e72-4179-4f06-9a3e-a6b9fcd79174",
@@ -2659,7 +2659,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-24T05:41:52.750290+00:00",
+        "fetched_at": "2026-06-24T07:30:50.371268+00:00",
         "localizations": [
           {
             "localization_id": "6851d61b-be2d-465d-867b-1919cf6764ea",
@@ -2706,7 +2706,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-24T05:42:05.051657+00:00",
+        "fetched_at": "2026-06-24T07:30:59.865022+00:00",
         "total": 1,
         "returned": 1,
         "items": [
@@ -2733,11 +2733,11 @@
           "errors": [
             {
               "path": "/apps/6761866606/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6761866606/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '91edb93c-74e0-4800-901d-394329986791', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6761866606/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '54fffbd1-1214-4311-88d3-5dfd7c20b348', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6761866606&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6761866606&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '332c663f-7f07-4dbb-bdd1-8967134a2ab7', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6761866606&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '987e4378-cb45-4053-8368-24c20050f044', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -2814,7 +2814,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-24T05:41:36.197577+00:00",
+        "fetched_at": "2026-06-24T07:30:31.112000+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -3116,7 +3116,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-24T05:41:53.014446+00:00",
+        "fetched_at": "2026-06-24T07:30:50.651517+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -3128,7 +3128,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-24T05:41:53.494143+00:00",
+        "fetched_at": "2026-06-24T07:30:51.086261+00:00",
         "localizations": [
           {
             "id": "96fb5fd9-0438-40e5-bef3-691a906f13f2",
@@ -3165,7 +3165,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-24T05:41:53.914130+00:00",
+        "fetched_at": "2026-06-24T07:30:51.420660+00:00",
         "localizations": [
           {
             "localization_id": "64530e1f-f128-4252-8408-98274dcf2ff8",
@@ -3196,7 +3196,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-24T05:42:05.977992+00:00",
+        "fetched_at": "2026-06-24T07:31:00.577936+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -3212,11 +3212,11 @@
           "errors": [
             {
               "path": "/apps/6770746957/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6770746957/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '9e683402-4877-420d-af69-a83b0bb14503', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6770746957/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '8bc7ca4f-79f9-4419-96d2-a07c52e17d2c', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6770746957&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6770746957&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '5d0e950f-d9dd-423a-8c60-a8e5602d3133', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6770746957&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '547af079-1e7b-41de-98f4-ded15c123d68', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -3293,7 +3293,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-24T05:41:36.452684+00:00",
+        "fetched_at": "2026-06-24T07:30:31.353800+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -3350,7 +3350,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6772350677/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'd5507afa-fa53-4c01-b4c0-ad2dfdcfe62c', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6772350677'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6772350677/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '5ce68ffc-31f9-4662-874b-7a9f257a780c', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6772350677'\"}]}"
       },
       "sales": {
         "available": false,
@@ -3386,7 +3386,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-24T05:41:54.238788+00:00",
+        "fetched_at": "2026-06-24T07:30:51.641700+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -3398,7 +3398,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-24T05:41:54.563003+00:00",
+        "fetched_at": "2026-06-24T07:30:51.928681+00:00",
         "localizations": [
           {
             "id": "df6ef245-510f-4714-88ca-53331d3e6937",
@@ -3414,7 +3414,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-24T05:41:54.773642+00:00",
+        "fetched_at": "2026-06-24T07:30:52.081010+00:00",
         "localizations": [
           {
             "localization_id": "93f2b14e-2de8-42a5-9fce-60010185891e",
@@ -3437,7 +3437,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-24T05:42:06.919799+00:00",
+        "fetched_at": "2026-06-24T07:31:01.290121+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -3453,11 +3453,11 @@
           "errors": [
             {
               "path": "/apps/6772350677/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6772350677/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '56c0ad7d-bb17-4ab7-b938-1e83fb3fe4b4', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6772350677/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '0129dcb3-4988-4ed7-b15b-5e7c736314fa', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6772350677&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6772350677&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'fe8f7a48-1665-45f6-a808-3ba851c318bd', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6772350677&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '6f3ac9b7-642c-4acb-a41e-e2fde58c01fb', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -3534,7 +3534,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-24T05:41:36.704562+00:00",
+        "fetched_at": "2026-06-24T07:30:31.562098+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -3591,7 +3591,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6770716816/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'e34c6ce0-9063-4ab3-a8a7-a4d6b1e1802e', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6770716816'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6770716816/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '8854025d-8178-4408-b519-b632c22a6cf2', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6770716816'\"}]}"
       },
       "sales": {
         "available": false,
@@ -3627,7 +3627,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-24T05:41:55.107710+00:00",
+        "fetched_at": "2026-06-24T07:30:52.302634+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -3639,7 +3639,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-24T05:41:55.440221+00:00",
+        "fetched_at": "2026-06-24T07:30:52.532918+00:00",
         "localizations": [
           {
             "id": "962852b5-ebb3-4367-9327-9aeb18dbc0cd",
@@ -3655,7 +3655,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-24T05:41:55.651321+00:00",
+        "fetched_at": "2026-06-24T07:30:52.691403+00:00",
         "localizations": [
           {
             "localization_id": "a15c1d85-88cc-4c02-b75e-e3b8d2acecf5",
@@ -3678,7 +3678,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-24T05:42:07.854928+00:00",
+        "fetched_at": "2026-06-24T07:31:01.962028+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -3694,11 +3694,11 @@
           "errors": [
             {
               "path": "/apps/6770716816/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6770716816/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'bfed88c6-1cc6-425c-adc5-56083e011c31', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6770716816/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '45789bc9-1632-4c7a-9fba-53974f079ea4', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6770716816&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6770716816&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '9d5c8eab-84a9-4ba4-bde5-c11a7576e2e2', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6770716816&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'a1b67bda-7059-485e-b56d-edbfbb5a6b89', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -3794,7 +3794,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-24T05:41:37.056629+00:00",
+        "fetched_at": "2026-06-24T07:30:31.891009+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -4321,7 +4321,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-24T05:41:55.994235+00:00",
+        "fetched_at": "2026-06-24T07:30:52.910802+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -4333,7 +4333,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-24T05:41:56.459016+00:00",
+        "fetched_at": "2026-06-24T07:30:53.320959+00:00",
         "localizations": [
           {
             "id": "4968b391-9f8d-4643-824c-819e5189b35c",
@@ -4374,7 +4374,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-24T05:41:56.696130+00:00",
+        "fetched_at": "2026-06-24T07:30:53.510578+00:00",
         "localizations": [
           {
             "localization_id": "2cb2abc2-5837-4d3b-a9ca-4064ef5b46dd",
@@ -4421,7 +4421,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-24T05:42:08.758408+00:00",
+        "fetched_at": "2026-06-24T07:31:02.670521+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -4437,11 +4437,11 @@
           "errors": [
             {
               "path": "/apps/6769386761/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6769386761/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '39f01ce4-ffe0-495a-ad7b-6ac6bdee661f', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6769386761/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '99f0252b-58af-42fc-ace0-4566dfee94ff', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6769386761&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6769386761&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'a7aa0231-4db3-4c03-b4f6-51d370f179bf', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6769386761&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'ce484688-f79a-4ec9-84ee-c01b8dfdf1f8', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -4532,7 +4532,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-24T05:41:37.469224+00:00",
+        "fetched_at": "2026-06-24T07:30:32.248472+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -5059,7 +5059,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-24T05:41:57.031685+00:00",
+        "fetched_at": "2026-06-24T07:30:53.793799+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -5071,7 +5071,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-24T05:41:57.524756+00:00",
+        "fetched_at": "2026-06-24T07:30:54.206079+00:00",
         "localizations": [
           {
             "id": "2e0b6f17-74a7-4ef9-b622-90fbc6e1a5cc",
@@ -5112,7 +5112,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-24T05:41:57.761456+00:00",
+        "fetched_at": "2026-06-24T07:30:54.400632+00:00",
         "localizations": [
           {
             "localization_id": "5df6c660-4d41-4889-a06e-b5317e5ff0b6",
@@ -5191,7 +5191,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-24T05:42:09.680488+00:00",
+        "fetched_at": "2026-06-24T07:31:03.516061+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -5207,11 +5207,11 @@
           "errors": [
             {
               "path": "/apps/6764426243/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6764426243/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '7d296bb0-1143-4c84-955d-97a81df4b4c0', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6764426243/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '380e7f78-eafd-4b5e-952d-ffe4af8f6788', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6764426243&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6764426243&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'bd77aaf3-b91b-4e3d-ad6e-acf804052947', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6764426243&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '5cbe48c6-9a0b-4ef5-bac6-de84947b0eca', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -5288,7 +5288,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-24T05:41:37.724824+00:00",
+        "fetched_at": "2026-06-24T07:30:32.466877+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -5345,7 +5345,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6761501191/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '401dbe79-4e82-43ad-9666-9ce27815a33f', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6761501191'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6761501191/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'c5dc92f0-1f8c-45e9-883f-fa58762b3f5e', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6761501191'\"}]}"
       },
       "sales": {
         "available": false,
@@ -5381,7 +5381,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-24T05:41:58.020100+00:00",
+        "fetched_at": "2026-06-24T07:30:54.688115+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -5393,7 +5393,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-24T05:41:58.349809+00:00",
+        "fetched_at": "2026-06-24T07:30:54.918531+00:00",
         "localizations": [
           {
             "id": "0e6f2197-5185-4e12-9382-fc8380d45593",
@@ -5409,7 +5409,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-24T05:41:58.568977+00:00",
+        "fetched_at": "2026-06-24T07:30:55.077153+00:00",
         "localizations": [
           {
             "localization_id": "84901e45-1475-493c-a0b5-a6b70912b32b",
@@ -5432,7 +5432,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-24T05:42:11.469615+00:00",
+        "fetched_at": "2026-06-24T07:31:04.249628+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -5448,11 +5448,11 @@
           "errors": [
             {
               "path": "/apps/6761501191/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6761501191/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '334728a1-ee32-4b4e-ad6f-b63769a91c2e', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6761501191/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '867b264f-3abc-4bf8-ba10-99bf322ff810', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6761501191&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6761501191&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '90539a56-98cf-4093-b9c4-340a3eeb1803', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6761501191&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '21c0945b-d5d7-47e4-9cb3-3f0db52476b2', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -5529,35 +5529,31 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-24T05:41:38.239004+00:00",
-        "has_pending_version": true,
-        "has_blocking_pipeline_change": true,
-        "pipeline_states": [
-          "WAITING_FOR_REVIEW"
-        ],
-        "blocking_recommendation_states": [
-          "WAITING_FOR_REVIEW"
-        ],
+        "fetched_at": "2026-06-24T07:30:32.990464+00:00",
+        "has_pending_version": false,
+        "has_blocking_pipeline_change": false,
+        "pipeline_states": [],
+        "blocking_recommendation_states": [],
         "version_count": 3,
-        "included_version_count": 2,
-        "omitted_historical_version_count": 1,
-        "pipeline_version_count": 1,
+        "included_version_count": 1,
+        "omitted_historical_version_count": 2,
+        "pipeline_version_count": 0,
         "versions": [
           {
             "id": "fd207ced-f55f-48b0-a890-00541295b2ad",
             "platform": "IOS",
             "version_string": "1.2",
-            "app_store_state": "WAITING_FOR_REVIEW",
-            "app_version_state": "WAITING_FOR_REVIEW",
+            "app_store_state": "READY_FOR_SALE",
+            "app_version_state": "READY_FOR_DISTRIBUTION",
             "review_type": "APP_STORE",
             "release_type": "AFTER_APPROVAL",
             "earliest_release_date": null,
             "created_date": "2026-06-21T12:06:27-07:00",
             "downloadable": true,
             "uses_idfa": null,
-            "is_live": false,
-            "is_pipeline": true,
-            "blocks_redundant_recommendations": true,
+            "is_live": true,
+            "is_pipeline": false,
+            "blocks_redundant_recommendations": false,
             "build": {
               "id": "31240fff-44b0-47c7-b11a-779563fcf9e9",
               "version": "9",
@@ -5587,69 +5583,6 @@
             ],
             "app_store_review_detail": {
               "id": "4f4429ea-5c0c-4b51-99ed-c5e276439d81",
-              "attributes": {},
-              "redacted_fields": [
-                "contactEmail",
-                "contactFirstName",
-                "contactLastName",
-                "contactPhone",
-                "notes"
-              ],
-              "has_contact_email": true,
-              "has_contact_phone": true,
-              "has_demo_account": false,
-              "has_notes": true
-            },
-            "app_store_version_submission": {
-              "id": "fd207ced-f55f-48b0-a890-00541295b2ad",
-              "attributes": {}
-            },
-            "app_store_version_phased_release": null
-          },
-          {
-            "id": "cea747c2-2fc3-40a3-b4ff-49c4b0df8617",
-            "platform": "IOS",
-            "version_string": "1.1",
-            "app_store_state": "READY_FOR_SALE",
-            "app_version_state": "READY_FOR_DISTRIBUTION",
-            "review_type": "APP_STORE",
-            "release_type": "AFTER_APPROVAL",
-            "earliest_release_date": null,
-            "created_date": "2026-06-20T18:38:13-07:00",
-            "downloadable": true,
-            "uses_idfa": null,
-            "is_live": true,
-            "is_pipeline": false,
-            "blocks_redundant_recommendations": false,
-            "build": {
-              "id": "81c9137c-09dd-4fb5-a841-1e8d1c37f42b",
-              "version": "82",
-              "uploaded_date": "2026-06-20T18:38:21-07:00",
-              "processing_state": "VALID",
-              "min_os_version": "15.0",
-              "ls_minimum_system_version": null,
-              "computed_min_macos_version": "12.0",
-              "expired": false,
-              "uses_non_exempt_encryption": false
-            },
-            "localizations": [
-              {
-                "id": "744d9d5c-5b28-495f-875f-72b59b057d98",
-                "locale": "en-US",
-                "name": null,
-                "subtitle": null,
-                "privacy_policy_url": null,
-                "privacy_policy_text": null,
-                "promotional_text": null,
-                "description": "DoReQuiz turns musical listening into a tactile game.\n\nListen to a short melody, find the notes on the keyboard, and progress round after round. The app is designed to train musical hearing without a complicated interface: a clear keyboard, immediate feedback, several difficulty modes, and a playful visual style inspired by small electronic instruments.\n\nIncluded modes:\n- Guided mode: keys light up to show the melody.\n- Easy mode: short phrases on one octave.\n- Normal mode: longer and more demanding melodies.\n- Instrument quiz: listen to a sound and choose the matching image.\n- Chords: find several notes played together.\n- Freestyle: play freely on the keyboard.\n\nDoReQuiz is made for beginners, children, curious musicians, and anyone who wants to practice listening, melodic memory, and note recognition in a direct way.\n\nNo theory required to start: listen, play, repeat.",
-                "keywords": "music,piano,keyboard,notes,ear,melody,chords,instruments,listening,kids,quiz,training",
-                "marketing_url": "https://gogolabs.fr/",
-                "support_url": "https://gogolabs.fr/support.html",
-                "whats_new": "Improved iPad menu presentation, clearer score feedback, Game Center score support, and more reliable playback for repeated notes."
-              }
-            ],
-            "app_store_review_detail": {
-              "id": "161f216e-fef8-424a-a56f-3d8541b22e4c",
               "attributes": {},
               "redacted_fields": [
                 "contactEmail",
@@ -6135,7 +6068,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-24T05:41:58.900627+00:00",
+        "fetched_at": "2026-06-24T07:30:55.378973+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -6147,16 +6080,8 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-24T05:41:59.431575+00:00",
+        "fetched_at": "2026-06-24T07:30:55.786535+00:00",
         "localizations": [
-          {
-            "id": "cc49a74c-ac89-4063-91f8-355554fc0e70",
-            "locale": "en-US",
-            "name": "DoReQuiz",
-            "subtitle": "Music ear training game",
-            "privacy_policy_url": "https://gogolabs.fr/privacy-policy.html",
-            "has_privacy_policy_text": false
-          },
           {
             "id": "2f47f42b-34e0-45ed-9ac2-f38c1332d143",
             "locale": "en-US",
@@ -6190,43 +6115,19 @@
                 "VISION_OS"
               ]
             }
-          },
-          {
-            "relation": "primaryCategory",
-            "id": "MUSIC",
-            "attributes": {
-              "platforms": [
-                "IOS",
-                "MAC_OS",
-                "TV_OS",
-                "VISION_OS"
-              ]
-            }
-          },
-          {
-            "relation": "secondaryCategory",
-            "id": "GAMES",
-            "attributes": {
-              "platforms": [
-                "IOS",
-                "MAC_OS",
-                "TV_OS",
-                "VISION_OS"
-              ]
-            }
           }
         ]
       },
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-24T05:41:59.916366+00:00",
+        "fetched_at": "2026-06-24T07:30:55.980093+00:00",
         "localizations": [
           {
             "localization_id": "3463237e-fd52-4c85-b4b1-e9f9c5a2d31b",
             "locale": "en-US",
             "version_string": "1.2",
-            "app_store_state": "WAITING_FOR_REVIEW",
+            "app_store_state": "READY_FOR_SALE",
             "screenshot_total": 6,
             "sets": [
               {
@@ -6340,125 +6241,6 @@
                 ]
               }
             ]
-          },
-          {
-            "localization_id": "744d9d5c-5b28-495f-875f-72b59b057d98",
-            "locale": "en-US",
-            "version_string": "1.1",
-            "app_store_state": "READY_FOR_SALE",
-            "screenshot_total": 6,
-            "sets": [
-              {
-                "id": "6ee8c837-9efa-46f3-8b89-7b5819b8116d",
-                "screenshot_display_type": "APP_IPAD_PRO_3GEN_129",
-                "screenshot_count": 3,
-                "screenshots": [
-                  {
-                    "id": "ad2d8ca8-46ad-41fb-a2ba-dcff7aad70a6",
-                    "file_name": "01.jpeg",
-                    "file_size": 1439754,
-                    "asset_delivery_state": {
-                      "errors": [],
-                      "warnings": null,
-                      "state": "COMPLETE"
-                    },
-                    "source_file_checksum": "3d301d8c4da2698b9289f68f0b98c8e7",
-                    "image_asset": {
-                      "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/52/0e/6c/520e6c06-3a0a-5799-3eac-9c1331a2948b/01.jpeg/{w}x{h}bb.{f}",
-                      "width": 2752,
-                      "height": 2064
-                    }
-                  },
-                  {
-                    "id": "716f005d-d641-41d7-9cab-d2c56e75020e",
-                    "file_name": "02.jpeg",
-                    "file_size": 631608,
-                    "asset_delivery_state": {
-                      "errors": [],
-                      "warnings": null,
-                      "state": "COMPLETE"
-                    },
-                    "source_file_checksum": "40115339441fda2a74df8857e8d8279c",
-                    "image_asset": {
-                      "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/e2/45/c4/e245c4a9-0de5-3092-432d-2f0ee5b050cd/02.jpeg/{w}x{h}bb.{f}",
-                      "width": 2752,
-                      "height": 2064
-                    }
-                  },
-                  {
-                    "id": "67996999-294d-489a-8955-f9e072a68e7f",
-                    "file_name": "03.jpeg",
-                    "file_size": 1398991,
-                    "asset_delivery_state": {
-                      "errors": [],
-                      "warnings": null,
-                      "state": "COMPLETE"
-                    },
-                    "source_file_checksum": "52d427e14b01387b8d8b7aa6bebc9ce0",
-                    "image_asset": {
-                      "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/d6/23/14/d623142f-a24d-0561-cd5b-bd331d514cc2/03.jpeg/{w}x{h}bb.{f}",
-                      "width": 2752,
-                      "height": 2064
-                    }
-                  }
-                ]
-              },
-              {
-                "id": "8695296c-a986-4f2d-bc2a-232b587ee559",
-                "screenshot_display_type": "APP_IPHONE_67",
-                "screenshot_count": 3,
-                "screenshots": [
-                  {
-                    "id": "ee81e059-32e3-4e13-ac78-3288e1a5a3c2",
-                    "file_name": "01.jpeg",
-                    "file_size": 593278,
-                    "asset_delivery_state": {
-                      "errors": [],
-                      "warnings": null,
-                      "state": "COMPLETE"
-                    },
-                    "source_file_checksum": "9ae89e220479589bed1637be074a67e3",
-                    "image_asset": {
-                      "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/74/d8/00/74d80038-359a-6ab0-2db4-15ccc4c281a8/01.jpeg/{w}x{h}bb.{f}",
-                      "width": 2868,
-                      "height": 1320
-                    }
-                  },
-                  {
-                    "id": "5dedf352-e08d-4615-9c31-4b57c9aea69f",
-                    "file_name": "02.jpeg",
-                    "file_size": 638732,
-                    "asset_delivery_state": {
-                      "errors": [],
-                      "warnings": null,
-                      "state": "COMPLETE"
-                    },
-                    "source_file_checksum": "deeca4881a45d6c69d2296d352f31e07",
-                    "image_asset": {
-                      "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/56/e8/9b/56e89b1c-072e-116f-30fd-04d4fae526bb/02.jpeg/{w}x{h}bb.{f}",
-                      "width": 2868,
-                      "height": 1320
-                    }
-                  },
-                  {
-                    "id": "e3bc6013-6deb-4660-8c4a-a9d51266c655",
-                    "file_name": "03.jpeg",
-                    "file_size": 511020,
-                    "asset_delivery_state": {
-                      "errors": [],
-                      "warnings": null,
-                      "state": "COMPLETE"
-                    },
-                    "source_file_checksum": "1a5447877e2d5dfa7cafbfa5063a3907",
-                    "image_asset": {
-                      "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/9d/2e/97/9d2e97c7-8ff0-2a9f-69ce-6a7658327aa8/03.jpeg/{w}x{h}bb.{f}",
-                      "width": 2868,
-                      "height": 1320
-                    }
-                  }
-                ]
-              }
-            ]
           }
         ],
         "errors": []
@@ -6473,7 +6255,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-24T05:42:12.403195+00:00",
+        "fetched_at": "2026-06-24T07:31:04.961306+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -6489,11 +6271,11 @@
           "errors": [
             {
               "path": "/apps/6780059863/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6780059863/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '51ec4d96-5f6a-4c9c-ba4d-842cb220566a', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6780059863/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '0e542e47-3f85-46b9-bdba-245333bc041c', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6780059863&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6780059863&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'af1c569c-4d04-4f1b-85e8-2cfe55a75b18', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6780059863&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '6fa131e9-84ce-4098-9ffa-07b10a2c7cdb', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -6506,7 +6288,7 @@
       "game_center": {
         "available": true,
         "source": "App Store Connect gameCenterDetail",
-        "fetched_at": "2026-06-24T05:42:13.483982+00:00",
+        "fetched_at": "2026-06-24T07:31:05.954503+00:00",
         "id": "85e90433-cba9-468d-837f-3bd449e97e2c",
         "type": "gameCenterDetails",
         "state": null,
@@ -6578,7 +6360,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-24T05:41:38.500022+00:00",
+        "fetched_at": "2026-06-24T07:30:33.219987+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -6635,7 +6417,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6782224830/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'd895197d-a874-41af-83ff-b51fd749caae', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6782224830'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6782224830/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'a17069d4-f4b3-4146-8dfb-178ab74abdbd', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6782224830'\"}]}"
       },
       "sales": {
         "available": false,
@@ -6671,7 +6453,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-24T05:42:00.273120+00:00",
+        "fetched_at": "2026-06-24T07:30:56.225501+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -6683,7 +6465,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-24T05:42:00.614196+00:00",
+        "fetched_at": "2026-06-24T07:30:56.524511+00:00",
         "localizations": [
           {
             "id": "3724fc93-2be7-42d2-bd44-25e8fa68b81b",
@@ -6699,7 +6481,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-24T05:42:00.833285+00:00",
+        "fetched_at": "2026-06-24T07:30:56.693447+00:00",
         "localizations": [
           {
             "localization_id": "437fc1ca-35de-4430-bc13-3f822699e0ed",
@@ -6722,7 +6504,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-24T05:42:13.692065+00:00",
+        "fetched_at": "2026-06-24T07:31:06.120980+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -6738,11 +6520,11 @@
           "errors": [
             {
               "path": "/apps/6782224830/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6782224830/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '542dd816-7763-4fe8-8f48-f4080e85352c', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6782224830/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '85626bf2-1d4c-4ae4-9934-4d0b63c604e4', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6782224830&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6782224830&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '79e33692-a0bc-4f5b-bd7d-c453dfa7beda', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6782224830&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '4cb5e389-c1f3-445c-a1ff-5eea74b8314b', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -6755,7 +6537,7 @@
       "game_center": {
         "available": true,
         "source": "App Store Connect gameCenterDetail",
-        "fetched_at": "2026-06-24T05:42:14.485240+00:00",
+        "fetched_at": "2026-06-24T07:31:06.770851+00:00",
         "id": "7fb89c68-ca3b-4173-b261-00a0e2331857",
         "type": "gameCenterDetails",
         "state": null,
@@ -6827,7 +6609,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-24T05:41:38.755799+00:00",
+        "fetched_at": "2026-06-24T07:30:33.423492+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -6884,7 +6666,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6782435266/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '0196e930-905c-4301-977a-00c2632d1bf5', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6782435266'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6782435266/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '97ca5c5b-0a9c-46be-ae50-761180198824', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6782435266'\"}]}"
       },
       "sales": {
         "available": false,
@@ -6920,7 +6702,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-24T05:42:01.097000+00:00",
+        "fetched_at": "2026-06-24T07:30:56.966406+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -6932,7 +6714,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-24T05:42:01.430133+00:00",
+        "fetched_at": "2026-06-24T07:30:57.192539+00:00",
         "localizations": [
           {
             "id": "9aabd2ee-13fc-4c87-aed8-26cf56deda9a",
@@ -6948,7 +6730,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-24T05:42:01.644731+00:00",
+        "fetched_at": "2026-06-24T07:30:57.348540+00:00",
         "localizations": [
           {
             "localization_id": "36d58e28-7d29-47d3-bb51-01e2679242da",
@@ -6971,7 +6753,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-24T05:42:14.701784+00:00",
+        "fetched_at": "2026-06-24T07:31:06.934805+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -6987,11 +6769,11 @@
           "errors": [
             {
               "path": "/apps/6782435266/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6782435266/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'a3cc1a5c-c983-4d63-8b0b-70c92e0e8e32', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6782435266/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'f3e46359-7767-46d1-8edd-808e4246e846', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6782435266&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6782435266&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'd6f8d552-cb76-4ce8-ad5c-b3cacb840c35', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6782435266&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '8bd0f1ba-8891-49d6-884a-02ab10047bd9', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -7004,7 +6786,7 @@
       "game_center": {
         "available": true,
         "source": "App Store Connect gameCenterDetail",
-        "fetched_at": "2026-06-24T05:42:17.083992+00:00",
+        "fetched_at": "2026-06-24T07:31:07.592890+00:00",
         "id": "b2113e70-6810-4b46-b793-f235178b9ebf",
         "type": "gameCenterDetails",
         "state": null,
@@ -7076,7 +6858,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-24T05:41:39.012352+00:00",
+        "fetched_at": "2026-06-24T07:30:33.635561+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -7133,7 +6915,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6782362546/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '3abd89b3-ae6d-40e5-b490-5c6c2d6c1af8', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6782362546'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6782362546/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '018ba172-0bfe-4578-ac34-bae95c7df2df', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6782362546'\"}]}"
       },
       "sales": {
         "available": false,
@@ -7169,7 +6951,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-24T05:42:02.001850+00:00",
+        "fetched_at": "2026-06-24T07:30:57.608993+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -7181,7 +6963,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-24T05:42:02.343984+00:00",
+        "fetched_at": "2026-06-24T07:30:57.837517+00:00",
         "localizations": [
           {
             "id": "21120e4a-f8bb-4ff1-be92-8f52675d6f89",
@@ -7197,7 +6979,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-24T05:42:02.553300+00:00",
+        "fetched_at": "2026-06-24T07:30:58.010725+00:00",
         "localizations": [
           {
             "localization_id": "26eb130f-0350-44a6-b970-25d850847dac",
@@ -7220,7 +7002,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-24T05:42:17.300143+00:00",
+        "fetched_at": "2026-06-24T07:31:07.764137+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -7236,11 +7018,11 @@
           "errors": [
             {
               "path": "/apps/6782362546/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6782362546/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '7f4b0172-b9c5-4e5e-847e-f522009fd5b6', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6782362546/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'e99af553-96ca-4d88-84ec-14809b8b117e', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6782362546&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6782362546&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'c03ec0ec-a6f2-4776-8316-f5d0c8f0235c', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6782362546&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '53c47600-b3fb-4975-b339-c7b6681f2912', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -7253,7 +7035,7 @@
       "game_center": {
         "available": true,
         "source": "App Store Connect gameCenterDetail",
-        "fetched_at": "2026-06-24T05:42:18.073427+00:00",
+        "fetched_at": "2026-06-24T07:31:08.472515+00:00",
         "id": "e0ee24ff-42af-4ed9-82ab-751e3c785e4f",
         "type": "gameCenterDetails",
         "state": null,
@@ -7290,8 +7072,8 @@
     }
   },
   "freshness": {
-    "checked_at": "2026-06-24T05:41:49.082331+00:00",
-    "generated_at": "2026-06-24T05:41:33.926994+00:00",
+    "checked_at": "2026-06-24T07:30:46.604061+00:00",
+    "generated_at": "2026-06-24T07:30:28.925898+00:00",
     "report_date": "2026-06-22",
     "generated_age_hours": 0.0,
     "report_age_days": 2,
