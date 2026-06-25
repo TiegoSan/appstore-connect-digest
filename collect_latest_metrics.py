@@ -165,6 +165,7 @@ def app_summary(app: digest.AppDigest, report_date: str) -> dict[str, Any]:
         "bundle_id": profile.get("bundle_id"),
         "sku": profile.get("sku"),
         "error": app.error,
+        "analytics_segment_errors": data.get("segment_errors") or [],
         "metrics_scope": "report_date",
         "metrics_report_date": report_date,
         "downloads": filtered["downloads"],
@@ -207,6 +208,18 @@ def app_summary(app: digest.AppDigest, report_date: str) -> dict[str, Any]:
     summary["tap_rate_total_available"] = data.get("tap_rate")
 
     return summary
+
+
+def failed_collection_payload(app: dict[str, Any], error: Exception) -> dict[str, Any]:
+    return {
+        "app": app,
+        "standard_total": 0,
+        "first_time_downloads": 0,
+        "raw_standard_rows": [],
+        "raw_engagement_rows": [],
+        "segment_errors": [],
+        "collection_error": str(error),
+    }
 
 
 def write_latest_metrics(apps: list[digest.AppDigest], report_date: str) -> None:
@@ -255,7 +268,8 @@ def collect() -> None:
             apps.append(digest.AppDigest(key, app["name"], latest_path, previous_path, result, previous_data))
             print(f"{key}: JSON {latest_path}")
         except Exception as exc:
-            apps.append(digest.AppDigest(key, app.get("name", key), None, None, None, None, str(exc)))
+            result = failed_collection_payload(app, exc)
+            apps.append(digest.AppDigest(key, app.get("name", key), None, None, result, None, str(exc)))
             print(f"{key}: ERROR {exc}")
     report_date = latest_row_date(apps) or datetime.now().strftime("%Y-%m-%d")
     write_latest_metrics(apps, report_date)

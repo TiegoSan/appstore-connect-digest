@@ -400,6 +400,7 @@ def collect_downloads(config: dict[str, Any], app: dict[str, str], create_snapsh
 
     report_rows: list[dict[str, str]] = []
     engagement_rows_by_request_type: dict[str, list[dict[str, str]]] = {"ONGOING": [], "ONE_TIME_SNAPSHOT": []}
+    segment_errors: list[dict[str, Any]] = []
     all_report_summaries = []
     request_order = {"ONE_TIME_SNAPSHOT": 0, "ONGOING": 1}
     requests = sorted(requests, key=lambda r: request_order.get(r.get("attributes", {}).get("accessType"), 9))
@@ -412,9 +413,7 @@ def collect_downloads(config: dict[str, Any], app: dict[str, str], create_snapsh
             r for r in reports
             if r.get("attributes", {}).get("name") in {
                 "App Downloads Standard",
-                "App Downloads Detailed",
                 "App Store Discovery and Engagement Standard",
-                "App Store Discovery and Engagement Detailed",
             }
         ]
         for report in analytics_reports:
@@ -422,14 +421,44 @@ def collect_downloads(config: dict[str, Any], app: dict[str, str], create_snapsh
             instances = get_instances(client, report["id"])
             for instance in instances:
                 attrs = instance.get("attributes", {})
+                if attrs.get("granularity") != "DAILY":
+                    continue
                 rows: list[dict[str, str]] = []
                 columns: list[str] = []
                 segment_count = 0
-                for segment in get_segments(client, instance["id"]):
+                try:
+                    segments = get_segments(client, instance["id"])
+                except Exception as exc:
+                    segment_errors.append({
+                        "request_type": request_type,
+                        "request_id": request_id,
+                        "report_id": report["id"],
+                        "name": name,
+                        "instance_id": instance["id"],
+                        "granularity": attrs.get("granularity"),
+                        "processing_date": attrs.get("processingDate"),
+                        "error": str(exc),
+                    })
+                    continue
+                for segment in segments:
                     url = segment.get("attributes", {}).get("url")
                     if not url:
                         continue
-                    columns, seg_rows, _text = download_segment(client, url)
+                    try:
+                        columns, seg_rows, _text = download_segment(client, url)
+                    except Exception as exc:
+                        segment_errors.append({
+                            "request_type": request_type,
+                            "request_id": request_id,
+                            "report_id": report["id"],
+                            "name": name,
+                            "instance_id": instance["id"],
+                            "granularity": attrs.get("granularity"),
+                            "processing_date": attrs.get("processingDate"),
+                            "segment_id": segment.get("id"),
+                            "error": str(exc),
+                        })
+                        continue
                     rows.extend(seg_rows)
                     segment_count += 1
                 counts_total = sum(count_value(row) for row in rows)
@@ -453,6 +482,7 @@ def collect_downloads(config: dict[str, Any], app: dict[str, str], create_snapsh
                     engagement_rows_by_request_type.setdefault(request_type or "", []).extend(rows)
 
     result["reports"] = all_report_summaries
+    result["segment_errors"] = segment_errors
     result["standard_total"] = sum(count_value(row) for row in report_rows)
     result["by_date"] = aggregate(report_rows, "Date")
     result["by_download_type"] = aggregate(report_rows, "Download Type")
