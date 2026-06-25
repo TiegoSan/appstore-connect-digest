@@ -170,16 +170,24 @@ def list_apps(config: dict[str, Any]) -> None:
         print(f"{key:18} {app['app_id']}  {app['name']}  {app['bundle_id']}")
 
 
-def ensure_snapshot(client: ASCClient, app_id: str) -> str:
+def ensure_report_request(client: ASCClient, app_id: str, access_type: str) -> str:
     body = {
         "data": {
             "type": "analyticsReportRequests",
-            "attributes": {"accessType": "ONE_TIME_SNAPSHOT"},
+            "attributes": {"accessType": access_type},
             "relationships": {"app": {"data": {"type": "apps", "id": app_id}}},
         }
     }
     resp = client.post("/analyticsReportRequests", body)
     return resp["data"]["id"]
+
+
+def ensure_snapshot(client: ASCClient, app_id: str) -> str:
+    return ensure_report_request(client, app_id, "ONE_TIME_SNAPSHOT")
+
+
+def ensure_ongoing(client: ASCClient, app_id: str) -> str:
+    return ensure_report_request(client, app_id, "ONGOING")
 
 
 def get_report_requests(client: ASCClient, app_id: str) -> list[dict[str, Any]]:
@@ -357,6 +365,11 @@ def collect_downloads(config: dict[str, Any], app: dict[str, str], create_snapsh
         new_id = ensure_snapshot(client, app_id)
         requests = get_report_requests(client, app_id)
         print(f"Snapshot cree: {new_id}", file=sys.stderr)
+    has_ongoing = any(r.get("attributes", {}).get("accessType") == "ONGOING" for r in requests)
+    if create_snapshot and not has_ongoing:
+        new_id = ensure_ongoing(client, app_id)
+        requests = get_report_requests(client, app_id)
+        print(f"Ongoing cree: {new_id}", file=sys.stderr)
 
     result: dict[str, Any] = {
         "app": app,
@@ -398,7 +411,7 @@ def collect_downloads(config: dict[str, Any], app: dict[str, str], create_snapsh
         "reports": [],
     }
 
-    report_rows: list[dict[str, str]] = []
+    report_rows_by_request_type: dict[str, list[dict[str, str]]] = {"ONGOING": [], "ONE_TIME_SNAPSHOT": []}
     engagement_rows_by_request_type: dict[str, list[dict[str, str]]] = {"ONGOING": [], "ONE_TIME_SNAPSHOT": []}
     segment_errors: list[dict[str, Any]] = []
     all_report_summaries = []
@@ -476,13 +489,15 @@ def collect_downloads(config: dict[str, Any], app: dict[str, str], create_snapsh
                     "columns": columns,
                 }
                 all_report_summaries.append(summary)
-                if request_type == "ONE_TIME_SNAPSHOT" and name == "App Downloads Standard" and attrs.get("granularity") == "DAILY":
-                    report_rows.extend(rows)
+                if name == "App Downloads Standard" and attrs.get("granularity") == "DAILY":
+                    report_rows_by_request_type.setdefault(request_type or "", []).extend(rows)
                 if name == "App Store Discovery and Engagement Standard" and attrs.get("granularity") == "DAILY":
                     engagement_rows_by_request_type.setdefault(request_type or "", []).extend(rows)
 
     result["reports"] = all_report_summaries
     result["segment_errors"] = segment_errors
+    report_rows = report_rows_by_request_type.get("ONGOING") or report_rows_by_request_type.get("ONE_TIME_SNAPSHOT") or []
+    result["standard_source_request_type"] = "ONGOING" if report_rows_by_request_type.get("ONGOING") else "ONE_TIME_SNAPSHOT"
     result["standard_total"] = sum(count_value(row) for row in report_rows)
     result["by_date"] = aggregate(report_rows, "Date")
     result["by_download_type"] = aggregate(report_rows, "Download Type")
