@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-26T19:55:52.384905+00:00",
-  "report_date": "2026-06-25",
+  "generated_at": "2026-06-26T20:10:38.821860+00:00",
+  "report_date": "2026-06-24",
   "metrics_scope": "report_date",
   "metrics_semantics": {
     "primary_values": "downloads, first_time_downloads, impressions, product_page_views and taps are filtered to rows where Date == report_date.",
@@ -14,14 +14,14 @@
   "totals": {
     "downloads": 2,
     "first_time_downloads": 2,
-    "impressions": 0,
-    "product_page_views": 0,
-    "taps": 0,
-    "downloads_total_available": 85,
-    "first_time_downloads_total_available": 30,
-    "impressions_total_available": 3299,
-    "product_page_views_total_available": 184,
-    "taps_total_available": 97,
+    "impressions": 54,
+    "product_page_views": 1,
+    "taps": 1,
+    "downloads_total_available": 95,
+    "first_time_downloads_total_available": 34,
+    "impressions_total_available": 2872,
+    "product_page_views_total_available": 139,
+    "taps_total_available": 70,
     "paid_units": 2,
     "developer_proceeds": 0.0
   },
@@ -35,64 +35,54 @@
       "error": null,
       "analytics_segment_errors": [
         {
+          "request_type": "ONE_TIME_SNAPSHOT",
+          "request_id": "a0f5608a-6c2d-4f9b-a230-60515029b84a",
+          "report_id": "r3-a0f5608a-6c2d-4f9b-a230-60515029b84a",
+          "name": "App Downloads Standard",
+          "instance_id": "c8dd3835-2f7e-4ac2-bfd1-1011aaa8fda5",
+          "granularity": "DAILY",
+          "processing_date": "2026-06-03",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/c8dd3835-2f7e-4ac2-bfd1-1011aaa8fda5/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+        },
+        {
           "request_type": "ONGOING",
           "request_id": "428b1705-6aba-4a4a-9a80-3eb0e87190f8",
           "report_id": "r3-428b1705-6aba-4a4a-9a80-3eb0e87190f8",
           "name": "App Downloads Standard",
-          "instance_id": "d52b6763-3cc9-478f-bbe7-b3199ed7340c",
+          "instance_id": "6957617d-0140-41a3-8b5c-3d995819d168",
           "granularity": "DAILY",
-          "processing_date": "2026-06-15",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/d52b6763-3cc9-478f-bbe7-b3199ed7340c/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+          "processing_date": "2026-06-16",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/6957617d-0140-41a3-8b5c-3d995819d168/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         },
         {
           "request_type": "ONGOING",
           "request_id": "428b1705-6aba-4a4a-9a80-3eb0e87190f8",
           "report_id": "r3-428b1705-6aba-4a4a-9a80-3eb0e87190f8",
           "name": "App Downloads Standard",
-          "instance_id": "00948e49-7cbe-4fb4-860d-29211be42344",
+          "instance_id": "8893db98-c892-49f8-80c2-8af421c26d88",
           "granularity": "DAILY",
-          "processing_date": "2026-06-25",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/00948e49-7cbe-4fb4-860d-29211be42344/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+          "processing_date": "2026-06-18",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/8893db98-c892-49f8-80c2-8af421c26d88/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         },
         {
           "request_type": "ONGOING",
           "request_id": "428b1705-6aba-4a4a-9a80-3eb0e87190f8",
           "report_id": "r14-428b1705-6aba-4a4a-9a80-3eb0e87190f8",
           "name": "App Store Discovery and Engagement Standard",
-          "instance_id": "8a952d9e-2e65-4fbf-9a3c-bdaf287c7ad7",
+          "instance_id": "0c5cb187-a911-4c58-a53c-ede77d6d99b0",
           "granularity": "DAILY",
-          "processing_date": "2026-06-04",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/8a952d9e-2e65-4fbf-9a3c-bdaf287c7ad7/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+          "processing_date": "2026-06-13",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/0c5cb187-a911-4c58-a53c-ede77d6d99b0/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         },
         {
           "request_type": "ONGOING",
           "request_id": "428b1705-6aba-4a4a-9a80-3eb0e87190f8",
           "report_id": "r14-428b1705-6aba-4a4a-9a80-3eb0e87190f8",
           "name": "App Store Discovery and Engagement Standard",
-          "instance_id": "6c9bee0c-d7c4-43f1-854f-ffc699d08c3b",
+          "instance_id": "7dd4fb21-9b4c-4492-b1ee-7e516b7d37b5",
           "granularity": "DAILY",
-          "processing_date": "2026-06-05",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/6c9bee0c-d7c4-43f1-854f-ffc699d08c3b/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
-        },
-        {
-          "request_type": "ONGOING",
-          "request_id": "428b1705-6aba-4a4a-9a80-3eb0e87190f8",
-          "report_id": "r14-428b1705-6aba-4a4a-9a80-3eb0e87190f8",
-          "name": "App Store Discovery and Engagement Standard",
-          "instance_id": "bfbf5aaf-2376-44cd-927c-deb91e3800a6",
-          "granularity": "DAILY",
-          "processing_date": "2026-06-11",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/bfbf5aaf-2376-44cd-927c-deb91e3800a6/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
-        },
-        {
-          "request_type": "ONGOING",
-          "request_id": "428b1705-6aba-4a4a-9a80-3eb0e87190f8",
-          "report_id": "r14-428b1705-6aba-4a4a-9a80-3eb0e87190f8",
-          "name": "App Store Discovery and Engagement Standard",
-          "instance_id": "06bbbc80-c330-40a7-b7ea-9b91b74550e4",
-          "granularity": "DAILY",
-          "processing_date": "2026-06-14",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/06bbbc80-c330-40a7-b7ea-9b91b74550e4/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+          "processing_date": "2026-06-20",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/7dd4fb21-9b4c-4492-b1ee-7e516b7d37b5/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         },
         {
           "request_type": "ONGOING",
@@ -103,10 +93,20 @@
           "granularity": "DAILY",
           "processing_date": "2026-06-23",
           "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/f5855ebf-6d1d-4fbd-9772-34dbce3645e8/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+        },
+        {
+          "request_type": "ONGOING",
+          "request_id": "428b1705-6aba-4a4a-9a80-3eb0e87190f8",
+          "report_id": "r14-428b1705-6aba-4a4a-9a80-3eb0e87190f8",
+          "name": "App Store Discovery and Engagement Standard",
+          "instance_id": "ba895bf8-2766-459e-8f7c-5ecef89560d7",
+          "granularity": "DAILY",
+          "processing_date": "2026-06-25",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/ba895bf8-2766-459e-8f7c-5ecef89560d7/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         }
       ],
       "metrics_scope": "report_date",
-      "metrics_report_date": "2026-06-25",
+      "metrics_report_date": "2026-06-24",
       "downloads": 0,
       "first_time_downloads": 0,
       "impressions": 0,
@@ -145,21 +145,21 @@
       "impressions_by_device_report_date": {},
       "engagement_by_event_report_date": {},
       "engagement_unique_by_event_report_date": {},
-      "impressions_total_available": 348,
-      "unique_impressions_total_available": 275,
-      "product_page_views_total_available": 6,
-      "unique_product_page_views_total_available": 6,
+      "impressions_total_available": 397,
+      "unique_impressions_total_available": 322,
+      "product_page_views_total_available": 7,
+      "unique_product_page_views_total_available": 7,
       "taps_total_available": 6,
       "unique_taps_total_available": 6,
-      "downloads_total_available": 3,
-      "first_time_downloads_total_available": 0,
+      "downloads_total_available": 8,
+      "first_time_downloads_total_available": 2,
       "conversion_rate_total_available": null,
-      "page_view_rate_total_available": 2.18,
-      "tap_rate_total_available": 2.18,
+      "page_view_rate_total_available": 2.17,
+      "tap_rate_total_available": 1.86,
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-26T19:55:53.363245+00:00",
+        "fetched_at": "2026-06-26T20:10:39.876788+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -465,52 +465,52 @@
       "history": {
         "available": true,
         "source": "local reports raw App Store Analytics rows",
-        "latest_metric_date": "2026-06-24",
+        "latest_metric_date": "2026-06-23",
         "current_7d": {
           "days": 7,
-          "start_date": "2026-06-18",
-          "end_date": "2026-06-24",
+          "start_date": "2026-06-17",
+          "end_date": "2026-06-23",
           "downloads": 0,
           "first_time_downloads": 0,
-          "impressions": 27,
+          "impressions": 29,
           "product_page_views": 0,
           "page_view_rate": 0.0,
           "avg_daily_downloads": 0.0,
-          "avg_daily_impressions": 3.86,
+          "avg_daily_impressions": 4.14,
           "avg_daily_product_page_views": 0.0
         },
         "previous_7d": {
           "days": 7,
-          "start_date": "2026-06-11",
-          "end_date": "2026-06-17",
-          "downloads": 3,
+          "start_date": "2026-06-10",
+          "end_date": "2026-06-16",
+          "downloads": 2,
           "first_time_downloads": 0,
-          "impressions": 122,
+          "impressions": 135,
           "product_page_views": 6,
-          "page_view_rate": 4.92,
-          "avg_daily_downloads": 0.43,
-          "avg_daily_impressions": 17.43,
+          "page_view_rate": 4.44,
+          "avg_daily_downloads": 0.29,
+          "avg_daily_impressions": 19.29,
           "avg_daily_product_page_views": 0.86
         },
         "current_30d": {
           "days": 30,
-          "start_date": "2026-05-26",
-          "end_date": "2026-06-24",
-          "downloads": 3,
+          "start_date": "2026-05-25",
+          "end_date": "2026-06-23",
+          "downloads": 2,
           "first_time_downloads": 0,
-          "impressions": 348,
-          "product_page_views": 6,
-          "page_view_rate": 1.72,
-          "avg_daily_downloads": 0.1,
-          "avg_daily_impressions": 11.6,
-          "avg_daily_product_page_views": 0.2
+          "impressions": 397,
+          "product_page_views": 7,
+          "page_view_rate": 1.76,
+          "avg_daily_downloads": 0.07,
+          "avg_daily_impressions": 13.23,
+          "avg_daily_product_page_views": 0.23
         },
         "delta_7d": {
-          "downloads": -3,
+          "downloads": -2,
           "first_time_downloads": 0,
-          "impressions": -95,
+          "impressions": -106,
           "product_page_views": -6,
-          "page_view_rate": -4.92
+          "page_view_rate": -4.44
         }
       },
       "funnel_by_source": {
@@ -520,31 +520,31 @@
         "rows": [
           {
             "name": "App Store search",
-            "impressions": 339,
-            "unique_impressions": 270,
-            "product_page_views": 3,
-            "unique_product_page_views": 3,
+            "impressions": 385,
+            "unique_impressions": 314,
+            "product_page_views": 4,
+            "unique_product_page_views": 4,
             "taps": 0,
             "unique_taps": 0,
-            "first_time_downloads": 0,
-            "downloads": 1,
-            "page_view_rate": 1.11,
+            "first_time_downloads": 1,
+            "downloads": 2,
+            "page_view_rate": 1.27,
             "tap_rate": 0.0,
-            "download_rate": 0.0
+            "download_rate": 0.32
           },
           {
             "name": "App Store browse",
-            "impressions": 9,
-            "unique_impressions": 5,
+            "impressions": 12,
+            "unique_impressions": 8,
             "product_page_views": 3,
             "unique_product_page_views": 3,
             "taps": 6,
             "unique_taps": 6,
-            "first_time_downloads": 0,
-            "downloads": 2,
-            "page_view_rate": 60.0,
-            "tap_rate": 120.0,
-            "download_rate": 0.0
+            "first_time_downloads": 1,
+            "downloads": 6,
+            "page_view_rate": 37.5,
+            "tap_rate": 75.0,
+            "download_rate": 12.5
           }
         ],
         "omitted_count": 0
@@ -556,8 +556,8 @@
         "rows": [
           {
             "name": "US",
-            "impressions": 95,
-            "unique_impressions": 85,
+            "impressions": 112,
+            "unique_impressions": 102,
             "product_page_views": 0,
             "unique_product_page_views": 0,
             "taps": 0,
@@ -570,8 +570,8 @@
           },
           {
             "name": "IN",
-            "impressions": 43,
-            "unique_impressions": 38,
+            "impressions": 50,
+            "unique_impressions": 45,
             "product_page_views": 0,
             "unique_product_page_views": 0,
             "taps": 0,
@@ -584,36 +584,50 @@
           },
           {
             "name": "FR",
-            "impressions": 24,
-            "unique_impressions": 16,
-            "product_page_views": 3,
-            "unique_product_page_views": 3,
+            "impressions": 28,
+            "unique_impressions": 20,
+            "product_page_views": 4,
+            "unique_product_page_views": 4,
             "taps": 3,
             "unique_taps": 3,
-            "first_time_downloads": 0,
-            "downloads": 1,
-            "page_view_rate": 18.75,
-            "tap_rate": 18.75,
-            "download_rate": 0.0
+            "first_time_downloads": 1,
+            "downloads": 5,
+            "page_view_rate": 20.0,
+            "tap_rate": 15.0,
+            "download_rate": 5.0
           },
           {
             "name": "CA",
-            "impressions": 23,
-            "unique_impressions": 14,
+            "impressions": 20,
+            "unique_impressions": 12,
             "product_page_views": 3,
             "unique_product_page_views": 3,
             "taps": 3,
             "unique_taps": 3,
+            "first_time_downloads": 1,
+            "downloads": 3,
+            "page_view_rate": 25.0,
+            "tap_rate": 25.0,
+            "download_rate": 8.33
+          },
+          {
+            "name": "CH",
+            "impressions": 19,
+            "unique_impressions": 16,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 0,
+            "unique_taps": 0,
             "first_time_downloads": 0,
-            "downloads": 2,
-            "page_view_rate": 21.43,
-            "tap_rate": 21.43,
+            "downloads": 0,
+            "page_view_rate": 0.0,
+            "tap_rate": 0.0,
             "download_rate": 0.0
           },
           {
             "name": "AR",
-            "impressions": 15,
-            "unique_impressions": 13,
+            "impressions": 17,
+            "unique_impressions": 15,
             "product_page_views": 0,
             "unique_product_page_views": 0,
             "taps": 0,
@@ -639,23 +653,9 @@
             "download_rate": 0.0
           },
           {
-            "name": "CH",
-            "impressions": 13,
-            "unique_impressions": 11,
-            "product_page_views": 0,
-            "unique_product_page_views": 0,
-            "taps": 0,
-            "unique_taps": 0,
-            "first_time_downloads": 0,
-            "downloads": 0,
-            "page_view_rate": 0.0,
-            "tap_rate": 0.0,
-            "download_rate": 0.0
-          },
-          {
             "name": "NL",
-            "impressions": 12,
-            "unique_impressions": 8,
+            "impressions": 13,
+            "unique_impressions": 9,
             "product_page_views": 0,
             "unique_product_page_views": 0,
             "taps": 0,
@@ -667,23 +667,23 @@
             "download_rate": 0.0
           },
           {
-            "name": "RU",
+            "name": "DE",
+            "impressions": 10,
+            "unique_impressions": 10,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 0.0,
+            "tap_rate": 0.0,
+            "download_rate": 0.0
+          },
+          {
+            "name": "BR",
             "impressions": 9,
             "unique_impressions": 3,
-            "product_page_views": 0,
-            "unique_product_page_views": 0,
-            "taps": 0,
-            "unique_taps": 0,
-            "first_time_downloads": 0,
-            "downloads": 0,
-            "page_view_rate": 0.0,
-            "tap_rate": 0.0,
-            "download_rate": 0.0
-          },
-          {
-            "name": "IT",
-            "impressions": 8,
-            "unique_impressions": 8,
             "product_page_views": 0,
             "unique_product_page_views": 0,
             "taps": 0,
@@ -700,7 +700,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-26T19:56:10.412692+00:00",
+        "fetched_at": "2026-06-26T20:10:57.347354+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -712,7 +712,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-26T19:56:10.980634+00:00",
+        "fetched_at": "2026-06-26T20:10:57.911370+00:00",
         "localizations": [
           {
             "id": "4c4aae4b-0ecd-4d91-a0e4-528442efa26c",
@@ -761,7 +761,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-26T19:56:11.619333+00:00",
+        "fetched_at": "2026-06-26T20:10:58.521438+00:00",
         "localizations": [
           {
             "localization_id": "31f41a56-4fbd-4335-a63f-e549bca02381",
@@ -1032,7 +1032,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-26T19:56:26.741576+00:00",
+        "fetched_at": "2026-06-26T20:11:15.770669+00:00",
         "total": 1,
         "returned": 1,
         "items": [
@@ -1059,11 +1059,11 @@
           "errors": [
             {
               "path": "/apps/6761286310/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6761286310/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'ce699802-0f4e-4a59-9c2b-bde93f812b58', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6761286310/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '0224da44-5217-4c19-91e0-d3d4b39cdd3b', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6761286310&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6761286310&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '536ac8d3-3141-4326-9c8a-f4c5932884d9', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6761286310&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '9a46c4aa-f726-4174-993b-e12de5b74746', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -1092,40 +1092,20 @@
           "request_id": "3097fa55-e848-40c4-ad37-e48f8d64b9c0",
           "report_id": "r3-3097fa55-e848-40c4-ad37-e48f8d64b9c0",
           "name": "App Downloads Standard",
-          "instance_id": "4fd4e64e-ae2c-43ec-9cee-c37d16cf759d",
+          "instance_id": "136ad6c9-e15e-4ca5-b033-7457f5fc90ca",
           "granularity": "DAILY",
-          "processing_date": "2026-06-07",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/4fd4e64e-ae2c-43ec-9cee-c37d16cf759d/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+          "processing_date": "2026-06-06",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/136ad6c9-e15e-4ca5-b033-7457f5fc90ca/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         },
         {
           "request_type": "ONGOING",
           "request_id": "3097fa55-e848-40c4-ad37-e48f8d64b9c0",
           "report_id": "r3-3097fa55-e848-40c4-ad37-e48f8d64b9c0",
           "name": "App Downloads Standard",
-          "instance_id": "034c89db-3667-442f-89b2-05d4859083ab",
+          "instance_id": "2b8231d1-a032-4a50-97c7-dd377ada2114",
           "granularity": "DAILY",
-          "processing_date": "2026-06-18",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/034c89db-3667-442f-89b2-05d4859083ab/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
-        },
-        {
-          "request_type": "ONGOING",
-          "request_id": "3097fa55-e848-40c4-ad37-e48f8d64b9c0",
-          "report_id": "r3-3097fa55-e848-40c4-ad37-e48f8d64b9c0",
-          "name": "App Downloads Standard",
-          "instance_id": "4184295a-d074-45df-b4a6-3329f0e6e2fa",
-          "granularity": "DAILY",
-          "processing_date": "2026-06-20",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/4184295a-d074-45df-b4a6-3329f0e6e2fa/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
-        },
-        {
-          "request_type": "ONGOING",
-          "request_id": "3097fa55-e848-40c4-ad37-e48f8d64b9c0",
-          "report_id": "r3-3097fa55-e848-40c4-ad37-e48f8d64b9c0",
-          "name": "App Downloads Standard",
-          "instance_id": "17525921-0dad-4be3-ace0-c18f6a56c87a",
-          "granularity": "DAILY",
-          "processing_date": "2026-06-22",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/17525921-0dad-4be3-ace0-c18f6a56c87a/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+          "processing_date": "2026-06-13",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/2b8231d1-a032-4a50-97c7-dd377ada2114/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         },
         {
           "request_type": "ONGOING",
@@ -1136,6 +1116,16 @@
           "granularity": "DAILY",
           "processing_date": "2026-06-24",
           "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/eda708d7-6c2a-465c-9145-99717893f72a/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+        },
+        {
+          "request_type": "ONGOING",
+          "request_id": "3097fa55-e848-40c4-ad37-e48f8d64b9c0",
+          "report_id": "r3-3097fa55-e848-40c4-ad37-e48f8d64b9c0",
+          "name": "App Downloads Standard",
+          "instance_id": "15ae8c5c-600f-4dfc-955f-711390996e53",
+          "granularity": "DAILY",
+          "processing_date": "2026-06-26",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/15ae8c5c-600f-4dfc-955f-711390996e53/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         },
         {
           "request_type": "ONGOING",
@@ -1152,97 +1142,163 @@
           "request_id": "3097fa55-e848-40c4-ad37-e48f8d64b9c0",
           "report_id": "r14-3097fa55-e848-40c4-ad37-e48f8d64b9c0",
           "name": "App Store Discovery and Engagement Standard",
-          "instance_id": "e616adaa-ef7b-40e0-8663-6f17ad536c33",
+          "instance_id": "8a80930a-3e2a-4cae-ab31-c7021835d5b3",
           "granularity": "DAILY",
-          "processing_date": "2026-06-06",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/e616adaa-ef7b-40e0-8663-6f17ad536c33/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+          "processing_date": "2026-06-07",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/8a80930a-3e2a-4cae-ab31-c7021835d5b3/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         },
         {
           "request_type": "ONGOING",
           "request_id": "3097fa55-e848-40c4-ad37-e48f8d64b9c0",
           "report_id": "r14-3097fa55-e848-40c4-ad37-e48f8d64b9c0",
           "name": "App Store Discovery and Engagement Standard",
-          "instance_id": "2defc6da-2758-4a58-a225-0c3d6e06e354",
+          "instance_id": "904e207a-f2a3-4bd6-bbf3-62d9bbc5bd3c",
           "granularity": "DAILY",
-          "processing_date": "2026-06-17",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/2defc6da-2758-4a58-a225-0c3d6e06e354/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+          "processing_date": "2026-06-08",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/904e207a-f2a3-4bd6-bbf3-62d9bbc5bd3c/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         },
         {
           "request_type": "ONGOING",
           "request_id": "3097fa55-e848-40c4-ad37-e48f8d64b9c0",
           "report_id": "r14-3097fa55-e848-40c4-ad37-e48f8d64b9c0",
           "name": "App Store Discovery and Engagement Standard",
-          "instance_id": "6638fa85-8b05-49b0-ab7f-3d94dc64b095",
+          "instance_id": "1850cd3f-e71e-4853-9980-10bd8dfda0a6",
           "granularity": "DAILY",
-          "processing_date": "2026-06-21",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/6638fa85-8b05-49b0-ab7f-3d94dc64b095/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+          "processing_date": "2026-06-09",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/1850cd3f-e71e-4853-9980-10bd8dfda0a6/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         },
         {
           "request_type": "ONGOING",
           "request_id": "3097fa55-e848-40c4-ad37-e48f8d64b9c0",
           "report_id": "r14-3097fa55-e848-40c4-ad37-e48f8d64b9c0",
           "name": "App Store Discovery and Engagement Standard",
-          "instance_id": "78b8c004-2b73-4d18-85eb-a2b4b0113b29",
+          "instance_id": "b554ce35-16a9-48bc-86f3-4d15a580273a",
           "granularity": "DAILY",
-          "processing_date": "2026-06-22",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/78b8c004-2b73-4d18-85eb-a2b4b0113b29/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+          "processing_date": "2026-06-10",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/b554ce35-16a9-48bc-86f3-4d15a580273a/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+        },
+        {
+          "request_type": "ONGOING",
+          "request_id": "3097fa55-e848-40c4-ad37-e48f8d64b9c0",
+          "report_id": "r14-3097fa55-e848-40c4-ad37-e48f8d64b9c0",
+          "name": "App Store Discovery and Engagement Standard",
+          "instance_id": "2105d42b-69de-4b9a-b2e0-573d9114fbcf",
+          "granularity": "DAILY",
+          "processing_date": "2026-06-12",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/2105d42b-69de-4b9a-b2e0-573d9114fbcf/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+        },
+        {
+          "request_type": "ONGOING",
+          "request_id": "3097fa55-e848-40c4-ad37-e48f8d64b9c0",
+          "report_id": "r14-3097fa55-e848-40c4-ad37-e48f8d64b9c0",
+          "name": "App Store Discovery and Engagement Standard",
+          "instance_id": "1a695b0b-6197-42fe-bcfd-b022bd9b9a6d",
+          "granularity": "DAILY",
+          "processing_date": "2026-06-16",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/1a695b0b-6197-42fe-bcfd-b022bd9b9a6d/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+        },
+        {
+          "request_type": "ONGOING",
+          "request_id": "3097fa55-e848-40c4-ad37-e48f8d64b9c0",
+          "report_id": "r14-3097fa55-e848-40c4-ad37-e48f8d64b9c0",
+          "name": "App Store Discovery and Engagement Standard",
+          "instance_id": "32783e2e-153a-44e6-9873-d3ff2061752e",
+          "granularity": "DAILY",
+          "processing_date": "2026-06-24",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/32783e2e-153a-44e6-9873-d3ff2061752e/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         }
       ],
       "metrics_scope": "report_date",
-      "metrics_report_date": "2026-06-25",
-      "downloads": 2,
-      "first_time_downloads": 2,
-      "impressions": 0,
-      "unique_impressions": 0,
-      "product_page_views": 0,
-      "unique_product_page_views": 0,
-      "taps": 0,
-      "unique_taps": 0,
-      "conversion_rate": null,
-      "page_view_rate": null,
-      "tap_rate": null,
+      "metrics_report_date": "2026-06-24",
+      "downloads": 1,
+      "first_time_downloads": 1,
+      "impressions": 30,
+      "unique_impressions": 21,
+      "product_page_views": 1,
+      "unique_product_page_views": 1,
+      "taps": 1,
+      "unique_taps": 1,
+      "conversion_rate": 4.76,
+      "page_view_rate": 4.76,
+      "tap_rate": 4.76,
       "dominant_source": {
-        "name": "",
-        "count": 0
+        "name": "App Store search",
+        "count": 24
       },
       "dominant_territory": {
-        "name": "",
-        "count": 0
+        "name": "FR",
+        "count": 4
       },
       "dominant_device": {
-        "name": "",
-        "count": 0
+        "name": "iPhone",
+        "count": 17
       },
       "delta_downloads": null,
       "delta_first_time_downloads": null,
       "delta_impressions": null,
       "delta_product_page_views": null,
       "delta_taps": null,
-      "engagement_report_date_available": false,
+      "engagement_report_date_available": true,
       "downloads_report_date_available": true,
-      "impressions_by_date": {},
-      "product_page_views_by_date": {},
-      "taps_by_date": {},
-      "impressions_by_source_type_report_date": {},
-      "impressions_by_territory_report_date": {},
-      "impressions_by_device_report_date": {},
-      "engagement_by_event_report_date": {},
-      "engagement_unique_by_event_report_date": {},
-      "impressions_total_available": 1259,
-      "unique_impressions_total_available": 837,
-      "product_page_views_total_available": 147,
-      "unique_product_page_views_total_available": 86,
-      "taps_total_available": 63,
-      "unique_taps_total_available": 63,
-      "downloads_total_available": 74,
+      "impressions_by_date": {
+        "2026-06-24": 30
+      },
+      "product_page_views_by_date": {
+        "2026-06-24": 1
+      },
+      "taps_by_date": {
+        "2026-06-24": 1
+      },
+      "impressions_by_source_type_report_date": {
+        "App Store search": 24,
+        "App Store browse": 6
+      },
+      "impressions_by_territory_report_date": {
+        "JP": 2,
+        "CA": 3,
+        "FR": 4,
+        "GB": 2,
+        "GR": 3,
+        "US": 4,
+        "PH": 2,
+        "TH": 1,
+        "RS": 1,
+        "HK": 1,
+        "VN": 1,
+        "GT": 1,
+        "BJ": 1,
+        "NL": 1,
+        "CI": 3
+      },
+      "impressions_by_device_report_date": {
+        "iPhone": 17,
+        "iPad": 13
+      },
+      "engagement_by_event_report_date": {
+        "Impression": 30,
+        "Tap": 1,
+        "Page view": 1
+      },
+      "engagement_unique_by_event_report_date": {
+        "Impression": 21,
+        "Tap": 1,
+        "Page view": 1
+      },
+      "impressions_total_available": 986,
+      "unique_impressions_total_available": 653,
+      "product_page_views_total_available": 105,
+      "unique_product_page_views_total_available": 63,
+      "taps_total_available": 37,
+      "unique_taps_total_available": 37,
+      "downloads_total_available": 77,
       "first_time_downloads_total_available": 23,
-      "conversion_rate_total_available": 2.51,
-      "page_view_rate_total_available": 17.56,
-      "tap_rate_total_available": 7.53,
+      "conversion_rate_total_available": 2.91,
+      "page_view_rate_total_available": 16.08,
+      "tap_rate_total_available": 5.67,
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-26T19:55:53.971441+00:00",
+        "fetched_at": "2026-06-26T20:10:40.537126+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -1547,24 +1603,34 @@
       },
       "sales": {
         "available": true,
-        "rows": 1,
-        "paid_units": 1,
+        "rows": 2,
+        "paid_units": 2,
         "refund_units": 0,
         "developer_proceeds": 0.0,
         "refund_rate": 0.0,
         "customer_price_min": null,
         "customer_price_max": null,
         "currencies": [
-          "VND"
+          "COP",
+          "THB"
         ],
         "by_territory": [
           {
-            "territory": "VN",
+            "territory": "CO",
             "paid_units": 1,
             "refund_units": 0,
             "developer_proceeds": 0.0,
             "currencies": [
-              "VND"
+              "COP"
+            ]
+          },
+          {
+            "territory": "TH",
+            "paid_units": 1,
+            "refund_units": 0,
+            "developer_proceeds": 0.0,
+            "currencies": [
+              "THB"
             ]
           }
         ],
@@ -1573,52 +1639,52 @@
       "history": {
         "available": true,
         "source": "local reports raw App Store Analytics rows",
-        "latest_metric_date": "2026-06-25",
+        "latest_metric_date": "2026-06-24",
         "current_7d": {
           "days": 7,
-          "start_date": "2026-06-19",
-          "end_date": "2026-06-25",
-          "downloads": 11,
-          "first_time_downloads": 7,
-          "impressions": 204,
-          "product_page_views": 33,
-          "page_view_rate": 16.18,
-          "avg_daily_downloads": 1.57,
-          "avg_daily_impressions": 29.14,
-          "avg_daily_product_page_views": 4.71
+          "start_date": "2026-06-18",
+          "end_date": "2026-06-24",
+          "downloads": 13,
+          "first_time_downloads": 6,
+          "impressions": 299,
+          "product_page_views": 44,
+          "page_view_rate": 14.72,
+          "avg_daily_downloads": 1.86,
+          "avg_daily_impressions": 42.71,
+          "avg_daily_product_page_views": 6.29
         },
         "previous_7d": {
           "days": 7,
-          "start_date": "2026-06-12",
-          "end_date": "2026-06-18",
+          "start_date": "2026-06-11",
+          "end_date": "2026-06-17",
           "downloads": 19,
           "first_time_downloads": 7,
-          "impressions": 439,
-          "product_page_views": 46,
-          "page_view_rate": 10.48,
+          "impressions": 440,
+          "product_page_views": 39,
+          "page_view_rate": 8.86,
           "avg_daily_downloads": 2.71,
-          "avg_daily_impressions": 62.71,
-          "avg_daily_product_page_views": 6.57
+          "avg_daily_impressions": 62.86,
+          "avg_daily_product_page_views": 5.57
         },
         "current_30d": {
           "days": 30,
-          "start_date": "2026-05-27",
-          "end_date": "2026-06-25",
-          "downloads": 74,
+          "start_date": "2026-05-26",
+          "end_date": "2026-06-24",
+          "downloads": 77,
           "first_time_downloads": 23,
-          "impressions": 1259,
-          "product_page_views": 147,
-          "page_view_rate": 11.68,
-          "avg_daily_downloads": 2.47,
-          "avg_daily_impressions": 41.97,
-          "avg_daily_product_page_views": 4.9
+          "impressions": 986,
+          "product_page_views": 105,
+          "page_view_rate": 10.65,
+          "avg_daily_downloads": 2.57,
+          "avg_daily_impressions": 32.87,
+          "avg_daily_product_page_views": 3.5
         },
         "delta_7d": {
-          "downloads": -8,
-          "first_time_downloads": 0,
-          "impressions": -235,
-          "product_page_views": -13,
-          "page_view_rate": 5.7
+          "downloads": -6,
+          "first_time_downloads": -1,
+          "impressions": -141,
+          "product_page_views": 5,
+          "page_view_rate": 5.86
         }
       },
       "funnel_by_source": {
@@ -1628,31 +1694,31 @@
         "rows": [
           {
             "name": "App Store search",
-            "impressions": 987,
-            "unique_impressions": 749,
-            "product_page_views": 76,
-            "unique_product_page_views": 51,
-            "taps": 25,
-            "unique_taps": 25,
-            "first_time_downloads": 14,
-            "downloads": 61,
-            "page_view_rate": 10.15,
-            "tap_rate": 3.34,
-            "download_rate": 1.87
+            "impressions": 775,
+            "unique_impressions": 579,
+            "product_page_views": 50,
+            "unique_product_page_views": 37,
+            "taps": 19,
+            "unique_taps": 19,
+            "first_time_downloads": 15,
+            "downloads": 65,
+            "page_view_rate": 8.64,
+            "tap_rate": 3.28,
+            "download_rate": 2.59
           },
           {
             "name": "App Store browse",
-            "impressions": 272,
-            "unique_impressions": 88,
-            "product_page_views": 71,
-            "unique_product_page_views": 35,
-            "taps": 38,
-            "unique_taps": 38,
-            "first_time_downloads": 6,
-            "downloads": 10,
-            "page_view_rate": 80.68,
-            "tap_rate": 43.18,
-            "download_rate": 6.82
+            "impressions": 211,
+            "unique_impressions": 74,
+            "product_page_views": 55,
+            "unique_product_page_views": 26,
+            "taps": 18,
+            "unique_taps": 18,
+            "first_time_downloads": 5,
+            "downloads": 9,
+            "page_view_rate": 74.32,
+            "tap_rate": 24.32,
+            "download_rate": 6.76
           },
           {
             "name": "App referrer",
@@ -1692,151 +1758,151 @@
         "rows": [
           {
             "name": "FR",
-            "impressions": 260,
-            "unique_impressions": 160,
-            "product_page_views": 17,
-            "unique_product_page_views": 17,
-            "taps": 8,
-            "unique_taps": 8,
-            "first_time_downloads": 4,
-            "downloads": 8,
-            "page_view_rate": 10.62,
-            "tap_rate": 5.0,
-            "download_rate": 2.5
+            "impressions": 174,
+            "unique_impressions": 125,
+            "product_page_views": 9,
+            "unique_product_page_views": 9,
+            "taps": 4,
+            "unique_taps": 4,
+            "first_time_downloads": 5,
+            "downloads": 9,
+            "page_view_rate": 7.2,
+            "tap_rate": 3.2,
+            "download_rate": 4.0
           },
           {
             "name": "JP",
-            "impressions": 138,
-            "unique_impressions": 96,
-            "product_page_views": 16,
-            "unique_product_page_views": 12,
+            "impressions": 128,
+            "unique_impressions": 79,
+            "product_page_views": 14,
+            "unique_product_page_views": 10,
             "taps": 0,
             "unique_taps": 0,
-            "first_time_downloads": 1,
-            "downloads": 1,
-            "page_view_rate": 16.67,
-            "tap_rate": 0.0,
-            "download_rate": 1.04
-          },
-          {
-            "name": "US",
-            "impressions": 102,
-            "unique_impressions": 69,
-            "product_page_views": 39,
-            "unique_product_page_views": 9,
-            "taps": 15,
-            "unique_taps": 15,
-            "first_time_downloads": 3,
-            "downloads": 9,
-            "page_view_rate": 56.52,
-            "tap_rate": 21.74,
-            "download_rate": 4.35
-          },
-          {
-            "name": "CN",
-            "impressions": 75,
-            "unique_impressions": 25,
-            "product_page_views": 13,
-            "unique_product_page_views": 7,
-            "taps": 13,
-            "unique_taps": 13,
-            "first_time_downloads": 6,
-            "downloads": 6,
-            "page_view_rate": 52.0,
-            "tap_rate": 52.0,
-            "download_rate": 24.0
-          },
-          {
-            "name": "PK",
-            "impressions": 67,
-            "unique_impressions": 15,
-            "product_page_views": 2,
-            "unique_product_page_views": 2,
-            "taps": 3,
-            "unique_taps": 3,
             "first_time_downloads": 0,
-            "downloads": 10,
-            "page_view_rate": 13.33,
-            "tap_rate": 20.0,
+            "downloads": 0,
+            "page_view_rate": 17.72,
+            "tap_rate": 0.0,
             "download_rate": 0.0
           },
           {
+            "name": "US",
+            "impressions": 79,
+            "unique_impressions": 50,
+            "product_page_views": 16,
+            "unique_product_page_views": 3,
+            "taps": 2,
+            "unique_taps": 2,
+            "first_time_downloads": 4,
+            "downloads": 10,
+            "page_view_rate": 32.0,
+            "tap_rate": 4.0,
+            "download_rate": 8.0
+          },
+          {
+            "name": "PK",
+            "impressions": 62,
+            "unique_impressions": 14,
+            "product_page_views": 2,
+            "unique_product_page_views": 2,
+            "taps": 2,
+            "unique_taps": 2,
+            "first_time_downloads": 0,
+            "downloads": 10,
+            "page_view_rate": 14.29,
+            "tap_rate": 14.29,
+            "download_rate": 0.0
+          },
+          {
+            "name": "CN",
+            "impressions": 61,
+            "unique_impressions": 21,
+            "product_page_views": 13,
+            "unique_product_page_views": 4,
+            "taps": 13,
+            "unique_taps": 13,
+            "first_time_downloads": 7,
+            "downloads": 7,
+            "page_view_rate": 61.9,
+            "tap_rate": 61.9,
+            "download_rate": 33.33
+          },
+          {
             "name": "TH",
-            "impressions": 45,
-            "unique_impressions": 33,
-            "product_page_views": 8,
-            "unique_product_page_views": 5,
-            "taps": 3,
-            "unique_taps": 3,
+            "impressions": 44,
+            "unique_impressions": 30,
+            "product_page_views": 6,
+            "unique_product_page_views": 4,
+            "taps": 2,
+            "unique_taps": 2,
             "first_time_downloads": 1,
             "downloads": 1,
-            "page_view_rate": 24.24,
-            "tap_rate": 9.09,
-            "download_rate": 3.03
+            "page_view_rate": 20.0,
+            "tap_rate": 6.67,
+            "download_rate": 3.33
           },
           {
             "name": "GB",
-            "impressions": 40,
-            "unique_impressions": 16,
-            "product_page_views": 13,
-            "unique_product_page_views": 8,
-            "taps": 10,
-            "unique_taps": 10,
+            "impressions": 34,
+            "unique_impressions": 13,
+            "product_page_views": 7,
+            "unique_product_page_views": 5,
+            "taps": 4,
+            "unique_taps": 4,
             "first_time_downloads": 3,
             "downloads": 5,
-            "page_view_rate": 81.25,
-            "tap_rate": 62.5,
-            "download_rate": 18.75
+            "page_view_rate": 53.85,
+            "tap_rate": 30.77,
+            "download_rate": 23.08
           },
           {
             "name": "IN",
-            "impressions": 29,
-            "unique_impressions": 18,
-            "product_page_views": 4,
-            "unique_product_page_views": 2,
+            "impressions": 33,
+            "unique_impressions": 21,
+            "product_page_views": 6,
+            "unique_product_page_views": 3,
             "taps": 4,
             "unique_taps": 4,
             "first_time_downloads": 2,
             "downloads": 2,
-            "page_view_rate": 22.22,
-            "tap_rate": 22.22,
-            "download_rate": 11.11
+            "page_view_rate": 28.57,
+            "tap_rate": 19.05,
+            "download_rate": 9.52
           },
           {
             "name": "MA",
-            "impressions": 29,
-            "unique_impressions": 21,
-            "product_page_views": 2,
-            "unique_product_page_views": 2,
+            "impressions": 22,
+            "unique_impressions": 15,
+            "product_page_views": 3,
+            "unique_product_page_views": 3,
             "taps": 0,
             "unique_taps": 0,
             "first_time_downloads": 0,
             "downloads": 6,
-            "page_view_rate": 9.52,
+            "page_view_rate": 20.0,
             "tap_rate": 0.0,
             "download_rate": 0.0
           },
           {
-            "name": "AE",
-            "impressions": 26,
-            "unique_impressions": 20,
+            "name": "DE",
+            "impressions": 21,
+            "unique_impressions": 14,
             "product_page_views": 0,
             "unique_product_page_views": 0,
             "taps": 0,
             "unique_taps": 0,
             "first_time_downloads": 0,
-            "downloads": 2,
+            "downloads": 0,
             "page_view_rate": 0.0,
             "tap_rate": 0.0,
             "download_rate": 0.0
           }
         ],
-        "omitted_count": 70
+        "omitted_count": 65
       },
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-26T19:56:12.024502+00:00",
+        "fetched_at": "2026-06-26T20:10:58.960367+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -1848,7 +1914,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-26T19:56:12.469259+00:00",
+        "fetched_at": "2026-06-26T20:10:59.492609+00:00",
         "localizations": [
           {
             "id": "e713dc7a-0d94-4c3c-b555-95f187c1d06c",
@@ -1905,7 +1971,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-26T19:56:13.347117+00:00",
+        "fetched_at": "2026-06-26T20:11:00.605768+00:00",
         "localizations": [
           {
             "localization_id": "19e90ce3-149b-4c75-ac8b-06e4a5f657fe",
@@ -2085,7 +2151,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-26T19:56:27.870699+00:00",
+        "fetched_at": "2026-06-26T20:11:17.008731+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -2101,11 +2167,11 @@
           "errors": [
             {
               "path": "/apps/6766993396/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6766993396/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '170d4fcf-bcce-4cc6-9588-57079cb2e0e5', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6766993396/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'b7a852ec-139c-4c2b-b60e-9401a4a9bef5', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6766993396&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6766993396&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'ac5b4cd0-a64c-410c-b321-215c7d47efdd', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6766993396&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'b256bdc0-ad05-497a-8024-69c372858545', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -2144,10 +2210,30 @@
           "request_id": "66f0900f-1529-4a91-9f59-450a2e56f70a",
           "report_id": "r14-66f0900f-1529-4a91-9f59-450a2e56f70a",
           "name": "App Store Discovery and Engagement Standard",
-          "instance_id": "cf35ec6b-e143-433e-b711-a552904456ea",
+          "instance_id": "6fdb9b79-8637-44a3-bebf-9fa18b21aeeb",
           "granularity": "DAILY",
-          "processing_date": "2026-06-12",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/cf35ec6b-e143-433e-b711-a552904456ea/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+          "processing_date": "2026-06-16",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/6fdb9b79-8637-44a3-bebf-9fa18b21aeeb/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+        },
+        {
+          "request_type": "ONGOING",
+          "request_id": "66f0900f-1529-4a91-9f59-450a2e56f70a",
+          "report_id": "r14-66f0900f-1529-4a91-9f59-450a2e56f70a",
+          "name": "App Store Discovery and Engagement Standard",
+          "instance_id": "f97e9143-9c06-4782-89ef-de8726e6e995",
+          "granularity": "DAILY",
+          "processing_date": "2026-06-19",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/f97e9143-9c06-4782-89ef-de8726e6e995/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+        },
+        {
+          "request_type": "ONGOING",
+          "request_id": "66f0900f-1529-4a91-9f59-450a2e56f70a",
+          "report_id": "r14-66f0900f-1529-4a91-9f59-450a2e56f70a",
+          "name": "App Store Discovery and Engagement Standard",
+          "instance_id": "3de1bd48-dbff-4ae6-90ef-322398df7649",
+          "granularity": "DAILY",
+          "processing_date": "2026-06-20",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/3de1bd48-dbff-4ae6-90ef-322398df7649/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         },
         {
           "request_type": "ONGOING",
@@ -2158,73 +2244,78 @@
           "granularity": "DAILY",
           "processing_date": "2026-06-21",
           "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/816e9772-bbf1-494e-a87e-0efd23a580a3/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
-        },
-        {
-          "request_type": "ONGOING",
-          "request_id": "66f0900f-1529-4a91-9f59-450a2e56f70a",
-          "report_id": "r14-66f0900f-1529-4a91-9f59-450a2e56f70a",
-          "name": "App Store Discovery and Engagement Standard",
-          "instance_id": "78ea233f-24e2-445f-8dac-dcc0e41c8953",
-          "granularity": "DAILY",
-          "processing_date": "2026-06-22",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/78ea233f-24e2-445f-8dac-dcc0e41c8953/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         }
       ],
       "metrics_scope": "report_date",
-      "metrics_report_date": "2026-06-25",
+      "metrics_report_date": "2026-06-24",
       "downloads": 0,
       "first_time_downloads": 0,
-      "impressions": 0,
-      "unique_impressions": 0,
+      "impressions": 10,
+      "unique_impressions": 8,
       "product_page_views": 0,
       "unique_product_page_views": 0,
       "taps": 0,
       "unique_taps": 0,
-      "conversion_rate": null,
-      "page_view_rate": null,
-      "tap_rate": null,
+      "conversion_rate": 0.0,
+      "page_view_rate": 0.0,
+      "tap_rate": 0.0,
       "dominant_source": {
-        "name": "",
-        "count": 0
+        "name": "App Store search",
+        "count": 10
       },
       "dominant_territory": {
-        "name": "",
-        "count": 0
+        "name": "CA",
+        "count": 5
       },
       "dominant_device": {
-        "name": "",
-        "count": 0
+        "name": "Desktop",
+        "count": 10
       },
       "delta_downloads": null,
       "delta_first_time_downloads": null,
       "delta_impressions": null,
       "delta_product_page_views": null,
       "delta_taps": null,
-      "engagement_report_date_available": false,
+      "engagement_report_date_available": true,
       "downloads_report_date_available": false,
-      "impressions_by_date": {},
+      "impressions_by_date": {
+        "2026-06-24": 10
+      },
       "product_page_views_by_date": {},
       "taps_by_date": {},
-      "impressions_by_source_type_report_date": {},
-      "impressions_by_territory_report_date": {},
-      "impressions_by_device_report_date": {},
-      "engagement_by_event_report_date": {},
-      "engagement_unique_by_event_report_date": {},
-      "impressions_total_available": 568,
-      "unique_impressions_total_available": 439,
-      "product_page_views_total_available": 7,
-      "unique_product_page_views_total_available": 7,
-      "taps_total_available": 5,
-      "unique_taps_total_available": 5,
+      "impressions_by_source_type_report_date": {
+        "App Store search": 10
+      },
+      "impressions_by_territory_report_date": {
+        "IN": 1,
+        "CA": 5,
+        "US": 3,
+        "GB": 1
+      },
+      "impressions_by_device_report_date": {
+        "Desktop": 10
+      },
+      "engagement_by_event_report_date": {
+        "Impression": 10
+      },
+      "engagement_unique_by_event_report_date": {
+        "Impression": 8
+      },
+      "impressions_total_available": 532,
+      "unique_impressions_total_available": 419,
+      "product_page_views_total_available": 4,
+      "unique_product_page_views_total_available": 4,
+      "taps_total_available": 7,
+      "unique_taps_total_available": 7,
       "downloads_total_available": 1,
       "first_time_downloads_total_available": 0,
       "conversion_rate_total_available": null,
-      "page_view_rate_total_available": 1.59,
-      "tap_rate_total_available": 1.14,
+      "page_view_rate_total_available": 0.95,
+      "tap_rate_total_available": 1.67,
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-26T19:55:54.567834+00:00",
+        "fetched_at": "2026-06-26T20:10:41.093883+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -2522,12 +2613,12 @@
           "end_date": "2026-06-24",
           "downloads": 0,
           "first_time_downloads": 0,
-          "impressions": 126,
-          "product_page_views": 2,
-          "page_view_rate": 1.59,
+          "impressions": 125,
+          "product_page_views": 0,
+          "page_view_rate": 0.0,
           "avg_daily_downloads": 0.0,
-          "avg_daily_impressions": 18.0,
-          "avg_daily_product_page_views": 0.29
+          "avg_daily_impressions": 17.86,
+          "avg_daily_product_page_views": 0.0
         },
         "previous_7d": {
           "days": 7,
@@ -2535,12 +2626,12 @@
           "end_date": "2026-06-17",
           "downloads": 0,
           "first_time_downloads": 0,
-          "impressions": 171,
-          "product_page_views": 3,
-          "page_view_rate": 1.75,
+          "impressions": 117,
+          "product_page_views": 2,
+          "page_view_rate": 1.71,
           "avg_daily_downloads": 0.0,
-          "avg_daily_impressions": 24.43,
-          "avg_daily_product_page_views": 0.43
+          "avg_daily_impressions": 16.71,
+          "avg_daily_product_page_views": 0.29
         },
         "current_30d": {
           "days": 30,
@@ -2548,19 +2639,19 @@
           "end_date": "2026-06-24",
           "downloads": 1,
           "first_time_downloads": 0,
-          "impressions": 568,
-          "product_page_views": 7,
-          "page_view_rate": 1.23,
+          "impressions": 532,
+          "product_page_views": 4,
+          "page_view_rate": 0.75,
           "avg_daily_downloads": 0.03,
-          "avg_daily_impressions": 18.93,
-          "avg_daily_product_page_views": 0.23
+          "avg_daily_impressions": 17.73,
+          "avg_daily_product_page_views": 0.13
         },
         "delta_7d": {
           "downloads": 0,
           "first_time_downloads": 0,
-          "impressions": -45,
-          "product_page_views": -1,
-          "page_view_rate": -0.16
+          "impressions": 8,
+          "product_page_views": -2,
+          "page_view_rate": -1.71
         }
       },
       "funnel_by_source": {
@@ -2570,29 +2661,29 @@
         "rows": [
           {
             "name": "App Store search",
-            "impressions": 561,
-            "unique_impressions": 432,
-            "product_page_views": 5,
-            "unique_product_page_views": 5,
-            "taps": 3,
-            "unique_taps": 3,
+            "impressions": 526,
+            "unique_impressions": 413,
+            "product_page_views": 2,
+            "unique_product_page_views": 2,
+            "taps": 5,
+            "unique_taps": 5,
             "first_time_downloads": 0,
             "downloads": 0,
-            "page_view_rate": 1.16,
-            "tap_rate": 0.69,
+            "page_view_rate": 0.48,
+            "tap_rate": 1.21,
             "download_rate": 0.0
           },
           {
             "name": "App Store browse",
-            "impressions": 7,
-            "unique_impressions": 7,
+            "impressions": 6,
+            "unique_impressions": 6,
             "product_page_views": 2,
             "unique_product_page_views": 2,
             "taps": 0,
             "unique_taps": 0,
             "first_time_downloads": 0,
             "downloads": 1,
-            "page_view_rate": 28.57,
+            "page_view_rate": 33.33,
             "tap_rate": 0.0,
             "download_rate": 0.0
           },
@@ -2620,22 +2711,22 @@
         "rows": [
           {
             "name": "US",
-            "impressions": 259,
-            "unique_impressions": 218,
-            "product_page_views": 5,
-            "unique_product_page_views": 5,
+            "impressions": 231,
+            "unique_impressions": 201,
+            "product_page_views": 2,
+            "unique_product_page_views": 2,
             "taps": 0,
             "unique_taps": 0,
             "first_time_downloads": 0,
             "downloads": 0,
-            "page_view_rate": 2.29,
+            "page_view_rate": 1.0,
             "tap_rate": 0.0,
             "download_rate": 0.0
           },
           {
             "name": "CA",
-            "impressions": 75,
-            "unique_impressions": 56,
+            "impressions": 73,
+            "unique_impressions": 55,
             "product_page_views": 0,
             "unique_product_page_views": 0,
             "taps": 2,
@@ -2643,27 +2734,27 @@
             "first_time_downloads": 0,
             "downloads": 1,
             "page_view_rate": 0.0,
-            "tap_rate": 3.57,
+            "tap_rate": 3.64,
             "download_rate": 0.0
           },
           {
             "name": "GB",
-            "impressions": 38,
-            "unique_impressions": 32,
+            "impressions": 39,
+            "unique_impressions": 33,
             "product_page_views": 0,
             "unique_product_page_views": 0,
-            "taps": 2,
-            "unique_taps": 2,
+            "taps": 3,
+            "unique_taps": 3,
             "first_time_downloads": 0,
             "downloads": 0,
             "page_view_rate": 0.0,
-            "tap_rate": 6.25,
+            "tap_rate": 9.09,
             "download_rate": 0.0
           },
           {
             "name": "FR",
-            "impressions": 33,
-            "unique_impressions": 20,
+            "impressions": 31,
+            "unique_impressions": 19,
             "product_page_views": 0,
             "unique_product_page_views": 0,
             "taps": 0,
@@ -2689,34 +2780,6 @@
             "download_rate": 0.0
           },
           {
-            "name": "LK",
-            "impressions": 15,
-            "unique_impressions": 6,
-            "product_page_views": 0,
-            "unique_product_page_views": 0,
-            "taps": 0,
-            "unique_taps": 0,
-            "first_time_downloads": 0,
-            "downloads": 0,
-            "page_view_rate": 0.0,
-            "tap_rate": 0.0,
-            "download_rate": 0.0
-          },
-          {
-            "name": "AU",
-            "impressions": 12,
-            "unique_impressions": 10,
-            "product_page_views": 0,
-            "unique_product_page_views": 0,
-            "taps": 0,
-            "unique_taps": 0,
-            "first_time_downloads": 0,
-            "downloads": 0,
-            "page_view_rate": 0.0,
-            "tap_rate": 0.0,
-            "download_rate": 0.0
-          },
-          {
             "name": "CI",
             "impressions": 12,
             "unique_impressions": 3,
@@ -2727,20 +2790,6 @@
             "first_time_downloads": 0,
             "downloads": 0,
             "page_view_rate": 0.0,
-            "tap_rate": 0.0,
-            "download_rate": 0.0
-          },
-          {
-            "name": "JP",
-            "impressions": 10,
-            "unique_impressions": 10,
-            "product_page_views": 2,
-            "unique_product_page_views": 2,
-            "taps": 0,
-            "unique_taps": 0,
-            "first_time_downloads": 0,
-            "downloads": 0,
-            "page_view_rate": 20.0,
             "tap_rate": 0.0,
             "download_rate": 0.0
           },
@@ -2757,6 +2806,48 @@
             "page_view_rate": 0.0,
             "tap_rate": 0.0,
             "download_rate": 0.0
+          },
+          {
+            "name": "JP",
+            "impressions": 9,
+            "unique_impressions": 9,
+            "product_page_views": 2,
+            "unique_product_page_views": 2,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 22.22,
+            "tap_rate": 0.0,
+            "download_rate": 0.0
+          },
+          {
+            "name": "CN",
+            "impressions": 9,
+            "unique_impressions": 3,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 0.0,
+            "tap_rate": 0.0,
+            "download_rate": 0.0
+          },
+          {
+            "name": "ID",
+            "impressions": 9,
+            "unique_impressions": 5,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 0.0,
+            "tap_rate": 0.0,
+            "download_rate": 0.0
           }
         ],
         "omitted_count": 22
@@ -2764,7 +2855,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-26T19:56:13.732491+00:00",
+        "fetched_at": "2026-06-26T20:11:00.939251+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -2776,7 +2867,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-26T19:56:14.241403+00:00",
+        "fetched_at": "2026-06-26T20:11:01.418945+00:00",
         "localizations": [
           {
             "id": "4f732e72-4179-4f06-9a3e-a6b9fcd79174",
@@ -2817,7 +2908,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-26T19:56:14.518229+00:00",
+        "fetched_at": "2026-06-26T20:11:01.718350+00:00",
         "localizations": [
           {
             "localization_id": "6851d61b-be2d-465d-867b-1919cf6764ea",
@@ -2864,7 +2955,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-26T19:56:28.990093+00:00",
+        "fetched_at": "2026-06-26T20:11:18.278075+00:00",
         "total": 1,
         "returned": 1,
         "items": [
@@ -2891,11 +2982,11 @@
           "errors": [
             {
               "path": "/apps/6761866606/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6761866606/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '3f817828-1755-401b-9703-bc033040c875', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6761866606/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '61f6e318-f93c-4c5d-9197-e421f8f783d5', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6761866606&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6761866606&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '9239fb52-c5be-4f51-bfe7-4af3850a6018', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6761866606&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '26cde252-51c2-42d4-8daf-4fe68d0e0266', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -2920,7 +3011,7 @@
       "error": null,
       "analytics_segment_errors": [],
       "metrics_scope": "report_date",
-      "metrics_report_date": "2026-06-25",
+      "metrics_report_date": "2026-06-24",
       "downloads": 0,
       "first_time_downloads": 0,
       "impressions": 0,
@@ -2973,7 +3064,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-26T19:55:54.867279+00:00",
+        "fetched_at": "2026-06-26T20:10:41.422628+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -3275,7 +3366,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-26T19:56:14.900020+00:00",
+        "fetched_at": "2026-06-26T20:11:02.120224+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -3287,7 +3378,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-26T19:56:15.342694+00:00",
+        "fetched_at": "2026-06-26T20:11:02.732635+00:00",
         "localizations": [
           {
             "id": "96fb5fd9-0438-40e5-bef3-691a906f13f2",
@@ -3324,7 +3415,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-26T19:56:15.887624+00:00",
+        "fetched_at": "2026-06-26T20:11:03.337312+00:00",
         "localizations": [
           {
             "localization_id": "64530e1f-f128-4252-8408-98274dcf2ff8",
@@ -3355,7 +3446,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-26T19:56:30.032238+00:00",
+        "fetched_at": "2026-06-26T20:11:20.026093+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -3371,11 +3462,11 @@
           "errors": [
             {
               "path": "/apps/6770746957/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6770746957/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '27d5b813-61db-441a-9642-b971294e1c15', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6770746957/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'aa4afc33-f5cc-47e9-bc37-cf626e945250', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6770746957&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6770746957&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'e5bd3146-c554-46da-887a-1a43740046d9', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6770746957&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'e5757336-1e8a-453f-bbda-5f1116963c82', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -3400,7 +3491,7 @@
       "error": null,
       "analytics_segment_errors": [],
       "metrics_scope": "report_date",
-      "metrics_report_date": "2026-06-25",
+      "metrics_report_date": "2026-06-24",
       "downloads": 0,
       "first_time_downloads": 0,
       "impressions": 0,
@@ -3453,7 +3544,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-26T19:55:55.168377+00:00",
+        "fetched_at": "2026-06-26T20:10:41.754171+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -3510,7 +3601,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6772350677/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '92110c23-4d47-4b16-8202-e07b8ed18aab', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6772350677'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6772350677/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'e02fda01-0f89-4676-a52b-3c93e4a7ecdd', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6772350677'\"}]}"
       },
       "sales": {
         "available": false,
@@ -3546,7 +3637,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-26T19:56:16.286397+00:00",
+        "fetched_at": "2026-06-26T20:11:03.763198+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -3558,7 +3649,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-26T19:56:16.669159+00:00",
+        "fetched_at": "2026-06-26T20:11:04.226663+00:00",
         "localizations": [
           {
             "id": "df6ef245-510f-4714-88ca-53331d3e6937",
@@ -3574,7 +3665,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-26T19:56:16.938416+00:00",
+        "fetched_at": "2026-06-26T20:11:04.501565+00:00",
         "localizations": [
           {
             "localization_id": "93f2b14e-2de8-42a5-9fce-60010185891e",
@@ -3597,7 +3688,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-26T19:56:31.123314+00:00",
+        "fetched_at": "2026-06-26T20:11:21.205712+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -3613,11 +3704,11 @@
           "errors": [
             {
               "path": "/apps/6772350677/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6772350677/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'bc6826bc-d3ce-4b8d-8945-d541f743b692', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6772350677/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '5497bae5-0a1f-4b01-ae06-fe128d1b5a85', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6772350677&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6772350677&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '015d4790-8add-4795-9163-b367b7457778', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6772350677&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '305c8385-450d-449c-b5d4-96d1d0490cfd', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -3642,7 +3733,7 @@
       "error": null,
       "analytics_segment_errors": [],
       "metrics_scope": "report_date",
-      "metrics_report_date": "2026-06-25",
+      "metrics_report_date": "2026-06-24",
       "downloads": 0,
       "first_time_downloads": 0,
       "impressions": 0,
@@ -3695,7 +3786,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-26T19:55:55.482571+00:00",
+        "fetched_at": "2026-06-26T20:10:42.072121+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -3752,7 +3843,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6770716816/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '25bc97fb-c92c-4d6a-8cb4-86220b788c34', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6770716816'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6770716816/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '4773bd4b-a75e-4f63-a319-2151b5c84185', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6770716816'\"}]}"
       },
       "sales": {
         "available": false,
@@ -3788,7 +3879,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-26T19:56:17.275985+00:00",
+        "fetched_at": "2026-06-26T20:11:05.012606+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -3800,7 +3891,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-26T19:56:17.674800+00:00",
+        "fetched_at": "2026-06-26T20:11:05.430566+00:00",
         "localizations": [
           {
             "id": "962852b5-ebb3-4367-9327-9aeb18dbc0cd",
@@ -3816,7 +3907,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-26T19:56:17.952063+00:00",
+        "fetched_at": "2026-06-26T20:11:05.726595+00:00",
         "localizations": [
           {
             "localization_id": "a15c1d85-88cc-4c02-b75e-e3b8d2acecf5",
@@ -3839,7 +3930,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-26T19:56:32.218075+00:00",
+        "fetched_at": "2026-06-26T20:11:22.388332+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -3855,11 +3946,11 @@
           "errors": [
             {
               "path": "/apps/6770716816/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6770716816/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'c6894b3a-957e-452f-b23b-665e9a04647a', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6770716816/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '353f96bc-4821-4f31-b25d-05af5c5edf2c', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6770716816&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6770716816&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'dbc3b45e-85b7-4819-bc38-6414a6a94a34', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6770716816&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '66c243b0-1522-4c21-90e9-7819e2b08528', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -3888,87 +3979,146 @@
           "request_id": "af864add-ea67-4d4b-8da0-d07c02a33019",
           "report_id": "r14-af864add-ea67-4d4b-8da0-d07c02a33019",
           "name": "App Store Discovery and Engagement Standard",
-          "instance_id": "cf6b3e08-88cb-44f0-8036-a07be63e32dc",
+          "instance_id": "24fbf6bf-1791-4714-91b2-45d726e8455e",
           "granularity": "DAILY",
-          "processing_date": "2026-06-06",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/cf6b3e08-88cb-44f0-8036-a07be63e32dc/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+          "processing_date": "2026-06-04",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/24fbf6bf-1791-4714-91b2-45d726e8455e/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         },
         {
           "request_type": "ONGOING",
           "request_id": "af864add-ea67-4d4b-8da0-d07c02a33019",
           "report_id": "r14-af864add-ea67-4d4b-8da0-d07c02a33019",
           "name": "App Store Discovery and Engagement Standard",
-          "instance_id": "dbed2db2-87d5-47fa-9790-45af3e364e1a",
+          "instance_id": "020f9d0e-4024-40ce-8a97-afdd20d033e6",
           "granularity": "DAILY",
-          "processing_date": "2026-06-16",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/dbed2db2-87d5-47fa-9790-45af3e364e1a/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+          "processing_date": "2026-06-07",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/020f9d0e-4024-40ce-8a97-afdd20d033e6/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         },
         {
           "request_type": "ONGOING",
           "request_id": "af864add-ea67-4d4b-8da0-d07c02a33019",
           "report_id": "r14-af864add-ea67-4d4b-8da0-d07c02a33019",
           "name": "App Store Discovery and Engagement Standard",
-          "instance_id": "2e9e6f7b-9bb0-4cef-9658-5a0049f07aa3",
+          "instance_id": "b7be6d1b-3c3c-4a9b-8ad7-05c2681b68d0",
           "granularity": "DAILY",
-          "processing_date": "2026-06-21",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/2e9e6f7b-9bb0-4cef-9658-5a0049f07aa3/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+          "processing_date": "2026-06-11",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/b7be6d1b-3c3c-4a9b-8ad7-05c2681b68d0/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+        },
+        {
+          "request_type": "ONGOING",
+          "request_id": "af864add-ea67-4d4b-8da0-d07c02a33019",
+          "report_id": "r14-af864add-ea67-4d4b-8da0-d07c02a33019",
+          "name": "App Store Discovery and Engagement Standard",
+          "instance_id": "131c5a54-7745-49e6-a2f1-7639084cbadb",
+          "granularity": "DAILY",
+          "processing_date": "2026-06-13",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/131c5a54-7745-49e6-a2f1-7639084cbadb/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+        },
+        {
+          "request_type": "ONGOING",
+          "request_id": "af864add-ea67-4d4b-8da0-d07c02a33019",
+          "report_id": "r14-af864add-ea67-4d4b-8da0-d07c02a33019",
+          "name": "App Store Discovery and Engagement Standard",
+          "instance_id": "893bb771-ee25-421b-9c8c-9766570b5de6",
+          "granularity": "DAILY",
+          "processing_date": "2026-06-17",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/893bb771-ee25-421b-9c8c-9766570b5de6/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+        },
+        {
+          "request_type": "ONGOING",
+          "request_id": "af864add-ea67-4d4b-8da0-d07c02a33019",
+          "report_id": "r14-af864add-ea67-4d4b-8da0-d07c02a33019",
+          "name": "App Store Discovery and Engagement Standard",
+          "instance_id": "3370d3bc-db21-4b20-96c1-662e483a0732",
+          "granularity": "DAILY",
+          "processing_date": "2026-06-19",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/3370d3bc-db21-4b20-96c1-662e483a0732/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+        },
+        {
+          "request_type": "ONGOING",
+          "request_id": "af864add-ea67-4d4b-8da0-d07c02a33019",
+          "report_id": "r14-af864add-ea67-4d4b-8da0-d07c02a33019",
+          "name": "App Store Discovery and Engagement Standard",
+          "instance_id": "a4fab9fa-8fe4-47cc-adcb-c0e3d1cdc049",
+          "granularity": "DAILY",
+          "processing_date": "2026-06-22",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/a4fab9fa-8fe4-47cc-adcb-c0e3d1cdc049/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         }
       ],
       "metrics_scope": "report_date",
-      "metrics_report_date": "2026-06-25",
+      "metrics_report_date": "2026-06-24",
       "downloads": 0,
       "first_time_downloads": 0,
-      "impressions": 0,
-      "unique_impressions": 0,
+      "impressions": 10,
+      "unique_impressions": 9,
       "product_page_views": 0,
       "unique_product_page_views": 0,
       "taps": 0,
       "unique_taps": 0,
-      "conversion_rate": null,
-      "page_view_rate": null,
-      "tap_rate": null,
+      "conversion_rate": 0.0,
+      "page_view_rate": 0.0,
+      "tap_rate": 0.0,
       "dominant_source": {
-        "name": "",
-        "count": 0
+        "name": "App Store search",
+        "count": 9
       },
       "dominant_territory": {
-        "name": "",
-        "count": 0
+        "name": "US",
+        "count": 3
       },
       "dominant_device": {
-        "name": "",
-        "count": 0
+        "name": "Desktop",
+        "count": 10
       },
       "delta_downloads": null,
       "delta_first_time_downloads": null,
       "delta_impressions": null,
       "delta_product_page_views": null,
       "delta_taps": null,
-      "engagement_report_date_available": false,
+      "engagement_report_date_available": true,
       "downloads_report_date_available": false,
-      "impressions_by_date": {},
+      "impressions_by_date": {
+        "2026-06-24": 10
+      },
       "product_page_views_by_date": {},
       "taps_by_date": {},
-      "impressions_by_source_type_report_date": {},
-      "impressions_by_territory_report_date": {},
-      "impressions_by_device_report_date": {},
-      "engagement_by_event_report_date": {},
-      "engagement_unique_by_event_report_date": {},
-      "impressions_total_available": 580,
-      "unique_impressions_total_available": 426,
-      "product_page_views_total_available": 10,
-      "unique_product_page_views_total_available": 10,
-      "taps_total_available": 15,
-      "unique_taps_total_available": 15,
+      "impressions_by_source_type_report_date": {
+        "App Store search": 9,
+        "App Store browse": 1
+      },
+      "impressions_by_territory_report_date": {
+        "US": 3,
+        "SE": 1,
+        "RU": 2,
+        "NL": 1,
+        "AT": 1,
+        "CL": 1,
+        "GB": 1
+      },
+      "impressions_by_device_report_date": {
+        "Desktop": 10
+      },
+      "engagement_by_event_report_date": {
+        "Impression": 10
+      },
+      "engagement_unique_by_event_report_date": {
+        "Impression": 9
+      },
+      "impressions_total_available": 443,
+      "unique_impressions_total_available": 322,
+      "product_page_views_total_available": 9,
+      "unique_product_page_views_total_available": 9,
+      "taps_total_available": 10,
+      "unique_taps_total_available": 10,
       "downloads_total_available": 4,
       "first_time_downloads_total_available": 4,
-      "conversion_rate_total_available": 0.94,
-      "page_view_rate_total_available": 2.35,
-      "tap_rate_total_available": 3.52,
+      "conversion_rate_total_available": 1.24,
+      "page_view_rate_total_available": 2.8,
+      "tap_rate_total_available": 3.11,
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-26T19:55:55.894182+00:00",
+        "fetched_at": "2026-06-26T20:10:42.526298+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -4267,11 +4417,11 @@
           "end_date": "2026-06-24",
           "downloads": 0,
           "first_time_downloads": 0,
-          "impressions": 127,
+          "impressions": 124,
           "product_page_views": 4,
-          "page_view_rate": 3.15,
+          "page_view_rate": 3.23,
           "avg_daily_downloads": 0.0,
-          "avg_daily_impressions": 18.14,
+          "avg_daily_impressions": 17.71,
           "avg_daily_product_page_views": 0.57
         },
         "previous_7d": {
@@ -4280,11 +4430,11 @@
           "end_date": "2026-06-17",
           "downloads": 2,
           "first_time_downloads": 2,
-          "impressions": 247,
+          "impressions": 165,
           "product_page_views": 0,
           "page_view_rate": 0.0,
           "avg_daily_downloads": 0.29,
-          "avg_daily_impressions": 35.29,
+          "avg_daily_impressions": 23.57,
           "avg_daily_product_page_views": 0.0
         },
         "current_30d": {
@@ -4293,19 +4443,19 @@
           "end_date": "2026-06-24",
           "downloads": 4,
           "first_time_downloads": 4,
-          "impressions": 580,
-          "product_page_views": 10,
-          "page_view_rate": 1.72,
+          "impressions": 443,
+          "product_page_views": 9,
+          "page_view_rate": 2.03,
           "avg_daily_downloads": 0.13,
-          "avg_daily_impressions": 19.33,
-          "avg_daily_product_page_views": 0.33
+          "avg_daily_impressions": 14.77,
+          "avg_daily_product_page_views": 0.3
         },
         "delta_7d": {
           "downloads": -2,
           "first_time_downloads": -2,
-          "impressions": -120,
+          "impressions": -41,
           "product_page_views": 4,
-          "page_view_rate": 3.15
+          "page_view_rate": 3.23
         }
       },
       "funnel_by_source": {
@@ -4315,31 +4465,31 @@
         "rows": [
           {
             "name": "App Store search",
-            "impressions": 414,
-            "unique_impressions": 334,
+            "impressions": 317,
+            "unique_impressions": 252,
             "product_page_views": 5,
             "unique_product_page_views": 5,
             "taps": 4,
             "unique_taps": 4,
             "first_time_downloads": 2,
             "downloads": 2,
-            "page_view_rate": 1.5,
-            "tap_rate": 1.2,
-            "download_rate": 0.6
+            "page_view_rate": 1.98,
+            "tap_rate": 1.59,
+            "download_rate": 0.79
           },
           {
             "name": "App Store browse",
-            "impressions": 166,
-            "unique_impressions": 92,
-            "product_page_views": 5,
-            "unique_product_page_views": 5,
-            "taps": 11,
-            "unique_taps": 11,
+            "impressions": 126,
+            "unique_impressions": 70,
+            "product_page_views": 4,
+            "unique_product_page_views": 4,
+            "taps": 6,
+            "unique_taps": 6,
             "first_time_downloads": 2,
             "downloads": 2,
-            "page_view_rate": 5.43,
-            "tap_rate": 11.96,
-            "download_rate": 2.17
+            "page_view_rate": 5.71,
+            "tap_rate": 8.57,
+            "download_rate": 2.86
           }
         ],
         "omitted_count": 0
@@ -4351,50 +4501,8 @@
         "rows": [
           {
             "name": "US",
-            "impressions": 78,
-            "unique_impressions": 62,
-            "product_page_views": 0,
-            "unique_product_page_views": 0,
-            "taps": 0,
-            "unique_taps": 0,
-            "first_time_downloads": 0,
-            "downloads": 0,
-            "page_view_rate": 0.0,
-            "tap_rate": 0.0,
-            "download_rate": 0.0
-          },
-          {
-            "name": "GB",
-            "impressions": 46,
-            "unique_impressions": 23,
-            "product_page_views": 0,
-            "unique_product_page_views": 0,
-            "taps": 0,
-            "unique_taps": 0,
-            "first_time_downloads": 0,
-            "downloads": 0,
-            "page_view_rate": 0.0,
-            "tap_rate": 0.0,
-            "download_rate": 0.0
-          },
-          {
-            "name": "IN",
-            "impressions": 45,
-            "unique_impressions": 28,
-            "product_page_views": 5,
-            "unique_product_page_views": 5,
-            "taps": 5,
-            "unique_taps": 5,
-            "first_time_downloads": 0,
-            "downloads": 0,
-            "page_view_rate": 17.86,
-            "tap_rate": 17.86,
-            "download_rate": 0.0
-          },
-          {
-            "name": "KR",
-            "impressions": 41,
-            "unique_impressions": 21,
+            "impressions": 61,
+            "unique_impressions": 47,
             "product_page_views": 0,
             "unique_product_page_views": 0,
             "taps": 0,
@@ -4407,8 +4515,8 @@
           },
           {
             "name": "FR",
-            "impressions": 38,
-            "unique_impressions": 26,
+            "impressions": 33,
+            "unique_impressions": 22,
             "product_page_views": 0,
             "unique_product_page_views": 0,
             "taps": 0,
@@ -4420,22 +4528,8 @@
             "download_rate": 0.0
           },
           {
-            "name": "DE",
-            "impressions": 30,
-            "unique_impressions": 23,
-            "product_page_views": 0,
-            "unique_product_page_views": 0,
-            "taps": 4,
-            "unique_taps": 4,
-            "first_time_downloads": 2,
-            "downloads": 2,
-            "page_view_rate": 0.0,
-            "tap_rate": 17.39,
-            "download_rate": 8.7
-          },
-          {
-            "name": "CN",
-            "impressions": 21,
+            "name": "GB",
+            "impressions": 33,
             "unique_impressions": 17,
             "product_page_views": 0,
             "unique_product_page_views": 0,
@@ -4448,9 +4542,23 @@
             "download_rate": 0.0
           },
           {
-            "name": "NL",
-            "impressions": 19,
-            "unique_impressions": 16,
+            "name": "IN",
+            "impressions": 32,
+            "unique_impressions": 21,
+            "product_page_views": 4,
+            "unique_product_page_views": 4,
+            "taps": 4,
+            "unique_taps": 4,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 19.05,
+            "tap_rate": 19.05,
+            "download_rate": 0.0
+          },
+          {
+            "name": "KR",
+            "impressions": 29,
+            "unique_impressions": 15,
             "product_page_views": 0,
             "unique_product_page_views": 0,
             "taps": 0,
@@ -4462,9 +4570,37 @@
             "download_rate": 0.0
           },
           {
-            "name": "CL",
+            "name": "DE",
+            "impressions": 24,
+            "unique_impressions": 18,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 4,
+            "unique_taps": 4,
+            "first_time_downloads": 2,
+            "downloads": 2,
+            "page_view_rate": 0.0,
+            "tap_rate": 22.22,
+            "download_rate": 11.11
+          },
+          {
+            "name": "CN",
             "impressions": 17,
-            "unique_impressions": 14,
+            "unique_impressions": 13,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 0.0,
+            "tap_rate": 0.0,
+            "download_rate": 0.0
+          },
+          {
+            "name": "NL",
+            "impressions": 14,
+            "unique_impressions": 11,
             "product_page_views": 0,
             "unique_product_page_views": 0,
             "taps": 0,
@@ -4477,8 +4613,22 @@
           },
           {
             "name": "CA",
-            "impressions": 15,
-            "unique_impressions": 13,
+            "impressions": 12,
+            "unique_impressions": 10,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 0.0,
+            "tap_rate": 0.0,
+            "download_rate": 0.0
+          },
+          {
+            "name": "CL",
+            "impressions": 11,
+            "unique_impressions": 9,
             "product_page_views": 0,
             "unique_product_page_views": 0,
             "taps": 0,
@@ -4490,12 +4640,12 @@
             "download_rate": 0.0
           }
         ],
-        "omitted_count": 45
+        "omitted_count": 43
       },
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-26T19:56:18.292318+00:00",
+        "fetched_at": "2026-06-26T20:11:06.125143+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -4507,7 +4657,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-26T19:56:18.734137+00:00",
+        "fetched_at": "2026-06-26T20:11:06.683126+00:00",
         "localizations": [
           {
             "id": "4968b391-9f8d-4643-824c-819e5189b35c",
@@ -4548,7 +4698,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-26T19:56:19.031455+00:00",
+        "fetched_at": "2026-06-26T20:11:06.983292+00:00",
         "localizations": [
           {
             "localization_id": "2cb2abc2-5837-4d3b-a9ca-4064ef5b46dd",
@@ -4595,7 +4745,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-26T19:56:33.318320+00:00",
+        "fetched_at": "2026-06-26T20:11:23.597159+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -4611,11 +4761,11 @@
           "errors": [
             {
               "path": "/apps/6769386761/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6769386761/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'e83334ff-fef8-4e31-88f6-2eb4be07332a', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6769386761/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '1f46a63e-20d4-42e9-8f98-1ca461f048f8', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6769386761&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6769386761&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '386e70d2-980f-486a-9813-61dfcbeaf876', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6769386761&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '1ea40e10-07e3-4066-aaf7-5002b2a61307', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -4642,12 +4792,52 @@
         {
           "request_type": "ONGOING",
           "request_id": "05b6ba5a-ef38-4b34-af75-d6dc7c3f7c21",
+          "report_id": "r3-05b6ba5a-ef38-4b34-af75-d6dc7c3f7c21",
+          "name": "App Downloads Standard",
+          "instance_id": "8b2d402f-c490-40fd-913d-e43303a87d55",
+          "granularity": "DAILY",
+          "processing_date": "2026-06-17",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/8b2d402f-c490-40fd-913d-e43303a87d55/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+        },
+        {
+          "request_type": "ONGOING",
+          "request_id": "05b6ba5a-ef38-4b34-af75-d6dc7c3f7c21",
+          "report_id": "r3-05b6ba5a-ef38-4b34-af75-d6dc7c3f7c21",
+          "name": "App Downloads Standard",
+          "instance_id": "5dd682f8-563d-41b6-b53f-b42a16ebe01a",
+          "granularity": "DAILY",
+          "processing_date": "2026-06-18",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/5dd682f8-563d-41b6-b53f-b42a16ebe01a/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+        },
+        {
+          "request_type": "ONGOING",
+          "request_id": "05b6ba5a-ef38-4b34-af75-d6dc7c3f7c21",
           "report_id": "r14-05b6ba5a-ef38-4b34-af75-d6dc7c3f7c21",
           "name": "App Store Discovery and Engagement Standard",
-          "instance_id": "dafa7557-6660-4e9b-a856-43f47b3815ae",
+          "instance_id": "a180c04e-de1b-408e-b5c1-15fc70a4a0ff",
           "granularity": "DAILY",
-          "processing_date": "2026-06-10",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/dafa7557-6660-4e9b-a856-43f47b3815ae/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+          "processing_date": "2026-06-11",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/a180c04e-de1b-408e-b5c1-15fc70a4a0ff/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+        },
+        {
+          "request_type": "ONGOING",
+          "request_id": "05b6ba5a-ef38-4b34-af75-d6dc7c3f7c21",
+          "report_id": "r14-05b6ba5a-ef38-4b34-af75-d6dc7c3f7c21",
+          "name": "App Store Discovery and Engagement Standard",
+          "instance_id": "3ad87f72-3edf-47e0-9ac4-30d50083aa79",
+          "granularity": "DAILY",
+          "processing_date": "2026-06-12",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/3ad87f72-3edf-47e0-9ac4-30d50083aa79/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
+        },
+        {
+          "request_type": "ONGOING",
+          "request_id": "05b6ba5a-ef38-4b34-af75-d6dc7c3f7c21",
+          "report_id": "r14-05b6ba5a-ef38-4b34-af75-d6dc7c3f7c21",
+          "name": "App Store Discovery and Engagement Standard",
+          "instance_id": "ea99752b-ce2f-4f4f-862f-f579ff729adb",
+          "granularity": "DAILY",
+          "processing_date": "2026-06-15",
+          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/ea99752b-ce2f-4f4f-862f-f579ff729adb/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
         },
         {
           "request_type": "ONGOING",
@@ -4664,16 +4854,6 @@
           "request_id": "05b6ba5a-ef38-4b34-af75-d6dc7c3f7c21",
           "report_id": "r14-05b6ba5a-ef38-4b34-af75-d6dc7c3f7c21",
           "name": "App Store Discovery and Engagement Standard",
-          "instance_id": "ff527ca6-8d63-46cc-9a66-c18072a9aacd",
-          "granularity": "DAILY",
-          "processing_date": "2026-06-17",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/ff527ca6-8d63-46cc-9a66-c18072a9aacd/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
-        },
-        {
-          "request_type": "ONGOING",
-          "request_id": "05b6ba5a-ef38-4b34-af75-d6dc7c3f7c21",
-          "report_id": "r14-05b6ba5a-ef38-4b34-af75-d6dc7c3f7c21",
-          "name": "App Store Discovery and Engagement Standard",
           "instance_id": "8f87e9a2-4998-46f0-83f5-6204d5fddd5e",
           "granularity": "DAILY",
           "processing_date": "2026-06-22",
@@ -4681,60 +4861,75 @@
         }
       ],
       "metrics_scope": "report_date",
-      "metrics_report_date": "2026-06-25",
+      "metrics_report_date": "2026-06-24",
       "downloads": 0,
       "first_time_downloads": 0,
-      "impressions": 0,
-      "unique_impressions": 0,
+      "impressions": 4,
+      "unique_impressions": 4,
       "product_page_views": 0,
       "unique_product_page_views": 0,
       "taps": 0,
       "unique_taps": 0,
-      "conversion_rate": null,
-      "page_view_rate": null,
-      "tap_rate": null,
+      "conversion_rate": 0.0,
+      "page_view_rate": 0.0,
+      "tap_rate": 0.0,
       "dominant_source": {
-        "name": "",
-        "count": 0
+        "name": "App Store search",
+        "count": 4
       },
       "dominant_territory": {
-        "name": "",
-        "count": 0
+        "name": "ES",
+        "count": 1
       },
       "dominant_device": {
-        "name": "",
-        "count": 0
+        "name": "Desktop",
+        "count": 4
       },
       "delta_downloads": null,
       "delta_first_time_downloads": null,
       "delta_impressions": null,
       "delta_product_page_views": null,
       "delta_taps": null,
-      "engagement_report_date_available": false,
+      "engagement_report_date_available": true,
       "downloads_report_date_available": false,
-      "impressions_by_date": {},
+      "impressions_by_date": {
+        "2026-06-24": 4
+      },
       "product_page_views_by_date": {},
       "taps_by_date": {},
-      "impressions_by_source_type_report_date": {},
-      "impressions_by_territory_report_date": {},
-      "impressions_by_device_report_date": {},
-      "engagement_by_event_report_date": {},
-      "engagement_unique_by_event_report_date": {},
-      "impressions_total_available": 317,
-      "unique_impressions_total_available": 269,
+      "impressions_by_source_type_report_date": {
+        "App Store search": 4
+      },
+      "impressions_by_territory_report_date": {
+        "US": 1,
+        "LA": 1,
+        "VN": 1,
+        "ES": 1
+      },
+      "impressions_by_device_report_date": {
+        "Desktop": 4
+      },
+      "engagement_by_event_report_date": {
+        "Impression": 4
+      },
+      "engagement_unique_by_event_report_date": {
+        "Impression": 4
+      },
+      "impressions_total_available": 287,
+      "unique_impressions_total_available": 248,
       "product_page_views_total_available": 0,
       "unique_product_page_views_total_available": 0,
-      "taps_total_available": 6,
-      "unique_taps_total_available": 6,
-      "downloads_total_available": 2,
-      "first_time_downloads_total_available": 2,
-      "conversion_rate_total_available": 0.74,
+      "taps_total_available": 8,
+      "unique_taps_total_available": 8,
+      "downloads_total_available": 4,
+      "first_time_downloads_total_available": 4,
+      "conversion_rate_total_available": 0.4,
       "page_view_rate_total_available": 0.0,
-      "tap_rate_total_available": 2.23,
+      "tap_rate_total_available": 3.23,
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-26T19:55:56.326728+00:00",
+        "fetched_at": "2026-06-26T20:10:42.991064+00:00",
         "has_pending_version": false,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [],
@@ -5044,32 +5239,32 @@
           "days": 7,
           "start_date": "2026-06-11",
           "end_date": "2026-06-17",
-          "downloads": 2,
-          "first_time_downloads": 2,
-          "impressions": 109,
+          "downloads": 0,
+          "first_time_downloads": 0,
+          "impressions": 104,
           "product_page_views": 0,
           "page_view_rate": 0.0,
-          "avg_daily_downloads": 0.29,
-          "avg_daily_impressions": 15.57,
+          "avg_daily_downloads": 0.0,
+          "avg_daily_impressions": 14.86,
           "avg_daily_product_page_views": 0.0
         },
         "current_30d": {
           "days": 30,
           "start_date": "2026-05-26",
           "end_date": "2026-06-24",
-          "downloads": 2,
-          "first_time_downloads": 2,
-          "impressions": 317,
+          "downloads": 1,
+          "first_time_downloads": 1,
+          "impressions": 287,
           "product_page_views": 0,
           "page_view_rate": 0.0,
-          "avg_daily_downloads": 0.07,
-          "avg_daily_impressions": 10.57,
+          "avg_daily_downloads": 0.03,
+          "avg_daily_impressions": 9.57,
           "avg_daily_product_page_views": 0.0
         },
         "delta_7d": {
-          "downloads": -2,
-          "first_time_downloads": -2,
-          "impressions": -46,
+          "downloads": 0,
+          "first_time_downloads": 0,
+          "impressions": -41,
           "product_page_views": 0,
           "page_view_rate": 0.0
         }
@@ -5081,31 +5276,31 @@
         "rows": [
           {
             "name": "App Store search",
-            "impressions": 304,
-            "unique_impressions": 262,
+            "impressions": 280,
+            "unique_impressions": 243,
             "product_page_views": 0,
             "unique_product_page_views": 0,
-            "taps": 6,
-            "unique_taps": 6,
+            "taps": 8,
+            "unique_taps": 8,
             "first_time_downloads": 2,
             "downloads": 2,
             "page_view_rate": 0.0,
-            "tap_rate": 2.29,
-            "download_rate": 0.76
+            "tap_rate": 3.29,
+            "download_rate": 0.82
           },
           {
             "name": "App Store browse",
-            "impressions": 13,
-            "unique_impressions": 7,
+            "impressions": 7,
+            "unique_impressions": 5,
             "product_page_views": 0,
             "unique_product_page_views": 0,
             "taps": 0,
             "unique_taps": 0,
-            "first_time_downloads": 0,
-            "downloads": 0,
+            "first_time_downloads": 2,
+            "downloads": 2,
             "page_view_rate": 0.0,
             "tap_rate": 0.0,
-            "download_rate": 0.0
+            "download_rate": 40.0
           }
         ],
         "omitted_count": 0
@@ -5117,17 +5312,17 @@
         "rows": [
           {
             "name": "US",
-            "impressions": 90,
-            "unique_impressions": 78,
+            "impressions": 93,
+            "unique_impressions": 81,
             "product_page_views": 0,
             "unique_product_page_views": 0,
-            "taps": 4,
-            "unique_taps": 4,
-            "first_time_downloads": 2,
-            "downloads": 2,
+            "taps": 6,
+            "unique_taps": 6,
+            "first_time_downloads": 1,
+            "downloads": 1,
             "page_view_rate": 0.0,
-            "tap_rate": 5.13,
-            "download_rate": 2.56
+            "tap_rate": 7.41,
+            "download_rate": 1.23
           },
           {
             "name": "DE",
@@ -5145,77 +5340,21 @@
           },
           {
             "name": "CA",
-            "impressions": 22,
-            "unique_impressions": 20,
-            "product_page_views": 0,
-            "unique_product_page_views": 0,
-            "taps": 0,
-            "unique_taps": 0,
-            "first_time_downloads": 0,
-            "downloads": 0,
-            "page_view_rate": 0.0,
-            "tap_rate": 0.0,
-            "download_rate": 0.0
-          },
-          {
-            "name": "NL",
-            "impressions": 20,
+            "impressions": 17,
             "unique_impressions": 14,
             "product_page_views": 0,
             "unique_product_page_views": 0,
             "taps": 0,
             "unique_taps": 0,
-            "first_time_downloads": 0,
-            "downloads": 0,
+            "first_time_downloads": 1,
+            "downloads": 1,
             "page_view_rate": 0.0,
             "tap_rate": 0.0,
-            "download_rate": 0.0
+            "download_rate": 7.14
           },
           {
             "name": "FR",
-            "impressions": 13,
-            "unique_impressions": 11,
-            "product_page_views": 0,
-            "unique_product_page_views": 0,
-            "taps": 0,
-            "unique_taps": 0,
-            "first_time_downloads": 0,
-            "downloads": 0,
-            "page_view_rate": 0.0,
-            "tap_rate": 0.0,
-            "download_rate": 0.0
-          },
-          {
-            "name": "KR",
             "impressions": 12,
-            "unique_impressions": 6,
-            "product_page_views": 0,
-            "unique_product_page_views": 0,
-            "taps": 0,
-            "unique_taps": 0,
-            "first_time_downloads": 0,
-            "downloads": 0,
-            "page_view_rate": 0.0,
-            "tap_rate": 0.0,
-            "download_rate": 0.0
-          },
-          {
-            "name": "BR",
-            "impressions": 11,
-            "unique_impressions": 11,
-            "product_page_views": 0,
-            "unique_product_page_views": 0,
-            "taps": 2,
-            "unique_taps": 2,
-            "first_time_downloads": 0,
-            "downloads": 0,
-            "page_view_rate": 0.0,
-            "tap_rate": 18.18,
-            "download_rate": 0.0
-          },
-          {
-            "name": "JP",
-            "impressions": 10,
             "unique_impressions": 10,
             "product_page_views": 0,
             "unique_product_page_views": 0,
@@ -5228,9 +5367,51 @@
             "download_rate": 0.0
           },
           {
-            "name": "PL",
-            "impressions": 9,
-            "unique_impressions": 6,
+            "name": "BR",
+            "impressions": 10,
+            "unique_impressions": 10,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 2,
+            "unique_taps": 2,
+            "first_time_downloads": 1,
+            "downloads": 1,
+            "page_view_rate": 0.0,
+            "tap_rate": 20.0,
+            "download_rate": 10.0
+          },
+          {
+            "name": "JP",
+            "impressions": 10,
+            "unique_impressions": 10,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 1,
+            "downloads": 1,
+            "page_view_rate": 0.0,
+            "tap_rate": 0.0,
+            "download_rate": 10.0
+          },
+          {
+            "name": "NL",
+            "impressions": 10,
+            "unique_impressions": 8,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 0.0,
+            "tap_rate": 0.0,
+            "download_rate": 0.0
+          },
+          {
+            "name": "CN",
+            "impressions": 7,
+            "unique_impressions": 7,
             "product_page_views": 0,
             "unique_product_page_views": 0,
             "taps": 0,
@@ -5254,14 +5435,28 @@
             "page_view_rate": 0.0,
             "tap_rate": 0.0,
             "download_rate": 0.0
+          },
+          {
+            "name": "PL",
+            "impressions": 7,
+            "unique_impressions": 5,
+            "product_page_views": 0,
+            "unique_product_page_views": 0,
+            "taps": 0,
+            "unique_taps": 0,
+            "first_time_downloads": 0,
+            "downloads": 0,
+            "page_view_rate": 0.0,
+            "tap_rate": 0.0,
+            "download_rate": 0.0
           }
         ],
-        "omitted_count": 30
+        "omitted_count": 29
       },
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-26T19:56:19.355393+00:00",
+        "fetched_at": "2026-06-26T20:11:07.339033+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -5273,7 +5468,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-26T19:56:19.795250+00:00",
+        "fetched_at": "2026-06-26T20:11:07.800759+00:00",
         "localizations": [
           {
             "id": "2e0b6f17-74a7-4ef9-b622-90fbc6e1a5cc",
@@ -5314,7 +5509,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-26T19:56:20.102558+00:00",
+        "fetched_at": "2026-06-26T20:11:08.223473+00:00",
         "localizations": [
           {
             "localization_id": "5df6c660-4d41-4889-a06e-b5317e5ff0b6",
@@ -5393,7 +5588,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-26T19:56:34.521656+00:00",
+        "fetched_at": "2026-06-26T20:11:24.804412+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -5409,11 +5604,11 @@
           "errors": [
             {
               "path": "/apps/6764426243/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6764426243/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '9e4dc287-5c72-4442-be06-6d6b125bc841', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6764426243/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'be882b85-3141-4dc3-8dbb-d0c2a1a094be', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6764426243&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6764426243&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '837a3924-23eb-4419-8584-f04505e42270', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6764426243&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'f040bd1b-249c-41d8-931f-8518db9b5ee9', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -5438,7 +5633,7 @@
       "error": null,
       "analytics_segment_errors": [],
       "metrics_scope": "report_date",
-      "metrics_report_date": "2026-06-25",
+      "metrics_report_date": "2026-06-24",
       "downloads": 0,
       "first_time_downloads": 0,
       "impressions": 0,
@@ -5491,7 +5686,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-26T19:55:56.633432+00:00",
+        "fetched_at": "2026-06-26T20:10:43.306319+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -5548,7 +5743,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6761501191/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': 'dd984e73-8c05-4fc3-8d2b-c3b2e6070d5a', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6761501191'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6761501191/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '4cb95acc-f5a8-4cf6-b0b8-518730e86602', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6761501191'\"}]}"
       },
       "sales": {
         "available": false,
@@ -5584,7 +5779,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-26T19:56:20.587248+00:00",
+        "fetched_at": "2026-06-26T20:11:08.569902+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -5596,7 +5791,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-26T19:56:20.889857+00:00",
+        "fetched_at": "2026-06-26T20:11:09.000477+00:00",
         "localizations": [
           {
             "id": "0e6f2197-5185-4e12-9382-fc8380d45593",
@@ -5612,7 +5807,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-26T19:56:21.155348+00:00",
+        "fetched_at": "2026-06-26T20:11:09.269194+00:00",
         "localizations": [
           {
             "localization_id": "84901e45-1475-493c-a0b5-a6b70912b32b",
@@ -5635,7 +5830,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-26T19:56:35.648835+00:00",
+        "fetched_at": "2026-06-26T20:11:25.967113+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -5651,11 +5846,11 @@
           "errors": [
             {
               "path": "/apps/6761501191/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6761501191/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '88feb360-8908-4fc9-a248-d6b1b15be8bc', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6761501191/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '03f93625-7da6-4e74-aa2e-e6f7b8505b7a', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6761501191&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6761501191&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '1ce5e73d-1b65-46d6-9993-605ed9c88365', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6761501191&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '48c15371-5237-4fb7-abcb-16095a9840db', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -5678,22 +5873,11 @@
       "bundle_id": "com.gogolabs.dorequiz",
       "sku": "com.gogolabs.dorequiz",
       "error": null,
-      "analytics_segment_errors": [
-        {
-          "request_type": "ONE_TIME_SNAPSHOT",
-          "request_id": "462e9a59-f3ea-4153-ab15-f1b616602b49",
-          "report_id": "r3-462e9a59-f3ea-4153-ab15-f1b616602b49",
-          "name": "App Downloads Standard",
-          "instance_id": "4498906e-9442-4d42-b839-f0060db029b7",
-          "granularity": "DAILY",
-          "processing_date": "2026-06-17",
-          "error": "HTTP 500 GET https://api.appstoreconnect.apple.com/v1/analyticsReportInstances/4498906e-9442-4d42-b839-f0060db029b7/segments?limit=200: {'errors': [{'status': '500', 'code': 'UNEXPECTED_ERROR', 'title': 'An unexpected error occurred.', 'detail': 'An unexpected error occurred on the server side. If this issue continues, contact us at https://developer.apple.com/contact/.'}]}"
-        }
-      ],
+      "analytics_segment_errors": [],
       "metrics_scope": "report_date",
-      "metrics_report_date": "2026-06-25",
-      "downloads": 0,
-      "first_time_downloads": 0,
+      "metrics_report_date": "2026-06-24",
+      "downloads": 1,
+      "first_time_downloads": 1,
       "impressions": 0,
       "unique_impressions": 0,
       "product_page_views": 0,
@@ -5721,7 +5905,7 @@
       "delta_product_page_views": null,
       "delta_taps": null,
       "engagement_report_date_available": false,
-      "downloads_report_date_available": false,
+      "downloads_report_date_available": true,
       "impressions_by_date": {},
       "product_page_views_by_date": {},
       "taps_by_date": {},
@@ -5744,7 +5928,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-26T19:55:57.246591+00:00",
+        "fetched_at": "2026-06-26T20:10:44.026817+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -6101,28 +6285,16 @@
         }
       },
       "sales": {
-        "available": true,
-        "rows": 1,
-        "paid_units": 1,
+        "available": false,
+        "rows": 0,
+        "paid_units": 0,
         "refund_units": 0,
-        "developer_proceeds": 0.0,
-        "refund_rate": 0.0,
+        "developer_proceeds": 0,
+        "refund_rate": null,
         "customer_price_min": null,
         "customer_price_max": null,
-        "currencies": [
-          "VND"
-        ],
-        "by_territory": [
-          {
-            "territory": "VN",
-            "paid_units": 1,
-            "refund_units": 0,
-            "developer_proceeds": 0.0,
-            "currencies": [
-              "VND"
-            ]
-          }
-        ],
+        "currencies": [],
+        "by_territory": [],
         "by_territory_omitted_count": 0
       },
       "history": {
@@ -6363,7 +6535,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-26T19:56:21.551436+00:00",
+        "fetched_at": "2026-06-26T20:11:09.673120+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -6375,7 +6547,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-26T19:56:22.111980+00:00",
+        "fetched_at": "2026-06-26T20:11:10.289217+00:00",
         "localizations": [
           {
             "id": "2f47f42b-34e0-45ed-9ac2-f38c1332d143",
@@ -6464,7 +6636,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-26T19:56:23.305787+00:00",
+        "fetched_at": "2026-06-26T20:11:11.621032+00:00",
         "localizations": [
           {
             "localization_id": "4f589168-3270-495f-afe2-1bdc297382ab",
@@ -6946,8 +7118,8 @@
         "errors": []
       },
       "quality_signals": {
-        "refund_rate": 0.0,
-        "has_paid_signal": true,
+        "refund_rate": null,
+        "has_paid_signal": false,
         "has_review_signal": false,
         "has_source_funnel": true,
         "has_territory_funnel": true
@@ -6955,7 +7127,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-26T19:56:36.758495+00:00",
+        "fetched_at": "2026-06-26T20:11:27.201392+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -6971,11 +7143,11 @@
           "errors": [
             {
               "path": "/apps/6780059863/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6780059863/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'a3d22fec-59f2-4970-8cd1-e62a326643ca', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6780059863/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '78161a86-1ec1-4aa1-bf89-1167bf0fadb6', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6780059863&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6780059863&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'c2f1ccb2-5248-4c69-aa02-df5cd11ce30f', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6780059863&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '9250f0bb-78a6-476e-84ff-f7398c243a18', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -6988,7 +7160,7 @@
       "game_center": {
         "available": true,
         "source": "App Store Connect gameCenterDetail",
-        "fetched_at": "2026-06-26T19:56:37.900533+00:00",
+        "fetched_at": "2026-06-26T20:11:28.466598+00:00",
         "id": "85e90433-cba9-468d-837f-3bd449e97e2c",
         "type": "gameCenterDetails",
         "state": null,
@@ -7008,7 +7180,7 @@
       "error": null,
       "analytics_segment_errors": [],
       "metrics_scope": "report_date",
-      "metrics_report_date": "2026-06-25",
+      "metrics_report_date": "2026-06-24",
       "downloads": 0,
       "first_time_downloads": 0,
       "impressions": 0,
@@ -7061,7 +7233,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-26T19:55:57.546125+00:00",
+        "fetched_at": "2026-06-26T20:10:44.364957+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -7118,7 +7290,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6782224830/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '45e2c31d-47b0-4106-871d-08a9d414238e', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6782224830'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6782224830/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '4334cdc1-11f0-4249-8c63-cd85188d3f07', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6782224830'\"}]}"
       },
       "sales": {
         "available": false,
@@ -7154,7 +7326,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-26T19:56:23.691098+00:00",
+        "fetched_at": "2026-06-26T20:11:12.390970+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -7166,7 +7338,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-26T19:56:24.009315+00:00",
+        "fetched_at": "2026-06-26T20:11:12.788720+00:00",
         "localizations": [
           {
             "id": "3724fc93-2be7-42d2-bd44-25e8fa68b81b",
@@ -7182,7 +7354,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-26T19:56:24.281157+00:00",
+        "fetched_at": "2026-06-26T20:11:13.049264+00:00",
         "localizations": [
           {
             "localization_id": "437fc1ca-35de-4430-bc13-3f822699e0ed",
@@ -7205,7 +7377,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-26T19:56:38.173909+00:00",
+        "fetched_at": "2026-06-26T20:11:28.752739+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -7221,11 +7393,11 @@
           "errors": [
             {
               "path": "/apps/6782224830/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6782224830/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'cc09ba84-844c-41ee-9fb6-5aa042cc71aa', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6782224830/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '0e4f9b58-6fa0-437b-ac7a-c60ebce1da85', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6782224830&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6782224830&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'e5dfab27-77e2-4d0c-a1d9-103d17cdf2a7', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6782224830&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '39480b99-6938-4ae4-9be7-a497d7c5dfab', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -7238,7 +7410,7 @@
       "game_center": {
         "available": true,
         "source": "App Store Connect gameCenterDetail",
-        "fetched_at": "2026-06-26T19:56:39.094210+00:00",
+        "fetched_at": "2026-06-26T20:11:29.820056+00:00",
         "id": "7fb89c68-ca3b-4173-b261-00a0e2331857",
         "type": "gameCenterDetails",
         "state": null,
@@ -7258,7 +7430,7 @@
       "error": null,
       "analytics_segment_errors": [],
       "metrics_scope": "report_date",
-      "metrics_report_date": "2026-06-25",
+      "metrics_report_date": "2026-06-24",
       "downloads": 0,
       "first_time_downloads": 0,
       "impressions": 0,
@@ -7311,7 +7483,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-26T19:55:57.848099+00:00",
+        "fetched_at": "2026-06-26T20:10:44.762196+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -7368,7 +7540,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6782435266/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '15656988-e58c-4937-a6c6-a955869b3364', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6782435266'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6782435266/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '5fee56db-4e66-4e43-9eec-73baaf7f64de', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6782435266'\"}]}"
       },
       "sales": {
         "available": false,
@@ -7404,7 +7576,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-26T19:56:24.664028+00:00",
+        "fetched_at": "2026-06-26T20:11:13.470428+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -7416,7 +7588,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-26T19:56:25.065070+00:00",
+        "fetched_at": "2026-06-26T20:11:13.870956+00:00",
         "localizations": [
           {
             "id": "9aabd2ee-13fc-4c87-aed8-26cf56deda9a",
@@ -7432,7 +7604,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-26T19:56:25.337951+00:00",
+        "fetched_at": "2026-06-26T20:11:14.233913+00:00",
         "localizations": [
           {
             "localization_id": "36d58e28-7d29-47d3-bb51-01e2679242da",
@@ -7455,7 +7627,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-26T19:56:39.366158+00:00",
+        "fetched_at": "2026-06-26T20:11:30.105989+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -7471,11 +7643,11 @@
           "errors": [
             {
               "path": "/apps/6782435266/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6782435266/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '6e3108f1-92f4-47e6-9486-2c6da21d5086', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6782435266/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'bb51a3a5-a64b-4668-9275-25b43a4c488b', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6782435266&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6782435266&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'e72dfb98-1738-47e0-935c-6d05c3125af5', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6782435266&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '8946fc1f-66b6-47be-897d-a865e3d1ff2e', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -7488,7 +7660,7 @@
       "game_center": {
         "available": true,
         "source": "App Store Connect gameCenterDetail",
-        "fetched_at": "2026-06-26T19:56:40.318484+00:00",
+        "fetched_at": "2026-06-26T20:11:31.097275+00:00",
         "id": "b2113e70-6810-4b46-b793-f235178b9ebf",
         "type": "gameCenterDetails",
         "state": null,
@@ -7508,7 +7680,7 @@
       "error": null,
       "analytics_segment_errors": [],
       "metrics_scope": "report_date",
-      "metrics_report_date": "2026-06-25",
+      "metrics_report_date": "2026-06-24",
       "downloads": 0,
       "first_time_downloads": 0,
       "impressions": 0,
@@ -7561,7 +7733,7 @@
       "review_pipeline": {
         "available": true,
         "source": "App Store Connect appStoreVersions",
-        "fetched_at": "2026-06-26T19:55:58.159863+00:00",
+        "fetched_at": "2026-06-26T20:10:45.085551+00:00",
         "has_pending_version": true,
         "has_blocking_pipeline_change": false,
         "pipeline_states": [
@@ -7618,7 +7790,7 @@
       },
       "pricing": {
         "available": false,
-        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6782362546/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '6ecff65d-eb00-4372-86fe-f0fa2fcaa5b2', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6782362546'\"}]}"
+        "error": "HTTP 404 GET https://api.appstoreconnect.apple.com/v1/apps/6782362546/appPriceSchedule?include=baseTerritory,manualPrices,automaticPrices&limit[manualPrices]=50&limit[automaticPrices]=50: {'errors': [{'id': '457aff3d-73ef-479f-b90c-329d8e06c2f6', 'status': '404', 'code': 'NOT_FOUND', 'title': 'The specified resource does not exist', 'detail': \"There is no resource of type 'null' with id '6782362546'\"}]}"
       },
       "sales": {
         "available": false,
@@ -7654,7 +7826,7 @@
       "reviews": {
         "available": true,
         "source": "App Store Connect customerReviews",
-        "fetched_at": "2026-06-26T19:56:25.721152+00:00",
+        "fetched_at": "2026-06-26T20:11:14.584261+00:00",
         "recent_count": 0,
         "recent_average_rating": null,
         "recent_low_rating_count": 0,
@@ -7666,7 +7838,7 @@
       "metadata": {
         "available": true,
         "source": "App Store Connect appInfos",
-        "fetched_at": "2026-06-26T19:56:26.066685+00:00",
+        "fetched_at": "2026-06-26T20:11:14.929233+00:00",
         "localizations": [
           {
             "id": "21120e4a-f8bb-4ff1-be92-8f52675d6f89",
@@ -7682,7 +7854,7 @@
       "screenshot_inventory": {
         "available": true,
         "source": "App Store Connect appScreenshotSets via review_pipeline localization ids",
-        "fetched_at": "2026-06-26T19:56:26.343887+00:00",
+        "fetched_at": "2026-06-26T20:11:15.270385+00:00",
         "localizations": [
           {
             "localization_id": "26eb130f-0350-44a6-b970-25d850847dac",
@@ -7705,7 +7877,7 @@
       "in_app_purchases": {
         "available": true,
         "source": "App Store Connect in-app purchases",
-        "fetched_at": "2026-06-26T19:56:40.588029+00:00",
+        "fetched_at": "2026-06-26T20:11:31.374782+00:00",
         "total": 0,
         "returned": 0,
         "items": [],
@@ -7721,11 +7893,11 @@
           "errors": [
             {
               "path": "/apps/6782362546/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6782362546/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '2b4e4ce4-e8bc-4276-ab55-d05860dce96b', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
+              "error": "HTTP 400 GET https://api.appstoreconnect.apple.com/v1/apps/6782362546/subscriptionGroups?include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': '9cd53744-2bf5-4958-b836-3a696267ff52', 'status': '400', 'code': 'PARAMETER_ERROR.INVALID', 'title': 'A parameter has an invalid value', 'detail': \"The maximum allowable limit is '50'\", 'source': {'parameter': 'limit[subscriptions]'}}]}"
             },
             {
               "path": "/subscriptionGroups?filter[app]=6782362546&include=subscriptions&limit=200&limit[subscriptions]=200",
-              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6782362546&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'aa8ecb4c-3dc4-49a9-968e-ee705fe66aae', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
+              "error": "HTTP 403 GET https://api.appstoreconnect.apple.com/v1/subscriptionGroups?filter[app]=6782362546&include=subscriptions&limit=200&limit[subscriptions]=200: {'errors': [{'id': 'afc1e297-4c72-4700-ab55-41afdfc9caff', 'status': '403', 'code': 'FORBIDDEN_ERROR', 'title': 'The given operation is not allowed', 'detail': \"The resource 'subscriptionGroups' does not allow 'GET_COLLECTION'. Allowed operations are: CREATE, DELETE, GET_INSTANCE, UPDATE\"}]}"
             }
           ]
         },
@@ -7738,7 +7910,7 @@
       "game_center": {
         "available": true,
         "source": "App Store Connect gameCenterDetail",
-        "fetched_at": "2026-06-26T19:56:41.580620+00:00",
+        "fetched_at": "2026-06-26T20:11:32.550301+00:00",
         "id": "e0ee24ff-42af-4ed9-82ab-751e3c785e4f",
         "type": "gameCenterDetails",
         "state": null,
@@ -7769,17 +7941,19 @@
     "sales": "App Store Connect salesReports DAILY SALES SUMMARY, best effort, preserving previous values when refresh is unavailable",
     "sales_status": {
       "available": true,
-      "report_date": "2026-06-24",
-      "requested_metrics_report_date": "2026-06-25",
-      "fallback_dates_tried": []
+      "report_date": "2026-06-22",
+      "requested_metrics_report_date": "2026-06-24",
+      "fallback_dates_tried": [
+        "2026-06-23"
+      ]
     }
   },
   "freshness": {
-    "checked_at": "2026-06-26T19:56:10.023824+00:00",
-    "generated_at": "2026-06-26T19:55:52.384905+00:00",
-    "report_date": "2026-06-25",
-    "generated_age_hours": 0.0,
-    "report_age_days": 1,
+    "checked_at": "2026-06-26T20:10:56.885185+00:00",
+    "generated_at": "2026-06-26T20:10:38.821860+00:00",
+    "report_date": "2026-06-24",
+    "generated_age_hours": 0.01,
+    "report_age_days": 2,
     "is_generated_recent_72h": true,
     "has_report_date": true
   },
