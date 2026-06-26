@@ -14,9 +14,41 @@ import daily_appstore_digest
 import assemble_latest_digest
 import send_latest_digest
 import appstore_dashboard
+import appstore_analytics
 
 
 class PipelineTests(unittest.TestCase):
+    def test_segments_retry_after_apple_500_with_smaller_limit(self) -> None:
+        class FakeClient:
+            def __init__(self) -> None:
+                self.paths: list[str] = []
+
+            def get(self, path: str) -> dict:
+                self.paths.append(path)
+                if path.endswith("?limit=200"):
+                    raise RuntimeError("HTTP 500 GET segments: unexpected Apple error")
+                if path.endswith("?limit=100"):
+                    return {"data": [{"id": "segment-1"}], "links": {}}
+                raise AssertionError(f"unexpected path: {path}")
+
+        client = FakeClient()
+        segments, diagnostics = appstore_analytics.get_segments(client, "instance-1")
+
+        self.assertEqual(segments, [{"id": "segment-1"}])
+        self.assertEqual(
+            client.paths,
+            [
+                "/analyticsReportInstances/instance-1/segments?limit=200",
+                "/analyticsReportInstances/instance-1/segments?limit=100",
+            ],
+        )
+        self.assertEqual(diagnostics["selected_limit"], "100")
+        self.assertTrue(diagnostics["recovered_from_500"])
+        self.assertEqual(
+            [(item["limit"], item["status"]) for item in diagnostics["attempts"]],
+            [("200", "500"), ("100", "200")],
+        )
+
     def test_dashboard_payload_compacts_metrics_and_builds_alerts(self) -> None:
         payload = appstore_dashboard.build_dashboard_payload(
             {

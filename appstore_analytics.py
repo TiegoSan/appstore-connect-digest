@@ -205,9 +205,68 @@ def get_instances(client: ASCClient, report_id: str) -> list[dict[str, Any]]:
     return resp.get("data", [])
 
 
-def get_segments(client: ASCClient, instance_id: str) -> list[dict[str, Any]]:
-    resp = client.get(f"/analyticsReportInstances/{instance_id}/segments?limit=200")
-    return resp.get("data", [])
+SEGMENT_LIMIT_ATTEMPTS: tuple[int | None, ...] = (200, 100, 50, 10, 1, None)
+RETRIABLE_SEGMENT_STATUSES = {"500"}
+
+
+class SegmentFetchError(RuntimeError):
+    def __init__(self, instance_id: str, attempts: list[dict[str, Any]]):
+        self.instance_id = instance_id
+        self.attempts = attempts
+        details = "; ".join(f"limit={item['limit']} -> {item['status']}" for item in attempts)
+        super().__init__(f"segment fetch failed for {instance_id}: {details}")
+
+
+def http_status_from_error(error: Exception) -> str | None:
+    match = re.search(r"HTTP\s+(\d+)", str(error))
+    return match.group(1) if match else None
+
+
+def segment_path(instance_id: str, limit: int | None) -> str:
+    suffix = "" if limit is None else f"?limit={limit}"
+    return f"/analyticsReportInstances/{instance_id}/segments{suffix}"
+
+
+def segment_limit_label(limit: int | None) -> str:
+    return "default" if limit is None else str(limit)
+
+
+def collect_segment_pages(client: ASCClient, response: dict[str, Any]) -> tuple[list[dict[str, Any]], int]:
+    segments = list(response.get("data") or [])
+    page_count = 1
+    next_url = (response.get("links") or {}).get("next")
+    while next_url:
+        response = client.get(next_url)
+        segments.extend(response.get("data") or [])
+        page_count += 1
+        next_url = (response.get("links") or {}).get("next")
+    return segments, page_count
+
+
+def get_segments(client: ASCClient, instance_id: str) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    attempts: list[dict[str, Any]] = []
+    for limit in SEGMENT_LIMIT_ATTEMPTS:
+        label = segment_limit_label(limit)
+        try:
+            response = client.get(segment_path(instance_id, limit))
+            segments, page_count = collect_segment_pages(client, response)
+            attempts.append({"limit": label, "status": "200"})
+            return segments, {
+                "selected_limit": label,
+                "attempts": attempts,
+                "page_count": page_count,
+                "recovered_from_500": len(attempts) > 1,
+            }
+        except Exception as exc:
+            status = http_status_from_error(exc) or "error"
+            attempts.append({
+                "limit": label,
+                "status": status,
+                "error": str(exc),
+            })
+            if status not in RETRIABLE_SEGMENT_STATUSES:
+                raise SegmentFetchError(instance_id, attempts) from exc
+    raise SegmentFetchError(instance_id, attempts)
 
 
 def download_segment(client: ASCClient, url: str) -> tuple[list[str], list[dict[str, str]], str]:
@@ -439,9 +498,10 @@ def collect_downloads(config: dict[str, Any], app: dict[str, str], create_snapsh
                 rows: list[dict[str, str]] = []
                 columns: list[str] = []
                 segment_count = 0
+                segment_fetch: dict[str, Any] = {}
                 try:
-                    segments = get_segments(client, instance["id"])
-                except Exception as exc:
+                    segments, segment_fetch = get_segments(client, instance["id"])
+                except SegmentFetchError as exc:
                     segment_errors.append({
                         "request_type": request_type,
                         "request_id": request_id,
@@ -451,6 +511,7 @@ def collect_downloads(config: dict[str, Any], app: dict[str, str], create_snapsh
                         "granularity": attrs.get("granularity"),
                         "processing_date": attrs.get("processingDate"),
                         "error": str(exc),
+                        "attempts": exc.attempts,
                     })
                     continue
                 for segment in segments:
@@ -487,6 +548,10 @@ def collect_downloads(config: dict[str, Any], app: dict[str, str], create_snapsh
                     "row_count": len(rows),
                     "counts_total": counts_total,
                     "columns": columns,
+                    "segment_fetch_limit": segment_fetch.get("selected_limit"),
+                    "segment_fetch_attempts": segment_fetch.get("attempts") or [],
+                    "segment_fetch_page_count": segment_fetch.get("page_count"),
+                    "segment_fetch_recovered_from_500": bool(segment_fetch.get("recovered_from_500")),
                 }
                 all_report_summaries.append(summary)
                 if name == "App Downloads Standard" and attrs.get("granularity") == "DAILY":
