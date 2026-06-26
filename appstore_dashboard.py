@@ -67,7 +67,7 @@ def load_report(path: Path) -> dict[str, Any]:
         report = json.loads(path.read_text(encoding="utf-8"))
         if isinstance(report, dict):
             report["_source_report_name"] = path.name
-            return report
+            return normalize_report_download_series(report)
         return {}
     except (OSError, json.JSONDecodeError):
         return {}
@@ -86,6 +86,39 @@ def int_by_date(*sources: Any) -> dict[str, int]:
             if parse_date(key):
                 values[key] = as_int(value)
     return values
+
+
+ROW_VALUE_FIELDS = {"Counts", "Unique Counts"}
+
+
+def raw_row_identity(row: dict[str, Any]) -> tuple[tuple[str, str], ...]:
+    return tuple(sorted((key, str(value or "")) for key, value in row.items() if key not in ROW_VALUE_FIELDS))
+
+
+def raw_downloads_by_date(report: dict[str, Any], download_type: str | None = None) -> dict[str, int]:
+    values: dict[str, int] = {}
+    rows = report.get("raw_standard_rows") if isinstance(report.get("raw_standard_rows"), list) else []
+    deduped_rows: dict[tuple[tuple[str, str], ...], dict[str, Any]] = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        deduped_rows[raw_row_identity(row)] = row
+    for row in deduped_rows.values():
+        key = row.get("Date")
+        if not parse_date(key):
+            continue
+        if download_type and row.get("Download Type") != download_type:
+            continue
+        values[str(key)] = values.get(str(key), 0) + as_int(row.get("Counts"))
+    return values
+
+
+def normalize_report_download_series(report: dict[str, Any]) -> dict[str, Any]:
+    if "first_time_downloads_by_date" not in report:
+        report["first_time_downloads_by_date"] = raw_downloads_by_date(report, "First-time download")
+    if "total_downloads_by_date" not in report:
+        report["total_downloads_by_date"] = report.get("by_date") or raw_downloads_by_date(report)
+    return report
 
 
 def previous_metric(previous_time_series: dict[str, Any] | None, field: str) -> dict[str, int]:
@@ -109,6 +142,8 @@ def merged_metric(
 ) -> dict[str, int]:
     previous_field = {
         "by_date": "downloads",
+        "first_time_downloads_by_date": "first_time_downloads",
+        "total_downloads_by_date": "downloads",
         "impressions_by_date": "impressions",
         "product_page_views_by_date": "product_page_views",
         "taps_by_date": "taps",
@@ -139,12 +174,13 @@ def build_time_series(
     days: int = 90,
 ) -> dict[str, Any]:
     downloads = merged_metric(reports, "by_date", app, previous_time_series)
+    first_time_downloads = merged_metric(reports, "first_time_downloads_by_date", app, previous_time_series)
     impressions = merged_metric(reports, "impressions_by_date", app, previous_time_series)
     page_views = merged_metric(reports, "product_page_views_by_date", app, previous_time_series)
     taps = merged_metric(reports, "taps_by_date", app, previous_time_series)
 
     explicit_end = parse_date(app.get("metrics_report_date")) or parse_date(app.get("report_date"))
-    dates = [parse_date(key) for series in [downloads, impressions, page_views, taps] for key in series]
+    dates = [parse_date(key) for series in [downloads, first_time_downloads, impressions, page_views, taps] for key in series]
     dates = [item for item in dates if item]
     end = explicit_end or max(dates, default=datetime.now(timezone.utc).date())
     start = end - timedelta(days=days - 1)
@@ -157,6 +193,7 @@ def build_time_series(
             {
                 "date": key,
                 "downloads": downloads.get(key),
+                "first_time_downloads": first_time_downloads.get(key),
                 "impressions": impressions.get(key),
                 "product_page_views": page_views.get(key),
                 "taps": taps.get(key),
@@ -172,6 +209,7 @@ def build_time_series(
         "source_reports": [report.get("_source_report_name") for report in reports if report.get("_source_report_name")],
         "freshness_by_metric": {
             "downloads": metric_freshness(downloads, end),
+            "first_time_downloads": metric_freshness(first_time_downloads, end),
             "impressions": metric_freshness(impressions, end),
             "product_page_views": metric_freshness(page_views, end),
             "taps": metric_freshness(taps, end),
@@ -600,6 +638,7 @@ def totals_from_apps(apps: list[dict[str, Any]]) -> dict[str, Any]:
 def totals_from_time_series(apps: list[dict[str, Any]], days: int = 7) -> dict[str, Any]:
     totals = {
         "downloads": 0,
+        "first_time_downloads": 0,
         "impressions": 0,
         "product_page_views": 0,
         "taps": 0,
@@ -612,7 +651,7 @@ def totals_from_time_series(apps: list[dict[str, Any]], days: int = 7) -> dict[s
         for row in rows:
             if not isinstance(row, dict):
                 continue
-            for key in ["downloads", "impressions", "product_page_views", "taps"]:
+            for key in ["downloads", "first_time_downloads", "impressions", "product_page_views", "taps"]:
                 totals["possible_points"] += 1
                 if row.get(key) is not None:
                     totals[key] += as_int(row.get(key))
@@ -690,14 +729,14 @@ def build_alerts(payload: dict[str, Any]) -> list[dict[str, Any]]:
 
         current_7d = history.get("current_7d") or {}
         previous_7d = history.get("previous_7d") or {}
-        current_downloads = as_int(current_7d.get("downloads"))
-        previous_downloads = as_int(previous_7d.get("downloads"))
+        current_downloads = as_int(current_7d.get("first_time_downloads") if current_7d.get("first_time_downloads") is not None else current_7d.get("downloads"))
+        previous_downloads = as_int(previous_7d.get("first_time_downloads") if previous_7d.get("first_time_downloads") is not None else previous_7d.get("downloads"))
         if previous_downloads >= 5 and current_downloads <= previous_downloads * 0.5:
             alerts.append(
                 {
                     "level": "warning",
                     "scope": app.get("key"),
-                    "title": f"{name}: baisse forte des téléchargements J-7",
+                    "title": f"{name}: baisse forte des premiers téléchargements J-7",
                     "detail": f"{current_downloads} vs {previous_downloads} sur la fenêtre précédente.",
                 }
             )
@@ -734,7 +773,8 @@ def build_alerts(payload: dict[str, Any]) -> list[dict[str, Any]]:
                 }
             )
 
-        if today.get("impressions", 0) > 0 and today.get("product_page_views", 0) == 0 and today.get("downloads", 0) == 0:
+        today_downloads = today.get("first_time_downloads") if today.get("first_time_downloads") is not None else today.get("downloads")
+        if today.get("impressions", 0) > 0 and today.get("product_page_views", 0) == 0 and as_int(today_downloads) == 0:
             alerts.append(
                 {
                     "level": "info",

@@ -71,6 +71,10 @@ def aggregate_field(rows: list[dict[str, str]], dim: str, field: str) -> dict[st
     return dict(counter)
 
 
+def first_time_downloads_by_date(rows: list[dict[str, str]]) -> dict[str, int]:
+    return aggregate([row for row in rows if row.get("Download Type") == "First-time download"], "Date")
+
+
 def latest_row_date(apps: list[digest.AppDigest]) -> str | None:
     dates: set[str] = set()
     for app in apps:
@@ -192,6 +196,7 @@ def app_summary(app: digest.AppDigest, report_date: str) -> dict[str, Any]:
         "impressions_by_date": filtered["impressions_by_date"],
         "product_page_views_by_date": filtered["product_page_views_by_date"],
         "taps_by_date": filtered["taps_by_date"],
+        "first_time_downloads_by_date": first_time_downloads_by_date(data.get("raw_standard_rows") or []),
         "impressions_by_source_type_report_date": filtered["impressions_by_source_type_report_date"],
         "impressions_by_territory_report_date": filtered["impressions_by_territory_report_date"],
         "impressions_by_device_report_date": filtered["impressions_by_device_report_date"],

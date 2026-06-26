@@ -292,6 +292,32 @@ def count_value(row: dict[str, str]) -> int:
     return count_field_value(row, "Counts")
 
 
+ROW_VALUE_FIELDS = {"Counts", "Unique Counts"}
+
+
+def row_identity(row: dict[str, str]) -> tuple[tuple[str, str], ...]:
+    return tuple(sorted((key, value or "") for key, value in row.items() if key not in ROW_VALUE_FIELDS))
+
+
+def dedupe_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    deduped: dict[tuple[tuple[str, str], ...], dict[str, str]] = {}
+    for row in rows:
+        deduped[row_identity(row)] = row
+    return list(deduped.values())
+
+
+def merged_request_rows(rows_by_request_type: dict[str, list[dict[str, str]]]) -> tuple[list[dict[str, str]], str]:
+    snapshot_rows = dedupe_rows(rows_by_request_type.get("ONE_TIME_SNAPSHOT") or [])
+    ongoing_rows = dedupe_rows(rows_by_request_type.get("ONGOING") or [])
+    if snapshot_rows and ongoing_rows:
+        return dedupe_rows(snapshot_rows + ongoing_rows), "ONE_TIME_SNAPSHOT+ONGOING"
+    if ongoing_rows:
+        return ongoing_rows, "ONGOING"
+    if snapshot_rows:
+        return snapshot_rows, "ONE_TIME_SNAPSHOT"
+    return [], "NONE"
+
+
 def aggregate(rows: list[dict[str, str]], dim: str) -> dict[str, int]:
     counter: Counter[str] = Counter()
     for row in rows:
@@ -306,6 +332,10 @@ def aggregate_field(rows: list[dict[str, str]], dim: str, field: str) -> dict[st
         if dim in row:
             counter[row.get(dim) or ""] += count_field_value(row, field)
     return dict(counter)
+
+
+def aggregate_download_type_by_date(rows: list[dict[str, str]], download_type: str) -> dict[str, int]:
+    return aggregate([row for row in rows if row.get("Download Type") == download_type], "Date")
 
 
 def filter_event(rows: list[dict[str, str]], event: str) -> list[dict[str, str]]:
@@ -561,10 +591,11 @@ def collect_downloads(config: dict[str, Any], app: dict[str, str], create_snapsh
 
     result["reports"] = all_report_summaries
     result["segment_errors"] = segment_errors
-    report_rows = report_rows_by_request_type.get("ONGOING") or report_rows_by_request_type.get("ONE_TIME_SNAPSHOT") or []
-    result["standard_source_request_type"] = "ONGOING" if report_rows_by_request_type.get("ONGOING") else "ONE_TIME_SNAPSHOT"
+    report_rows, standard_source_request_type = merged_request_rows(report_rows_by_request_type)
+    result["standard_source_request_type"] = standard_source_request_type
     result["standard_total"] = sum(count_value(row) for row in report_rows)
     result["by_date"] = aggregate(report_rows, "Date")
+    result["first_time_downloads_by_date"] = aggregate_download_type_by_date(report_rows, "First-time download")
     result["by_download_type"] = aggregate(report_rows, "Download Type")
     result["by_territory"] = aggregate(report_rows, "Territory")
     result["by_source_type"] = aggregate(report_rows, "Source Type")
@@ -575,7 +606,8 @@ def collect_downloads(config: dict[str, Any], app: dict[str, str], create_snapsh
     result["first_time_downloads"] = result["by_download_type"].get("First-time download", 0)
     result["raw_standard_rows"] = report_rows
 
-    engagement_rows = engagement_rows_by_request_type.get("ONGOING") or engagement_rows_by_request_type.get("ONE_TIME_SNAPSHOT") or []
+    engagement_rows, engagement_source_request_type = merged_request_rows(engagement_rows_by_request_type)
+    result["engagement_source_request_type"] = engagement_source_request_type
     impression_rows = filter_event(engagement_rows, "Impression")
     product_page_view_rows = filter_event(engagement_rows, "Page view")
     tap_rows = filter_event(engagement_rows, "Tap")

@@ -49,6 +49,24 @@ class PipelineTests(unittest.TestCase):
             [("200", "500"), ("100", "200")],
         )
 
+    def test_analytics_merges_snapshot_and_ongoing_without_duplicate_rows(self) -> None:
+        rows, source = appstore_analytics.merged_request_rows(
+            {
+                "ONE_TIME_SNAPSHOT": [
+                    {"Date": "2026-06-01", "Download Type": "First-time download", "Territory": "FR", "Counts": "1"},
+                    {"Date": "2026-06-02", "Download Type": "First-time download", "Territory": "US", "Counts": "1"},
+                ],
+                "ONGOING": [
+                    {"Date": "2026-06-02", "Download Type": "First-time download", "Territory": "US", "Counts": "1"},
+                    {"Date": "2026-06-02", "Download Type": "First-time download", "Territory": "US", "Counts": "1"},
+                    {"Date": "2026-06-03", "Download Type": "Auto-update", "Territory": "FR", "Counts": "4"},
+                ],
+            }
+        )
+
+        self.assertEqual(source, "ONE_TIME_SNAPSHOT+ONGOING")
+        self.assertEqual(appstore_analytics.aggregate(rows, "Date"), {"2026-06-01": 1, "2026-06-02": 1, "2026-06-03": 4})
+
     def test_dashboard_payload_compacts_metrics_and_builds_alerts(self) -> None:
         payload = appstore_dashboard.build_dashboard_payload(
             {
@@ -186,6 +204,27 @@ class PipelineTests(unittest.TestCase):
         self.assertNotIn("private-version-id", json.dumps(payload))
         self.assertGreaterEqual(len(payload["alerts"]), 3)
         self.assertEqual(payload["alerts"][0]["level"], "critical")
+
+    def test_dashboard_time_series_tracks_first_time_downloads_separately(self) -> None:
+        report = {
+            "by_date": {"2026-06-07": 4},
+            "raw_standard_rows": [
+                {"Date": "2026-06-07", "Download Type": "First-time download", "Counts": "3"},
+                {"Date": "2026-06-07", "Download Type": "First-time download", "Counts": "3"},
+                {"Date": "2026-06-07", "Download Type": "Auto-update", "Counts": "1"},
+            ],
+        }
+
+        normalized = appstore_dashboard.normalize_report_download_series(report)
+        series = appstore_dashboard.build_time_series(
+            {"metrics_report_date": "2026-06-07"},
+            [normalized],
+            days=1,
+        )
+
+        self.assertEqual(series["rows"][0]["downloads"], 4)
+        self.assertEqual(series["rows"][0]["first_time_downloads"], 3)
+        self.assertEqual(series["freshness_by_metric"]["first_time_downloads"]["latest_date"], "2026-06-07")
 
     def test_alert_email_skips_info_only_alerts(self) -> None:
         payload = {
