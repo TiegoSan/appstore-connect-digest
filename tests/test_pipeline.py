@@ -56,6 +56,17 @@ class PipelineTests(unittest.TestCase):
                                     "version_string": "2.0",
                                     "app_store_state": "WAITING_FOR_REVIEW",
                                     "build": {"version": "42"},
+                                    "localizations": [
+                                        {
+                                            "locale": "fr-FR",
+                                            "description": "Description App Store complete.",
+                                            "keywords": "audio,conform,aaf",
+                                            "promotional_text": "Promo courte",
+                                            "marketing_url": "https://gogolabs.fr",
+                                            "support_url": "https://gogolabs.fr/support.html",
+                                            "whats_new": "Nouveautes.",
+                                        }
+                                    ],
                                 },
                                 {
                                     "id": "live-version-id",
@@ -128,6 +139,9 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(len(payload["apps"][0]["history"]["time_series"]["rows"]), 90)
         self.assertEqual(payload["apps"][0]["review_pipeline"]["versions"][0]["version_string"], "2.0")
         self.assertEqual(payload["apps"][0]["metadata"]["localizations"][0]["locale"], "fr-FR")
+        self.assertEqual(payload["apps"][0]["metadata"]["localizations"][0]["description"], "Description App Store complete.")
+        self.assertEqual(payload["apps"][0]["metadata"]["localizations"][0]["keywords"], "audio,conform,aaf")
+        self.assertEqual(payload["apps"][0]["metadata"]["localizations"][0]["version_string"], "2.0")
         self.assertEqual(payload["apps"][0]["screenshot_inventory"]["screenshot_total"], 3)
         self.assertEqual(
             payload["apps"][0]["screenshot_inventory"]["localizations"][0]["sets"][0]["screenshots"][0]["display_url"],

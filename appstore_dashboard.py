@@ -232,9 +232,36 @@ def compact_versions(versions: Any, limit: int = 4) -> list[dict[str, Any]]:
     return compacted
 
 
-def compact_metadata(metadata: dict[str, Any]) -> dict[str, Any]:
+def version_metadata_localizations(review_pipeline: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    by_locale: dict[str, dict[str, Any]] = {}
+    for version in review_pipeline.get("versions") or []:
+        if not isinstance(version, dict):
+            continue
+        version_string = version.get("version_string")
+        app_store_state = version.get("app_store_state")
+        for item in version.get("localizations") or []:
+            if not isinstance(item, dict):
+                continue
+            locale = item.get("locale")
+            if not locale or locale in by_locale:
+                continue
+            by_locale[locale] = {
+                "version_string": version_string,
+                "app_store_state": app_store_state,
+                "promotional_text": item.get("promotional_text"),
+                "description": item.get("description"),
+                "keywords": item.get("keywords"),
+                "marketing_url": item.get("marketing_url"),
+                "support_url": item.get("support_url"),
+                "whats_new": item.get("whats_new"),
+            }
+    return by_locale
+
+
+def compact_metadata(metadata: dict[str, Any], review_pipeline: dict[str, Any] | None = None) -> dict[str, Any]:
     localizations = metadata.get("localizations") if isinstance(metadata.get("localizations"), list) else []
     categories = metadata.get("categories") if isinstance(metadata.get("categories"), list) else []
+    version_metadata = version_metadata_localizations(review_pipeline or {})
     return {
         "available": bool(metadata.get("available")),
         "localization_count": len(localizations),
@@ -245,6 +272,7 @@ def compact_metadata(metadata: dict[str, Any]) -> dict[str, Any]:
                 "subtitle": item.get("subtitle"),
                 "privacy_policy_url": item.get("privacy_policy_url"),
                 "has_privacy_policy_text": bool(item.get("has_privacy_policy_text")),
+                **version_metadata.get(item.get("locale"), {}),
             }
             for item in localizations[:8]
             if isinstance(item, dict)
@@ -542,7 +570,7 @@ def compact_app(
             "manual_prices": pricing.get("manual_prices") or {},
             "automatic_prices": pricing.get("automatic_prices") or {},
         },
-        "metadata": compact_metadata(metadata),
+        "metadata": compact_metadata(metadata, review_pipeline),
         "screenshot_inventory": compact_screenshots(screenshots),
         "in_app_purchases": compact_iap(iap),
         "subscriptions": compact_subscriptions(subscriptions),
