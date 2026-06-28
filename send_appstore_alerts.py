@@ -9,7 +9,7 @@ import appstore_dashboard
 import daily_appstore_digest as digest
 
 ALERT_LEVELS_TO_SEND = {"critical", "warning"}
-DASHBOARD_URL = "https://analytics.gogolabs.fr/"
+DASHBOARD_URL = "https://nooto.gogolabs.fr/modules/analytics"
 
 
 def alert_subject(report_date: str | None, alerts: list[dict]) -> str:

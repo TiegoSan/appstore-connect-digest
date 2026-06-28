@@ -142,17 +142,21 @@ Déclenchement :
 6. Lance `enrich_store_capabilities.py`.
 7. Lance `appstore_dashboard.py`.
 8. Commit et push `strategy/latest-metrics.json` si les métriques changent.
-9. Si `GOGOLABS_ANALYTICS_REPO_TOKEN` existe, pousse les payloads dashboard vers le repo privé `TiegoSan/gogolabs-analytics`.
+9. Upload `dashboard/latest-appstore-dashboard.json` et
+   `dashboard/latest-appstore-alerts.json` comme artefact GitHub
+   `appstore-dashboard-payload` pour l'import Nooto.
 10. Lance `send_appstore_alerts.py` si des alertes warning/critical existent.
 11. Upload les artefacts JSON non privés.
 
-Le dashboard privé statique vit côté site dans :
+Le payload dashboard privé reste généré localement dans :
 
 ```text
-/Users/gautier/GogoLabs/Apps/Gogolabs.fr/private/appstore/
+/Users/gautier/GogoLabs/Sources/AppStore Connect/dashboard/
 ```
 
-Les repos publics `gogolabs.fr` et `appstore-connect-digest` ne doivent pas commiter les payloads dashboard complets. Le dashboard privé est publié dans `TiegoSan/gogolabs-analytics`, repo privé utilisé par Cloudflare Pages pour `analytics.gogolabs.fr`. Sa copie locale vit dans `/Users/gautier/GogoLabs/Sources/Analytics Dashboard`.
+Nooto importe ce payload dans D1 via l'artefact GitHub du workflow ou, en local,
+depuis `dashboard/latest-appstore-dashboard.json`. Le repo
+`TiegoSan/gogolabs-analytics` n'est plus la cible de publication du workflow.
 
 ### Digest stratégique
 
@@ -188,12 +192,9 @@ APPSTORE_DIGEST_SMTP_SECURITY
 APPSTORE_DIGEST_SMTP_USER
 APPSTORE_DIGEST_SMTP_PASSWORD
 APPSTORE_DIGEST_FROM
-GOGOLABS_ANALYTICS_REPO_TOKEN
 ```
 
 `APPSTORE_VENDOR_NUMBER` ou `ASC_VENDOR_NUMBER` est nécessaire pour les Sales Reports. `ASC_PRIVATE_KEY` doit contenir le contenu complet de la clé `.p8`, avec les lignes `BEGIN PRIVATE KEY` et `END PRIVATE KEY`.
-
-`GOGOLABS_ANALYTICS_REPO_TOKEN` est optionnel. S'il est présent, le workflow pousse `latest-appstore-dashboard.json` et `latest-appstore-alerts.json` dans le repo privé `TiegoSan/gogolabs-analytics`, utilisé par Cloudflare Pages pour `analytics.gogolabs.fr`. Sa copie locale vit dans `/Users/gautier/GogoLabs/Sources/Analytics Dashboard`.
 
 Valeurs SMTP iCloud typiques :
 
