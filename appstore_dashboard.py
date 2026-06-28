@@ -264,6 +264,10 @@ def compact_versions(versions: Any, limit: int = 4) -> list[dict[str, Any]]:
                 "build": {
                     "version": build.get("version"),
                     "uploaded_date": build.get("uploaded_date"),
+                    "processing_state": build.get("processing_state"),
+                    "expired": build.get("expired"),
+                    "min_os_version": build.get("min_os_version"),
+                    "computed_min_macos_version": build.get("computed_min_macos_version"),
                 },
             }
         )
